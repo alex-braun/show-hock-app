@@ -1,0 +1,7 @@
+<li>
+  {{!-- {{#link-to 'artist' artistSelect}} --}}
+  {{#link-to 'artists' (query-params getId=artistSelect.id)}}
+  <h3>{{artistSelect.displayName}}</h3>
+  <h3>{{artistSelect.id}}</h3>
+  {{/link-to}}
+</li>
