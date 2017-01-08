@@ -1,0 +1,19 @@
+<h1>Events Search</h1>
+
+
+  <div class="input-group">
+    {{!--search-input is reusable component keyword from search-input
+    is keyword at this template--}}
+    {{!--keyword is passed into component --}}
+    {{search-input keyword=entered}}
+    {{!--artistsearches/results route --}}
+    {{!--artistsearches/results is where query-params occur--}}
+    {{#link-to 'regionsearch.results' (query-params search=entered)}}
+      <button type="submit" class="btn btn-success">
+        Search
+      </button>{{/link-to}}
+
+  </div>
+
+<h3>Results</h3>
+{{outlet}}
