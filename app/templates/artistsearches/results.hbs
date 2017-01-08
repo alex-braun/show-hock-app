@@ -1,0 +1,7 @@
+<ul class="row-fluid block-grid-3">
+  {{#each model as |artist|}}
+    <div class='artist-search-result'>
+      {{artist-search-detail artistSelect=artist}}
+    </div>
+  {{/each}}
+</ul>
