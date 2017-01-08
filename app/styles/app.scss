@@ -1,0 +1,13 @@
+@import 'bootstrap';
+
+.artist-search-result {
+  background-color: white;
+  margin-bottom: 2em;
+  margin-right: 3em;
+  padding: 2em;
+  height: 200px;
+
+  li {
+    list-style-type: none;
+  }
+}
