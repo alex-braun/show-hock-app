@@ -1,0 +1,12 @@
+<h3>{{event.displayName}}</h3>
+<h6>{{event.start.date}}</h6>
+<h6>{{event.start.time}}</h6>
+<div class="images">
+  {{#each event.performance as |performance|}}
+  <h5>{{performance.artist.displayName}}</h5>
+  <img src="{{performance.artist.imageUrl}}" height="128px" width="128px"/><br>
+  {{/each}}
+</div>
+{{#if event.ageRestriction}}
+<h6>{{event.ageRestriction}}</h6>
+{{/if}}

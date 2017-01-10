@@ -1,6 +1,10 @@
 <li>
-  {{#link-to 'region' (query-params getId=regionSelect.id)}}
-  <h3>{{regionSelect.metroArea.displayName}}</h3>
-  <h3>{{regionSelect.metroArea.id}}</h3>
-  {{/link-to}}
+  {{#if regionSelect.noMatch}}
+    <h3>{{regionSelect.metroArea.displayName}}</h3>
+  {{else}}
+    {{#link-to 'region' (query-params getId=regionSelect.metroArea.id page='1')}}
+      <h3>{{regionSelect.metroArea.displayName}}</h3>
+      <h3>{{regionSelect.metroArea.id}}</h3>
+    {{/link-to}}
+  {{/if}}
 </li>

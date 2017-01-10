@@ -1,0 +1,9 @@
+<ul class="row-fluid block-grid-3">
+  {{#each model as |event|}}
+    <div class='region-detail'>
+      {{region-detail event=event}}
+    </div>
+  {{/each}}
+</ul>
+
+{{pagination-bar}}
