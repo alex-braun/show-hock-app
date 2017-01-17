@@ -1,4 +1,4 @@
-<h1>Region Search</h1>
+<h1>Artist Search</h1>
 
 
   <div class="input-group">
@@ -8,7 +8,7 @@
     {{search-input keyword=entered}}
     {{!--artistsearches/results route --}}
     {{!--artistsearches/results is where query-params occur--}}
-    {{#link-to 'regionsearch.results' (query-params search=entered)}}
+    {{#link-to 'artist-search.results' (query-params search=entered)}}
       <button type="submit" class="btn btn-success">
         Search
       </button>{{/link-to}}

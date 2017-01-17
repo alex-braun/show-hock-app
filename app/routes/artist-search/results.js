@@ -9,6 +9,6 @@ export default Ember.Route.extend({
   },
 
   model (params) {
-    return this.get('store').query('artistsearch', params);
+    return this.get('store').query('artist-search', params);
   },
 });
