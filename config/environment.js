@@ -4,9 +4,10 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'show-hock-app',
     environment: environment,
-    baseURL: '/',
+    rootURL: '/',
     locationType: 'auto',
-    apiHost: 'http://localhost:8080',
+    // apiHost: 'http://localhost:8080',
+    apiHost: 'http://localhost:4741',
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
