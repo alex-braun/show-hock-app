@@ -16,7 +16,6 @@ events: Ember.inject.service('region-events-onload'),
       url: "http://ipinfo.io/json"
     })
     .done(response => {
-
       this.set('city', response.city);
       this.set('region', response.region);
       this.set('country', response.country);
