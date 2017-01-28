@@ -1,12 +1,100 @@
-<h3>{{event.displayName}}</h3>
-<h6>{{event.start.date}}</h6>
-<h6>{{event.start.time}}</h6>
-<div class="images">
+<li class='date'>
+  <strong>
+    {{{format-weekday event.start.date}}},
+    {{{format-month event.start.date}}}
+    {{{format-day event.start.date}}},
+    {{{format-year event.start.date}}}
+
+{{#if event.end.date}}
+  -
+    {{{format-weekday event.end.date}}},
+    {{{format-month event.end.date}}}
+    {{{format-day event.end.date}}},
+    {{{format-year event.end.date}}}
+{{/if}}
+    </strong>
+</li>
+
+
+<li class='event'>
+  {{log event.type}}
+  {{#if (eq event.type 'Festival') }}
+    <h4><strong>{{event.displayName}}</strong></h4>
+    {{!-- {{#each event.performance as |performance|}}
+      {{#if (eq event.performance.length 1) }}
+        <h4 class='artist-list'>{{performance.artist.displayName}}</h4>
+      {{else if (eq performance.billingIndex event.performance.length) }}
+        {{#if (gt event.performance.length 1) }}
+          <h4 class='artist-list'>and {{performance.artist.displayName}}</h4>
+        {{/if}}
+      {{else}}
+        <h4 class='artist-list'>{{performance.artist.displayName}}, </h4>
+      {{/if}}
+    {{/each}} --}}
+
+  {{else}}
+    {{#each event.performance as |performance|}}
+      {{#if (eq event.performance.length 1) }}
+        <h4 class='artist-list'><strong>{{performance.artist.displayName}}</strong></h4>
+
+      {{else if (eq performance.billingIndex event.performance.length) }}
+        {{#if (gt event.performance.length 1) }}
+          <h4 class='artist-list'><strong>and {{performance.artist.displayName}}</strong></h4>
+        {{/if}}
+    {{else}}
+        <h4 class='artist-list'><strong>{{performance.artist.displayName}}, </strong></h4>
+      {{/if}}
+    {{/each}}
+  {{/if}}
+
+
+  {{#if (eq event.venue.displayName 'Unknown venue') }}
+    <h4>{{event.location.city}}</h4>
+  {{else}}
+    <h4>{{event.venue.displayName}}, {{event.location.city}}</h4>
+  {{/if}}
+
+  {{#if event.start.time}}
+  <h6>{{format-time event.start.time}}</h6>
+  {{/if}}
+  </li>
+
+{{#if (eq event.type 'Festival') }}
+  <figure class="band-thumb-wrapper">
+    <img class="headliner image" src="{{event.imageUrl}}" alt="{{event.displayName}}" />
+    <figcaption class="image-caption-text">{{event.displayName}}</figcaption>
+  </figure>
+
+  <div class='artist-grid-wrapper'>
+    <ui class='row-fluid artist-grid block-grid-3'>
+    {{#each event.performance as |performance|}}
+    {{!-- <div class='clearfix visible-sm'></div> --}}
+      <li>{{performance.artist.displayName}}</li>
+    {{/each}}
+    </ui>
+  </div>
+
+{{else}}
   {{#each event.performance as |performance|}}
-  <h5>{{performance.artist.displayName}}</h5>
-  <img src="{{performance.artist.imageUrl}}" height="128px" width="128px"/><br>
+    {{!-- <h4 class='artist-list-row-1'>{{performance.artist.displayName}}, </h4> --}}
+    {{#if (lt performance.billingIndex 4)}}
+      <figure class="band-thumb-wrapper">
+        <img class="headliner image" src="{{performance.artist.imageUrl}}" alt="{{performance.artist.displayName}}" />
+        <figcaption class="image-caption-text">{{performance.artist.displayName}}</figcaption>
+      </figure>
+    {{else if (gt performance.billingIndex 3)}}
+      <figure class="band-thumb-wrapper">
+        <img class="headliner image" src="{{performance.artist.imageUrl}}" alt="{{performance.artist.displayName}}" />
+        <figcaption class="image-caption-text">{{performance.artist.displayName}}</figcaption>
+      </figure>
+    {{/if}}
   {{/each}}
-</div>
+{{/if}}
+
+
+
+
+
 {{#if event.ageRestriction}}
-<h6>{{event.ageRestriction}}</h6>
+  <h6>{{event.ageRestriction}}</h6>
 {{/if}}

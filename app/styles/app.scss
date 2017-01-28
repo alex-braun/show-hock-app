@@ -1,4 +1,13 @@
 @import 'bootstrap';
+@import 'region.scss';
+
+.icon-radio-unchecked::before {
+  content: "\ea56";
+}
+
+.navbar-default {
+  margin-bottom: 0;
+}
 
 .artist-search-result {
   background-color: white;
@@ -10,4 +19,18 @@
   li {
     list-style-type: none;
   }
+}
+
+.under-space {
+  height: 51px;
+}
+
+// .pagination-wrapper {
+//   position: fixed;
+//   width: 100%;
+// }
+
+.pagination {
+  // position: fixed;
+  width: 100%;
 }
