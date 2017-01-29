@@ -7,14 +7,19 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('artist-search', function() {
+  this.route('artist', function() {
+    this.route('results');
+    this.route('search', function() {
+      this.route('results');
+    });
+  });
+  this.route('region', function() {
+    this.route('search', function() {
+      this.route('results');
+    });
     this.route('results');
   });
-  this.route('artist');
-  this.route('region-search', function() {
-    this.route('results');
-  });
-  this.route('region');
+  this.route('event-search');
 });
 
 export default Router;

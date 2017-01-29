@@ -3,7 +3,7 @@
     <h3>{{regionSelect.metroArea.displayName}}</h3>
   {{else}}
 
-      {{#link-to 'region' (query-params getId=regionSelect.metroArea.id page='1' location=regionSelect.metroArea.displayName)}}
+      {{#link-to 'region.results' (query-params getId=regionSelect.metroArea.id page='1' location=regionSelect.metroArea.displayName)}}
       <h3>{{regionSelect.metroArea.displayName}}</h3>
       <h3>{{regionSelect.metroArea.id}}</h3>
     {{/link-to}}

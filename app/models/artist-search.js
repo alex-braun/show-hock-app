@@ -3,6 +3,7 @@ import Ember from 'ember';
 
 export default DS.Model.extend({
   displayName: DS.attr(),
+  noMatch: DS.attr(),
 
   isNotValid: Ember.computed.empty('name'),
 });

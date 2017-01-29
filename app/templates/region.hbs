@@ -1,6 +1,6 @@
 
 
-<h1>{{search-title title=model.meta.location}}</h1>
+{{!-- <h1>{{search-title title=model.meta.location}}</h1>
 <h1>{{region}}</h1>
 <ul class="event-listings row-fluid block-grid-3">
   {{#each model as |event|}}
@@ -11,8 +11,8 @@
     </li>
   {{/each}}
 </ul>
-{{pagination-bar pages=model.meta}}
-
+{{pagination-bar pages=model.meta}} --}}
+{{outlet}}
 
 
 

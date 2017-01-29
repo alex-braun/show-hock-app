@@ -15,23 +15,11 @@
     </strong>
 </li>
 
-
 <li class='event'>
-  {{log event.type}}
   {{#if (eq event.type 'Festival') }}
+  {{!-- {{#link-to 'event' (query-params getId=regionSelect.metroArea.id page='1' location=regionSelect.metroArea.displayName)}} --}}
     <h4><strong>{{event.displayName}}</strong></h4>
-    {{!-- {{#each event.performance as |performance|}}
-      {{#if (eq event.performance.length 1) }}
-        <h4 class='artist-list'>{{performance.artist.displayName}}</h4>
-      {{else if (eq performance.billingIndex event.performance.length) }}
-        {{#if (gt event.performance.length 1) }}
-          <h4 class='artist-list'>and {{performance.artist.displayName}}</h4>
-        {{/if}}
-      {{else}}
-        <h4 class='artist-list'>{{performance.artist.displayName}}, </h4>
-      {{/if}}
-    {{/each}} --}}
-
+    {{!-- {{/link-to}} --}}
   {{else}}
     {{#each event.performance as |performance|}}
       {{#if (eq event.performance.length 1) }}
@@ -76,7 +64,6 @@
 
 {{else}}
   {{#each event.performance as |performance|}}
-    {{!-- <h4 class='artist-list-row-1'>{{performance.artist.displayName}}, </h4> --}}
     {{#if (lt performance.billingIndex 4)}}
       <figure class="band-thumb-wrapper">
         <img class="headliner image" src="{{performance.artist.imageUrl}}" alt="{{performance.artist.displayName}}" />
@@ -90,10 +77,6 @@
     {{/if}}
   {{/each}}
 {{/if}}
-
-
-
-
 
 {{#if event.ageRestriction}}
   <h6>{{event.ageRestriction}}</h6>
