@@ -1,0 +1,32 @@
+<div class='artist-info-wrapper'>
+  {{#each model.artist.firstObject.performance as |performance|}}
+    {{#if (eq performance.displayName model.artist.meta.artist) }}
+      <figure class="artist-thumb-wrapper">
+        <img class="headliner image" src="{{performance.artist.imageUrl}}" alt="{{performance.artist.displayName}}"/>
+
+        {{#each model.basic as |basic|}}
+          {{#if basic.onTourUntil}}
+            <figcaption class="artist-image-caption-text"><span class='tour-tag'>ON TOUR</span></figcaption>
+          {{/if}}
+        {{/each}}
+      </figure>
+    {{/if}}
+  {{/each}}
+  {{#each model.basic as |basic|}}
+    {{#if (eq basic.displayName model.artist.meta.artist)}}
+      <h1>{{basic.displayName}}</h1>
+      {{#if basic.onTourUntil}}
+        <h5>On Tour Until:
+          {{{format-month basic.onTourUntil}}}
+          {{{format-day basic.onTourUntil}}},
+          {{{format-year basic.onTourUntil}}}
+        </h5>
+      {{/if}}
+    {{/if}}
+  {{/each}}
+
+
+  {{!-- <h1>{{model.artist.meta.artist}}</h1> --}}
+  <h4>Scheduled Tour Dates: {{model.artist.meta.total_entries}}</h4>
+</div>
+{{outlet}}

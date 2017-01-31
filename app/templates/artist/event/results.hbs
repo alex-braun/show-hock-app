@@ -1,0 +1,13 @@
+{{!-- <h1>{{search-title title=model.meta.artist}}</h1> --}}
+<div class=artist-event-wrapper>
+<ul class="event-listings row-fluid block-grid-3">
+  {{#each model as |event|}}
+    <li class='artist-detail-list'>
+      <div class='artist-detail col-xs-10'>
+        {{artist-detail event=event}}
+      </div>
+    </li>
+  {{/each}}
+</ul>
+</div>
+{{pagination-bar pages=model.meta}}

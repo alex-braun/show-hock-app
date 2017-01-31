@@ -1,6 +1,6 @@
 import { moduleFor, test } from 'ember-qunit';
 
-moduleFor('route:artist/results', 'Unit | Route | artist/results', {
+moduleFor('route:artist/event', 'Unit | Route | artist/event', {
   // Specify the other units that are required for this test.
   // needs: ['controller:foo']
 });

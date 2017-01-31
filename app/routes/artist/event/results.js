@@ -21,4 +21,12 @@ export default Ember.Route.extend({
       return meta, result;
     });
   }
+
+  // queryParams: {
+  //
+  // }
+  // model() {
+  //   console.log('hello');
+  //   return this.paramsFor('artist');
+  // }
 });

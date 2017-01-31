@@ -1,8 +1,13 @@
 @import 'bootstrap';
 @import 'region.scss';
+@import 'artist.scss';
 
 .icon-radio-unchecked::before {
   content: "\ea56";
+}
+
+.container-fluid {
+  padding: 0;
 }
 
 .navbar-default {

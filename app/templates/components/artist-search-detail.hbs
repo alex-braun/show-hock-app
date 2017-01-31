@@ -1,19 +1,24 @@
 <li>
   {{!-- {{#link-to 'artist' artistSelect}} --}}
-  {{#link-to 'artist.results' (query-params getId=artistSelect.id)}}
-  <h3>{{artistSelect.displayName}}</h3>
-  <h3>{{artistSelect.id}}</h3>
-  {{/link-to}}
-</li>
-
-<li>
   {{#if artistSelect.noMatch}}
     <h3>{{artistSelect.displayName}}</h3>
   {{else}}
-
-      {{#link-to 'artist.results' (query-params getId=artistSelect.id page='1' artist=artistSelect.displayName)}}
-      <h3>{{regionSelect.metroArea.displayName}}</h3>
-      <h3>{{regionSelect.metroArea.id}}</h3>
-    {{/link-to}}
+  {{#link-to 'artist.event.results' (query-params getId=artistSelect.id
+  artist=artistSelect.displayName)}}
+  <h3>{{artistSelect.displayName}}</h3>
+  <h3>{{artistSelect.id}}</h3>
+  {{/link-to}}
   {{/if}}
 </li>
+
+{{!-- <li>
+  {{#if artistSelect.noMatch}}
+    <h3>{{artistSelect.displayName}}</h3>
+  {{else}} --}}
+
+      {{!-- {{#link-to 'artist.event.results' (query-params getId=artistSelect.id page='1' artist=artistSelect.displayName)}} --}}
+      {{!-- <h3>{{regionSelect.metroArea.displayName}}</h3>
+      <h3>{{regionSelect.metroArea.id}}</h3> --}}
+    {{!-- {{/link-to}} --}}
+  {{!-- {{/if}}
+</li> --}}
