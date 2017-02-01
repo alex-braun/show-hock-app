@@ -4,6 +4,7 @@ import Ember from 'ember';
 export default DS.Model.extend({
   displayName: DS.attr(),
   onTourUntil: DS.attr(),
+  imageUrl: DS.attr(),
   noMatch: DS.attr(),
 
   isNotValid: Ember.computed.empty('name'),

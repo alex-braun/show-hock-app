@@ -4504,4 +4504,3163 @@ export default function() {
         }
     };
   });
+
+
+
+
+
+
+
+  this.get('http://localhost:4741/artists', function() {
+    return {
+      "artist": [
+        {
+          "type": "Concert",
+          "popularity": 0.681041,
+          "status": "ok",
+          "ageRestriction": null,
+          "start": {
+            "time": "21:00:00",
+            "date": "2017-02-03",
+            "datetime": "2017-02-03T21:00:00-0600"
+          },
+          "performance": [
+            {
+              "billingIndex": 1,
+              "artist": {
+                "identifier": [
+                  {
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:afb680f2-b6eb-4cd7-a70b-a63b25c763d5.json",
+                    "mbid": "afb680f2-b6eb-4cd7-a70b-a63b25c763d5"
+                  }
+                ],
+                "uri": "http://www.songkick.com/artists/941964-bruno-mars?utm_source=42541&utm_medium=partner",
+                "id": 941964,
+                "displayName": "Bruno Mars",
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/941964/large_avatar"
+              },
+              "billing": "headline",
+              "id": 55692489,
+              "displayName": "Bruno Mars"
+            }
+          ],
+          "venue": {
+            "metroArea": {
+              "uri": "http://www.songkick.com/metro_areas/15073-us-houston?utm_source=42541&utm_medium=partner",
+              "id": 15073,
+              "state": {
+                "displayName": "TX"
+              },
+              "country": {
+                "displayName": "US"
+              },
+              "displayName": "Houston"
+            },
+            "lat": 29.770204,
+            "lng": -95.37993,
+            "uri": "http://www.songkick.com/venues/3454154-club-nomadic?utm_source=42541&utm_medium=partner",
+            "id": 3454154,
+            "displayName": "Club Nomadic"
+          },
+          "location": {
+            "city": "Houston, TX, US",
+            "lat": 29.770204,
+            "lng": -95.37993
+          },
+          "uri": "http://www.songkick.com/concerts/28679799-bruno-mars-at-club-nomadic?utm_source=42541&utm_medium=partner",
+          "id": 28679799,
+          "displayName": "Bruno Mars at Club Nomadic (February 3, 2017)"
+        },
+        {
+          "type": "Concert",
+          "status": "ok",
+          "popularity": 0.677889,
+          "displayName": "Bruno Mars at Park Theater at Monte Carlo Resort and Casino (March 11, 2017)",
+          "start": {
+            "datetime": "2017-03-11T21:00:00-0800",
+            "time": "21:00:00",
+            "date": "2017-03-11"
+          },
+          "ageRestriction": null,
+          "location": {
+            "city": "Las Vegas, NV, US",
+            "lat": 36.1051256,
+            "lng": -115.1752326
+          },
+          "uri": "http://www.songkick.com/concerts/28301599-bruno-mars-at-park-theater-at-monte-carlo-resort-and-casino?utm_source=42541&utm_medium=partner",
+          "id": 28301599,
+          "performance": [
+            {
+              "billingIndex": 1,
+              "artist": {
+                "displayName": "Bruno Mars",
+                "uri": "http://www.songkick.com/artists/941964-bruno-mars?utm_source=42541&utm_medium=partner",
+                "identifier": [
+                  {
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:afb680f2-b6eb-4cd7-a70b-a63b25c763d5.json",
+                    "mbid": "afb680f2-b6eb-4cd7-a70b-a63b25c763d5"
+                  }
+                ],
+                "id": 941964,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/941964/large_avatar"
+              },
+              "displayName": "Bruno Mars",
+              "id": 55037834,
+              "billing": "headline"
+            }
+          ],
+          "venue": {
+            "metroArea": {
+              "displayName": "Las Vegas",
+              "uri": "http://www.songkick.com/metro_areas/8396-us-las-vegas?utm_source=42541&utm_medium=partner",
+              "country": {
+                "displayName": "US"
+              },
+              "id": 8396,
+              "state": {
+                "displayName": "NV"
+              }
+            },
+            "displayName": "Park Theater at Monte Carlo Resort and Casino",
+            "lat": 36.1051256,
+            "lng": -115.1752326,
+            "uri": "http://www.songkick.com/venues/3410514-park-theater-at-monte-carlo-resort-and-casino?utm_source=42541&utm_medium=partner",
+            "id": 3410514
+          }
+        },
+        {
+          "type": "Concert",
+          "status": "ok",
+          "popularity": 0.677889,
+          "displayName": "Bruno Mars at Park Theater at Monte Carlo Resort and Casino (March 12, 2017)",
+          "start": {
+            "datetime": "2017-03-12T21:00:00-0700",
+            "time": "21:00:00",
+            "date": "2017-03-12"
+          },
+          "ageRestriction": null,
+          "location": {
+            "city": "Las Vegas, NV, US",
+            "lat": 36.1051256,
+            "lng": -115.1752326
+          },
+          "uri": "http://www.songkick.com/concerts/28301604-bruno-mars-at-park-theater-at-monte-carlo-resort-and-casino?utm_source=42541&utm_medium=partner",
+          "id": 28301604,
+          "performance": [
+            {
+              "billingIndex": 1,
+              "artist": {
+                "displayName": "Bruno Mars",
+                "uri": "http://www.songkick.com/artists/941964-bruno-mars?utm_source=42541&utm_medium=partner",
+                "identifier": [
+                  {
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:afb680f2-b6eb-4cd7-a70b-a63b25c763d5.json",
+                    "mbid": "afb680f2-b6eb-4cd7-a70b-a63b25c763d5"
+                  }
+                ],
+                "id": 941964,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/941964/large_avatar"
+              },
+              "displayName": "Bruno Mars",
+              "id": 55037839,
+              "billing": "headline"
+            }
+          ],
+          "venue": {
+            "metroArea": {
+              "displayName": "Las Vegas",
+              "uri": "http://www.songkick.com/metro_areas/8396-us-las-vegas?utm_source=42541&utm_medium=partner",
+              "country": {
+                "displayName": "US"
+              },
+              "id": 8396,
+              "state": {
+                "displayName": "NV"
+              }
+            },
+            "displayName": "Park Theater at Monte Carlo Resort and Casino",
+            "lat": 36.1051256,
+            "lng": -115.1752326,
+            "uri": "http://www.songkick.com/venues/3410514-park-theater-at-monte-carlo-resort-and-casino?utm_source=42541&utm_medium=partner",
+            "id": 3410514
+          }
+        },
+        {
+          "type": "Concert",
+          "ageRestriction": null,
+          "status": "ok",
+          "performance": [
+            {
+              "billingIndex": 1,
+              "billing": "headline",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "afb680f2-b6eb-4cd7-a70b-a63b25c763d5",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:afb680f2-b6eb-4cd7-a70b-a63b25c763d5.json"
+                  }
+                ],
+                "displayName": "Bruno Mars",
+                "uri": "http://www.songkick.com/artists/941964-bruno-mars?utm_source=42541&utm_medium=partner",
+                "id": 941964,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/941964/large_avatar"
+              },
+              "displayName": "Bruno Mars",
+              "id": 55489009
+            }
+          ],
+          "venue": {
+            "lng": 4.4423175,
+            "displayName": "Sportpaleis",
+            "uri": "http://www.songkick.com/venues/569556-sportpaleis?utm_source=42541&utm_medium=partner",
+            "metroArea": {
+              "displayName": "Antwerp",
+              "uri": "http://www.songkick.com/metro_areas/26852-belgium-antwerp?utm_source=42541&utm_medium=partner",
+              "id": 26852,
+              "country": {
+                "displayName": "Belgium"
+              }
+            },
+            "id": 569556,
+            "lat": 51.2307931
+          },
+          "start": {
+            "time": null,
+            "date": "2017-03-28",
+            "datetime": null
+          },
+          "location": {
+            "lng": 4.4423175,
+            "city": "Antwerp, Belgium",
+            "lat": 51.2307931
+          },
+          "displayName": "Bruno Mars at Sportpaleis (March 28, 2017)",
+          "uri": "http://www.songkick.com/concerts/28561594-bruno-mars-at-sportpaleis?utm_source=42541&utm_medium=partner",
+          "popularity": 0.679605,
+          "id": 28561594
+        },
+        {
+          "type": "Concert",
+          "ageRestriction": null,
+          "status": "ok",
+          "performance": [
+            {
+              "billingIndex": 1,
+              "billing": "headline",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "afb680f2-b6eb-4cd7-a70b-a63b25c763d5",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:afb680f2-b6eb-4cd7-a70b-a63b25c763d5.json"
+                  }
+                ],
+                "displayName": "Bruno Mars",
+                "uri": "http://www.songkick.com/artists/941964-bruno-mars?utm_source=42541&utm_medium=partner",
+                "id": 941964,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/941964/large_avatar"
+              },
+              "displayName": "Bruno Mars",
+              "id": 55488134
+            },
+            {
+              "billingIndex": 2,
+              "billing": "support",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "d02dd67e-f655-4600-bc47-f789f59e7367",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:d02dd67e-f655-4600-bc47-f789f59e7367.json"
+                  }
+                ],
+                "displayName": "Anderson Paak",
+                "uri": "http://www.songkick.com/artists/7286084-anderson-paak?utm_source=42541&utm_medium=partner",
+                "id": 7286084,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/7286084/large_avatar"
+              },
+              "displayName": "Anderson Paak",
+              "id": 55543214
+            }
+          ],
+          "venue": {
+            "lng": 3.1305034,
+            "displayName": "Stade Pierre Mauroy",
+            "uri": "http://www.songkick.com/venues/2420624-stade-pierre-mauroy?utm_source=42541&utm_medium=partner",
+            "metroArea": {
+              "displayName": "Lille",
+              "uri": "http://www.songkick.com/metro_areas/28886-france-lille?utm_source=42541&utm_medium=partner",
+              "id": 28886,
+              "country": {
+                "displayName": "France"
+              }
+            },
+            "id": 2420624,
+            "lat": 50.6119105
+          },
+          "start": {
+            "time": "20:00:00",
+            "date": "2017-03-31",
+            "datetime": "2017-03-31T20:00:00+0200"
+          },
+          "location": {
+            "lng": 3.1305034,
+            "city": "Villeneuve D’Ascq, France",
+            "lat": 50.6119105
+          },
+          "displayName": "Bruno Mars with Anderson Paak at Stade Pierre Mauroy (March 31, 2017)",
+          "uri": "http://www.songkick.com/concerts/28561099-bruno-mars-at-stade-pierre-mauroy?utm_source=42541&utm_medium=partner",
+          "popularity": 0.680269,
+          "id": 28561099
+        },
+        {
+          "type": "Concert",
+          "performance": [
+            {
+              "billing": "headline",
+              "displayName": "Bruno Mars",
+              "billingIndex": 1,
+              "artist": {
+                "displayName": "Bruno Mars",
+                "uri": "http://www.songkick.com/artists/941964-bruno-mars?utm_source=42541&utm_medium=partner",
+                "id": 941964,
+                "identifier": [
+                  {
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:afb680f2-b6eb-4cd7-a70b-a63b25c763d5.json",
+                    "mbid": "afb680f2-b6eb-4cd7-a70b-a63b25c763d5"
+                  }
+                ],
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/941964/large_avatar"
+              },
+              "id": 55488109
+            }
+          ],
+          "status": "ok",
+          "displayName": "Bruno Mars at WiZink Center - Palacio de Deportes de la Comunidad de Madrid (April 3, 2017)",
+          "start": {
+            "time": null,
+            "datetime": null,
+            "date": "2017-04-03"
+          },
+          "ageRestriction": null,
+          "location": {
+            "lat": 40.4239334,
+            "lng": -3.674995,
+            "city": "Madrid, Spain"
+          },
+          "venue": {
+            "lat": 40.4239334,
+            "lng": -3.674995,
+            "displayName": "WiZink Center - Palacio de Deportes de la Comunidad de Madrid",
+            "uri": "http://www.songkick.com/venues/125494-wizink-center-palacio-de-deportes-de-la-comunidad-de-madrid?utm_source=42541&utm_medium=partner",
+            "metroArea": {
+              "displayName": "Madrid",
+              "country": {
+                "displayName": "Spain"
+              },
+              "uri": "http://www.songkick.com/metro_areas/28755-spain-madrid?utm_source=42541&utm_medium=partner",
+              "id": 28755
+            },
+            "id": 125494
+          },
+          "popularity": 0.686787,
+          "uri": "http://www.songkick.com/concerts/28561074-bruno-mars-at-wizink-center-palacio-de-deportes-de-la-comunidad-de-madrid?utm_source=42541&utm_medium=partner",
+          "id": 28561074
+        },
+        {
+          "type": "Concert",
+          "ageRestriction": null,
+          "status": "ok",
+          "performance": [
+            {
+              "billingIndex": 1,
+              "billing": "headline",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "afb680f2-b6eb-4cd7-a70b-a63b25c763d5",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:afb680f2-b6eb-4cd7-a70b-a63b25c763d5.json"
+                  }
+                ],
+                "displayName": "Bruno Mars",
+                "uri": "http://www.songkick.com/artists/941964-bruno-mars?utm_source=42541&utm_medium=partner",
+                "id": 941964,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/941964/large_avatar"
+              },
+              "displayName": "Bruno Mars",
+              "id": 55489024
+            }
+          ],
+          "venue": {
+            "lng": -9.0940898,
+            "displayName": "MEO Arena",
+            "uri": "http://www.songkick.com/venues/30267-meo-arena?utm_source=42541&utm_medium=partner",
+            "metroArea": {
+              "displayName": "Lisbon",
+              "uri": "http://www.songkick.com/metro_areas/31802-portugal-lisbon?utm_source=42541&utm_medium=partner",
+              "id": 31802,
+              "country": {
+                "displayName": "Portugal"
+              }
+            },
+            "id": 30267,
+            "lat": 38.7685025
+          },
+          "start": {
+            "time": null,
+            "date": "2017-04-04",
+            "datetime": null
+          },
+          "location": {
+            "lng": -9.0940898,
+            "city": "Lisbon, Portugal",
+            "lat": 38.7685025
+          },
+          "displayName": "Bruno Mars at MEO Arena (April 4, 2017)",
+          "uri": "http://www.songkick.com/concerts/28561609-bruno-mars-at-meo-arena?utm_source=42541&utm_medium=partner",
+          "popularity": 0.679605,
+          "id": 28561609
+        },
+        {
+          "type": "Concert",
+          "ageRestriction": null,
+          "status": "ok",
+          "performance": [
+            {
+              "billingIndex": 1,
+              "billing": "headline",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "afb680f2-b6eb-4cd7-a70b-a63b25c763d5",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:afb680f2-b6eb-4cd7-a70b-a63b25c763d5.json"
+                  }
+                ],
+                "displayName": "Bruno Mars",
+                "uri": "http://www.songkick.com/artists/941964-bruno-mars?utm_source=42541&utm_medium=partner",
+                "id": 941964,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/941964/large_avatar"
+              },
+              "displayName": "Bruno Mars",
+              "id": 55488114
+            }
+          ],
+          "venue": {
+            "lng": 2.1556646,
+            "displayName": "Palau Sant Jordi",
+            "uri": "http://www.songkick.com/venues/34191-palau-sant-jordi?utm_source=42541&utm_medium=partner",
+            "metroArea": {
+              "displayName": "Barcelona",
+              "uri": "http://www.songkick.com/metro_areas/28714-spain-barcelona?utm_source=42541&utm_medium=partner",
+              "id": 28714,
+              "country": {
+                "displayName": "Spain"
+              }
+            },
+            "id": 34191,
+            "lat": 41.3624135
+          },
+          "start": {
+            "time": null,
+            "date": "2017-04-07",
+            "datetime": null
+          },
+          "location": {
+            "lng": 2.1556646,
+            "city": "Barcelona, Spain",
+            "lat": 41.3624135
+          },
+          "displayName": "Bruno Mars at Palau Sant Jordi (April 7, 2017)",
+          "uri": "http://www.songkick.com/concerts/28561079-bruno-mars-at-palau-sant-jordi?utm_source=42541&utm_medium=partner",
+          "popularity": 0.679605,
+          "id": 28561079
+        },
+        {
+          "type": "Concert",
+          "ageRestriction": null,
+          "status": "ok",
+          "performance": [
+            {
+              "billingIndex": 1,
+              "billing": "headline",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "afb680f2-b6eb-4cd7-a70b-a63b25c763d5",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:afb680f2-b6eb-4cd7-a70b-a63b25c763d5.json"
+                  }
+                ],
+                "displayName": "Bruno Mars",
+                "uri": "http://www.songkick.com/artists/941964-bruno-mars?utm_source=42541&utm_medium=partner",
+                "id": 941964,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/941964/large_avatar"
+              },
+              "displayName": "Bruno Mars",
+              "id": 55488139
+            },
+            {
+              "billingIndex": 2,
+              "billing": "support",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "d02dd67e-f655-4600-bc47-f789f59e7367",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:d02dd67e-f655-4600-bc47-f789f59e7367.json"
+                  }
+                ],
+                "displayName": "Anderson Paak",
+                "uri": "http://www.songkick.com/artists/7286084-anderson-paak?utm_source=42541&utm_medium=partner",
+                "id": 7286084,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/7286084/large_avatar"
+              },
+              "displayName": "Anderson Paak",
+              "id": 55543219
+            }
+          ],
+          "venue": {
+            "lng": 3.9472768,
+            "displayName": "Park & Suites Arena",
+            "uri": "http://www.songkick.com/venues/1008586-park-and-suites-arena?utm_source=42541&utm_medium=partner",
+            "metroArea": {
+              "displayName": "Montpellier",
+              "uri": "http://www.songkick.com/metro_areas/28896-france-montpellier?utm_source=42541&utm_medium=partner",
+              "id": 28896,
+              "country": {
+                "displayName": "France"
+              }
+            },
+            "id": 1008586,
+            "lat": 43.5739728
+          },
+          "start": {
+            "time": "20:00:00",
+            "date": "2017-04-08",
+            "datetime": "2017-04-08T20:00:00+0200"
+          },
+          "location": {
+            "lng": 3.9472768,
+            "city": "Pérols, France",
+            "lat": 43.5739728
+          },
+          "displayName": "Bruno Mars with Anderson Paak at Park & Suites Arena (April 8, 2017)",
+          "uri": "http://www.songkick.com/concerts/28561104-bruno-mars-at-park-and-suites-arena?utm_source=42541&utm_medium=partner",
+          "popularity": 0.680269,
+          "id": 28561104
+        },
+        {
+          "type": "Concert",
+          "ageRestriction": null,
+          "status": "ok",
+          "performance": [
+            {
+              "billingIndex": 1,
+              "billing": "headline",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "afb680f2-b6eb-4cd7-a70b-a63b25c763d5",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:afb680f2-b6eb-4cd7-a70b-a63b25c763d5.json"
+                  }
+                ],
+                "displayName": "Bruno Mars",
+                "uri": "http://www.songkick.com/artists/941964-bruno-mars?utm_source=42541&utm_medium=partner",
+                "id": 941964,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/941964/large_avatar"
+              },
+              "displayName": "Bruno Mars",
+              "id": 55489034
+            }
+          ],
+          "venue": {
+            "lng": 6.9841267,
+            "displayName": "Lanxess Arena",
+            "uri": "http://www.songkick.com/venues/31006-lanxess-arena?utm_source=42541&utm_medium=partner",
+            "metroArea": {
+              "displayName": "Cologne",
+              "uri": "http://www.songkick.com/metro_areas/28456-germany-cologne?utm_source=42541&utm_medium=partner",
+              "id": 28456,
+              "country": {
+                "displayName": "Germany"
+              }
+            },
+            "id": 31006,
+            "lat": 50.9389564
+          },
+          "start": {
+            "time": null,
+            "date": "2017-04-10",
+            "datetime": null
+          },
+          "location": {
+            "lng": 6.9841267,
+            "city": "Cologne, Germany",
+            "lat": 50.9389564
+          },
+          "displayName": "Bruno Mars at Lanxess Arena (April 10, 2017)",
+          "uri": "http://www.songkick.com/concerts/28561619-bruno-mars-at-lanxess-arena?utm_source=42541&utm_medium=partner",
+          "popularity": 0.679605,
+          "id": 28561619
+        },
+        {
+          "type": "Concert",
+          "ageRestriction": null,
+          "status": "ok",
+          "performance": [
+            {
+              "billingIndex": 1,
+              "billing": "headline",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "afb680f2-b6eb-4cd7-a70b-a63b25c763d5",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:afb680f2-b6eb-4cd7-a70b-a63b25c763d5.json"
+                  }
+                ],
+                "displayName": "Bruno Mars",
+                "uri": "http://www.songkick.com/artists/941964-bruno-mars?utm_source=42541&utm_medium=partner",
+                "id": 941964,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/941964/large_avatar"
+              },
+              "displayName": "Bruno Mars",
+              "id": 55487964
+            }
+          ],
+          "venue": {
+            "lng": -4.2881348,
+            "displayName": "The SSE Hydro",
+            "uri": "http://www.songkick.com/venues/2443719-sse-hydro?utm_source=42541&utm_medium=partner",
+            "metroArea": {
+              "displayName": "Glasgow",
+              "uri": "http://www.songkick.com/metro_areas/24473-uk-glasgow?utm_source=42541&utm_medium=partner",
+              "id": 24473,
+              "country": {
+                "displayName": "UK"
+              }
+            },
+            "id": 2443719,
+            "lat": 55.8608628
+          },
+          "start": {
+            "time": "18:30:00",
+            "date": "2017-04-12",
+            "datetime": "2017-04-12T18:30:00+0100"
+          },
+          "location": {
+            "lng": -4.2881348,
+            "city": "Glasgow, UK",
+            "lat": 55.8608628
+          },
+          "displayName": "Bruno Mars at The SSE Hydro (April 12, 2017)",
+          "uri": "http://www.songkick.com/concerts/28560934-bruno-mars-at-sse-hydro?utm_source=42541&utm_medium=partner",
+          "popularity": 0.680073,
+          "id": 28560934
+        },
+        {
+          "type": "Concert",
+          "ageRestriction": null,
+          "status": "ok",
+          "performance": [
+            {
+              "billingIndex": 1,
+              "billing": "headline",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "afb680f2-b6eb-4cd7-a70b-a63b25c763d5",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:afb680f2-b6eb-4cd7-a70b-a63b25c763d5.json"
+                  }
+                ],
+                "displayName": "Bruno Mars",
+                "uri": "http://www.songkick.com/artists/941964-bruno-mars?utm_source=42541&utm_medium=partner",
+                "id": 941964,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/941964/large_avatar"
+              },
+              "displayName": "Bruno Mars",
+              "id": 55574084
+            }
+          ],
+          "venue": {
+            "lng": -4.2881348,
+            "displayName": "The SSE Hydro",
+            "uri": "http://www.songkick.com/venues/2443719-sse-hydro?utm_source=42541&utm_medium=partner",
+            "metroArea": {
+              "displayName": "Glasgow",
+              "uri": "http://www.songkick.com/metro_areas/24473-uk-glasgow?utm_source=42541&utm_medium=partner",
+              "id": 24473,
+              "country": {
+                "displayName": "UK"
+              }
+            },
+            "id": 2443719,
+            "lat": 55.8608628
+          },
+          "start": {
+            "time": "18:30:00",
+            "date": "2017-04-13",
+            "datetime": "2017-04-13T18:30:00+0100"
+          },
+          "location": {
+            "lng": -4.2881348,
+            "city": "Glasgow, UK",
+            "lat": 55.8608628
+          },
+          "displayName": "Bruno Mars at The SSE Hydro (April 13, 2017)",
+          "uri": "http://www.songkick.com/concerts/28609904-bruno-mars-at-sse-hydro?utm_source=42541&utm_medium=partner",
+          "popularity": 0.680269,
+          "id": 28609904
+        },
+        {
+          "type": "Concert",
+          "ageRestriction": null,
+          "status": "ok",
+          "performance": [
+            {
+              "billingIndex": 1,
+              "billing": "headline",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "afb680f2-b6eb-4cd7-a70b-a63b25c763d5",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:afb680f2-b6eb-4cd7-a70b-a63b25c763d5.json"
+                  }
+                ],
+                "displayName": "Bruno Mars",
+                "uri": "http://www.songkick.com/artists/941964-bruno-mars?utm_source=42541&utm_medium=partner",
+                "id": 941964,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/941964/large_avatar"
+              },
+              "displayName": "Bruno Mars",
+              "id": 55487969
+            },
+            {
+              "billingIndex": 2,
+              "billing": "support",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "d02dd67e-f655-4600-bc47-f789f59e7367",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:d02dd67e-f655-4600-bc47-f789f59e7367.json"
+                  }
+                ],
+                "displayName": "Anderson Paak",
+                "uri": "http://www.songkick.com/artists/7286084-anderson-paak?utm_source=42541&utm_medium=partner",
+                "id": 7286084,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/7286084/large_avatar"
+              },
+              "displayName": "Anderson Paak",
+              "id": 55549814
+            }
+          ],
+          "venue": {
+            "lng": -2.9857597,
+            "displayName": "Echo Arena",
+            "uri": "http://www.songkick.com/venues/1808-echo-arena?utm_source=42541&utm_medium=partner",
+            "metroArea": {
+              "displayName": "Liverpool",
+              "uri": "http://www.songkick.com/metro_areas/24526-uk-liverpool?utm_source=42541&utm_medium=partner",
+              "id": 24526,
+              "country": {
+                "displayName": "UK"
+              }
+            },
+            "id": 1808,
+            "lat": 53.3968784
+          },
+          "start": {
+            "time": "20:00:00",
+            "date": "2017-04-15",
+            "datetime": "2017-04-15T20:00:00+0100"
+          },
+          "location": {
+            "lng": -2.9857597,
+            "city": "Liverpool, UK",
+            "lat": 53.3968784
+          },
+          "displayName": "Bruno Mars with Anderson Paak at Echo Arena (April 15, 2017)",
+          "uri": "http://www.songkick.com/concerts/28560939-bruno-mars-at-echo-arena?utm_source=42541&utm_medium=partner",
+          "popularity": 0.680073,
+          "id": 28560939
+        },
+        {
+          "type": "Concert",
+          "ageRestriction": null,
+          "status": "ok",
+          "performance": [
+            {
+              "billingIndex": 1,
+              "billing": "headline",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "afb680f2-b6eb-4cd7-a70b-a63b25c763d5",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:afb680f2-b6eb-4cd7-a70b-a63b25c763d5.json"
+                  }
+                ],
+                "displayName": "Bruno Mars",
+                "uri": "http://www.songkick.com/artists/941964-bruno-mars?utm_source=42541&utm_medium=partner",
+                "id": 941964,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/941964/large_avatar"
+              },
+              "displayName": "Bruno Mars",
+              "id": 55487979
+            },
+            {
+              "billingIndex": 2,
+              "billing": "support",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "d02dd67e-f655-4600-bc47-f789f59e7367",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:d02dd67e-f655-4600-bc47-f789f59e7367.json"
+                  }
+                ],
+                "displayName": "Anderson Paak",
+                "uri": "http://www.songkick.com/artists/7286084-anderson-paak?utm_source=42541&utm_medium=partner",
+                "id": 7286084,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/7286084/large_avatar"
+              },
+              "displayName": "Anderson Paak",
+              "id": 55549819
+            }
+          ],
+          "venue": {
+            "lng": 0.0057948,
+            "displayName": "The O2 Arena",
+            "uri": "http://www.songkick.com/venues/17532-o2-arena?utm_source=42541&utm_medium=partner",
+            "metroArea": {
+              "displayName": "London",
+              "uri": "http://www.songkick.com/metro_areas/24426-uk-london?utm_source=42541&utm_medium=partner",
+              "id": 24426,
+              "country": {
+                "displayName": "UK"
+              }
+            },
+            "id": 17532,
+            "lat": 51.4966493
+          },
+          "start": {
+            "time": "20:00:00",
+            "date": "2017-04-18",
+            "datetime": "2017-04-18T20:00:00+0100"
+          },
+          "location": {
+            "lng": 0.0057948,
+            "city": "Greenwich, UK",
+            "lat": 51.4966493
+          },
+          "displayName": "Bruno Mars with Anderson Paak at The O2 Arena (April 18, 2017)",
+          "uri": "http://www.songkick.com/concerts/28560949-bruno-mars-at-o2-arena?utm_source=42541&utm_medium=partner",
+          "popularity": 0.680234,
+          "id": 28560949
+        },
+        {
+          "type": "Concert",
+          "ageRestriction": null,
+          "status": "ok",
+          "performance": [
+            {
+              "billingIndex": 1,
+              "billing": "headline",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "afb680f2-b6eb-4cd7-a70b-a63b25c763d5",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:afb680f2-b6eb-4cd7-a70b-a63b25c763d5.json"
+                  }
+                ],
+                "displayName": "Bruno Mars",
+                "uri": "http://www.songkick.com/artists/941964-bruno-mars?utm_source=42541&utm_medium=partner",
+                "id": 941964,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/941964/large_avatar"
+              },
+              "displayName": "Bruno Mars",
+              "id": 55550934
+            }
+          ],
+          "venue": {
+            "lng": 0.0057948,
+            "displayName": "The O2 Arena",
+            "uri": "http://www.songkick.com/venues/17532-o2-arena?utm_source=42541&utm_medium=partner",
+            "metroArea": {
+              "displayName": "London",
+              "uri": "http://www.songkick.com/metro_areas/24426-uk-london?utm_source=42541&utm_medium=partner",
+              "id": 24426,
+              "country": {
+                "displayName": "UK"
+              }
+            },
+            "id": 17532,
+            "lat": 51.4966493
+          },
+          "start": {
+            "time": "18:31:00",
+            "date": "2017-04-18",
+            "datetime": "2017-04-18T18:31:00+0100"
+          },
+          "location": {
+            "lng": 0.0057948,
+            "city": "Greenwich, UK",
+            "lat": 51.4966493
+          },
+          "displayName": "Bruno Mars at The O2 Arena (April 18, 2017)",
+          "uri": "http://www.songkick.com/concerts/28597109-bruno-mars-at-o2-arena?utm_source=42541&utm_medium=partner",
+          "popularity": 0.680073,
+          "id": 28597109
+        },
+        {
+          "type": "Concert",
+          "ageRestriction": null,
+          "status": "ok",
+          "performance": [
+            {
+              "billingIndex": 1,
+              "billing": "headline",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "afb680f2-b6eb-4cd7-a70b-a63b25c763d5",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:afb680f2-b6eb-4cd7-a70b-a63b25c763d5.json"
+                  }
+                ],
+                "displayName": "Bruno Mars",
+                "uri": "http://www.songkick.com/artists/941964-bruno-mars?utm_source=42541&utm_medium=partner",
+                "id": 941964,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/941964/large_avatar"
+              },
+              "displayName": "Bruno Mars",
+              "id": 55508069
+            },
+            {
+              "billingIndex": 2,
+              "billing": "support",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "d02dd67e-f655-4600-bc47-f789f59e7367",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:d02dd67e-f655-4600-bc47-f789f59e7367.json"
+                  }
+                ],
+                "displayName": "Anderson Paak",
+                "uri": "http://www.songkick.com/artists/7286084-anderson-paak?utm_source=42541&utm_medium=partner",
+                "id": 7286084,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/7286084/large_avatar"
+              },
+              "displayName": "Anderson Paak",
+              "id": 55549829
+            }
+          ],
+          "venue": {
+            "lng": 0.0057948,
+            "displayName": "The O2 Arena",
+            "uri": "http://www.songkick.com/venues/17532-o2-arena?utm_source=42541&utm_medium=partner",
+            "metroArea": {
+              "displayName": "London",
+              "uri": "http://www.songkick.com/metro_areas/24426-uk-london?utm_source=42541&utm_medium=partner",
+              "id": 24426,
+              "country": {
+                "displayName": "UK"
+              }
+            },
+            "id": 17532,
+            "lat": 51.4966493
+          },
+          "start": {
+            "time": "18:30:00",
+            "date": "2017-04-19",
+            "datetime": "2017-04-19T18:30:00+0100"
+          },
+          "location": {
+            "lng": 0.0057948,
+            "city": "Greenwich, UK",
+            "lat": 51.4966493
+          },
+          "displayName": "Bruno Mars with Anderson Paak at The O2 Arena (April 19, 2017)",
+          "uri": "http://www.songkick.com/concerts/28572619-bruno-mars-at-o2-arena?utm_source=42541&utm_medium=partner",
+          "popularity": 0.680234,
+          "id": 28572619
+        },
+        {
+          "type": "Concert",
+          "ageRestriction": null,
+          "status": "ok",
+          "performance": [
+            {
+              "billingIndex": 1,
+              "billing": "headline",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "afb680f2-b6eb-4cd7-a70b-a63b25c763d5",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:afb680f2-b6eb-4cd7-a70b-a63b25c763d5.json"
+                  }
+                ],
+                "displayName": "Bruno Mars",
+                "uri": "http://www.songkick.com/artists/941964-bruno-mars?utm_source=42541&utm_medium=partner",
+                "id": 941964,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/941964/large_avatar"
+              },
+              "displayName": "Bruno Mars",
+              "id": 55567294
+            },
+            {
+              "billingIndex": 2,
+              "billing": "support",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "d02dd67e-f655-4600-bc47-f789f59e7367",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:d02dd67e-f655-4600-bc47-f789f59e7367.json"
+                  }
+                ],
+                "displayName": "Anderson Paak",
+                "uri": "http://www.songkick.com/artists/7286084-anderson-paak?utm_source=42541&utm_medium=partner",
+                "id": 7286084,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/7286084/large_avatar"
+              },
+              "displayName": "Anderson Paak",
+              "id": 55567299
+            }
+          ],
+          "venue": {
+            "lng": 0.0057948,
+            "displayName": "The O2 Arena",
+            "uri": "http://www.songkick.com/venues/17532-o2-arena?utm_source=42541&utm_medium=partner",
+            "metroArea": {
+              "displayName": "London",
+              "uri": "http://www.songkick.com/metro_areas/24426-uk-london?utm_source=42541&utm_medium=partner",
+              "id": 24426,
+              "country": {
+                "displayName": "UK"
+              }
+            },
+            "id": 17532,
+            "lat": 51.4966493
+          },
+          "start": {
+            "time": "20:00:00",
+            "date": "2017-04-21",
+            "datetime": "2017-04-21T20:00:00+0100"
+          },
+          "location": {
+            "lng": 0.0057948,
+            "city": "Greenwich, UK",
+            "lat": 51.4966493
+          },
+          "displayName": "Bruno Mars with Anderson Paak at The O2 Arena (April 21, 2017)",
+          "uri": "http://www.songkick.com/concerts/28606174-bruno-mars-at-o2-arena?utm_source=42541&utm_medium=partner",
+          "popularity": 0.680269,
+          "id": 28606174
+        },
+        {
+          "type": "Concert",
+          "ageRestriction": null,
+          "status": "ok",
+          "performance": [
+            {
+              "billingIndex": 1,
+              "billing": "headline",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "afb680f2-b6eb-4cd7-a70b-a63b25c763d5",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:afb680f2-b6eb-4cd7-a70b-a63b25c763d5.json"
+                  }
+                ],
+                "displayName": "Bruno Mars",
+                "uri": "http://www.songkick.com/artists/941964-bruno-mars?utm_source=42541&utm_medium=partner",
+                "id": 941964,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/941964/large_avatar"
+              },
+              "displayName": "Bruno Mars",
+              "id": 55575144
+            },
+            {
+              "billingIndex": 2,
+              "billing": "support",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "d02dd67e-f655-4600-bc47-f789f59e7367",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:d02dd67e-f655-4600-bc47-f789f59e7367.json"
+                  }
+                ],
+                "displayName": "Anderson Paak",
+                "uri": "http://www.songkick.com/artists/7286084-anderson-paak?utm_source=42541&utm_medium=partner",
+                "id": 7286084,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/7286084/large_avatar"
+              },
+              "displayName": "Anderson Paak",
+              "id": 55582709
+            }
+          ],
+          "venue": {
+            "lng": 0.0057948,
+            "displayName": "The O2 Arena",
+            "uri": "http://www.songkick.com/venues/17532-o2-arena?utm_source=42541&utm_medium=partner",
+            "metroArea": {
+              "displayName": "London",
+              "uri": "http://www.songkick.com/metro_areas/24426-uk-london?utm_source=42541&utm_medium=partner",
+              "id": 24426,
+              "country": {
+                "displayName": "UK"
+              }
+            },
+            "id": 17532,
+            "lat": 51.4966493
+          },
+          "start": {
+            "time": "18:30:00",
+            "date": "2017-04-21",
+            "datetime": "2017-04-21T18:30:00+0100"
+          },
+          "location": {
+            "lng": 0.0057948,
+            "city": "Greenwich, UK",
+            "lat": 51.4966493
+          },
+          "displayName": "Bruno Mars with Anderson Paak at The O2 Arena (April 21, 2017)",
+          "uri": "http://www.songkick.com/concerts/28610769-bruno-mars-at-o2-arena?utm_source=42541&utm_medium=partner",
+          "popularity": 0.680269,
+          "id": 28610769
+        },
+        {
+          "type": "Concert",
+          "ageRestriction": null,
+          "status": "ok",
+          "performance": [
+            {
+              "billingIndex": 1,
+              "billing": "headline",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "afb680f2-b6eb-4cd7-a70b-a63b25c763d5",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:afb680f2-b6eb-4cd7-a70b-a63b25c763d5.json"
+                  }
+                ],
+                "displayName": "Bruno Mars",
+                "uri": "http://www.songkick.com/artists/941964-bruno-mars?utm_source=42541&utm_medium=partner",
+                "id": 941964,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/941964/large_avatar"
+              },
+              "displayName": "Bruno Mars",
+              "id": 55573724
+            },
+            {
+              "billingIndex": 2,
+              "billing": "support",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "d02dd67e-f655-4600-bc47-f789f59e7367",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:d02dd67e-f655-4600-bc47-f789f59e7367.json"
+                  }
+                ],
+                "displayName": "Anderson Paak",
+                "uri": "http://www.songkick.com/artists/7286084-anderson-paak?utm_source=42541&utm_medium=partner",
+                "id": 7286084,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/7286084/large_avatar"
+              },
+              "displayName": "Anderson Paak",
+              "id": 55574089
+            }
+          ],
+          "venue": {
+            "lng": 0.0057948,
+            "displayName": "The O2 Arena",
+            "uri": "http://www.songkick.com/venues/17532-o2-arena?utm_source=42541&utm_medium=partner",
+            "metroArea": {
+              "displayName": "London",
+              "uri": "http://www.songkick.com/metro_areas/24426-uk-london?utm_source=42541&utm_medium=partner",
+              "id": 24426,
+              "country": {
+                "displayName": "UK"
+              }
+            },
+            "id": 17532,
+            "lat": 51.4966493
+          },
+          "start": {
+            "time": "20:00:00",
+            "date": "2017-04-22",
+            "datetime": "2017-04-22T20:00:00+0100"
+          },
+          "location": {
+            "lng": 0.0057948,
+            "city": "Greenwich, UK",
+            "lat": 51.4966493
+          },
+          "displayName": "Bruno Mars with Anderson Paak at The O2 Arena (April 22, 2017)",
+          "uri": "http://www.songkick.com/concerts/28609644-bruno-mars-at-o2-arena?utm_source=42541&utm_medium=partner",
+          "popularity": 0.680269,
+          "id": 28609644
+        },
+        {
+          "type": "Concert",
+          "ageRestriction": null,
+          "status": "ok",
+          "performance": [
+            {
+              "billingIndex": 1,
+              "billing": "headline",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "afb680f2-b6eb-4cd7-a70b-a63b25c763d5",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:afb680f2-b6eb-4cd7-a70b-a63b25c763d5.json"
+                  }
+                ],
+                "displayName": "Bruno Mars",
+                "uri": "http://www.songkick.com/artists/941964-bruno-mars?utm_source=42541&utm_medium=partner",
+                "id": 941964,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/941964/large_avatar"
+              },
+              "displayName": "Bruno Mars",
+              "id": 55575159
+            },
+            {
+              "billingIndex": 2,
+              "billing": "support",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "d02dd67e-f655-4600-bc47-f789f59e7367",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:d02dd67e-f655-4600-bc47-f789f59e7367.json"
+                  }
+                ],
+                "displayName": "Anderson Paak",
+                "uri": "http://www.songkick.com/artists/7286084-anderson-paak?utm_source=42541&utm_medium=partner",
+                "id": 7286084,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/7286084/large_avatar"
+              },
+              "displayName": "Anderson Paak",
+              "id": 55582704
+            }
+          ],
+          "venue": {
+            "lng": 0.0057948,
+            "displayName": "The O2 Arena",
+            "uri": "http://www.songkick.com/venues/17532-o2-arena?utm_source=42541&utm_medium=partner",
+            "metroArea": {
+              "displayName": "London",
+              "uri": "http://www.songkick.com/metro_areas/24426-uk-london?utm_source=42541&utm_medium=partner",
+              "id": 24426,
+              "country": {
+                "displayName": "UK"
+              }
+            },
+            "id": 17532,
+            "lat": 51.4966493
+          },
+          "start": {
+            "time": "18:30:00",
+            "date": "2017-04-22",
+            "datetime": "2017-04-22T18:30:00+0100"
+          },
+          "location": {
+            "lng": 0.0057948,
+            "city": "Greenwich, UK",
+            "lat": 51.4966493
+          },
+          "displayName": "Bruno Mars with Anderson Paak at The O2 Arena (April 22, 2017)",
+          "uri": "http://www.songkick.com/concerts/28610779-bruno-mars-at-o2-arena?utm_source=42541&utm_medium=partner",
+          "popularity": 0.680269,
+          "id": 28610779
+        },
+        {
+          "type": "Concert",
+          "ageRestriction": null,
+          "status": "ok",
+          "performance": [
+            {
+              "billingIndex": 1,
+              "billing": "headline",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "afb680f2-b6eb-4cd7-a70b-a63b25c763d5",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:afb680f2-b6eb-4cd7-a70b-a63b25c763d5.json"
+                  }
+                ],
+                "displayName": "Bruno Mars",
+                "uri": "http://www.songkick.com/artists/941964-bruno-mars?utm_source=42541&utm_medium=partner",
+                "id": 941964,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/941964/large_avatar"
+              },
+              "displayName": "Bruno Mars",
+              "id": 55487999
+            },
+            {
+              "billingIndex": 2,
+              "billing": "support",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "d02dd67e-f655-4600-bc47-f789f59e7367",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:d02dd67e-f655-4600-bc47-f789f59e7367.json"
+                  }
+                ],
+                "displayName": "Anderson Paak",
+                "uri": "http://www.songkick.com/artists/7286084-anderson-paak?utm_source=42541&utm_medium=partner",
+                "id": 7286084,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/7286084/large_avatar"
+              },
+              "displayName": "Anderson Paak",
+              "id": 55549834
+            }
+          ],
+          "venue": {
+            "lng": -1.9187133,
+            "displayName": "Barclaycard Arena",
+            "uri": "http://www.songkick.com/venues/17383-barclaycard-arena?utm_source=42541&utm_medium=partner",
+            "metroArea": {
+              "displayName": "Birmingham",
+              "uri": "http://www.songkick.com/metro_areas/24542-uk-birmingham?utm_source=42541&utm_medium=partner",
+              "id": 24542,
+              "country": {
+                "displayName": "UK"
+              }
+            },
+            "id": 17383,
+            "lat": 52.4826511
+          },
+          "start": {
+            "time": "20:00:00",
+            "date": "2017-04-24",
+            "datetime": "2017-04-24T20:00:00+0100"
+          },
+          "location": {
+            "lng": -1.9187133,
+            "city": "Birmingham, UK",
+            "lat": 52.4826511
+          },
+          "displayName": "Bruno Mars with Anderson Paak at Barclaycard Arena (April 24, 2017)",
+          "uri": "http://www.songkick.com/concerts/28560969-bruno-mars-at-barclaycard-arena?utm_source=42541&utm_medium=partner",
+          "popularity": 0.680073,
+          "id": 28560969
+        },
+        {
+          "type": "Concert",
+          "ageRestriction": null,
+          "status": "ok",
+          "performance": [
+            {
+              "billingIndex": 1,
+              "billing": "headline",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "afb680f2-b6eb-4cd7-a70b-a63b25c763d5",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:afb680f2-b6eb-4cd7-a70b-a63b25c763d5.json"
+                  }
+                ],
+                "displayName": "Bruno Mars",
+                "uri": "http://www.songkick.com/artists/941964-bruno-mars?utm_source=42541&utm_medium=partner",
+                "id": 941964,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/941964/large_avatar"
+              },
+              "displayName": "Bruno Mars",
+              "id": 55550969
+            }
+          ],
+          "venue": {
+            "lng": -1.9187133,
+            "displayName": "Barclaycard Arena",
+            "uri": "http://www.songkick.com/venues/17383-barclaycard-arena?utm_source=42541&utm_medium=partner",
+            "metroArea": {
+              "displayName": "Birmingham",
+              "uri": "http://www.songkick.com/metro_areas/24542-uk-birmingham?utm_source=42541&utm_medium=partner",
+              "id": 24542,
+              "country": {
+                "displayName": "UK"
+              }
+            },
+            "id": 17383,
+            "lat": 52.4826511
+          },
+          "start": {
+            "time": "18:31:00",
+            "date": "2017-04-24",
+            "datetime": "2017-04-24T18:31:00+0100"
+          },
+          "location": {
+            "lng": -1.9187133,
+            "city": "Birmingham, UK",
+            "lat": 52.4826511
+          },
+          "displayName": "Bruno Mars at Barclaycard Arena (April 24, 2017)",
+          "uri": "http://www.songkick.com/concerts/28597124-bruno-mars-at-barclaycard-arena?utm_source=42541&utm_medium=partner",
+          "popularity": 0.680073,
+          "id": 28597124
+        },
+        {
+          "type": "Concert",
+          "ageRestriction": null,
+          "status": "ok",
+          "performance": [
+            {
+              "billingIndex": 1,
+              "billing": "headline",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "afb680f2-b6eb-4cd7-a70b-a63b25c763d5",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:afb680f2-b6eb-4cd7-a70b-a63b25c763d5.json"
+                  }
+                ],
+                "displayName": "Bruno Mars",
+                "uri": "http://www.songkick.com/artists/941964-bruno-mars?utm_source=42541&utm_medium=partner",
+                "id": 941964,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/941964/large_avatar"
+              },
+              "displayName": "Bruno Mars",
+              "id": 55574094
+            },
+            {
+              "billingIndex": 2,
+              "billing": "support",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "d02dd67e-f655-4600-bc47-f789f59e7367",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:d02dd67e-f655-4600-bc47-f789f59e7367.json"
+                  }
+                ],
+                "displayName": "Anderson Paak",
+                "uri": "http://www.songkick.com/artists/7286084-anderson-paak?utm_source=42541&utm_medium=partner",
+                "id": 7286084,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/7286084/large_avatar"
+              },
+              "displayName": "Anderson Paak",
+              "id": 55574099
+            }
+          ],
+          "venue": {
+            "lng": -1.9187133,
+            "displayName": "Barclaycard Arena",
+            "uri": "http://www.songkick.com/venues/17383-barclaycard-arena?utm_source=42541&utm_medium=partner",
+            "metroArea": {
+              "displayName": "Birmingham",
+              "uri": "http://www.songkick.com/metro_areas/24542-uk-birmingham?utm_source=42541&utm_medium=partner",
+              "id": 24542,
+              "country": {
+                "displayName": "UK"
+              }
+            },
+            "id": 17383,
+            "lat": 52.4826511
+          },
+          "start": {
+            "time": "20:00:00",
+            "date": "2017-04-25",
+            "datetime": "2017-04-25T20:00:00+0100"
+          },
+          "location": {
+            "lng": -1.9187133,
+            "city": "Birmingham, UK",
+            "lat": 52.4826511
+          },
+          "displayName": "Bruno Mars with Anderson Paak at Barclaycard Arena (April 25, 2017)",
+          "uri": "http://www.songkick.com/concerts/28609909-bruno-mars-at-barclaycard-arena?utm_source=42541&utm_medium=partner",
+          "popularity": 0.680269,
+          "id": 28609909
+        },
+        {
+          "type": "Concert",
+          "ageRestriction": null,
+          "status": "ok",
+          "performance": [
+            {
+              "billingIndex": 1,
+              "billing": "headline",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "afb680f2-b6eb-4cd7-a70b-a63b25c763d5",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:afb680f2-b6eb-4cd7-a70b-a63b25c763d5.json"
+                  }
+                ],
+                "displayName": "Bruno Mars",
+                "uri": "http://www.songkick.com/artists/941964-bruno-mars?utm_source=42541&utm_medium=partner",
+                "id": 941964,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/941964/large_avatar"
+              },
+              "displayName": "Bruno Mars",
+              "id": 55575169
+            }
+          ],
+          "venue": {
+            "lng": -1.9187133,
+            "displayName": "Barclaycard Arena",
+            "uri": "http://www.songkick.com/venues/17383-barclaycard-arena?utm_source=42541&utm_medium=partner",
+            "metroArea": {
+              "displayName": "Birmingham",
+              "uri": "http://www.songkick.com/metro_areas/24542-uk-birmingham?utm_source=42541&utm_medium=partner",
+              "id": 24542,
+              "country": {
+                "displayName": "UK"
+              }
+            },
+            "id": 17383,
+            "lat": 52.4826511
+          },
+          "start": {
+            "time": "18:30:00",
+            "date": "2017-04-25",
+            "datetime": "2017-04-25T18:30:00+0100"
+          },
+          "location": {
+            "lng": -1.9187133,
+            "city": "Birmingham, UK",
+            "lat": 52.4826511
+          },
+          "displayName": "Bruno Mars at Barclaycard Arena (April 25, 2017)",
+          "uri": "http://www.songkick.com/concerts/28610789-bruno-mars-at-barclaycard-arena?utm_source=42541&utm_medium=partner",
+          "popularity": 0.680269,
+          "id": 28610789
+        },
+        {
+          "type": "Concert",
+          "ageRestriction": null,
+          "status": "ok",
+          "performance": [
+            {
+              "billingIndex": 1,
+              "billing": "headline",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "afb680f2-b6eb-4cd7-a70b-a63b25c763d5",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:afb680f2-b6eb-4cd7-a70b-a63b25c763d5.json"
+                  }
+                ],
+                "displayName": "Bruno Mars",
+                "uri": "http://www.songkick.com/artists/941964-bruno-mars?utm_source=42541&utm_medium=partner",
+                "id": 941964,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/941964/large_avatar"
+              },
+              "displayName": "Bruno Mars",
+              "id": 55488004
+            },
+            {
+              "billingIndex": 2,
+              "billing": "support",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "d02dd67e-f655-4600-bc47-f789f59e7367",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:d02dd67e-f655-4600-bc47-f789f59e7367.json"
+                  }
+                ],
+                "displayName": "Anderson Paak",
+                "uri": "http://www.songkick.com/artists/7286084-anderson-paak?utm_source=42541&utm_medium=partner",
+                "id": 7286084,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/7286084/large_avatar"
+              },
+              "displayName": "Anderson Paak",
+              "id": 55549839
+            }
+          ],
+          "venue": {
+            "lng": -1.1392764,
+            "displayName": "Motorpoint Arena Nottingham",
+            "uri": "http://www.songkick.com/venues/16756-motorpoint-arena-nottingham?utm_source=42541&utm_medium=partner",
+            "metroArea": {
+              "displayName": "Nottingham",
+              "uri": "http://www.songkick.com/metro_areas/24549-uk-nottingham?utm_source=42541&utm_medium=partner",
+              "id": 24549,
+              "country": {
+                "displayName": "UK"
+              }
+            },
+            "id": 16756,
+            "lat": 52.95264
+          },
+          "start": {
+            "time": "20:00:00",
+            "date": "2017-04-27",
+            "datetime": "2017-04-27T20:00:00+0100"
+          },
+          "location": {
+            "lng": -1.1392764,
+            "city": "Nottingham, UK",
+            "lat": 52.95264
+          },
+          "displayName": "Bruno Mars with Anderson Paak at Motorpoint Arena Nottingham (April 27, 2017)",
+          "uri": "http://www.songkick.com/concerts/28560974-bruno-mars-at-motorpoint-arena-nottingham?utm_source=42541&utm_medium=partner",
+          "popularity": 0.680073,
+          "id": 28560974
+        },
+        {
+          "type": "Concert",
+          "ageRestriction": null,
+          "status": "ok",
+          "performance": [
+            {
+              "billingIndex": 1,
+              "billing": "headline",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "afb680f2-b6eb-4cd7-a70b-a63b25c763d5",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:afb680f2-b6eb-4cd7-a70b-a63b25c763d5.json"
+                  }
+                ],
+                "displayName": "Bruno Mars",
+                "uri": "http://www.songkick.com/artists/941964-bruno-mars?utm_source=42541&utm_medium=partner",
+                "id": 941964,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/941964/large_avatar"
+              },
+              "displayName": "Bruno Mars",
+              "id": 55489054
+            }
+          ],
+          "venue": {
+            "lng": -6.2332479,
+            "displayName": "3Arena",
+            "uri": "http://www.songkick.com/venues/2761953-3arena?utm_source=42541&utm_medium=partner",
+            "metroArea": {
+              "displayName": "Dublin",
+              "uri": "http://www.songkick.com/metro_areas/29314-ireland-dublin?utm_source=42541&utm_medium=partner",
+              "id": 29314,
+              "country": {
+                "displayName": "Ireland"
+              }
+            },
+            "id": 2761953,
+            "lat": 53.3471989
+          },
+          "start": {
+            "time": null,
+            "date": "2017-04-29",
+            "datetime": null
+          },
+          "location": {
+            "lng": -6.2332479,
+            "city": "Dublin, Ireland",
+            "lat": 53.3471989
+          },
+          "displayName": "Bruno Mars at 3Arena (April 29, 2017)",
+          "uri": "http://www.songkick.com/concerts/28561639-bruno-mars-at-3arena?utm_source=42541&utm_medium=partner",
+          "popularity": 0.679605,
+          "id": 28561639
+        },
+        {
+          "type": "Concert",
+          "ageRestriction": null,
+          "status": "ok",
+          "performance": [
+            {
+              "billingIndex": 1,
+              "billing": "headline",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "afb680f2-b6eb-4cd7-a70b-a63b25c763d5",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:afb680f2-b6eb-4cd7-a70b-a63b25c763d5.json"
+                  }
+                ],
+                "displayName": "Bruno Mars",
+                "uri": "http://www.songkick.com/artists/941964-bruno-mars?utm_source=42541&utm_medium=partner",
+                "id": 941964,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/941964/large_avatar"
+              },
+              "displayName": "Bruno Mars",
+              "id": 55574544
+            },
+            {
+              "billingIndex": 2,
+              "billing": "headline",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "d02dd67e-f655-4600-bc47-f789f59e7367",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:d02dd67e-f655-4600-bc47-f789f59e7367.json"
+                  }
+                ],
+                "displayName": "Anderson Paak",
+                "uri": "http://www.songkick.com/artists/7286084-anderson-paak?utm_source=42541&utm_medium=partner",
+                "id": 7286084,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/7286084/large_avatar"
+              },
+              "displayName": "Anderson Paak",
+              "id": 55574549
+            }
+          ],
+          "venue": {
+            "lng": -6.2332479,
+            "displayName": "3Arena",
+            "uri": "http://www.songkick.com/venues/2761953-3arena?utm_source=42541&utm_medium=partner",
+            "metroArea": {
+              "displayName": "Dublin",
+              "uri": "http://www.songkick.com/metro_areas/29314-ireland-dublin?utm_source=42541&utm_medium=partner",
+              "id": 29314,
+              "country": {
+                "displayName": "Ireland"
+              }
+            },
+            "id": 2761953,
+            "lat": 53.3471989
+          },
+          "start": {
+            "time": "20:00:00",
+            "date": "2017-04-30",
+            "datetime": "2017-04-30T20:00:00+0100"
+          },
+          "location": {
+            "lng": -6.2332479,
+            "city": "Dublin, Ireland",
+            "lat": 53.3471989
+          },
+          "displayName": "Bruno Mars and Anderson Paak at 3Arena (April 30, 2017)",
+          "uri": "http://www.songkick.com/concerts/28610254-bruno-mars-at-3arena?utm_source=42541&utm_medium=partner",
+          "popularity": 0.680269,
+          "id": 28610254
+        },
+        {
+          "type": "Concert",
+          "ageRestriction": null,
+          "status": "ok",
+          "performance": [
+            {
+              "billingIndex": 1,
+              "billing": "headline",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "afb680f2-b6eb-4cd7-a70b-a63b25c763d5",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:afb680f2-b6eb-4cd7-a70b-a63b25c763d5.json"
+                  }
+                ],
+                "displayName": "Bruno Mars",
+                "uri": "http://www.songkick.com/artists/941964-bruno-mars?utm_source=42541&utm_medium=partner",
+                "id": 941964,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/941964/large_avatar"
+              },
+              "displayName": "Bruno Mars",
+              "id": 55488014
+            },
+            {
+              "billingIndex": 2,
+              "billing": "support",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "d02dd67e-f655-4600-bc47-f789f59e7367",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:d02dd67e-f655-4600-bc47-f789f59e7367.json"
+                  }
+                ],
+                "displayName": "Anderson Paak",
+                "uri": "http://www.songkick.com/artists/7286084-anderson-paak?utm_source=42541&utm_medium=partner",
+                "id": 7286084,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/7286084/large_avatar"
+              },
+              "displayName": "Anderson Paak",
+              "id": 55549849
+            }
+          ],
+          "venue": {
+            "lng": -2.2433451,
+            "displayName": "Manchester Arena",
+            "uri": "http://www.songkick.com/venues/17602-manchester-arena?utm_source=42541&utm_medium=partner",
+            "metroArea": {
+              "displayName": "Manchester",
+              "uri": "http://www.songkick.com/metro_areas/24475-uk-manchester?utm_source=42541&utm_medium=partner",
+              "id": 24475,
+              "country": {
+                "displayName": "UK"
+              }
+            },
+            "id": 17602,
+            "lat": 53.487311
+          },
+          "start": {
+            "time": "20:00:00",
+            "date": "2017-05-02",
+            "datetime": "2017-05-02T20:00:00+0100"
+          },
+          "location": {
+            "lng": -2.2433451,
+            "city": "Manchester, UK",
+            "lat": 53.487311
+          },
+          "displayName": "Bruno Mars with Anderson Paak at Manchester Arena (May 2, 2017)",
+          "uri": "http://www.songkick.com/concerts/28560984-bruno-mars-at-manchester-arena?utm_source=42541&utm_medium=partner",
+          "popularity": 0.680073,
+          "id": 28560984
+        },
+        {
+          "type": "Concert",
+          "ageRestriction": null,
+          "status": "ok",
+          "performance": [
+            {
+              "billingIndex": 1,
+              "billing": "headline",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "afb680f2-b6eb-4cd7-a70b-a63b25c763d5",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:afb680f2-b6eb-4cd7-a70b-a63b25c763d5.json"
+                  }
+                ],
+                "displayName": "Bruno Mars",
+                "uri": "http://www.songkick.com/artists/941964-bruno-mars?utm_source=42541&utm_medium=partner",
+                "id": 941964,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/941964/large_avatar"
+              },
+              "displayName": "Bruno Mars",
+              "id": 55550999
+            }
+          ],
+          "venue": {
+            "lng": -2.2433451,
+            "displayName": "Manchester Arena",
+            "uri": "http://www.songkick.com/venues/17602-manchester-arena?utm_source=42541&utm_medium=partner",
+            "metroArea": {
+              "displayName": "Manchester",
+              "uri": "http://www.songkick.com/metro_areas/24475-uk-manchester?utm_source=42541&utm_medium=partner",
+              "id": 24475,
+              "country": {
+                "displayName": "UK"
+              }
+            },
+            "id": 17602,
+            "lat": 53.487311
+          },
+          "start": {
+            "time": "18:31:00",
+            "date": "2017-05-02",
+            "datetime": "2017-05-02T18:31:00+0100"
+          },
+          "location": {
+            "lng": -2.2433451,
+            "city": "Manchester, UK",
+            "lat": 53.487311
+          },
+          "displayName": "Bruno Mars at Manchester Arena (May 2, 2017)",
+          "uri": "http://www.songkick.com/concerts/28597144-bruno-mars-at-manchester-arena?utm_source=42541&utm_medium=partner",
+          "popularity": 0.680073,
+          "id": 28597144
+        },
+        {
+          "type": "Concert",
+          "ageRestriction": null,
+          "status": "ok",
+          "performance": [
+            {
+              "billingIndex": 1,
+              "billing": "headline",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "afb680f2-b6eb-4cd7-a70b-a63b25c763d5",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:afb680f2-b6eb-4cd7-a70b-a63b25c763d5.json"
+                  }
+                ],
+                "displayName": "Bruno Mars",
+                "uri": "http://www.songkick.com/artists/941964-bruno-mars?utm_source=42541&utm_medium=partner",
+                "id": 941964,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/941964/large_avatar"
+              },
+              "displayName": "Bruno Mars",
+              "id": 55574124
+            },
+            {
+              "billingIndex": 2,
+              "billing": "support",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "d02dd67e-f655-4600-bc47-f789f59e7367",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:d02dd67e-f655-4600-bc47-f789f59e7367.json"
+                  }
+                ],
+                "displayName": "Anderson Paak",
+                "uri": "http://www.songkick.com/artists/7286084-anderson-paak?utm_source=42541&utm_medium=partner",
+                "id": 7286084,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/7286084/large_avatar"
+              },
+              "displayName": "Anderson Paak",
+              "id": 55574129
+            }
+          ],
+          "venue": {
+            "lng": -2.2433451,
+            "displayName": "Manchester Arena",
+            "uri": "http://www.songkick.com/venues/17602-manchester-arena?utm_source=42541&utm_medium=partner",
+            "metroArea": {
+              "displayName": "Manchester",
+              "uri": "http://www.songkick.com/metro_areas/24475-uk-manchester?utm_source=42541&utm_medium=partner",
+              "id": 24475,
+              "country": {
+                "displayName": "UK"
+              }
+            },
+            "id": 17602,
+            "lat": 53.487311
+          },
+          "start": {
+            "time": "20:00:00",
+            "date": "2017-05-03",
+            "datetime": "2017-05-03T20:00:00+0100"
+          },
+          "location": {
+            "lng": -2.2433451,
+            "city": "Manchester, UK",
+            "lat": 53.487311
+          },
+          "displayName": "Bruno Mars with Anderson Paak at Manchester Arena (May 3, 2017)",
+          "uri": "http://www.songkick.com/concerts/28609934-bruno-mars-at-manchester-arena?utm_source=42541&utm_medium=partner",
+          "popularity": 0.680269,
+          "id": 28609934
+        },
+        {
+          "type": "Concert",
+          "ageRestriction": null,
+          "status": "ok",
+          "performance": [
+            {
+              "billingIndex": 1,
+              "billing": "headline",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "afb680f2-b6eb-4cd7-a70b-a63b25c763d5",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:afb680f2-b6eb-4cd7-a70b-a63b25c763d5.json"
+                  }
+                ],
+                "displayName": "Bruno Mars",
+                "uri": "http://www.songkick.com/artists/941964-bruno-mars?utm_source=42541&utm_medium=partner",
+                "id": 941964,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/941964/large_avatar"
+              },
+              "displayName": "Bruno Mars",
+              "id": 55575224
+            }
+          ],
+          "venue": {
+            "lng": -2.2433451,
+            "displayName": "Manchester Arena",
+            "uri": "http://www.songkick.com/venues/17602-manchester-arena?utm_source=42541&utm_medium=partner",
+            "metroArea": {
+              "displayName": "Manchester",
+              "uri": "http://www.songkick.com/metro_areas/24475-uk-manchester?utm_source=42541&utm_medium=partner",
+              "id": 24475,
+              "country": {
+                "displayName": "UK"
+              }
+            },
+            "id": 17602,
+            "lat": 53.487311
+          },
+          "start": {
+            "time": "18:30:00",
+            "date": "2017-05-03",
+            "datetime": "2017-05-03T18:30:00+0100"
+          },
+          "location": {
+            "lng": -2.2433451,
+            "city": "Manchester, UK",
+            "lat": 53.487311
+          },
+          "displayName": "Bruno Mars at Manchester Arena (May 3, 2017)",
+          "uri": "http://www.songkick.com/concerts/28610824-bruno-mars-at-manchester-arena?utm_source=42541&utm_medium=partner",
+          "popularity": 0.680269,
+          "id": 28610824
+        },
+        {
+          "type": "Concert",
+          "ageRestriction": null,
+          "status": "ok",
+          "performance": [
+            {
+              "billingIndex": 1,
+              "billing": "headline",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "afb680f2-b6eb-4cd7-a70b-a63b25c763d5",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:afb680f2-b6eb-4cd7-a70b-a63b25c763d5.json"
+                  }
+                ],
+                "displayName": "Bruno Mars",
+                "uri": "http://www.songkick.com/artists/941964-bruno-mars?utm_source=42541&utm_medium=partner",
+                "id": 941964,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/941964/large_avatar"
+              },
+              "displayName": "Bruno Mars",
+              "id": 55488019
+            },
+            {
+              "billingIndex": 2,
+              "billing": "support",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "d02dd67e-f655-4600-bc47-f789f59e7367",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:d02dd67e-f655-4600-bc47-f789f59e7367.json"
+                  }
+                ],
+                "displayName": "Anderson Paak",
+                "uri": "http://www.songkick.com/artists/7286084-anderson-paak?utm_source=42541&utm_medium=partner",
+                "id": 7286084,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/7286084/large_avatar"
+              },
+              "displayName": "Anderson Paak",
+              "id": 55549864
+            }
+          ],
+          "venue": {
+            "lng": -1.5438353,
+            "displayName": "First Direct Arena",
+            "uri": "http://www.songkick.com/venues/2298254-first-direct-arena?utm_source=42541&utm_medium=partner",
+            "metroArea": {
+              "displayName": "Leeds",
+              "uri": "http://www.songkick.com/metro_areas/24495-uk-leeds?utm_source=42541&utm_medium=partner",
+              "id": 24495,
+              "country": {
+                "displayName": "UK"
+              }
+            },
+            "id": 2298254,
+            "lat": 53.8036809
+          },
+          "start": {
+            "time": "20:00:00",
+            "date": "2017-05-05",
+            "datetime": "2017-05-05T20:00:00+0100"
+          },
+          "location": {
+            "lng": -1.5438353,
+            "city": "Leeds, UK",
+            "lat": 53.8036809
+          },
+          "displayName": "Bruno Mars with Anderson Paak at First Direct Arena (May 5, 2017)",
+          "uri": "http://www.songkick.com/concerts/28560989-bruno-mars-at-first-direct-arena?utm_source=42541&utm_medium=partner",
+          "popularity": 0.680269,
+          "id": 28560989
+        },
+        {
+          "type": "Concert",
+          "ageRestriction": null,
+          "status": "ok",
+          "performance": [
+            {
+              "billingIndex": 1,
+              "billing": "headline",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "afb680f2-b6eb-4cd7-a70b-a63b25c763d5",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:afb680f2-b6eb-4cd7-a70b-a63b25c763d5.json"
+                  }
+                ],
+                "displayName": "Bruno Mars",
+                "uri": "http://www.songkick.com/artists/941964-bruno-mars?utm_source=42541&utm_medium=partner",
+                "id": 941964,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/941964/large_avatar"
+              },
+              "displayName": "Bruno Mars",
+              "id": 55551014
+            }
+          ],
+          "venue": {
+            "lng": -1.5438353,
+            "displayName": "First Direct Arena",
+            "uri": "http://www.songkick.com/venues/2298254-first-direct-arena?utm_source=42541&utm_medium=partner",
+            "metroArea": {
+              "displayName": "Leeds",
+              "uri": "http://www.songkick.com/metro_areas/24495-uk-leeds?utm_source=42541&utm_medium=partner",
+              "id": 24495,
+              "country": {
+                "displayName": "UK"
+              }
+            },
+            "id": 2298254,
+            "lat": 53.8036809
+          },
+          "start": {
+            "time": "18:31:00",
+            "date": "2017-05-05",
+            "datetime": "2017-05-05T18:31:00+0100"
+          },
+          "location": {
+            "lng": -1.5438353,
+            "city": "Leeds, UK",
+            "lat": 53.8036809
+          },
+          "displayName": "Bruno Mars at First Direct Arena (May 5, 2017)",
+          "uri": "http://www.songkick.com/concerts/28597159-bruno-mars-at-first-direct-arena?utm_source=42541&utm_medium=partner",
+          "popularity": 0.680269,
+          "id": 28597159
+        },
+        {
+          "type": "Concert",
+          "ageRestriction": null,
+          "status": "ok",
+          "performance": [
+            {
+              "billingIndex": 1,
+              "billing": "headline",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "afb680f2-b6eb-4cd7-a70b-a63b25c763d5",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:afb680f2-b6eb-4cd7-a70b-a63b25c763d5.json"
+                  }
+                ],
+                "displayName": "Bruno Mars",
+                "uri": "http://www.songkick.com/artists/941964-bruno-mars?utm_source=42541&utm_medium=partner",
+                "id": 941964,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/941964/large_avatar"
+              },
+              "displayName": "Bruno Mars",
+              "id": 55488029
+            },
+            {
+              "billingIndex": 2,
+              "billing": "support",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "d02dd67e-f655-4600-bc47-f789f59e7367",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:d02dd67e-f655-4600-bc47-f789f59e7367.json"
+                  }
+                ],
+                "displayName": "Anderson Paak",
+                "uri": "http://www.songkick.com/artists/7286084-anderson-paak?utm_source=42541&utm_medium=partner",
+                "id": 7286084,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/7286084/large_avatar"
+              },
+              "displayName": "Anderson Paak",
+              "id": 55549879
+            }
+          ],
+          "venue": {
+            "lng": -1.4168171,
+            "displayName": "Sheffield Arena",
+            "uri": "http://www.songkick.com/venues/3991-sheffield-arena?utm_source=42541&utm_medium=partner",
+            "metroArea": {
+              "displayName": "Sheffield",
+              "uri": "http://www.songkick.com/metro_areas/24531-uk-sheffield?utm_source=42541&utm_medium=partner",
+              "id": 24531,
+              "country": {
+                "displayName": "UK"
+              }
+            },
+            "id": 3991,
+            "lat": 53.4005442
+          },
+          "start": {
+            "time": "20:00:00",
+            "date": "2017-05-06",
+            "datetime": "2017-05-06T20:00:00+0100"
+          },
+          "location": {
+            "lng": -1.4168171,
+            "city": "Sheffield, UK",
+            "lat": 53.4005442
+          },
+          "displayName": "Bruno Mars with Anderson Paak at Sheffield Arena (May 6, 2017)",
+          "uri": "http://www.songkick.com/concerts/28560999-bruno-mars-at-sheffield-arena?utm_source=42541&utm_medium=partner",
+          "popularity": 0.680073,
+          "id": 28560999
+        },
+        {
+          "type": "Concert",
+          "ageRestriction": null,
+          "status": "ok",
+          "performance": [
+            {
+              "billingIndex": 1,
+              "billing": "headline",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "afb680f2-b6eb-4cd7-a70b-a63b25c763d5",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:afb680f2-b6eb-4cd7-a70b-a63b25c763d5.json"
+                  }
+                ],
+                "displayName": "Bruno Mars",
+                "uri": "http://www.songkick.com/artists/941964-bruno-mars?utm_source=42541&utm_medium=partner",
+                "id": 941964,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/941964/large_avatar"
+              },
+              "displayName": "Bruno Mars",
+              "id": 55551019
+            }
+          ],
+          "venue": {
+            "lng": -1.4168171,
+            "displayName": "Sheffield Arena",
+            "uri": "http://www.songkick.com/venues/3991-sheffield-arena?utm_source=42541&utm_medium=partner",
+            "metroArea": {
+              "displayName": "Sheffield",
+              "uri": "http://www.songkick.com/metro_areas/24531-uk-sheffield?utm_source=42541&utm_medium=partner",
+              "id": 24531,
+              "country": {
+                "displayName": "UK"
+              }
+            },
+            "id": 3991,
+            "lat": 53.4005442
+          },
+          "start": {
+            "time": "18:31:00",
+            "date": "2017-05-06",
+            "datetime": "2017-05-06T18:31:00+0100"
+          },
+          "location": {
+            "lng": -1.4168171,
+            "city": "Sheffield, UK",
+            "lat": 53.4005442
+          },
+          "displayName": "Bruno Mars at Sheffield Arena (May 6, 2017)",
+          "uri": "http://www.songkick.com/concerts/28597164-bruno-mars-at-sheffield-arena?utm_source=42541&utm_medium=partner",
+          "popularity": 0.680073,
+          "id": 28597164
+        },
+        {
+          "type": "Concert",
+          "status": "ok",
+          "performance": [
+            {
+              "billingIndex": 1,
+              "artist": {
+                "identifier": [
+                  {
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:afb680f2-b6eb-4cd7-a70b-a63b25c763d5.json",
+                    "mbid": "afb680f2-b6eb-4cd7-a70b-a63b25c763d5"
+                  }
+                ],
+                "displayName": "Bruno Mars",
+                "uri": "http://www.songkick.com/artists/941964-bruno-mars?utm_source=42541&utm_medium=partner",
+                "id": 941964,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/941964/large_avatar"
+              },
+              "billing": "headline",
+              "displayName": "Bruno Mars",
+              "id": 55488084
+            }
+          ],
+          "ageRestriction": null,
+          "venue": {
+            "metroArea": {
+              "displayName": "Amsterdam",
+              "uri": "http://www.songkick.com/metro_areas/31366-netherlands-amsterdam?utm_source=42541&utm_medium=partner",
+              "id": 31366,
+              "country": {
+                "displayName": "Netherlands"
+              }
+            },
+            "lng": 4.9371913,
+            "displayName": "Ziggo Dome",
+            "uri": "http://www.songkick.com/venues/1603193-ziggo-dome?utm_source=42541&utm_medium=partner",
+            "id": 1603193,
+            "lat": 52.3134468
+          },
+          "start": {
+            "time": "20:00:00",
+            "date": "2017-05-09",
+            "datetime": "2017-05-09T20:00:00+0200"
+          },
+          "location": {
+            "lng": 4.9371913,
+            "city": "Amsterdam, Netherlands",
+            "lat": 52.3134468
+          },
+          "displayName": "Bruno Mars at Ziggo Dome (May 9, 2017)",
+          "uri": "http://www.songkick.com/concerts/28561049-bruno-mars-at-ziggo-dome?utm_source=42541&utm_medium=partner",
+          "popularity": 0.680435,
+          "id": 28561049
+        },
+        {
+          "type": "Concert",
+          "performance": [
+            {
+              "billing": "headline",
+              "displayName": "Bruno Mars",
+              "billingIndex": 1,
+              "artist": {
+                "displayName": "Bruno Mars",
+                "uri": "http://www.songkick.com/artists/941964-bruno-mars?utm_source=42541&utm_medium=partner",
+                "id": 941964,
+                "identifier": [
+                  {
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:afb680f2-b6eb-4cd7-a70b-a63b25c763d5.json",
+                    "mbid": "afb680f2-b6eb-4cd7-a70b-a63b25c763d5"
+                  }
+                ],
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/941964/large_avatar"
+              },
+              "id": 55567404
+            }
+          ],
+          "status": "ok",
+          "displayName": "Bruno Mars at Ziggo Dome (May 10, 2017)",
+          "start": {
+            "time": "20:00:00",
+            "datetime": "2017-05-10T20:00:00+0200",
+            "date": "2017-05-10"
+          },
+          "ageRestriction": null,
+          "location": {
+            "lat": 52.3134468,
+            "lng": 4.9371913,
+            "city": "Amsterdam, Netherlands"
+          },
+          "venue": {
+            "lat": 52.3134468,
+            "lng": 4.9371913,
+            "displayName": "Ziggo Dome",
+            "uri": "http://www.songkick.com/venues/1603193-ziggo-dome?utm_source=42541&utm_medium=partner",
+            "metroArea": {
+              "displayName": "Amsterdam",
+              "country": {
+                "displayName": "Netherlands"
+              },
+              "uri": "http://www.songkick.com/metro_areas/31366-netherlands-amsterdam?utm_source=42541&utm_medium=partner",
+              "id": 31366
+            },
+            "id": 1603193
+          },
+          "popularity": 0.683412,
+          "uri": "http://www.songkick.com/concerts/28606274-bruno-mars-at-ziggo-dome?utm_source=42541&utm_medium=partner",
+          "id": 28606274
+        },
+        {
+          "type": "Concert",
+          "ageRestriction": null,
+          "status": "ok",
+          "performance": [
+            {
+              "billingIndex": 1,
+              "billing": "headline",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "afb680f2-b6eb-4cd7-a70b-a63b25c763d5",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:afb680f2-b6eb-4cd7-a70b-a63b25c763d5.json"
+                  }
+                ],
+                "displayName": "Bruno Mars",
+                "uri": "http://www.songkick.com/artists/941964-bruno-mars?utm_source=42541&utm_medium=partner",
+                "id": 941964,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/941964/large_avatar"
+              },
+              "displayName": "Bruno Mars",
+              "id": 55488064
+            },
+            {
+              "billingIndex": 2,
+              "billing": "support",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "d02dd67e-f655-4600-bc47-f789f59e7367",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:d02dd67e-f655-4600-bc47-f789f59e7367.json"
+                  }
+                ],
+                "displayName": "Anderson Paak",
+                "uri": "http://www.songkick.com/artists/7286084-anderson-paak?utm_source=42541&utm_medium=partner",
+                "id": 7286084,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/7286084/large_avatar"
+              },
+              "displayName": "Anderson Paak",
+              "id": 55543159
+            }
+          ],
+          "venue": {
+            "lng": 8.5516563,
+            "displayName": "Hallenstadion",
+            "uri": "http://www.songkick.com/venues/29550-hallenstadion?utm_source=42541&utm_medium=partner",
+            "metroArea": {
+              "displayName": "Zürich",
+              "uri": "http://www.songkick.com/metro_areas/104761-switzerland-zurich?utm_source=42541&utm_medium=partner",
+              "id": 104761,
+              "country": {
+                "displayName": "Switzerland"
+              }
+            },
+            "id": 29550,
+            "lat": 47.4116099
+          },
+          "start": {
+            "time": "20:00:00",
+            "date": "2017-05-12",
+            "datetime": "2017-05-12T20:00:00+0000"
+          },
+          "location": {
+            "lng": 8.5516563,
+            "city": "Zürich, Switzerland",
+            "lat": 47.4116099
+          },
+          "displayName": "Bruno Mars with Anderson Paak at Hallenstadion (May 12, 2017)",
+          "uri": "http://www.songkick.com/concerts/28561029-bruno-mars-at-hallenstadion?utm_source=42541&utm_medium=partner",
+          "popularity": 0.680073,
+          "id": 28561029
+        },
+        {
+          "type": "Concert",
+          "performance": [
+            {
+              "billing": "headline",
+              "displayName": "Bruno Mars",
+              "billingIndex": 1,
+              "artist": {
+                "displayName": "Bruno Mars",
+                "uri": "http://www.songkick.com/artists/941964-bruno-mars?utm_source=42541&utm_medium=partner",
+                "id": 941964,
+                "identifier": [
+                  {
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:afb680f2-b6eb-4cd7-a70b-a63b25c763d5.json",
+                    "mbid": "afb680f2-b6eb-4cd7-a70b-a63b25c763d5"
+                  }
+                ],
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/941964/large_avatar"
+              },
+              "id": 55488034
+            },
+            {
+              "billing": "support",
+              "displayName": "Anderson Paak",
+              "billingIndex": 2,
+              "artist": {
+                "displayName": "Anderson Paak",
+                "uri": "http://www.songkick.com/artists/7286084-anderson-paak?utm_source=42541&utm_medium=partner",
+                "id": 7286084,
+                "identifier": [
+                  {
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:d02dd67e-f655-4600-bc47-f789f59e7367.json",
+                    "mbid": "d02dd67e-f655-4600-bc47-f789f59e7367"
+                  }
+                ],
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/7286084/large_avatar"
+              },
+              "id": 55543119
+            }
+          ],
+          "status": "ok",
+          "displayName": "Bruno Mars with Anderson Paak at Olympiahalle (May 14, 2017)",
+          "start": {
+            "time": "20:00:00",
+            "datetime": "2017-05-14T20:00:00+0200",
+            "date": "2017-05-14"
+          },
+          "ageRestriction": null,
+          "location": {
+            "lat": 48.1714582,
+            "lng": 11.5419624,
+            "city": "Munich, Germany"
+          },
+          "venue": {
+            "lat": 48.1714582,
+            "lng": 11.5419624,
+            "displayName": "Olympiahalle",
+            "uri": "http://www.songkick.com/venues/46871-olympiahalle?utm_source=42541&utm_medium=partner",
+            "metroArea": {
+              "displayName": "Munich",
+              "country": {
+                "displayName": "Germany"
+              },
+              "uri": "http://www.songkick.com/metro_areas/28549-germany-munich?utm_source=42541&utm_medium=partner",
+              "id": 28549
+            },
+            "id": 46871
+          },
+          "popularity": 0.685607,
+          "uri": "http://www.songkick.com/concerts/28561004-bruno-mars-at-olympiahalle?utm_source=42541&utm_medium=partner",
+          "id": 28561004
+        },
+        {
+          "type": "Concert",
+          "ageRestriction": null,
+          "status": "ok",
+          "performance": [
+            {
+              "billingIndex": 1,
+              "billing": "headline",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "afb680f2-b6eb-4cd7-a70b-a63b25c763d5",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:afb680f2-b6eb-4cd7-a70b-a63b25c763d5.json"
+                  }
+                ],
+                "displayName": "Bruno Mars",
+                "uri": "http://www.songkick.com/artists/941964-bruno-mars?utm_source=42541&utm_medium=partner",
+                "id": 941964,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/941964/large_avatar"
+              },
+              "displayName": "Bruno Mars",
+              "id": 55489079
+            }
+          ],
+          "venue": {
+            "lng": 9.8987679,
+            "displayName": "Barclaycard Arena",
+            "uri": "http://www.songkick.com/venues/3025064-barclaycard-arena?utm_source=42541&utm_medium=partner",
+            "metroArea": {
+              "displayName": "Hamburg",
+              "uri": "http://www.songkick.com/metro_areas/28498-germany-hamburg?utm_source=42541&utm_medium=partner",
+              "id": 28498,
+              "country": {
+                "displayName": "Germany"
+              }
+            },
+            "id": 3025064,
+            "lat": 53.5898403
+          },
+          "start": {
+            "time": null,
+            "date": "2017-05-17",
+            "datetime": null
+          },
+          "location": {
+            "lng": 9.8987679,
+            "city": "Hamburg, Germany",
+            "lat": 53.5898403
+          },
+          "displayName": "Bruno Mars at Barclaycard Arena (May 17, 2017)",
+          "uri": "http://www.songkick.com/concerts/28561659-bruno-mars-at-barclaycard-arena?utm_source=42541&utm_medium=partner",
+          "popularity": 0.679605,
+          "id": 28561659
+        },
+        {
+          "type": "Concert",
+          "ageRestriction": null,
+          "status": "ok",
+          "performance": [
+            {
+              "billingIndex": 1,
+              "billing": "headline",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "afb680f2-b6eb-4cd7-a70b-a63b25c763d5",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:afb680f2-b6eb-4cd7-a70b-a63b25c763d5.json"
+                  }
+                ],
+                "displayName": "Bruno Mars",
+                "uri": "http://www.songkick.com/artists/941964-bruno-mars?utm_source=42541&utm_medium=partner",
+                "id": 941964,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/941964/large_avatar"
+              },
+              "displayName": "Bruno Mars",
+              "id": 55488049
+            },
+            {
+              "billingIndex": 2,
+              "billing": "support",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "d02dd67e-f655-4600-bc47-f789f59e7367",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:d02dd67e-f655-4600-bc47-f789f59e7367.json"
+                  }
+                ],
+                "displayName": "Anderson Paak",
+                "uri": "http://www.songkick.com/artists/7286084-anderson-paak?utm_source=42541&utm_medium=partner",
+                "id": 7286084,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/7286084/large_avatar"
+              },
+              "displayName": "Anderson Paak",
+              "id": 55549919
+            }
+          ],
+          "venue": {
+            "lng": 12.5736985,
+            "displayName": "Royal Arena",
+            "uri": "http://www.songkick.com/venues/3324844-royal-arena?utm_source=42541&utm_medium=partner",
+            "metroArea": {
+              "displayName": "Copenhagen",
+              "uri": "http://www.songkick.com/metro_areas/28617-denmark-copenhagen?utm_source=42541&utm_medium=partner",
+              "id": 28617,
+              "country": {
+                "displayName": "Denmark"
+              }
+            },
+            "id": 3324844,
+            "lat": 55.6257506
+          },
+          "start": {
+            "time": "20:00:00",
+            "date": "2017-05-18",
+            "datetime": "2017-05-18T20:00:00+0200"
+          },
+          "location": {
+            "lng": 12.5736985,
+            "city": "Copenhagen, Denmark",
+            "lat": 55.6257506
+          },
+          "displayName": "Bruno Mars with Anderson Paak at Royal Arena (May 18, 2017)",
+          "uri": "http://www.songkick.com/concerts/28561014-bruno-mars-at-royal-arena?utm_source=42541&utm_medium=partner",
+          "popularity": 0.680073,
+          "id": 28561014
+        },
+        {
+          "type": "Concert",
+          "ageRestriction": null,
+          "status": "ok",
+          "performance": [
+            {
+              "billingIndex": 1,
+              "billing": "headline",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "afb680f2-b6eb-4cd7-a70b-a63b25c763d5",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:afb680f2-b6eb-4cd7-a70b-a63b25c763d5.json"
+                  }
+                ],
+                "displayName": "Bruno Mars",
+                "uri": "http://www.songkick.com/artists/941964-bruno-mars?utm_source=42541&utm_medium=partner",
+                "id": 941964,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/941964/large_avatar"
+              },
+              "displayName": "Bruno Mars",
+              "id": 55488124
+            },
+            {
+              "billingIndex": 2,
+              "billing": "headline",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "d02dd67e-f655-4600-bc47-f789f59e7367",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:d02dd67e-f655-4600-bc47-f789f59e7367.json"
+                  }
+                ],
+                "displayName": "Anderson Paak",
+                "uri": "http://www.songkick.com/artists/7286084-anderson-paak?utm_source=42541&utm_medium=partner",
+                "id": 7286084,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/7286084/large_avatar"
+              },
+              "displayName": "Anderson Paak",
+              "id": 55550044
+            }
+          ],
+          "venue": {
+            "lng": 18.0808159,
+            "displayName": "Ericsson Globe Arena",
+            "uri": "http://www.songkick.com/venues/817536-ericsson-globe-arena?utm_source=42541&utm_medium=partner",
+            "metroArea": {
+              "displayName": "Stockholm",
+              "uri": "http://www.songkick.com/metro_areas/32252-sweden-stockholm?utm_source=42541&utm_medium=partner",
+              "id": 32252,
+              "country": {
+                "displayName": "Sweden"
+              }
+            },
+            "id": 817536,
+            "lat": 59.2941674
+          },
+          "start": {
+            "time": "19:30:00",
+            "date": "2017-05-20",
+            "datetime": "2017-05-20T19:30:00+0200"
+          },
+          "location": {
+            "lng": 18.0808159,
+            "city": "Stockholm, Sweden",
+            "lat": 59.2941674
+          },
+          "displayName": "Bruno Mars and Anderson Paak at Ericsson Globe Arena (May 20, 2017)",
+          "uri": "http://www.songkick.com/concerts/28561089-bruno-mars-at-ericsson-globe-arena?utm_source=42541&utm_medium=partner",
+          "popularity": 0.680073,
+          "id": 28561089
+        },
+        {
+          "type": "Concert",
+          "ageRestriction": null,
+          "status": "ok",
+          "performance": [
+            {
+              "billingIndex": 1,
+              "billing": "headline",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "afb680f2-b6eb-4cd7-a70b-a63b25c763d5",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:afb680f2-b6eb-4cd7-a70b-a63b25c763d5.json"
+                  }
+                ],
+                "displayName": "Bruno Mars",
+                "uri": "http://www.songkick.com/artists/941964-bruno-mars?utm_source=42541&utm_medium=partner",
+                "id": 941964,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/941964/large_avatar"
+              },
+              "displayName": "Bruno Mars",
+              "id": 55508079
+            }
+          ],
+          "venue": {
+            "lng": 18.0808159,
+            "displayName": "Ericsson Globe Arena",
+            "uri": "http://www.songkick.com/venues/817536-ericsson-globe-arena?utm_source=42541&utm_medium=partner",
+            "metroArea": {
+              "displayName": "Stockholm",
+              "uri": "http://www.songkick.com/metro_areas/32252-sweden-stockholm?utm_source=42541&utm_medium=partner",
+              "id": 32252,
+              "country": {
+                "displayName": "Sweden"
+              }
+            },
+            "id": 817536,
+            "lat": 59.2941674
+          },
+          "start": {
+            "time": "18:15:00",
+            "date": "2017-05-20",
+            "datetime": "2017-05-20T18:15:00+0200"
+          },
+          "location": {
+            "lng": 18.0808159,
+            "city": "Stockholm, Sweden",
+            "lat": 59.2941674
+          },
+          "displayName": "Bruno Mars at Ericsson Globe Arena (May 20, 2017)",
+          "uri": "http://www.songkick.com/concerts/28572629-bruno-mars-at-ericsson-globe-arena?utm_source=42541&utm_medium=partner",
+          "popularity": 0.679737,
+          "id": 28572629
+        },
+        {
+          "type": "Concert",
+          "ageRestriction": null,
+          "status": "ok",
+          "performance": [
+            {
+              "billingIndex": 1,
+              "billing": "headline",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "afb680f2-b6eb-4cd7-a70b-a63b25c763d5",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:afb680f2-b6eb-4cd7-a70b-a63b25c763d5.json"
+                  }
+                ],
+                "displayName": "Bruno Mars",
+                "uri": "http://www.songkick.com/artists/941964-bruno-mars?utm_source=42541&utm_medium=partner",
+                "id": 941964,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/941964/large_avatar"
+              },
+              "displayName": "Bruno Mars",
+              "id": 55489084
+            }
+          ],
+          "venue": {
+            "lng": 24.9301844,
+            "displayName": "Hartwall Arena",
+            "uri": "http://www.songkick.com/venues/1023031-hartwall-arena?utm_source=42541&utm_medium=partner",
+            "metroArea": {
+              "displayName": "Helsinki",
+              "uri": "http://www.songkick.com/metro_areas/28825-finland-helsinki?utm_source=42541&utm_medium=partner",
+              "id": 28825,
+              "country": {
+                "displayName": "Finland"
+              }
+            },
+            "id": 1023031,
+            "lat": 60.205274
+          },
+          "start": {
+            "time": null,
+            "date": "2017-05-22",
+            "datetime": null
+          },
+          "location": {
+            "lng": 24.9301844,
+            "city": "Helsinki, Finland",
+            "lat": 60.205274
+          },
+          "displayName": "Bruno Mars at Hartwall Arena (May 22, 2017)",
+          "uri": "http://www.songkick.com/concerts/28561664-bruno-mars-at-hartwall-arena?utm_source=42541&utm_medium=partner",
+          "popularity": 0.679605,
+          "id": 28561664
+        },
+        {
+          "type": "Concert",
+          "ageRestriction": null,
+          "status": "ok",
+          "performance": [
+            {
+              "billingIndex": 1,
+              "billing": "headline",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "afb680f2-b6eb-4cd7-a70b-a63b25c763d5",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:afb680f2-b6eb-4cd7-a70b-a63b25c763d5.json"
+                  }
+                ],
+                "displayName": "Bruno Mars",
+                "uri": "http://www.songkick.com/artists/941964-bruno-mars?utm_source=42541&utm_medium=partner",
+                "id": 941964,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/941964/large_avatar"
+              },
+              "displayName": "Bruno Mars",
+              "id": 55488094
+            },
+            {
+              "billingIndex": 2,
+              "billing": "support",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "d02dd67e-f655-4600-bc47-f789f59e7367",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:d02dd67e-f655-4600-bc47-f789f59e7367.json"
+                  }
+                ],
+                "displayName": "Anderson Paak",
+                "uri": "http://www.songkick.com/artists/7286084-anderson-paak?utm_source=42541&utm_medium=partner",
+                "id": 7286084,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/7286084/large_avatar"
+              },
+              "displayName": "Anderson Paak",
+              "id": 55549989
+            }
+          ],
+          "venue": {
+            "lng": 10.6286999,
+            "displayName": "Telenor Arena",
+            "uri": "http://www.songkick.com/venues/35819-telenor-arena?utm_source=42541&utm_medium=partner",
+            "metroArea": {
+              "displayName": "Oslo",
+              "uri": "http://www.songkick.com/metro_areas/31422-norway-oslo?utm_source=42541&utm_medium=partner",
+              "id": 31422,
+              "country": {
+                "displayName": "Norway"
+              }
+            },
+            "id": 35819,
+            "lat": 59.8995185
+          },
+          "start": {
+            "time": "17:00:00",
+            "date": "2017-05-24",
+            "datetime": "2017-05-24T17:00:00+0000"
+          },
+          "location": {
+            "lng": 10.6286999,
+            "city": "Oslo, Norway",
+            "lat": 59.8995185
+          },
+          "displayName": "Bruno Mars with Anderson Paak at Telenor Arena (May 24, 2017)",
+          "uri": "http://www.songkick.com/concerts/28561059-bruno-mars-at-telenor-arena?utm_source=42541&utm_medium=partner",
+          "popularity": 0.680073,
+          "id": 28561059
+        },
+        {
+          "type": "Concert",
+          "ageRestriction": null,
+          "status": "ok",
+          "performance": [
+            {
+              "billingIndex": 1,
+              "billing": "headline",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "afb680f2-b6eb-4cd7-a70b-a63b25c763d5",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:afb680f2-b6eb-4cd7-a70b-a63b25c763d5.json"
+                  }
+                ],
+                "displayName": "Bruno Mars",
+                "uri": "http://www.songkick.com/artists/941964-bruno-mars?utm_source=42541&utm_medium=partner",
+                "id": 941964,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/941964/large_avatar"
+              },
+              "displayName": "Bruno Mars",
+              "id": 55536589
+            }
+          ],
+          "venue": {
+            "lng": 10.6286999,
+            "displayName": "Telenor Arena",
+            "uri": "http://www.songkick.com/venues/35819-telenor-arena?utm_source=42541&utm_medium=partner",
+            "metroArea": {
+              "displayName": "Oslo",
+              "uri": "http://www.songkick.com/metro_areas/31422-norway-oslo?utm_source=42541&utm_medium=partner",
+              "id": 31422,
+              "country": {
+                "displayName": "Norway"
+              }
+            },
+            "id": 35819,
+            "lat": 59.8995185
+          },
+          "start": {
+            "time": "18:30:00",
+            "date": "2017-05-24",
+            "datetime": "2017-05-24T18:30:00+0000"
+          },
+          "location": {
+            "lng": 10.6286999,
+            "city": "Oslo, Norway",
+            "lat": 59.8995185
+          },
+          "displayName": "Bruno Mars at Telenor Arena (May 24, 2017)",
+          "uri": "http://www.songkick.com/concerts/28589349-bruno-mars-at-telenor-arena?utm_source=42541&utm_medium=partner",
+          "popularity": 0.679981,
+          "id": 28589349
+        },
+        {
+          "type": "Concert",
+          "performance": [
+            {
+              "billing": "headline",
+              "displayName": "Bruno Mars",
+              "billingIndex": 1,
+              "artist": {
+                "displayName": "Bruno Mars",
+                "uri": "http://www.songkick.com/artists/941964-bruno-mars?utm_source=42541&utm_medium=partner",
+                "id": 941964,
+                "identifier": [
+                  {
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:afb680f2-b6eb-4cd7-a70b-a63b25c763d5.json",
+                    "mbid": "afb680f2-b6eb-4cd7-a70b-a63b25c763d5"
+                  }
+                ],
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/941964/large_avatar"
+              },
+              "id": 55943284
+            },
+            {
+              "billing": "headline",
+              "displayName": "Anderson Paak",
+              "billingIndex": 2,
+              "artist": {
+                "displayName": "Anderson Paak",
+                "uri": "http://www.songkick.com/artists/7286084-anderson-paak?utm_source=42541&utm_medium=partner",
+                "id": 7286084,
+                "identifier": [
+                  {
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:d02dd67e-f655-4600-bc47-f789f59e7367.json",
+                    "mbid": "d02dd67e-f655-4600-bc47-f789f59e7367"
+                  }
+                ],
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/7286084/large_avatar"
+              },
+              "id": 55943289
+            }
+          ],
+          "status": "ok",
+          "displayName": "Bruno Mars and Anderson Paak at Telenor Arena (May 24, 2017)",
+          "start": {
+            "time": "20:00:00",
+            "datetime": "2017-05-24T20:00:00+0000",
+            "date": "2017-05-24"
+          },
+          "ageRestriction": null,
+          "location": {
+            "lat": 59.8995185,
+            "lng": 10.6286999,
+            "city": "Oslo, Norway"
+          },
+          "venue": {
+            "lat": 59.8995185,
+            "lng": 10.6286999,
+            "displayName": "Telenor Arena",
+            "uri": "http://www.songkick.com/venues/35819-telenor-arena?utm_source=42541&utm_medium=partner",
+            "metroArea": {
+              "displayName": "Oslo",
+              "country": {
+                "displayName": "Norway"
+              },
+              "uri": "http://www.songkick.com/metro_areas/31422-norway-oslo?utm_source=42541&utm_medium=partner",
+              "id": 31422
+            },
+            "id": 35819
+          },
+          "popularity": 0.682839,
+          "uri": "http://www.songkick.com/concerts/28825494-bruno-mars-at-telenor-arena?utm_source=42541&utm_medium=partner",
+          "id": 28825494
+        },
+        {
+          "type": "Concert",
+          "ageRestriction": null,
+          "status": "ok",
+          "performance": [
+            {
+              "billingIndex": 1,
+              "billing": "headline",
+              "artist": {
+                "identifier": [
+                  {
+                    "mbid": "afb680f2-b6eb-4cd7-a70b-a63b25c763d5",
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:afb680f2-b6eb-4cd7-a70b-a63b25c763d5.json"
+                  }
+                ],
+                "displayName": "Bruno Mars",
+                "uri": "http://www.songkick.com/artists/941964-bruno-mars?utm_source=42541&utm_medium=partner",
+                "id": 941964,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/941964/large_avatar"
+              },
+              "displayName": "Bruno Mars",
+              "id": 55489099
+            }
+          ],
+          "venue": {
+            "lng": 13.4387365,
+            "displayName": "Mercedes-Benz Arena",
+            "uri": "http://www.songkick.com/venues/31898-mercedesbenz-arena?utm_source=42541&utm_medium=partner",
+            "metroArea": {
+              "displayName": "Berlin",
+              "uri": "http://www.songkick.com/metro_areas/28443-germany-berlin?utm_source=42541&utm_medium=partner",
+              "id": 28443,
+              "country": {
+                "displayName": "Germany"
+              }
+            },
+            "id": 31898,
+            "lat": 52.5059566
+          },
+          "start": {
+            "time": null,
+            "date": "2017-05-26",
+            "datetime": null
+          },
+          "location": {
+            "lng": 13.4387365,
+            "city": "Berlin, Germany",
+            "lat": 52.5059566
+          },
+          "displayName": "Bruno Mars at Mercedes-Benz Arena (May 26, 2017)",
+          "uri": "http://www.songkick.com/concerts/28561679-bruno-mars-at-mercedesbenz-arena?utm_source=42541&utm_medium=partner",
+          "popularity": 0.679605,
+          "id": 28561679
+        },
+        {
+          "type": "Concert",
+          "status": "ok",
+          "performance": [
+            {
+              "billingIndex": 1,
+              "artist": {
+                "identifier": [
+                  {
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:afb680f2-b6eb-4cd7-a70b-a63b25c763d5.json",
+                    "mbid": "afb680f2-b6eb-4cd7-a70b-a63b25c763d5"
+                  }
+                ],
+                "displayName": "Bruno Mars",
+                "uri": "http://www.songkick.com/artists/941964-bruno-mars?utm_source=42541&utm_medium=partner",
+                "id": 941964,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/941964/large_avatar"
+              },
+              "billing": "headline",
+              "displayName": "Bruno Mars",
+              "id": 55600024
+            }
+          ],
+          "ageRestriction": null,
+          "venue": {
+            "metroArea": {
+              "displayName": "Krakow",
+              "uri": "http://www.songkick.com/metro_areas/34786-poland-krakow?utm_source=42541&utm_medium=partner",
+              "id": 34786,
+              "country": {
+                "displayName": "Poland"
+              }
+            },
+            "lng": 19.9885756,
+            "displayName": "Tauron Arena Krakow",
+            "uri": "http://www.songkick.com/venues/2935043-tauron-arena-krakow?utm_source=42541&utm_medium=partner",
+            "id": 2935043,
+            "lat": 50.0678186
+          },
+          "start": {
+            "time": null,
+            "date": "2017-05-27",
+            "datetime": null
+          },
+          "location": {
+            "lng": 19.9885756,
+            "city": "Krakow, Poland",
+            "lat": 50.0678186
+          },
+          "displayName": "Bruno Mars at Tauron Arena Krakow (May 27, 2017)",
+          "uri": "http://www.songkick.com/concerts/28625039-bruno-mars-at-tauron-arena-krakow?utm_source=42541&utm_medium=partner",
+          "popularity": 0.680358,
+          "id": 28625039
+        },
+        {
+          "type": "Concert",
+          "status": "ok",
+          "performance": [
+            {
+              "billingIndex": 1,
+              "artist": {
+                "identifier": [
+                  {
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:afb680f2-b6eb-4cd7-a70b-a63b25c763d5.json",
+                    "mbid": "afb680f2-b6eb-4cd7-a70b-a63b25c763d5"
+                  }
+                ],
+                "displayName": "Bruno Mars",
+                "uri": "http://www.songkick.com/artists/941964-bruno-mars?utm_source=42541&utm_medium=partner",
+                "id": 941964,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/941964/large_avatar"
+              },
+              "billing": "headline",
+              "displayName": "Bruno Mars",
+              "id": 55600044
+            },
+            {
+              "billingIndex": 2,
+              "artist": {
+                "identifier": [
+                  {
+                    "href": "http://api.songkick.com/api/3.0/artists/mbid:d02dd67e-f655-4600-bc47-f789f59e7367.json",
+                    "mbid": "d02dd67e-f655-4600-bc47-f789f59e7367"
+                  }
+                ],
+                "displayName": "Anderson Paak",
+                "uri": "http://www.songkick.com/artists/7286084-anderson-paak?utm_source=42541&utm_medium=partner",
+                "id": 7286084,
+                "imageUrl": "http://images.sk-static.com/images/media/profile_images/artists/7286084/large_avatar"
+              },
+              "billing": "support",
+              "displayName": "Anderson Paak",
+              "id": 55600049
+            }
+          ],
+          "ageRestriction": null,
+          "venue": {
+            "metroArea": {
+              "displayName": "Budapest",
+              "uri": "http://www.songkick.com/metro_areas/29047-hungary-budapest?utm_source=42541&utm_medium=partner",
+              "id": 29047,
+              "country": {
+                "displayName": "Hungary"
+              }
+            },
+            "lng": 19.1057853,
+            "displayName": "Papp Laszlo Budapest Sportarena",
+            "uri": "http://www.songkick.com/venues/853871-papp-laszlo-budapest-sportarena?utm_source=42541&utm_medium=partner",
+            "id": 853871,
+            "lat": 47.5027458
+          },
+          "start": {
+            "time": null,
+            "date": "2017-05-30",
+            "datetime": null
+          },
+          "location": {
+            "lng": 19.1057853,
+            "city": "Budapest, Hungary",
+            "lat": 47.5027458
+          },
+          "displayName": "Bruno Mars with Anderson Paak at Papp Laszlo Budapest Sportarena (May 30, 2017)",
+          "uri": "http://www.songkick.com/concerts/28625059-bruno-mars-at-papp-laszlo-budapest-sportarena?utm_source=42541&utm_medium=partner",
+          "popularity": 0.680358,
+          "id": 28625059
+        }
+      ],
+      "meta": {
+        "total_pages": 2,
+        "current_page": 1,
+        "artist": ""
+      }
+    };
+  });
 }

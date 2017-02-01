@@ -2,6 +2,8 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
 
+  accessChildData: Ember.inject.service(),
+
   queryParams: {
     getId: {
       refreshModel: true
@@ -20,13 +22,10 @@ export default Ember.Route.extend({
       let meta = result.get('meta');
       return meta, result;
     });
-  }
+  },
 
-  // queryParams: {
-  //
-  // }
-  // model() {
-  //   console.log('hello');
-  //   return this.paramsFor('artist');
-  // }
+  afterModel (model) {
+    let meta = model.get('meta');
+    this.get('accessChildData').add(meta);
+  }
 });

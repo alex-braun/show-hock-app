@@ -1,32 +1,64 @@
-<div class='artist-info-wrapper'>
-  {{#each model.artist.firstObject.performance as |performance|}}
-    {{#if (eq performance.displayName model.artist.meta.artist) }}
-      <figure class="artist-thumb-wrapper">
-        <img class="headliner image" src="{{performance.artist.imageUrl}}" alt="{{performance.artist.displayName}}"/>
+<div class='artist-info-section'>
 
-        {{#each model.basic as |basic|}}
-          {{#if basic.onTourUntil}}
-            <figcaption class="artist-image-caption-text"><span class='tour-tag'>ON TOUR</span></figcaption>
-          {{/if}}
-        {{/each}}
+{{!-- {{#each name.things as |thing|}} --}}
+{{!-- {{/each}} --}}
+  {{#each model as |basic| }}
+    {{#if (eq basic.displayName name.artistMeta.artist) }}
+    {{!-- <div class='arist-background-cover'> --}}
+      <figure class='artist-background-wrapper'>
+        <img class='artist-background' src='{{basic.imageUrl}}' alt='{{basic.displayName}}'/>
+      </figure>
+    {{!-- </div> --}}
+    {{/if}}
+  {{/each}}
+
+<div class='artist-info-wrapper'>
+
+  {{#each model as |basic| }}
+    {{#if (eq basic.displayName name.artistMeta.artist) }}
+    <figure class="artist-thumb-wrapper">
+      <img class="headliner image" src='{{basic.imageUrl}}' alt='{{basic.displayName}}'/>
+        {{#if basic.onTourUntil}}
+          <figcaption class="artist-image-caption-text"><span class='tour-tag'>ON TOUR</span>
+          </figcaption>
+        {{/if}}
       </figure>
     {{/if}}
-  {{/each}}
-  {{#each model.basic as |basic|}}
-    {{#if (eq basic.displayName model.artist.meta.artist)}}
-      <h1>{{basic.displayName}}</h1>
-      {{#if basic.onTourUntil}}
-        <h5>On Tour Until:
-          {{{format-month basic.onTourUntil}}}
-          {{{format-day basic.onTourUntil}}},
-          {{{format-year basic.onTourUntil}}}
-        </h5>
-      {{/if}}
-    {{/if}}
-  {{/each}}
+    {{/each}}
 
-
-  {{!-- <h1>{{model.artist.meta.artist}}</h1> --}}
-  <h4>Scheduled Tour Dates: {{model.artist.meta.total_entries}}</h4>
+  <div class='artist-info'>
+      {{!-- {{#each model as |basic| }}
+        {{#if (eq basic.displayName model.artist.meta.artist) }}
+        <figure class="artist-thumb-wrapper">
+          <img class="headliner image" src='{{basic.imageUrl}}' alt='{{basic.displayName}}'/>
+            {{#if basic.onTourUntil}}
+              <figcaption class="artist-image-caption-text"><span class='tour-tag'>ON TOUR</span>
+              </figcaption>
+            {{/if}}
+          </figure>
+        {{/if}}
+      {{/each}} --}}
+      {{#each model as |basic|}}
+        {{#if (eq basic.displayName name.artistMeta.artist)}}
+          <h1>{{basic.displayName}}</h1>
+          {{#if basic.onTourUntil}}
+            <h4>On Tour Until:
+              {{{format-month basic.onTourUntil}}}
+              {{{format-day basic.onTourUntil}}},
+              {{{format-year basic.onTourUntil}}}
+            </h4>
+          {{else}}
+            <h4>Not on tour</h4>
+          {{/if}}
+          {{#if basic.onTourUntil}}
+            <h4>Upcoming Events: {{name.artistMeta.total_entries}}</h4>
+          {{else}}
+            <h4>Upcoming Events: None</h4>
+          {{/if}}
+        {{/if}}
+      {{/each}}
+    </div>
+  </div>
 </div>
+
 {{outlet}}

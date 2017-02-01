@@ -41,35 +41,22 @@
   {{else}}
     <h4>{{event.venue.displayName}}, {{event.location.city}}</h4>
   {{/if}}
-
-  {{#if event.start.time}}
-  <h6>{{format-time event.start.time}}</h6>
-  {{/if}}
   </li>
 
-{{#if (eq event.type 'Festival') }}
-  {{!-- <figure class="band-thumb-wrapper">
-    <img class="headliner image" src="{{event.imageUrl}}" alt="{{event.displayName}}" />
-    <figcaption class="image-caption-text">{{event.displayName}}</figcaption>
-  </figure> --}}
+{{!-- {{#if (eq event.type 'Festival') }}
 
   <div class='artist-grid-wrapper'>
     <ui class='row-fluid artist-grid block-grid-3'>
     {{#each event.performance as |performance|}}
-    {{!-- <div class='clearfix visible-sm'></div> --}}
+
       <li>{{performance.artist.displayName}}</li>
     {{/each}}
     </ui>
   </div>
 
 {{else}}
-  {{!-- {{#each event.performance as |performance|}}
-      <figure class="band-thumb-wrapper">
-        <img class="headliner image" src="{{performance.artist.imageUrl}}" alt="{{performance.artist.displayName}}" />
-        <figcaption class="image-caption-text">{{performance.artist.displayName}}</figcaption>
-      </figure>
-  {{/each}} --}}
-{{/if}}
+
+{{/if}} --}}
 
 {{#if event.ageRestriction}}
   <h6>{{event.ageRestriction}}</h6>

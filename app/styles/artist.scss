@@ -1,25 +1,108 @@
 //main region view
 
 //basic div layout
+.artist-info-section {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  padding: 15px;
+  // background-color: #0900E4;
+  // -webkit-box-shadow: 5px 3px 32px 6px rgba(156,154,156,1);
+  // -moz-box-shadow: 5px 3px 32px 6px rgba(156,154,156,1);
+  // box-shadow: 5px 3px 32px 6px rgba(156,154,156,1);
+}
+
+.artist-background-wrapper {
+  width: 100%;
+  height: 100%;
+  img {
+    display: block;
+    -webkit-transform: translate(-50%,-18%);
+    -ms-transform: translate(-50%,-18%);
+    transform: translate(-50%,-33%);
+    -webkit-filter: blur(10px);
+    -moz-filter: blur(10px);
+    -o-filter: blur(10px);
+    -ms-filter: blur(10px);
+    filter: blur(10px);
+    min-width: 106%;
+    height: auto;
+    z-index: 0;
+    left: 50%;
+    top: 50%;
+    position: absolute;
+  }
+
+  img:empty {
+    background-color: #0900E4;
+  }
+
+  .artist-background:empty {
+    img {
+      -webkit-filter: blur(0);
+      -moz-filter: blur(0);
+      -o-filter: blur(0);
+      -ms-filter: blur(0);
+      filter: blur(0);
+      visibility: hidden;
+    }
+  }
+}
+
+.artist-background-wrapper::after {
+  -webkit-box-shadow: 5px 3px 32px 6px rgba(0,0,0,1) inset;
+  -moz-box-shadow: 5px 3px 32px 6px rgba(0,0,0,1) inset;
+  box-shadow: 0px 0px 15px 5px rgba(0,0,0,1) inset;
+  background: rgba(0, 0, 0, .1);
+  content: '';
+  display: block;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 0;
+}
+
 .artist-info-wrapper {
   overflow: hidden;
-  border: 1px solid black;
-  width: 100%;
-  // height: 400px;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.artist-info {
+  padding: 5px 0 5px 10px;
+  margin: 0 auto;
+  position: relative;
+  background-color: #191919;
+  h1 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: white;
+  }
+
+  h4 {
+    color: white;
+  }
 }
 
 .artist-thumb-wrapper {
+  border: 1px solid black;
   float: right;
-  margin: 5px;
   padding: 0;
   position: relative;
-  // clear: right;
+  z-index: 1;
 
   .headliner {
-    // border-radius: 50%;
+    background-color: white;
     display: block;
     height: 320px;
     width: 320px;
+  }
+  .headliner:empty {
+    background-image: url('../assets/images/microphone-with-wire.png');
+    background-position: center;
+    background-repeat: no-repeat;
   }
 }
 
@@ -31,18 +114,17 @@
   list-style-type: none;
 }
 
-.region-detail {
-  // border: 1px solid #000000;
-  clear: both;
-  float: left;
-  margin: 30px;
-}
+// .region-detail {
+//   clear: both;
+//   float: left;
+//   margin: 30px;
+// }
 
-.date {
-  font-size: 20px;
-  margin: 0;
-  padding-top: 20px;
-}
+// .date {
+//   font-size: 20px;
+//   margin: 0;
+//   padding-top: 20px;
+// }
 
 .event {
   margin-right: 152px;
@@ -54,98 +136,26 @@
   }
 }
 
-.artist-grid-wrapper {
-  padding-left: 50px;
-  overflow: auto;
-}
-
-.artist-grid {
-  li {
-    box-sizing: border-box;
-    display: block;
-    float: left;
-    padding: 0 12px 8px;
-    width: 33.3333333%;
-  }
-
-  // li:nth-of-type(3n+1) {
-  //   clear: left;
-  // }
-
-}
-
-
-// display: block;
-// overflow: hidden;
-// width: 100%;
-
-// .band-thumb-wrapper {
-//   float: right;
-//   height: 163px;
-//   margin: 5px;
-//   text-align: center;
+// .artist-grid-wrapper {
+//   padding-left: 50px;
+//   overflow: auto;
+// }
 //
-//
-//   .headliner {
-//     height: 128px;
-//     width: 128px;
-//   }
-//   .headliner:empty {
-//     background-image: url('../assets/images/microphone-with-wire.png');
-//   }
-//
-//   .support {
-//     height: 96px;
-//     width: 96px;
-//   }
-//   .support:empty {
-//     background-image: url('../assets/images/microphone-with-wire.png');
-//     background-size: 96px 96px;
+// .artist-grid {
+//   li {
+//     box-sizing: border-box;
+//     display: block;
+//     float: left;
+//     padding: 0 12px 8px;
+//     width: 33.3333333%;
 //   }
 // }
+
 .artist-list {
   display: inline;
 }
 
-
-.band-thumb-wrapper {
-  float: left;
-  margin: 5px;
-  padding: 0;
-  position: relative;
-  // clear: right;
-
-  .headliner {
-    border-radius: 50%;
-    display: block;
-    height: 128px;
-    width: 128px;
-  }
-
-  .headliner:empty {
-    background-image: url('../assets/images/microphone-with-wire.png');
-    background-position: 0 9px;
-    background-repeat: no-repeat;
-  }
-}
-
-.band-thumb-wrapper::after {
-  background: rgba(0, 0, 0, 0) linear-gradient(to bottom, rgba(0, 0, 0, .05) 10%,
-  rgba(0, 0, 0, .3) 60%, rgba(0, 0, 0, .6) 100%) repeat 0 0;
-  border-radius: 50%;
-  content: '';
-  display: block;
-  height: 100%;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 100%;
-  z-index: 1;
-}
-
 .artist-image-caption-text {
-  // bottom: 0;
-  // -webkit-box-sizing: border-box;
   box-sizing: border-box;
   color: #fff;
   display: block;
@@ -153,17 +163,59 @@
   font-size: 20px;
   left: 0;
   padding-top: 8px;
-  // padding-bottom: 1.5em;
   position: absolute;
   top: 0;
-  // left: 0;
-  // text-align: center;
   width: 100%;
   z-index: 2;
 
   .tour-tag {
     background-color: rgba(0, 0, 0, 0.6);
-
     padding: 10px;
+  }
+}
+
+@media (max-width: 1110px) {
+  .artist-info-wrapper {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .artist-background-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  .artist-background {
+    -webkit-transform: translate(-50%,-20%);
+    -ms-transform: translate(-50%,-20%);
+    transform: translate(-50%,-35%);
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .artist-background-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  .artist-background {
+    -webkit-transform: translate(-50%,-25%);
+    -ms-transform: translate(-50%,-25%);
+    transform: translate(-50%,-40%);
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .artist-background-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  .artist-background {
+    -webkit-transform: translate(-50%,-35%);
+    -ms-transform: translate(-50%,-35%);
+    transform: translate(-50%,-45%);
+    }
   }
 }

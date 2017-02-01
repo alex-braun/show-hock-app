@@ -2,7 +2,7 @@ import Ember from 'ember';
 // import ENV from 'show-hock-app/config/environment';
 
 export default Ember.Service.extend({
-events: Ember.inject.service('region-events-onload'),
+// events: Ember.inject.service('region-events-onload'),
 
 ///UNCOMMENT THIS WHEN YOU ARE READY!!!
   city: null,
