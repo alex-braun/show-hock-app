@@ -1,0 +1,48 @@
+<nav aria-label="...">
+
+  {{#if (gt pages.total_pages 1) }}
+
+    <ul class="pagination">
+
+{{!--PREVIOUS PAGE--}}
+      {{#if (gt pages.current_page 1)}}
+        <li {{action 'previousPage' pages.current_page}}>
+          <a href="#" aria-label="Previous">
+          <span>
+            <span aria-hidden="true">&laquo;</span>
+          </span>
+          </a>
+        </li>
+      {{/if}}
+
+{{!--PAGE SELECTION--}}
+    {{#each pageNumbers as |pageNumber|}}
+      {{#if (eq pages.current_page pageNumber) }}
+        <li class="active">
+          <a href="#" aria-label="Page">
+          <span>{{pageNumber}}<span class="sr-only">(current)</span></span>
+          </a>
+        </li>
+      {{else}}
+        <li class="inactive" {{action 'newPage' pageNumber}}>
+          <a href="#" aria-label="Page">
+          <span>{{pageNumber}}<span class="sr-only">(current)</span></span>
+          </a>
+        </li>
+      {{/if}}
+    {{/each}}
+
+{{!--NEXT PAGE--}}
+    {{#if (lt pages.current_page pages.total_pages)}}
+      <li {{action 'nextPage' pages.current_page pages.total_pages}}>
+        <a href="#" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    {{/if}}
+
+    </ul>
+
+  {{/if}}
+
+</nav>

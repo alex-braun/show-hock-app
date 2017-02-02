@@ -20,6 +20,7 @@ export default Ember.Route.extend({
     return this.get('store').query('artist', params)
     .then((result) => {
       let meta = result.get('meta');
+      console.log(meta);
       return meta, result;
     });
   },
@@ -27,5 +28,13 @@ export default Ember.Route.extend({
   afterModel (model) {
     let meta = model.get('meta');
     this.get('accessChildData').add(meta);
-  }
+  },
+
+  // actions: {
+  //   changeArtistPage(param) {
+  //     console.log('does this work?');
+  //     this.set('page', param);
+  //     // this.transitionToRoute('artist', params);
+  //   }
+  // }
 });

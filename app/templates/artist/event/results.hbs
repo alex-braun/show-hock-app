@@ -10,4 +10,9 @@
   {{/each}}
 </ul>
 </div>
-{{pagination-bar pages=model.meta}}
+{{log page}}
+{{pagination-bar pages=model.meta
+                newPage='changeArtistPage'
+                previousPage='previousPage'
+                nextPage='nextPage'}}
+{{!-- {{pagination-bar pages=model.meta (query-params ) }} --}}
