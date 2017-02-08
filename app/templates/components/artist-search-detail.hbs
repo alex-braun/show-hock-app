@@ -1,14 +1,20 @@
 <li>
   {{!-- {{#link-to 'artist' artistSelect}} --}}
-  {{#if artistSelect.noMatch}}
-    <h3>{{artistSelect.displayName}}</h3>
-  {{else}}
-  {{#link-to 'artist.event.results' (query-params getId=artistSelect.id
-  artist=artistSelect.displayName)}}
-  <h3>{{artistSelect.displayName}}</h3>
-  <h3>{{artistSelect.id}}</h3>
-  {{/link-to}}
-  {{/if}}
+
+    {{#if artistSelect.noMatch}}
+      <h3>{{artistSelect.displayName}}</h3>
+    {{else}}
+      {{#link-to 'artist.event.results' (query-params getId=artistSelect.id
+      artist=artistSelect.displayName)}}
+      <div class='artist-search-wrapper'>
+        <h3>{{artistSelect.displayName}}</h3>
+        <figure class="band-thumb-wrapper">
+          <img class="headliner image" src="{{artistSelect.imageUrl}}" alt="{{artistSelect.displayName}}" />
+          <figcaption class="image-caption-text">{{artistSelect.displayName}}</figcaption>
+        </figure>
+      </div>
+      {{/link-to}}
+    {{/if}}
 </li>
 
 {{!-- <li>

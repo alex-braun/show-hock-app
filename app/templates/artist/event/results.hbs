@@ -1,18 +1,35 @@
 {{!-- <h1>{{search-title title=model.meta.artist}}</h1> --}}
-<div class=artist-event-wrapper>
-<ul class="event-listings row-fluid block-grid-3">
-  {{#each model as |event|}}
-    <li class='artist-detail-list'>
-      <div class='artist-detail col-xs-10'>
-        {{artist-detail event=event}}
+<div class='artist-event-section'>
+  <div class='artist-event-wrapper'>
+    {{#if model.similar.firstObject.noMatch}}
+      <div class='artist-event-listing' style='border:none'>
+          <ul class="event-listings row-fluid block-grid-3">
+            {{#each model.event as |event|}}
+              <li class='artist-detail-list'>
+                <div class='artist-detail'>
+                  {{artist-detail event=event}}
+                </div>
+              </li>
+            {{/each}}
+          </ul>
+        </div>
+    {{else}}
+      {{similar-artists similar=model.similar}}
+      <div class='artist-event-listing'>
+        <ul class="event-listings row-fluid block-grid-3">
+          {{#each model.event as |event|}}
+            <li class='artist-detail-list'>
+              <div class='artist-detail'>
+                {{artist-detail event=event}}
+              </div>
+            </li>
+          {{/each}}
+        </ul>
       </div>
-    </li>
-  {{/each}}
-</ul>
+    {{/if}}
+  </div>
 </div>
-{{log page}}
-{{pagination-bar pages=model.meta
+{{pagination-bar pages=model.event.meta
                 newPage='changeArtistPage'
                 previousPage='previousPage'
                 nextPage='nextPage'}}
-{{!-- {{pagination-bar pages=model.meta (query-params ) }} --}}

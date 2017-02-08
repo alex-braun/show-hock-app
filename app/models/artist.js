@@ -8,5 +8,6 @@ export default DS.Model.extend({
   start: DS.attr(),
   end: DS.attr(),
   venue: DS.attr(),
-  noMatch: DS.attr()
+  noMatch: DS.attr(),
+  similar: DS.hasMany('similar-artist', { async: true })
 });

@@ -1,6 +1,7 @@
 @import 'bootstrap';
-@import 'region.scss';
-@import 'artist.scss';
+@import 'region';
+@import 'artist';
+@import 'search';
 
 .icon-radio-unchecked::before {
   content: "\ea56";

@@ -1,3 +1,6 @@
+{{#if event.noMatch}}
+  <h4 class='artist-list'>No upcoming events found for  <strong>{{event.performance.displayName}}</strong></h4>
+{{else}}
 <li class='date'>
   <strong>
     {{{format-weekday event.start.date}}},
@@ -60,4 +63,5 @@
 
 {{#if event.ageRestriction}}
   <h6>{{event.ageRestriction}}</h6>
+{{/if}}
 {{/if}}
