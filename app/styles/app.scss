@@ -3,16 +3,41 @@
 @import 'artist';
 @import 'search';
 
+.body {
+  // width: 100%;
+  // margin: 0 auto;
+}
 .icon-radio-unchecked::before {
   content: "\ea56";
 }
 
-.container-fluid {
+.container {
   padding: 0;
+  margin: 0;
+  width: 100%;
 }
 
-.navbar-default {
-  margin-bottom: 0;
+
+.navbar-form .form-group input {
+  width: 100%;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.search-input-em-wrap {
+  width: 100%;
+  display: inline-block;
+}
+
+.navbar {
+  // background-color: #07080A;
+  background-color: #2336B2;
+  border-bottom: 1px solid #2336B2;
+}
+
+.container-fluid .navbar-header {
+  // background-color: #07080A;
+  // margin: 0;
 }
 
 .artist-search-result {
@@ -39,4 +64,28 @@
 .pagination {
   // position: fixed;
   width: 100%;
+}
+
+@media (max-width: 768px) {
+  .navbar-form .form-group input {
+    width: 100%;
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  .navbar-nav.navbar-collapse {
+       margin-left: 0;
+       margin-right: 0;
+       padding-left: 0;
+       padding-right: 0;
+   }
+
+  .search-input-em-wrap {
+    width: 80%;
+    display: inline-block;
+  }
+
+  .visible-xs {
+    display: inline-block !important;
+  }
 }

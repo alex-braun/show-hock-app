@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
 
-  accessChildData: Ember.inject.service(),
+  accessArtistData: Ember.inject.service(),
 
   queryParams: {
     getId: {
@@ -27,12 +27,11 @@ export default Ember.Route.extend({
         for (let i = 0; i < 10; i++) {
           arr.push([i]);
         }
-           let aggregate = result.objectsAt(arr);
-           aggregate = aggregate.filter((element) => {
+           let selection = result.objectsAt(arr);
+           selection = selection.filter((element) => {
              return element !== undefined;
            });
-           console.log(aggregate);
-           return aggregate;
+           return selection;
       })
 
       // }).then((result) => {
@@ -51,6 +50,6 @@ export default Ember.Route.extend({
 
   afterModel (model) {
     let meta = model.event.get('meta');
-    this.get('accessChildData').add(meta);
+    this.get('accessArtistData').add(meta);
   },
 });

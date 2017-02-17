@@ -16,14 +16,15 @@ Router.map(function() {
       this.route('results');
     });
   });
-  // this.route('region-search', function() {
-  //   this.route('results');
-  // });
+
   this.route('region', function() {
     this.route('search', function() {
       this.route('results');
     });
-    this.route('results');
+    this.route('event', function() {
+      this.route('results');
+    });
+
   });
   this.route('event-search');
 });

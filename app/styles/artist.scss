@@ -1,4 +1,4 @@
-//main region view
+//main artist view
 
 //basic div layout\
 .artist-info-section {
@@ -6,6 +6,7 @@
   padding: 15px;
   position: relative;
   width: 100%;
+  margin: 0;
 }
 
 .artist-background-wrapper {
@@ -106,19 +107,36 @@
 }
 
 .artist-event-section {
-  overflow-y: hidden;
   padding: 15px;
   position: relative;
   width: 100%;
 }
 
 .artist-event-wrapper {
+  display: flex;
+  justify-content: space-between;
   margin: 0 auto;
   max-width: 1080px;
-  overflow-y: hidden;
+  // overflow-y: hidden;
 
   ul {
     padding: 0;
+  }
+}
+
+.artist-detail {
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px dashed #2336b2;
+}
+
+.artist-event {
+  margin-right: 152px;
+  // margin-bottom: 25px;
+  padding-top: 10px;
+
+  h4 {
+    font-size: 16px;
   }
 }
 
@@ -127,13 +145,10 @@
 }
 
 .artist-event-listing {
-  // border-right: 1px dotted #000;
-  // margin-right: 320px;
   max-width: 756px;
-  min-width: 655px;
+  min-width: 605px;
   padding: 5px 0 5px 10px;
   position: relative;
-  // overflow: hidden;
 }
 
 .artist-image-caption-text {
@@ -156,13 +171,14 @@
 }
 
 .similar-artists-wrapper {
-  border-left: 1px dotted #000;
+  border-left: 1px dashed #2336b2;
   display: block;
   float: right;
   padding: 10px;
-  position: relative;
+  right: 0;
+  // position: absolute;
   width: 322px;
-  z-index: 1;
+  z-index: 99;
 }
 
 .similar-artists-thumb-wrapper {
@@ -170,32 +186,54 @@
   margin: 5px;
   padding: 0;
   position: relative;
+  height: 48px;
+  width: 48px;
   // clear: right;
 
   .headliner {
     border-radius: 50%;
+    object-fit: cover;
     display: block;
-    height: 48px;
-    width: 48px;
+    height: auto;
+    width: 100%;
   }
 
   .headliner:empty {
     background-image: url('../assets/images/microphone-with-wire.png');
-    // background-position: 0 9px;
+    background-position: 0 5px;
+    background-size: 48px;
     background-repeat: no-repeat;
+    // -moz-transform:scale(0.5);
+    // -webkit-transform:scale(0.5);
+    // transform:scale(0.5);
   }
 }
 
-
+.similar-artists-thumb-wrapper::after {
+  background: rgba(0, 0, 0, 0) linear-gradient(to bottom, rgba(0, 0, 0, .05) 10%,
+  rgba(0, 0, 0, .1) 60%, rgba(0, 0, 0, .3) 100%) repeat 0 0;
+  border-radius: 50%;
+  content: '';
+  display: block;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
 
 .similar-artists-list {
-  list-style-type: none;
-  float: none;
-  clear: both;
-  li {
-    // width: 75%;
-    // float: left;
     list-style-type: none;
+    float: none;
+    clear: both;
+}
+
+.similar-artists-text {
+  list-style-type: none;
+
+  li:first-child {
+    padding-top: 10px;
   }
 }
 
@@ -239,21 +277,72 @@
   }
 }
 
-@media (max-width: 1035px) {
+@media (max-width: 985px) {
   .artist-event-wrapper {
-    width: 975px;
+    width: 925px;
   }
 }
 
 @media (max-width: 768px) {
+  .artist-info-section {
+    // width: 107.5%;
+  }
+
   .artist-background-wrapper {
     height: 100%;
     overflow: hidden;
     width: 100%;
+  }
+
+  .artist-thumb-wrapper {
+    .headliner {
+      height: 160px;
+      width: 160px;
+    }
+  }
+
+  .artist-event-wrapper {
+      width: 100%;
+      flex-wrap: wrap;
+  }
+
+  .artist-event-listing {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .similar-artists-wrapper {
+    width: 100vw;
+    padding-right: 50px;
+    border: none;
+  }
+
+  .similar-artists {
+    width: 100%;
+
+    .similar-artists-list {
+      box-sizing: border-box;
+      // clear: none;
+      // display: block;
+      float: left;
+      padding: 0 12px 8px;
+      width: 100%;
+    }
+  }
+
   .artist-background {
     -webkit-transform: translate(-50%,-35%);
     -ms-transform: translate(-50%,-35%);
     transform: translate(-50%,-45%);
     }
   }
-}
+  // @media (max-width: 375px) {
+  //   .artist-info-section {
+  //     width: 109%;
+  //   }
+  //
+  // @media (max-width: 375px) {
+  //   .artist-info-section {
+  //     width: 109%;
+  //   }
+  // }

@@ -14,7 +14,7 @@
           </ul>
         </div>
     {{else}}
-      {{similar-artists similar=model.similar}}
+
       <div class='artist-event-listing'>
         <ul class="event-listings row-fluid block-grid-3">
           {{#each model.event as |event|}}
@@ -26,6 +26,7 @@
           {{/each}}
         </ul>
       </div>
+      {{similar-artists similar=model.similar}}
     {{/if}}
   </div>
 </div>
