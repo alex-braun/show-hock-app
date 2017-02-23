@@ -1,6 +1,6 @@
 //main artist view
 
-//basic div layout\
+//ARTIST INTRO INFO SECTION (NAME, PICTURE, ON TOUR UNTIL)
 .artist-info-section {
   overflow: hidden;
   padding: 15px;
@@ -106,22 +106,68 @@
   }
 }
 
+
+// ARTIST EVENT SECTION
+
 .artist-event-section {
   padding: 15px;
   position: relative;
   width: 100%;
+
 }
 
 .artist-event-wrapper {
-  display: flex;
-  justify-content: space-between;
+  // display: flex;
+  // justify-content: space-between;
+
+  position: relative;
   margin: 0 auto;
   max-width: 1080px;
-  // overflow-y: hidden;
+  overflow-y: hidden;
+  min-height: 700px;
 
   ul {
     padding: 0;
   }
+}
+
+// shows coming up in the user's artistMeta
+.upcoming-events-wrapper {
+  width: 100%;
+  max-width: 705px;
+  min-width: 605px;
+  padding: 5px 0 5px 10px;
+  position: relative;
+  float: left;
+  margin-right: 375px;
+  margin-bottom: 20px;
+}
+
+.upcoming-events-item-div {
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px dashed #2336b2;
+}
+
+.upcoming-events-title-wrapper {
+  overflow: hidden;
+}
+
+.upcoming-events-title {
+  float: left;
+}
+
+.upcoming-events-location {
+  float: right;
+
+  h4 {
+    margin-top: 27px;
+    margin-bottom: 10px;
+  }
+}
+
+.upcoming-events-date {
+  font-size: 16px;
 }
 
 .artist-detail {
@@ -130,8 +176,14 @@
   border-bottom: 1px dashed #2336b2;
 }
 
+.artist-event-date {
+  font-size: 18px;
+  margin: 0;
+  padding-top: 10px;
+}
+
 .artist-event {
-  margin-right: 152px;
+  margin-right: 50px;
   // margin-bottom: 25px;
   padding-top: 10px;
 
@@ -145,10 +197,14 @@
 }
 
 .artist-event-listing {
-  max-width: 756px;
+  width: 100%;
+  max-width: 705px;
   min-width: 605px;
   padding: 5px 0 5px 10px;
   position: relative;
+  float: left;
+  margin-right: 375px;
+  // clear: left;
 }
 
 .artist-image-caption-text {
@@ -176,7 +232,7 @@
   float: right;
   padding: 10px;
   right: 0;
-  // position: absolute;
+  position: absolute;
   width: 322px;
   z-index: 99;
 }
@@ -237,7 +293,12 @@
   }
 }
 
-@media (max-width: 1110px) {
+@media (max-width: 1130px) {
+
+  .artist-info-section {
+    width: 1130px;
+  }
+
   .artist-info-wrapper {
     margin-left: 15px;
     margin-right: 15px;
@@ -246,6 +307,10 @@
   .artist-event-wrapper {
     margin-left: 15px;
     margin-right: 15px;
+  }
+
+  .artist-event-section {
+    width: 1130px;
   }
 }
 
@@ -277,21 +342,30 @@
   }
 }
 
-@media (max-width: 985px) {
-  .artist-event-wrapper {
-    width: 925px;
-  }
-}
+// @media (max-width: 985px) {
+//   .artist-event-wrapper {
+//     width: 925px;
+//   }
+// }
 
 @media (max-width: 768px) {
   .artist-info-section {
-    // width: 107.5%;
+    width: 100%;
+  }
+
+  .artist-event-section {
+    width: 100%;
   }
 
   .artist-background-wrapper {
     height: 100%;
     overflow: hidden;
     width: 100%;
+  }
+
+  .upcoming-events-wrapper {
+    width: 100%;
+    min-width: 0;
   }
 
   .artist-thumb-wrapper {
@@ -303,7 +377,7 @@
 
   .artist-event-wrapper {
       width: 100%;
-      flex-wrap: wrap;
+      // flex-wrap: wrap;
   }
 
   .artist-event-listing {
@@ -315,6 +389,8 @@
     width: 100vw;
     padding-right: 50px;
     border: none;
+    position: relative;
+    float: left;
   }
 
   .similar-artists {

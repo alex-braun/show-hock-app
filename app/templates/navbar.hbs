@@ -120,9 +120,10 @@
     <div class="collapse search navbar-collapse" id="bs-example-navbar-collapse-2">
         <form class="navbar-form navbar-left">
         {{!-- <div class="form-group"> --}}
-          {{search-input keyword=entered}}
-          {{log dropdown.name}}
+        {{!-- {{search-input keyword=entered}} --}}
+
           {{#if (eq dropdown.name 'Artists')}}
+            {{search-input keyword=entered placeholder='Enter artist name'}}
             {{#link-to 'artist.search.results' (query-params search=entered)}}
               <button type="submit" class="btn btn-success search-button visible-xs">
               <span class='glyphicon glyphicon-search'></span>
@@ -130,6 +131,7 @@
               </button>
             {{/link-to}}
           {{else if (eq dropdown.name 'Region')}}
+          {{search-input keyword=entered placeholder='Enter region/city name'}}
             {{#link-to 'region.search.results' (query-params search=entered)}}
               <button type="submit" class="btn btn-success search-button visible-xs">
               <span class='glyphicon glyphicon-search'></span>
@@ -148,26 +150,39 @@
         {{!-- </div> --}}
         {{!-- {{search-input-dropdown}} --}}
       </form>
-      {{!-- <ul class="nav navbar-nav navbar-left">
+      <ul class="nav navbar-nav navbar-left">
+
       <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-        <ul class="dropdown-menu">
+
+        {{!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a> --}}
+
+        {{!-- <select><a href="#" onchange={{action (mut dropdownIndex) value='target.value'}} class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></a> --}}
+
+        {{!-- <select onchange= {{action (mut dropdownIndex) value="target.value" data-toggle="dropdown" class='dropdown-toggle' role='button' aria-haspopup="true" aria-expanded="false"}}> --}}
+        <select onchange= {{action (mut dropdownIndex)
+                value="target.value"}}
+                data-toggle="dropdown"
+                class="dropdown-list selectpicker"
+                role="button">
+          {{#each dropdowns as |dropdownChoice index|}}
+            <option value= {{ index }} selected= {{eq dropdownIndex index}}>{{dropdownChoice.name}}</option>
+          {{/each}}
+        </select>
+
+        {{!-- <ul class="dropdown-menu">
+          {{#each dropdowns as |dropdownChoice index|}}
+            <li><a value= {{ index }} selected= {{eq dropdownIndex index}}>{{dropdownChoice.name}}</a></li>
+          {{/each}}
+
           <li><a href="#">Artists</a></li>
           <li><a href="#">Regions</a></li>
           <li><a href="#">Venues</a></li>
 
-        </ul>
+        </ul> --}}
       </li>
-      </ul> --}}
-      <select onchange= {{action (mut dropdownIndex) value="target.value"}}>
-        {{#each dropdowns as |dropdownChoice index|}}
-          <option value= {{ index }} selected= {{eq dropdownIndex index}}>{{dropdownChoice.name}}</option>
-        {{/each}}
-      </select>
-{{log dropdowns}}
-      <p>
-        Selection: {{dropdown.name}}
-      </p>
+      </ul>
+
+
 
       {{!-- <select onchange={{action (mut vehicleIndex) value="target.value"}}>
         {{#each vehicles as |vehicleChoice index|}}

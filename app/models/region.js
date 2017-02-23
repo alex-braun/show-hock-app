@@ -1,5 +1,5 @@
 import DS from 'ember-data';
-
+// DETAILS ON REGION EVENTS.
 export default DS.Model.extend({
   displayName: DS.attr(),
   type: DS.attr(),

@@ -2,6 +2,7 @@
 @import 'region';
 @import 'artist';
 @import 'search';
+@import 'tickets';
 
 .body {
   // width: 100%;
@@ -17,6 +18,9 @@
   width: 100%;
 }
 
+.navbar-form {
+  padding-right: 5px;
+}
 
 .navbar-form .form-group input {
   width: 100%;
@@ -31,8 +35,11 @@
 
 .navbar {
   // background-color: #07080A;
-  background-color: #2336B2;
-  border-bottom: 1px solid #2336B2;
+  // background-color: #2336B2;
+  // background-color: #2A4769;
+  // border-top: 5px solid #f80046;
+  border-bottom: 5px solid #f80046;
+  // border-bottom: 1px solid #2A4769;
 }
 
 .container-fluid .navbar-header {
@@ -66,7 +73,18 @@
   width: 100%;
 }
 
-@media (max-width: 768px) {
+.clearfix {
+  content: "";
+  display: table;
+  clear: both;
+  overflow: overlay;
+}
+
+.button-to-concert-wrapper {
+  float: right;
+}
+
+@media (max-width: 767px) {
   .navbar-form .form-group input {
     width: 100%;
     display: inline-block;
@@ -87,5 +105,13 @@
 
   .visible-xs {
     display: inline-block !important;
+  }
+}
+
+@media (min-width: 768px) {
+  select.dropdown-list {
+    height: 34px;
+    margin-top: 8px;
+    padding: 15px 0 15px 0;
   }
 }

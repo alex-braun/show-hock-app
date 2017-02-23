@@ -1,6 +1,6 @@
 import DS from 'ember-data';
 import Ember from 'ember';
-
+// SEARCH RESULTS BY ARTIST NAME.  MINIMUM ARTIST INFO IS CONTAINED
 export default DS.Model.extend({
   displayName: DS.attr(),
   onTourUntil: DS.attr(),
@@ -9,9 +9,3 @@ export default DS.Model.extend({
 
   isNotValid: Ember.computed.empty('name'),
 });
-// resultsPage": {
-// "status": "ok",
-// "results": {},
-// "perPage": 50,
-// "page": 1,
-// "totalEntries": 0

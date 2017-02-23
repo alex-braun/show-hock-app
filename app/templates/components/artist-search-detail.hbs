@@ -1,11 +1,9 @@
 <li>
-  {{!-- {{#link-to 'artist' artistSelect}} --}}
-
     {{#if artistSelect.noMatch}}
       <h3>{{artistSelect.displayName}}</h3>
     {{else}}
       {{#link-to 'artist.event.results' (query-params getId=artistSelect.id
-      artist=artistSelect.displayName)}}
+      artist=artistSelect.displayName page=1)}}
       <div class='artist-search-wrapper'>
         <h3>{{artistSelect.displayName}}</h3>
         <figure class="band-thumb-wrapper">
@@ -18,13 +16,18 @@
 </li>
 
 {{!-- <li>
-  {{#if artistSelect.noMatch}}
-    <h3>{{artistSelect.displayName}}</h3>
-  {{else}} --}}
-
-      {{!-- {{#link-to 'artist.event.results' (query-params getId=artistSelect.id page='1' artist=artistSelect.displayName)}} --}}
-      {{!-- <h3>{{regionSelect.metroArea.displayName}}</h3>
-      <h3>{{regionSelect.metroArea.id}}</h3> --}}
-    {{!-- {{/link-to}} --}}
-  {{!-- {{/if}}
+    {{#if artistSelect.noMatch}}
+      <h3>{{artistSelect.displayName}}</h3>
+    {{else}}
+      {{#link-to 'artist.event' (query-params getId=artistSelect.id
+      artist=artistSelect.displayName page=1)}}
+      <div class='artist-search-wrapper'>
+        <h3>{{artistSelect.displayName}}</h3>
+        <figure class="band-thumb-wrapper">
+          <img class="headliner image" src="{{artistSelect.imageUrl}}" alt="{{artistSelect.displayName}}" />
+          <figcaption class="image-caption-text">{{artistSelect.displayName}}</figcaption>
+        </figure>
+      </div>
+      {{/link-to}}
+    {{/if}}
 </li> --}}
