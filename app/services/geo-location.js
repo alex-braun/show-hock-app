@@ -5,21 +5,27 @@ export default Ember.Service.extend({
 // events: Ember.inject.service('region-events-onload'),
 
 ///UNCOMMENT THIS WHEN YOU ARE READY!!!
-  city: null,
-  region: null,
-  country: null,
+  // city: null,
+  // region: null,
+  // country: null,
+  clientIp: null,
 
   init() {
+    this.set('clientIp', null);
+  },
 
-    $.ajax({
-      method: 'GET',
-      url: "http://ipinfo.io/json"
-    })
-    .done(response => {
-      this.set('city', response.city);
-      this.set('region', response.region);
-      this.set('country', response.country);
+  getIp() {
+    return Ember.RSVP.hash({
+      clientIp: $.ajax({
+          method: 'GET',
+          url: "http://ipinfo.io/json"
+        })
+        .done(response => {
+          // this.set('city', response.city);
+          // this.set('region', response.region);
+          // this.set('country', response.country);
+          this.set('clientIp', response.ip);
+        })
     });
   }
-
 });

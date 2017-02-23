@@ -1,6 +1,7 @@
 {{!-- <h1>{{search-title title=model.meta.artist}}</h1> --}}
 <div class='artist-event-section'>
   <div class='artist-event-wrapper'>
+    {{upcoming-events upcomingInfo=model.upcomingInfo}}
     {{#if model.similar.firstObject.noMatch}}
       <div class='artist-event-listing' style='border:none'>
           <ul class="event-listings row-fluid block-grid-3">
@@ -16,6 +17,8 @@
     {{else}}
 
       <div class='artist-event-listing'>
+        <h3><strong>Upcoming Concerts</strong></h3>
+
         <ul class="event-listings row-fluid block-grid-3">
           {{#each model.event as |event|}}
             <li class='artist-detail-list'>
@@ -26,11 +29,11 @@
           {{/each}}
         </ul>
       </div>
+
       {{similar-artists similar=model.similar}}
     {{/if}}
+  <div class="clearfix"></div>
   </div>
+  <div class="clearfix"></div>
 </div>
-{{pagination-bar pages=model.event.meta
-                newPage='changeArtistPage'
-                previousPage='previousPage'
-                nextPage='nextPage'}}
+<div class="clearfix"></div>

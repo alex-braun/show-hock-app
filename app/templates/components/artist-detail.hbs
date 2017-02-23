@@ -1,7 +1,7 @@
 {{#if event.noMatch}}
   <h4 class='artist-list'>No upcoming events found for  <strong>{{event.performance.displayName}}</strong></h4>
 {{else}}
-<li class='date'>
+<li class='artist-event-date'>
   <strong>
     {{{format-weekday event.start.date}}},
     {{{format-month event.start.date}}}
@@ -19,10 +19,12 @@
 </li>
 
 <li class='artist-event'>
+  <h4>{{event.id}}</h4>
   {{#if (eq event.type 'Festival') }}
   {{!-- {{#link-to 'event' (query-params getId=regionSelect.metroArea.id page='1' location=regionSelect.metroArea.displayName)}} --}}
-    <h4><strong>{{event.displayName}}</strong></h4>
+    <h4 class='artist-list'><strong>{{event.displayName}}</strong></h4>
     {{!-- {{/link-to}} --}}
+  {{!-- {{button-to-concert}} --}}
   {{else}}
     {{#each event.performance as |performance|}}
       {{#if (eq event.performance.length 1) }}
@@ -36,6 +38,10 @@
         <h4 class='artist-list'><strong>{{performance.artist.displayName}}, </strong></h4>
       {{/if}}
     {{/each}}
+    {{!-- {{log event.performance.artist.displayName}}
+    {{log event.performance.artist.id}} --}}
+    {{button-to-concert event=event.id}}
+    {{!-- {{button-to-concert event=event.id artist=event.performance.artist.displayName artistId=event.performance.artist.id}} --}}
   {{/if}}
 
 

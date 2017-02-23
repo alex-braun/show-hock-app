@@ -7,13 +7,13 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-
   this.route('artist', function() {
     this.route('search', function() {
       this.route('results');
     });
     this.route('event', function() {
       this.route('results');
+      this.route('concert');
     });
   });
 
@@ -23,10 +23,16 @@ Router.map(function() {
     });
     this.route('event', function() {
       this.route('results');
+      });
     });
 
-  });
   this.route('event-search');
+
+  this.route('concert', function() {
+    this.route('event', function() {
+      this.route('results');
+    });
+  });
 });
 
 export default Router;

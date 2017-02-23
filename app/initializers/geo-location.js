@@ -1,10 +1,11 @@
 export function initialize(application) {
   // application.inject('route', 'foo', 'service:foo');
-   application.inject('route', 'geo-location', 'service:geo-location');
+   application.inject('route', 'location', 'service:geo-location');
   // console.log('I go first');
 }
 
 export default {
-  name: 'geoLocation',
+  name: 'geo-location',
+  // before: 'application',
   initialize
 };

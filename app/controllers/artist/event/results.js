@@ -1,31 +1,40 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-
-  queryParams: ['page'],
-  page: 'page',
-
-  // others: Ember.computed('model.similar.length', function() {
-  //   let num = Array(this.get('model.similar.length'));
-  //   for (let i = 0; i < num.length; i++) {
-  //     num[i] = i + 1;
+  //
+  // queryParams: ['page'],
+  // page: 'page',
+  //
+  // actions: {
+  //   changeArtistPage(param) {
+  //     this.set('page', param);
+  //   },
+  //
+  //   previousPage(param) {
+  //     this.set('page', param);
+  //   },
+  //
+  //   nextPage(param) {
+  //     this.set('page', param);
+  //   },
+  // }
+  // actions: {
+  //   changeArtistPage() {
+  //     this.sendAction('changeArtistPage');
+  //   },
+  //
+  //   previousPage() {
+  //     this.sendAction('previousPage');
+  //   },
+  //
+  //   nextPage() {
+  //     this.sendAction('nextPage');
   //   }
-  //   return num;
-  // }),
-
-  actions: {
-    changeArtistPage(param) {
-      this.set('page', param);
-    },
-
-    previousPage(param) {
-      this.set('page', param);
-    },
-
-    nextPage(param) {
-      this.set('page', param);
-    },
-  }
+  // }
+  // {{pagination-bar pages=model.event.meta
+  //                 newPage='changeArtistPage'
+  //                 previousPage='previousPage'
+  //                 nextPage='nextPage'}}
 });
 
 

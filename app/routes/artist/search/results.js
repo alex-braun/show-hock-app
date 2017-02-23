@@ -1,7 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-//ka-bob to camelCase!
+  accessArtistData: Ember.inject.service(),
+
   queryParams: {
     search: {
       refreshModel: true
