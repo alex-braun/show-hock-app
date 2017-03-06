@@ -4,13 +4,13 @@ export default Ember.Route.extend({
 
   // accessArtistData: Ember.inject.service(),
   //
-  // queryParams: {
-  //   getId: {
-  //     refreshModel: true
-  //   },
-  // },
+  queryParams: {
+    concertId: {
+      refreshModel: true
+    },
+  },
   //
-  // model (params) {
-  //   return this.get('store').query('concert', {getId: params.getId});
-  // },
+  model (params) {
+    return this.get('store').query('concert', params);
+  },
 });

@@ -1,48 +1,12 @@
-// import Ember from 'ember';
-//
-// export default Ember.Route.extend({
-//
-//   accessArtistParams: Ember.inject.service(),
-//   // params: null,
-//   queryParams: {
-//
-//     getId: {
-//       as: 'other-getId',
-//       refreshModel: true
-//     },
-//
-//     artist: {
-//       as: 'other-artist',
-//       refreshModel: true
-//     }
-//   },
-//
-//   model(params) {
-//     return Ember.RSVP.hash({
-//
-//     event: this.get('store').query('artist', params).then((result) => {
-//         let meta = result.get('meta');
-//         return meta, result;
-//       }),
-//
-//     search: this.get('store').query('artist-search', {search: params.artist})
-//     .then((result) => {
-//       let meta = result.get('meta');
-//       return meta, result;
-//     });
-//     },
-// });
-
-
 import Ember from 'ember';
 
 export default Ember.Route.extend({
 
-  accessArtistParams: Ember.inject.service(),
+  // accessArtistParams: Ember.inject.service(),
   accessArtistData: Ember.inject.service(),
   upcomingEventArtist: Ember.inject.service(),
   geoLocation: Ember.inject.service(),
-  clientIp: null,
+  // clientIp: null,
 
   queryParams: {
     getId: {

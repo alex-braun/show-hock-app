@@ -1,33 +1,20 @@
 {{#if event.noMatch}}
   <h4 class='artist-list'>No upcoming events found for  <strong>{{event.performance.displayName}}</strong></h4>
 {{else}}
-<li class='artist-event-date'>
-  <strong>
-    {{{format-weekday event.start.date}}},
-    {{{format-month event.start.date}}}
-    {{{format-day event.start.date}}},
-    {{{format-year event.start.date}}}
 
-{{#if event.end.date}}
-  -
-    {{{format-weekday event.end.date}}},
-    {{{format-month event.end.date}}}
-    {{{format-day event.end.date}}},
-    {{{format-year event.end.date}}}
-{{/if}}
-    </strong>
-</li>
-
+{{artist-date event=event}}
 <li class='artist-event'>
-  <h4>{{event.id}}</h4>
+
   {{#if (eq event.type 'Festival') }}
-  {{!-- {{#link-to 'event' (query-params getId=regionSelect.metroArea.id page='1' location=regionSelect.metroArea.displayName)}} --}}
     <h4 class='artist-list'><strong>{{event.displayName}}</strong></h4>
-    {{!-- {{/link-to}} --}}
-  {{!-- {{button-to-concert}} --}}
+
+    {{button-to-concert event=event.id}}
+
   {{else}}
-    {{#each event.performance as |performance|}}
+    {{artist-list event=event}}
+    {{!-- {{#each event.performance as |performance|}}
       {{#if (eq event.performance.length 1) }}
+
         <h4 class='artist-list'><strong>{{performance.artist.displayName}}</strong></h4>
 
       {{else if (eq performance.billingIndex event.performance.length) }}
@@ -37,13 +24,21 @@
       {{else}}
         <h4 class='artist-list'><strong>{{performance.artist.displayName}}, </strong></h4>
       {{/if}}
-    {{/each}}
-    {{!-- {{log event.performance.artist.displayName}}
-    {{log event.performance.artist.id}} --}}
+    {{/each}} --}}
+
     {{button-to-concert event=event.id}}
-    {{!-- {{button-to-concert event=event.id artist=event.performance.artist.displayName artistId=event.performance.artist.id}} --}}
+
   {{/if}}
 
+  {{#if (eq event.type 'Festival') }}
+    <div class='artist-grid-wrapper'>
+      <ui class='row-fluid artist-grid block-grid-3'>
+      {{#each event.performance as |performance|}}
+        <li>{{performance.artist.displayName}}</li>
+      {{/each}}
+      </ui>
+    </div>
+  {{/if}}
 
   {{#if (eq event.venue.displayName 'Unknown venue') }}
     <h4>{{event.location.city}}</h4>
@@ -51,23 +46,4 @@
     <h4>{{event.venue.displayName}}, {{event.location.city}}</h4>
   {{/if}}
   </li>
-
-{{!-- {{#if (eq event.type 'Festival') }}
-
-  <div class='artist-grid-wrapper'>
-    <ui class='row-fluid artist-grid block-grid-3'>
-    {{#each event.performance as |performance|}}
-
-      <li>{{performance.artist.displayName}}</li>
-    {{/each}}
-    </ui>
-  </div>
-
-{{else}}
-
-{{/if}} --}}
-
-{{#if event.ageRestriction}}
-  <h6>{{event.ageRestriction}}</h6>
-{{/if}}
 {{/if}}

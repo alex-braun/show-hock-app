@@ -63,7 +63,12 @@
   </div>
 </div>
 
-{{outlet}}
+<div class='artist-event-section'>
+  <div class='artist-event-wrapper'>
+    {{outlet}}
+    {{similar-artists similar=model.similar}}
+  </div>
+</div>
 
 {{pagination-bar pages=model.event.meta
                 newPage='changeArtistPage'

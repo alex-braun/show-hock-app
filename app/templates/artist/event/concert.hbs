@@ -1,1 +1,32 @@
-<h1>Hello from artist/event/concert</h1>
+<div class='artist-event-listing'>
+
+  <h3><strong>{{{no-parens model.firstObject.displayName}}}</strong></h3>
+
+  <p>Concert Popularity: {{model.firstObject.popularity}}</p>
+
+  {{#each model.firstObject.performance as |performance|}}
+    {{#if (gt performance.length 1)}}
+      <h5>Also performing:</h5>
+      <h3>{{performance.artist.displayName}}</h3>
+    {{/if}}
+  {{/each}}
+  {{!-- <p>Event type: {{model.firstObject.type}}</p> --}}
+
+  {{artist-date event=model.firstObject}}
+
+{{!-- VENUE DETAILS--}}
+  <h3>Venue</h3>
+  <p>{{model.firstObject.venue.displayName}}</p>
+  <p>{{model.firstObject.venue.street}}</p>
+  <p>{{model.firstObject.venue.zip}}</p>
+  <p>{{model.firstObject.venue.city.displayName}}, {{model.firstObject.venue.city.state.displayName}}, {{model.firstObject.venue.city.country.displayName}}</p>
+  <p>{{model.firstObject.venue.phone}}</p>
+  <p>{{model.firstObject.venue.website}}</p>
+  {{#if model.firstObject.venue.capacity}}
+    <p>Capacity: <strong>{{model.firstObject.venue.capacity}}</strong></p>
+  {{/if}}
+
+{{location-map lat=model.firstObject.venue.lat lng=model.firstObject.venue.lng title=model.firstObject.venue.displayName}}
+
+  {{!-- <p>{{model.firstObject.venue.description}}</p> --}}
+</div>

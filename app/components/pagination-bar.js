@@ -31,9 +31,6 @@ export default Ember.Component.extend({
         let next = page + 1;
         this.sendAction('nextPage', next);
       }
-      // if(this.get('pages.current_page') + 1 <= this.get('pages.totalPages')) {
-      //   this.set('pages.current_page', this.get('pages.current_page')+ 1);
-      // }
     },
 
     previousPage(page) {
@@ -47,6 +44,4 @@ export default Ember.Component.extend({
       this.set('pages.current_page', pageNum);
     }
   }
-// EmptyObject {total_pages: 1, current_page: 1, total_entries: 4, artist: "311"}
-
 });
