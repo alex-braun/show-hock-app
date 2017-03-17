@@ -1,8 +1,9 @@
 {{upcoming-events upcomingInfo=model.upcomingInfo}}
   {{#if model.similar.firstObject.noMatch}}
+
     <div class='artist-event-listing' style='border:none'>
         <ul class="event-listings row-fluid block-grid-3">
-          {{#each model.event as |event|}}
+          {{#each events as |event|}}
             <li class='artist-detail-list'>
               {{artist-detail event=event}}
             </li>
@@ -13,7 +14,7 @@
     <div class='artist-event-listing'>
       <h3><strong>Upcoming Concerts</strong></h3>
       <ul class="event-listings row-fluid block-grid-3">
-        {{#each model.event as |event|}}
+        {{#each events as |event|}}
           <li class='artist-detail-list'>
             {{artist-detail event=event}}
           </li>
@@ -21,3 +22,8 @@
       </ul>
     </div>
   {{/if}}
+{{log events.meta}}
+  {{pagination-bar pages=events.meta
+                  newPage='changeArtistPage'
+                  previousPage='previousPage'
+                  nextPage='nextPage'}}

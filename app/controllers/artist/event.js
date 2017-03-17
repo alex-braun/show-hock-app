@@ -1,21 +1,13 @@
-// import Ember from 'ember';
-//
-// export default Ember.Controller.extend({
-//   name: Ember.inject.service('access-artist-data'),
-//
-//
-// // });
-//
-//
-//
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
 
   name: Ember.inject.service('access-artist-data'),
 
-  queryParams: ['page'],
+  queryParams: ['getId', 'artist'],
   page: 'page',
+  getId: 'getId',
+  artist: 'artist',
 
   others: Ember.computed('model.similar.length', function() {
     let num = Array(this.get('model.similar.length'));
@@ -39,8 +31,6 @@ export default Ember.Controller.extend({
     },
   }
 });
-
-
 // pageNumbers: Ember.computed('pages.current_page', function() {
 //   let num = Array(this.get('pages.total_pages'));
 //   for (let i = 0; i < num.length; i++) {

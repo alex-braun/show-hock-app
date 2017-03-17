@@ -2,9 +2,9 @@
 
 {{!-- {{#each name.things as |thing|}} --}}
 {{!-- {{/each}} --}}
-
   {{#each model.search as |basic| }}
     {{#if (eq basic.displayName model.search.meta.artist) }}
+    {{log basic.displayName}}
     {{!-- <div class='arist-background-cover'> --}}
       <figure class='artist-background-wrapper'>
         <img class='artist-background' src='{{basic.imageUrl}}' alt='{{basic.displayName}}'/>
@@ -70,7 +70,7 @@
   </div>
 </div>
 
-{{pagination-bar pages=model.event.meta
+{{!-- {{pagination-bar pages=model.event.meta
                 newPage='changeArtistPage'
                 previousPage='previousPage'
-                nextPage='nextPage'}}
+                nextPage='nextPage'}} --}}

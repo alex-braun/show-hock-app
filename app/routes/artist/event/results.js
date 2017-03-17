@@ -2,62 +2,54 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
 
-  // accessArtistParams: Ember.inject.service(),
-  // accessArtistData: Ember.inject.service(),
-  // upcomingEventArtist: Ember.inject.service(),
-  // location: Ember.inject.service('geo-location'),
-  //
-  //
-  // queryParams: {
-  //   getId: {
-  //     refreshModel: true
-  //   },
-  //   page: {
-  //     refreshModel: true
-  //   },
-  //   artist: {
-  //     refreshModel: true
-  //   }
-  // },
-  //
-  // beforeModel() {
-  //   let params = this.paramsFor('artist.event.results');
-  //   this.get('accessArtistParams').add(params);
-  // },
-  //
-  // model (params) {
-  //   let location = this.get('location').clientIp;
-  //   let artist = params.artist;
-  //   return Ember.RSVP.hash({
-  //
-  //     event: this.get('store').query('artist', params).then((result) => {
-  //       let meta = result.get('meta');
-  //       return meta, result;
-  //     }),
-  //
-  //     similar: this.get('store').query('similar-artist', params).then((result) => {
-  //       let arr = [];
-  //       for (let i = 0; i < 10; i++) {
-  //         arr.push([i]);
-  //       }
-  //          let selection = result.objectsAt(arr);
-  //          selection = selection.filter((element) => {
-  //            return element !== undefined;
-  //          });
-  //          return selection;
-  //     }),
-  //
-  //     upcomingInfo: this.get('store').query('upcoming-event', {location: location, artist: artist})
-  //     .then((result) => {
-  //       return result;
-  //     }),
+  accessArtistData: Ember.inject.service(),
+
+  eventController: Ember.computed(function() {
+    return this.controllerFor('artist.event');
+  }),
+
+  setupController: function(controller, model) {
+    this._super(controller, model);
+    let artist = this.get('eventController').get('artist');
+    let getId = this.get('eventController').get('getId');
+    let page = this.get('eventController').get('page');
+    this.get('store').query('artist', {
+      artist: artist,
+      getId: getId,
+      page: page
+      }).then((result) => {
+      controller.set('events', result);
+      this.get('accessArtistData').add(result.meta);
+    });
+  },
+
+  // model() {
+  //   console.log(this.get('eventController').get('artist'));
+  //   let artist = this.get('eventController').get('artist');
+  //   let getId = this.get('eventController').get('getId');
+  //   let page = this.get('eventController').get('page');
+  //   return this.get('store').query('artist', {
+  //     artist: artist,
+  //     getId: getId,
+  //     page: page
+  //     }).then((result) => {
+  //     let meta = result.get('meta');
+  //     return meta, result;
   //   });
   // },
-  //
-  // afterModel (model) {
-  //   let meta = model.event.get('meta');
-  //   this.get('upcomingEventArtist').add(model.event.query);
-  //   this.get('accessArtistData').add(meta);
-  // },
 
+  actions: {
+    changeArtistPage(param) {
+      console.log(this.get('eventController').get('artist'));
+      this.get('eventController').send('changeArtistPage', param);
+    },
+
+    previousPage(param) {
+      this.get('eventController').send('previousPage', param);
+    },
+
+    nextPage(param) {
+      this.get('eventController').send('nextPage', param);
+    },
+  }
 });

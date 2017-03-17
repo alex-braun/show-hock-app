@@ -1,7 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-
+  tagName: 'nav',
+  classNames: ['pagination-wrapper'],
 //create an array of all page values
   pageNumbers: Ember.computed('pages.current_page', function() {
     let num = Array(this.get('pages.total_pages'));

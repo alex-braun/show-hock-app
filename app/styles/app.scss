@@ -63,14 +63,31 @@
   height: 51px;
 }
 
-// .pagination-wrapper {
-//   position: fixed;
-//   width: 100%;
+.pagination-wrapper {
+  clear: both;
+  height: 100%;
+  width: 100%;
+  max-width: 705px;
+  min-width: 605px;
+  float: left;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+// .pagination-ul-wrapper {
+//   display: inline-block;
 // }
 
 .pagination {
+  display: inline-block;
+  // display: block;
+  // margin: 0 auto;
+  // list-style: none;
+  // overflow: hidden;
+  // display: inline;
+  // text-align: center;
   // position: fixed;
-  width: 100%;
+  // width: 90%;
 }
 
 .clearfix {
@@ -82,6 +99,11 @@
 
 .button-to-concert-wrapper {
   float: right;
+}
+
+.ember-cli-g-map {
+    height: 300px;
+    width: 300px;
 }
 
 @media (max-width: 767px) {
