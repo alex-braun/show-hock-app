@@ -1,0 +1,16 @@
+<li class='artist-event-date'>
+  <strong>
+    {{{format-weekday event.start.date}}},
+    {{{format-month event.start.date}}}
+    {{{format-day event.start.date}}},
+    {{{format-year event.start.date}}}
+
+{{#if event.end.date}}
+  -
+    {{{format-weekday event.end.date}}},
+    {{{format-month event.end.date}}}
+    {{{format-day event.end.date}}},
+    {{{format-year event.end.date}}}
+{{/if}}
+    </strong>
+</li>
