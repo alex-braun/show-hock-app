@@ -4,6 +4,8 @@
     {{else}}
       {{#link-to 'artist.event.results' (query-params getId=artistSelect.id
       artist=artistSelect.displayName page=1)}}
+      {{!-- {{#link-to 'artist.event.results' (query-params getId=artistSelect.id
+      artist=artistSelect.displayName)}} --}}
       <div class='artist-search-wrapper'>
         <h3>{{artistSelect.displayName}}</h3>
         <figure class="band-thumb-wrapper">

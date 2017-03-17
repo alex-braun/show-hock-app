@@ -2,17 +2,21 @@
 
   <h3><strong>{{{no-parens model.firstObject.displayName}}}</strong></h3>
 
+    {{artist-date event=model.firstObject}}
+
+  <h5>Featuring: </h5>
+    {{#each model.firstObject.performance as |performance|}}
+      {{#if (lt performance.billingIndex model.firstObject.performance.length)}}
+        <h4 class='artist-list'>{{performance.artist.displayName}}, </h4>
+      {{else}}
+        <h4 class='artist-list'>{{performance.artist.displayName}}</h4>
+      {{/if}}
+    {{/each}}
+  {{!-- {{/if}} --}}
+  {{!-- <p>Event type: {{model.firstObject.type}}</p> --}}
   <p>Concert Popularity: {{model.firstObject.popularity}}</p>
 
-  {{#each model.firstObject.performance as |performance|}}
-    {{#if (gt performance.length 1)}}
-      <h5>Also performing:</h5>
-      <h3>{{performance.artist.displayName}}</h3>
-    {{/if}}
-  {{/each}}
-  {{!-- <p>Event type: {{model.firstObject.type}}</p> --}}
 
-  {{artist-date event=model.firstObject}}
 
 {{!-- VENUE DETAILS--}}
   <h3>Venue</h3>
