@@ -2,9 +2,8 @@
 
 {{!-- {{#each name.things as |thing|}} --}}
 {{!-- {{/each}} --}}
-  {{#each model.search as |basic| }}
+  {{#each model.search.artist as |basic| }}
     {{#if (eq basic.displayName model.search.meta.artist) }}
-    {{log basic.displayName}}
     {{!-- <div class='arist-background-cover'> --}}
       <figure class='artist-background-wrapper'>
         <img class='artist-background' src='{{basic.imageUrl}}' alt='{{basic.displayName}}'/>
@@ -15,7 +14,7 @@
 
 <div class='artist-info-wrapper'>
 
-  {{#each model.search as |basic| }}
+  {{#each model.search.artist as |basic| }}
     {{#if (eq basic.displayName model.search.meta.artist) }}
     <figure class="artist-thumb-wrapper">
       <img class="headliner image" src='{{basic.imageUrl}}' alt='{{basic.displayName}}'/>
@@ -39,7 +38,7 @@
           </figure>
         {{/if}}
       {{/each}} --}}
-      {{#each model.search as |basic|}}
+      {{#each model.search.artist as |basic|}}
         {{#if (eq basic.displayName model.search.meta.artist)}}
           <h1>{{basic.displayName}}</h1>
           {{#if basic.onTourUntil}}
@@ -52,7 +51,7 @@
             <h4>Not on tour</h4>
           {{/if}}
           {{#if basic.onTourUntil}}
-            <h4>Upcoming Events: {{name.artistMeta.total_entries}}</h4>
+            <h4>Upcoming Events: {{count.total}}</h4>
           {{else}}
             <h4>Upcoming Concerts: None</h4>
           {{/if}}
@@ -66,11 +65,8 @@
 <div class='artist-event-section'>
   <div class='artist-event-wrapper'>
     {{outlet}}
-    {{similar-artists similar=model.similar}}
+    {{#if (neq model.similar.firstObject.noMatch true)}}
+      {{similar-artists similar=model.similar}}
+    {{/if}}
   </div>
 </div>
-
-{{!-- {{pagination-bar pages=model.event.meta
-                newPage='changeArtistPage'
-                previousPage='previousPage'
-                nextPage='nextPage'}} --}}

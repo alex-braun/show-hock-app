@@ -8,5 +8,6 @@ export default DS.Model.extend({
   uri: DS.attr(),
   performance: DS.attr(),
   venue: DS.attr(),
+  location: DS.attr(),
   popularity: DS.attr()
 });

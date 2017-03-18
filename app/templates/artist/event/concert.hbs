@@ -1,12 +1,12 @@
 <div class='artist-event-listing'>
 
-  <h3><strong>{{{no-parens model.firstObject.displayName}}}</strong></h3>
+  <h3><strong>{{{no-parens model.displayName}}}</strong></h3>
 
-    {{artist-date event=model.firstObject}}
+    {{artist-date event=model}}
 
   <h5>Featuring: </h5>
-    {{#each model.firstObject.performance as |performance|}}
-      {{#if (lt performance.billingIndex model.firstObject.performance.length)}}
+    {{#each model.performance as |performance|}}
+      {{#if (lt performance.billingIndex model.performance.length)}}
         <h4 class='artist-list'>{{performance.artist.displayName}}, </h4>
       {{else}}
         <h4 class='artist-list'>{{performance.artist.displayName}}</h4>
@@ -14,23 +14,26 @@
     {{/each}}
   {{!-- {{/if}} --}}
   {{!-- <p>Event type: {{model.firstObject.type}}</p> --}}
-  <p>Concert Popularity: {{model.firstObject.popularity}}</p>
+  <p>Concert Popularity: {{model.popularity}}</p>
 
 
 
 {{!-- VENUE DETAILS--}}
   <h3>Venue</h3>
-  <p>{{model.firstObject.venue.displayName}}</p>
-  <p>{{model.firstObject.venue.street}}</p>
-  <p>{{model.firstObject.venue.zip}}</p>
-  <p>{{model.firstObject.venue.city.displayName}}, {{model.firstObject.venue.city.state.displayName}}, {{model.firstObject.venue.city.country.displayName}}</p>
-  <p>{{model.firstObject.venue.phone}}</p>
-  <p>{{model.firstObject.venue.website}}</p>
-  {{#if model.firstObject.venue.capacity}}
-    <p>Capacity: <strong>{{model.firstObject.venue.capacity}}</strong></p>
+  <p>{{model.venue.displayName}}</p>
+  <p>{{model.venue.street}}</p>
+  <p>{{model.venue.zip}}</p>
+  <p>{{model.venue.city.displayName}}, {{model.venue.city.state.displayName}}, {{model.venue.city.country.displayName}}</p>
+  <p>{{model.venue.phone}}</p>
+  <p>{{model.venue.website}}</p>
+  {{#if model.venue.capacity}}
+    <p>Capacity: <strong>{{model.venue.capacity}}</strong></p>
   {{/if}}
-
-{{location-map lat=model.firstObject.venue.lat lng=model.firstObject.venue.lng title=model.firstObject.venue.displayName}}
-
+{{#if model.venue.lat}}
+  {{location-map lat=model.venue.lat lng=model.venue.lng title=model.venue.displayName}}
+{{else}}
+<h5>Sorry, at this time we do not have enough information to provide a map of this location.</h5>
+  {{!-- {{location-map lat=model.location.lat lng=model.location.lng title=model.venue.displayName}} --}}
+{{/if}}
   {{!-- <p>{{model.firstObject.venue.description}}</p> --}}
 </div>

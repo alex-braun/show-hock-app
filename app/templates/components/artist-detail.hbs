@@ -1,3 +1,4 @@
+
 {{#if event.noMatch}}
   <h4 class='artist-list'>No upcoming events found for  <strong>{{event.performance.displayName}}</strong></h4>
 {{else}}
@@ -8,7 +9,7 @@
   {{#if (eq event.type 'Festival') }}
     <h4 class='artist-list'><strong>{{event.displayName}}</strong></h4>
 
-    {{button-to-concert event=event.id}}
+    {{button-to-concert concert=event.id}}
 
   {{else}}
     {{artist-list event=event}}
@@ -26,7 +27,7 @@
       {{/if}}
     {{/each}} --}}
 
-    {{button-to-concert event=event.id}}
+    {{button-to-concert concert=event.id}}
 
   {{/if}}
 

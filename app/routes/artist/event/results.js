@@ -2,54 +2,54 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
 
-  accessArtistData: Ember.inject.service(),
+  geoLocation: Ember.inject.service(),
+  // accessArtistData: Ember.inject.service(),
+  // accessArtistId: Ember.inject.service(),
+  count: Ember.inject.service('access-artist-show-count'),
+  artistName: null,
 
-  eventController: Ember.computed(function() {
-    return this.controllerFor('artist.event');
-  }),
-
-  setupController: function(controller, model) {
-    this._super(controller, model);
-    let artist = this.get('eventController').get('artist');
-    let getId = this.get('eventController').get('getId');
-    let page = this.get('eventController').get('page');
-    this.get('store').query('artist', {
-      artist: artist,
-      getId: getId,
-      page: page
-      }).then((result) => {
-      controller.set('events', result);
-      this.get('accessArtistData').add(result.meta);
-    });
+  queryParams: {
+    page: {
+      refreshModel: true
+    },
+  },
+  beforeModel(param) {
+    this._super(...arguments);
+    // this.get('accessArtistId').add(param.params['artist.event.results']);
+    this.set('artistName', param.params['artist.event']);
+    let getGeo;
+    let ip = this.get('geoLocation').clientIp;
+    if (ip === null || ip === undefined) {
+      getGeo = this.get('geoLocation').getIp();
+    }
+    return getGeo;
   },
 
-  // model() {
-  //   console.log(this.get('eventController').get('artist'));
-  //   let artist = this.get('eventController').get('artist');
-  //   let getId = this.get('eventController').get('getId');
-  //   let page = this.get('eventController').get('page');
-  //   return this.get('store').query('artist', {
-  //     artist: artist,
-  //     getId: getId,
-  //     page: page
-  //     }).then((result) => {
-  //     let meta = result.get('meta');
-  //     return meta, result;
-  //   });
-  // },
+  model (params) {
+    let upcomingParamObj = {
+      location: this.get('geoLocation').clientIp,
+      artist: this.get('artistName').artist_name,
+    };
 
-  actions: {
-    changeArtistPage(param) {
-      console.log(this.get('eventController').get('artist'));
-      this.get('eventController').send('changeArtistPage', param);
-    },
+    return Ember.RSVP.hash({
 
-    previousPage(param) {
-      this.get('eventController').send('previousPage', param);
-    },
+      artist: this.get('store').findRecord('artist', params.artist_id, {
+        adapterOptions: { page: params.page }
+      })
+      .then((result) => {
+        let meta = result.get('meta');
+        return meta, result;
+      }),
 
-    nextPage(param) {
-      this.get('eventController').send('nextPage', param);
-    },
+      upcomingInfo: this.get('store').query('upcoming-event', upcomingParamObj)
+      .then((result) => {
+        return result;
+      }),
+    });
+},
+
+  afterModel(model) {
+    let meta = model.artist.get('meta');
+    this.get('count').add(meta.total_entries);
   }
 });

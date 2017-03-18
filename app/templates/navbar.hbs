@@ -124,7 +124,8 @@
 
           {{#if (eq dropdown.name 'Artists')}}
             {{search-input keyword=entered placeholder='Enter artist name'}}
-            {{#link-to 'artist.search.results' (query-params search=entered)}}
+            {{!-- {{#link-to 'artist.search.results' (query-params search=entered)}} --}}
+              {{#link-to 'artist.search.results' entered }}
               <button type="submit" class="btn btn-success search-button visible-xs">
               <span class='glyphicon glyphicon-search'></span>
               Search

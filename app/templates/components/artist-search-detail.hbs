@@ -2,8 +2,9 @@
     {{#if artistSelect.noMatch}}
       <h3>{{artistSelect.displayName}}</h3>
     {{else}}
-      {{#link-to 'artist.event.results' (query-params getId=artistSelect.id
-      artist=artistSelect.displayName page=1)}}
+      {{!-- {{#link-to 'artist.event.results' (query-params getId=artistSelect.id
+      artist=artistSelect.displayName page=1)}} --}}
+      {{#link-to 'artist.event.results' artistSelect.displayName artistSelect.id (query-params page=1) }}
       {{!-- {{#link-to 'artist.event.results' (query-params getId=artistSelect.id
       artist=artistSelect.displayName)}} --}}
       <div class='artist-search-wrapper'>
@@ -16,6 +17,7 @@
       {{/link-to}}
     {{/if}}
 </li>
+{{!-- {{#link-to 'artist.search.results' entered }} --}}
 
 {{!-- <li>
     {{#if artistSelect.noMatch}}
