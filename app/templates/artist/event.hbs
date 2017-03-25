@@ -47,17 +47,20 @@
               {{{format-day basic.onTourUntil}}},
               {{{format-year basic.onTourUntil}}}
             </h4>
+
+          {{else if model.artist.meta.total_entries}}
+            <h4>On Tour: Yes</h4>
           {{else}}
             <h4>Not on tour</h4>
           {{/if}}
-          {{#if basic.onTourUntil}}
-            <h4>Upcoming Events: {{count.total}}</h4>
+          {{!-- {{#if basic.onTourUntil}} --}}
+          {{#if model.artist.meta.total_entries}}
+            <h4>Upcoming Events: {{model.artist.meta.total_entries}}</h4>
           {{else}}
             <h4>Upcoming Concerts: None</h4>
           {{/if}}
         {{/if}}
       {{/each}}
-
     </div>
   </div>
 </div>

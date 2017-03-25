@@ -5,11 +5,11 @@
 {{/link-to}} --}}
 
 {{!-- {{#link-to 'artist.event.concert' (query-params concertId=event)}} --}}
-{{#link-to 'artist.event.concert' concert}}
-  <button type="submit" class="btn btn-success search-button">
+{{!-- {{#link-to 'artist.event.concert' concert}} --}}
+  <button  class="btn btn-success search-button" {{action "buttonClick" value}}>
   Details
   </button>
-{{/link-to}}
+{{!-- {{/link-to}} --}}
 
 {{!-- {{#link-to 'artist.event.concert'}}
 <button type="submit" class="btn btn-success search-button">

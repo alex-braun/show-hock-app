@@ -33,6 +33,10 @@ module.exports = function(environment) {
       libraries: ['drawing', 'visualization']
     },
 
+    songkick: {
+      apiKey: 'Ua1DQXRC1So9StKN'
+    },
+
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created

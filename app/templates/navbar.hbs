@@ -104,7 +104,7 @@
       </button>
 
 
-      <a class="navbar-brand" href="#">Brand</a>
+      <a class="navbar-brand show-hock" href="/">Show Hock</a>
 
     </div>
 
@@ -123,22 +123,27 @@
         {{!-- {{search-input keyword=entered}} --}}
 
           {{#if (eq dropdown.name 'Artists')}}
-            {{search-input keyword=entered placeholder='Enter artist name'}}
+            {{search-input keyword=enterArtist placeholder='Enter artist name'}}
             {{!-- {{#link-to 'artist.search.results' (query-params search=entered)}} --}}
-              {{#link-to 'artist.search.results' entered }}
-              <button type="submit" class="btn btn-success search-button visible-xs">
+              {{!-- {{#link-to 'artist.search.results' enterArtist}} --}}
+              <button type="submit" class="btn btn-success search-button visible-xs" {{action 'artistSearch' enterArtist keyword}}>
               <span class='glyphicon glyphicon-search'></span>
               Search
               </button>
-            {{/link-to}}
+            {{!-- {{/link-to}} --}}
+
           {{else if (eq dropdown.name 'Region')}}
-          {{search-input keyword=entered placeholder='Enter region/city name'}}
-            {{#link-to 'region.search.results' (query-params search=entered)}}
-              <button type="submit" class="btn btn-success search-button visible-xs">
+          {{search-input keyword=enterRegion placeholder='Enter region/city name'}}
+            {{!-- {{#link-to 'region.search.results' enterRegion }} --}}
+              {{!-- <button type="submit" class="btn btn-success search-button visible-xs">
+              <span class='glyphicon glyphicon-search'></span>
+              Search
+              </button> --}}
+              <button type="submit" class="btn btn-success search-button visible-xs" {{action 'regionSearch' enterRegion keyword}}>
               <span class='glyphicon glyphicon-search'></span>
               Search
               </button>
-            {{/link-to}}
+            {{!-- {{/link-to}} --}}
           {{/if}}
 
           {{!-- {{#link-to 'artist.search.results' (query-params search=entered)}}

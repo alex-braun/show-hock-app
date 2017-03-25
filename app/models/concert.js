@@ -9,5 +9,6 @@ export default DS.Model.extend({
   performance: DS.attr(),
   venue: DS.attr(),
   location: DS.attr(),
-  popularity: DS.attr()
+  popularity: DS.attr(),
+  imageUrl: DS.attr()
 });

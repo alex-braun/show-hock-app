@@ -5,6 +5,12 @@ export default Ember.Controller.extend({
   name: Ember.inject.service('access-artist-data'),
   count: Ember.inject.service('access-artist-show-count'),
 
+  // init() {
+  //   let concertNum = this.get('count').total;
+  //   if (!concertNum) {
+  //     this.get('store').findRecord('artist', )
+  //   }
+  // }
   // queryParams: ['getId', 'artist'],
   // page: 'page',
   // getId: 'getId',

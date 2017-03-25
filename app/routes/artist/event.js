@@ -2,6 +2,8 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
 
+  // count: Ember.inject.service('access-artist-show-count'),
+
   // name: Ember.inject.service('access-artist-data'),
   // accessArtistId: Ember.inject.service(),
   // geoLocation: Ember.inject.service(),
@@ -20,6 +22,7 @@ export default Ember.Route.extend({
     // }
     // this.get('name').add(data.params['artist.event']);
     this.set('artistId', data.params['artist.event.results']);
+
     // return getGeo;
   },
 
@@ -28,11 +31,20 @@ export default Ember.Route.extend({
     // location: this.get('location').clientIp,
     // artist: param.artist_name
     // };
-
+    // console.log(param);
     return Ember.RSVP.hash({
 
 
       search: this.get('store').findRecord('artist-search', param.artist_name)
+      .then((result) => {
+        // console.log(result.id);
+        let meta = result.get('meta');
+        return meta, result;
+      }),
+
+      artist: this.get('store').findRecord('artist', param.artist_id, {
+        adapterOptions: { page: 1 }
+      })
       .then((result) => {
         let meta = result.get('meta');
         return meta, result;
@@ -43,7 +55,7 @@ export default Ember.Route.extend({
       //   return result;
       // }),
 
-      similar: this.get('store').findRecord('similar-artist', this.get('artistId').artist_id)
+      similar: this.get('store').findRecord('similar-artist', param.artist_id)
       .then((result) => {
         let arr = [];
         for (let i = 0; i < 10; i++) {

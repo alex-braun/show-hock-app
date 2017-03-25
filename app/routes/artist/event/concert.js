@@ -13,6 +13,13 @@ export default Ember.Route.extend({
   model (param) {
     // return this.get('store').query('concert', params);
     return this.get('store').findRecord('concert', param.concert_id);
-
   },
+
+  // actions: {
+  //   getFullList(concertId) {
+  //
+  //     console.log(concertId);
+  //     return this.get('store').findRecord('concert', {id: concertId});
+  //   }
+  // }
 });

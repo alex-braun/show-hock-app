@@ -9,8 +9,11 @@
   {{#if (eq event.type 'Festival') }}
     <h4 class='artist-list'><strong>{{event.displayName}}</strong></h4>
 
-    {{button-to-concert concert=event.id}}
+    {{!-- {{#link-to 'artist.event.concert' concert}} --}}
 
+    {{button-to-concert value=event.id buttonClick='changeRoute'}}
+
+    {{!-- {{yield (hash child=(component 'button-to-concert' onaction=(action 'parentAction') ) ) }} --}}
   {{else}}
     {{artist-list event=event}}
     {{!-- {{#each event.performance as |performance|}}
@@ -27,11 +30,11 @@
       {{/if}}
     {{/each}} --}}
 
-    {{button-to-concert concert=event.id}}
+    {{button-to-concert value=event.id buttonClick='changeRoute'}}
 
   {{/if}}
 
-  {{#if (eq event.type 'Festival') }}
+  {{!-- {{#if (eq event.type 'Festival') }}
     <div class='artist-grid-wrapper'>
       <ui class='row-fluid artist-grid block-grid-3'>
       {{#each event.performance as |performance|}}
@@ -39,7 +42,7 @@
       {{/each}}
       </ui>
     </div>
-  {{/if}}
+  {{/if}} --}}
 
   {{#if (eq event.venue.displayName 'Unknown venue') }}
     <h4>{{event.location.city}}</h4>

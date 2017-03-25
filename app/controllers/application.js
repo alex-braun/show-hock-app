@@ -15,12 +15,5 @@ export default Ember.Controller.extend({
       {name: 'Region'}
     ],
 
-    actions: {
-      submit() {
-        console.log(queryParams);
-        // this.transitionToRoute('artist.search.results', {queryParams: })
-      }
-    },
-});
 
-  // {{!-- {{#link-to 'artist.search.results' (query-params search=entered)}} --}}
+});

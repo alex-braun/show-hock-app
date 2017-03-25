@@ -1,14 +1,29 @@
-<li>
-  {{#if regionSelect.noMatch}}
-    <h3>{{regionSelect.metroArea.displayName}}</h3>
-  {{else}}
-
-      {{#link-to 'region.event.results' (query-params getId=regionSelect.metroArea.id page='1' location=regionSelect.metroArea.displayName)}}
-      <h3>{{regionSelect.metroArea.displayName}}</h3>
-      <h3>{{regionSelect.metroArea.id}}</h3>
+{{#if regionSelect.noMatch}}
+  <h3>We were unable to find a region called  <strong>{{regionSelect.metroArea.displayName}}</strong></h3>
+  <p>Please try another area!</p>
+{{else}}
+    {{!-- {{#link-to 'region.event.results' (query-params getId=regionSelect.metroArea.id page='1' location=regionSelect.metroArea.displayName)}} --}}
+    <div class="region-search-map-wrapper">
+        {{!-- <img src='' alt="nothing"> --}}
+      <img src={{regionSelect.metroArea.googleMapUrl}} alt="">
+    </div>
+    {{!-- {{#link-to 'region.event.results' (query-params getId=regionSelect.metroArea.id page='1' location=regionSelect.metroArea.displayName)}} --}}
+    {{#link-to 'region.event.results' regionSelect.metroArea.id (query-params page='1')}}
+    {{!-- {{region-search-location-map}} --}}
+    {{#if regionSelect.metroArea.state.displayName  regionSelect.metroArea.country.displayName}}
+      <h3>{{regionSelect.metroArea.displayName}}, {{regionSelect.metroArea.state.displayName}},
+      {{regionSelect.metroArea.country.displayName}}</h3>
+    {{else}}
+      <h3>{{regionSelect.metroArea.displayName}},
+      {{regionSelect.metroArea.country.displayName}}</h3>
+    {{/if}}
+    {{#if (neq regionSelect.city.displayName regionSelect.metroArea.displayName)}}
+    <p>including {{regionSelect.city.displayName}}</p>
+    {{/if}}
     {{/link-to}}
-  {{/if}}
-</li>
+
+{{/if}}
+
 
 {{!-- <span {{action 'closeNavigationMenu'}}>
   {{#link-to 'home' preventDefault=false}}
