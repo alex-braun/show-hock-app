@@ -7,7 +7,6 @@ export default Ember.Component.extend({
 
   init() {
     this._super(...arguments);
-    console.log('concert-featuring-artist initializing');
     this.set('isFullList', false);
   },
   actions: {

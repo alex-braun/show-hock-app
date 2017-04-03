@@ -1,3 +1,4 @@
+<a href='javascript:;' {{action 'goToConcert' value}}>
 {{#each event.performance as |performance|}}
   {{#if (eq event.performance.length 1) }}
 
@@ -5,9 +6,10 @@
 
   {{else if (eq performance.billingIndex event.performance.length) }}
     {{#if (gt event.performance.length 1) }}
-      <h4 class='artist-list'><strong>and {{performance.artist.displayName}}</strong></h4>
+      <h4 class='artist-list'><strong>{{performance.artist.displayName}}</strong></h4>
     {{/if}}
   {{else}}
     <h4 class='artist-list'><strong>{{performance.artist.displayName}}, </strong></h4>
   {{/if}}
 {{/each}}
+</a>

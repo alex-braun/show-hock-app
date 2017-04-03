@@ -1,14 +1,16 @@
-<h1>{{search-title title=model.meta.location}}</h1>
+{{!-- {{search-title title=model.meta.location}} --}}
+<div class='region-search-main-listing'>
 
 <ul class="event-listings row-fluid block-grid-3">
-  {{#each model as |event|}}
-    <li class='region-detail-list'>
-      <div class='region-detail col-xs-10'>
+  {{#each model.event as |event|}}
+    {{!-- <li class='region-detail-list'> --}}
+      {{!-- <div class='region-detail col-xs-10'> --}}
         {{region-detail event=event}}
-      </div>
-    </li>
+      {{!-- </div> --}}
+    {{!-- </li> --}}
   {{/each}}
 </ul>
+</div>
 
 {{pagination-bar pages=model.meta
                 newPage='changeRegionPage'

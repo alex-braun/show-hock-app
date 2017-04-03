@@ -69,7 +69,8 @@
   <div class='artist-event-wrapper'>
     {{outlet}}
     {{#if (neq model.similar.firstObject.noMatch true)}}
-      {{similar-artists similar=model.similar}}
+      {{similar-artists similar=model.similar
+                        goToArtist='goToArtist'}}
     {{/if}}
   </div>
 </div>

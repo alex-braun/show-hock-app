@@ -1,7 +1,22 @@
-<ul class="row-fluid block-grid-3">
-  {{#each model as |region|}}
-    <div class='region-search-result'>
-      {{region-search-detail regionSelect=region}}
-    </div>
-  {{/each}}
-</ul>
+<div class='region-search-main-listing'>
+  <ul class="event-listings row-fluid block-grid-3">
+    {{#each model.location as |region|}}
+        {{region-search-detail regionSelect=region}}
+    {{/each}}
+  </ul>
+</div>
+
+
+  {{!-- {{#if model.artist.event.firstObject.noMatch}}
+    <h3>No upcoming concerts found for  <strong>{{name.name.artist_name}}</strong></h3>
+
+  {{else}}
+    <h3><strong>Upcoming Concerts</strong></h3>
+    <ul class="event-listings row-fluid block-grid-3">
+      {{#each model.artist.event as |event|}}
+        <li class='artist-detail-list'>
+          {{artist-detail event=event}}
+        </li>
+      {{/each}}
+    </ul>
+  {{/if}} --}}

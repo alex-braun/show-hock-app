@@ -1,16 +1,22 @@
-<h1>Region Search</h1>
+<div class='region-search-header-wrapper'>
+  <div class='region-search-header'>
+    <h1>Region Search</h1>
+    <div class='region-search-header-info'>
+      <div class='search-input-page-wrapper'>
+        {{search-input keyword=entered}}
+        {{!-- {{#link-to 'region.search.results' (query-params search=entered)}} --}}
+          <button type="submit" class="btn btn-success">
+            Search
+          </button>
+          {{!-- {{/link-to}} --}}
+      </div>
+    </div>
+  </div>
+</div>
 
-
-  {{!-- <div class="input-group">
-
-    {{search-input keyword=entered}}
-
-    {{#link-to 'region.search.results' (query-params search=entered)}}
-      <button type="submit" class="btn btn-success">
-        Search
-      </button>{{/link-to}}
-
-  </div> --}}
-
-<h3>Results</h3>
-{{outlet}}
+<div class='region-search-main-wrapper'>
+  <div class='region-search-main'>
+    {{search-options-menu}}
+    {{outlet}}
+  </div>
+</div>

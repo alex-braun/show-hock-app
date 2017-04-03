@@ -4,7 +4,8 @@ export default Ember.Route.extend({
 
   // count: Ember.inject.service('access-artist-show-count'),
 
-  // name: Ember.inject.service('access-artist-data'),
+////GET THE ARTIST NAME FOR USAGE IN NESTED ROUTES
+  nameAndId: Ember.inject.service('access-artist-data'),
   // accessArtistId: Ember.inject.service(),
   // geoLocation: Ember.inject.service(),
   // eventModel: null,
@@ -21,7 +22,13 @@ export default Ember.Route.extend({
     //   getGeo = this.get('geoLocation').getIp();
     // }
     // this.get('name').add(data.params['artist.event']);
-    this.set('artistId', data.params['artist.event.results']);
+
+    let id = parseInt(data.params['artist.event'].artist_id),
+        name = data.params['artist.event'].artist_name;
+    // name = data.params['artist.'];
+    // this.set('artistId', id);
+    this.get('nameAndId').addId(id);
+    this.get('nameAndId').addName(name);
 
     // return getGeo;
   },
@@ -105,6 +112,17 @@ export default Ember.Route.extend({
   //     });
   },
 
+  actions: {
+    goToArtist(name, id) {
+      this.transitionTo('artist.event.results',
+          name,
+          id,
+          { queryParams: {
+            page: 1,
+            }
+      });
+    }
+  }
   // setupController: function(controller, model, params) {
   //   this._super(controller, model, params);
   //   let upcomingParamObj = {

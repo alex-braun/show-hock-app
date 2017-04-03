@@ -7,15 +7,23 @@
 <li class='artist-event'>
 
   {{#if (eq event.type 'Festival') }}
-    <h4 class='artist-list'><strong>{{event.displayName}}</strong></h4>
 
+    <h4 class='artist-list'>
+      <strong><a href='javascript:;'
+        {{action 'goToConcert' event.id}}>
+        {{event.displayName}}</a></strong>
+    </h4>
     {{!-- {{#link-to 'artist.event.concert' concert}} --}}
 
-    {{button-to-concert value=event.id buttonClick='changeRoute'}}
+    {{button-to-concert value=event.id
+                        buttonClick='goToConcert'
+                        buttonTitle=buttonTitle}}
 
     {{!-- {{yield (hash child=(component 'button-to-concert' onaction=(action 'parentAction') ) ) }} --}}
   {{else}}
-    {{artist-list event=event}}
+    {{artist-list event=event
+                  value=event.id
+                  goToConcert='goToConcert'}}
     {{!-- {{#each event.performance as |performance|}}
       {{#if (eq event.performance.length 1) }}
 
@@ -30,7 +38,9 @@
       {{/if}}
     {{/each}} --}}
 
-    {{button-to-concert value=event.id buttonClick='changeRoute'}}
+    {{button-to-concert value=event.id
+                        buttonClick='goToConcert'
+                        buttonTitle=buttonTitle}}
 
   {{/if}}
 

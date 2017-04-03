@@ -1,7 +1,13 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  classNames: ['similar-artists-wrapper']
+  classNames: ['similar-artists-wrapper'],
+
+  actions: {
+    goToArtist(name, id) {
+      this.sendAction('goToArtist', name, id);
+    }
+  }
 
   //
   //

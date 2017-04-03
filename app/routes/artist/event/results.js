@@ -58,8 +58,12 @@ export default Ember.Route.extend({
   },
 
   actions: {
-    changeRoute(val) {
-      this.transitionTo('artist.event.concert', val);
+    // changeRoute(val) {
+    //   this.transitionTo('artist.event.concert', val);
+    // },
+
+    goToConcert(value) {
+      this.transitionTo('artist.event.concert', value);
     }
   }
 });

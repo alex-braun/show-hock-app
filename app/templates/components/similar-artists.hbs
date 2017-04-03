@@ -8,17 +8,35 @@
   <li class='similar-artists-list'>
 
 <div class='clearfix visible-sm'></div>
-    <figure class="similar-artists-thumb-wrapper">
-      <img class="headliner image" src="{{similar.imageUrl}}" alt="{{similar.displayName}}" />
+<a href='javascript:;'
+{{action 'goToArtist'
+similar.displayName
+similar.id}}><figure class="similar-artists-thumb-wrapper">
+
+
+<img class="headliner image" src="{{similar.imageUrl}}" alt="{{similar.displayName}}" />
       {{!-- <figcaption class="image-caption-text">{{similar.displayName}}</figcaption> --}}
-    </figure>
-    <ul class='similar-artists-text'>
+    </figure></a>
+    <a href='javascript:;'
+    {{action 'goToArtist'
+    similar.displayName
+    similar.id}}><ul class='similar-artists-text'>
         <li>{{similar.displayName}}</li>
       {{#if similar.onTourUntil}}
         <li>On Tour Until: {{similar.onTourUntil}}</li>
       {{/if}}
-    </ul>
+    </ul></a>
     </li>
   {{/each}}
 </ul>
 {{!-- </div> --}}
+
+
+
+{{!-- <h4 class='artist-list'>
+  <strong><a href='javascript:;'
+    {{action 'goToArtist'
+    performance.artist.displayName
+    performance.artist.id}}>
+    {{performance.artist.displayName}}, </a></strong>
+</h4> --}}
