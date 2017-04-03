@@ -1,0 +1,68 @@
+<div id="carousel-inner-generic" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-inner-generic" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-inner-generic" data-slide-to="1"></li>
+    <li data-target="#carousel-inner-generic" data-slide-to="2"></li>
+    <li data-target="#carousel-inner-generic" data-slide-to="3"></li>
+    <li data-target="#carousel-inner-generic" data-slide-to="4"></li>
+  </ol>
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <div class="item active">
+      <figure class='artist-thumb-wrapper'>
+        <img src={{sortedEvents.0.performance.0.artist.imageUrl}} alt={{sortedEvents.0.performance.0.artist.displayName}} class='headliner image'>
+      </figure>
+      <div class="carousel-caption inner">
+          <p class='caption'>{{no-parens sortedEvents.0.displayName}}</p>
+        <p class='caption'>{{format-mon sortedEvents.0.start.date}} {{format-day sortedEvents.0.start.date}}, {{format-year sortedEvents.0.start.date}}</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <figure class='artist-thumb-wrapper'>
+        <img src={{sortedEvents.1.performance.0.artist.imageUrl}} alt={{sortedEvents.1.performance.0.artist.imageUrl}} class='headliner image'>
+      </figure>
+      <div class="carousel-caption inner">
+          <p class='caption'>{{no-parens sortedEvents.1.displayName}}</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <figure class='artist-thumb-wrapper'>
+        <img src={{sortedEvents.2.performance.0.artist.imageUrl}} alt={{sortedEvents.2.performance.0.artist.imageUrl}} class='headliner image'>
+      </figure>
+      <div class="carousel-caption inner">
+          <p class='caption'>{{no-parens sortedEvents.2.displayName}}</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <figure class='artist-thumb-wrapper'>
+        <img src={{sortedEvents.3.performance.0.artist.imageUrl}} alt={{sortedEvents.3.performance.0.artist.imageUrl}} class='headliner image'>
+      </figure>
+      <div class="carousel-caption inner">
+          <p class='caption'>{{no-parens sortedEvents.3.displayName}}</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <figure class='artist-thumb-wrapper'>
+        <img src={{sortedEvents.4.performance.0.artist.imageUrl}} alt={{sortedEvents.4.performance.0.artist.imageUrl}} class='headliner image'>
+      </figure>
+      <div class="carousel-caption inner">
+          <p class='caption'>{{no-parens sortedEvents.4.displayName}}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Controls -->
+  {{!-- <a class="left carousel-control" href="#carousel-inner-generic" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#carousel-inner-generic" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a> --}}
+</div>

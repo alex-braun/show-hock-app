@@ -1,11 +1,39 @@
-<h1>Home Page</h1>
 
-{{!-- <div class='well'>
-  <ul class='nav nav-pills'>
-    {{#link-to 'artistsearches' tagName="li"}}<a href="">Search by Artist!</a>{{/link-to}}
-  </ul>
-</div> --}}
-{{!-- {{events-carousel}} --}}
-{{!-- {{location-map}} --}}
+{{!-- <div class='header-title show-hock'>
+  <h1>Show Hock</h1>
+</div>
+
+{{svg-jar "powered-by-songkick-pink" width='100px' height='100px'}} --}}
+
+<div class='artist-info-section event-info'>
+
+
+    {{event-carousel-outer events=model.event
+                        slideFrom=slideFrom
+                        slideTo=slideTo
+                        slideClick=slideClick}}
+
+  <div class='event-info-wrapper index'>
+    {{upcoming-region-events model=model
+                            getRegionShows='getRegionShows'}}
+
+    {{events-carousel events=model.event
+                  slideFrom=slideFrom
+                  slideTo=slideTo
+                  slideClick=slideClick}}
+  </div>
+</div>
 
 {{outlet}}
+
+
+{{!-- Andy Mowatt at Toad
+Mar 25, 2017Cambridge, MA
+
+Savak at ONCE Ballroom
+Mar 25, 2017Somerville, MA
+
+Allah-Las at Brighton Music Hall
+Mar 25, 2017Boston, MA
+
+SEE MORE LOCAL SHOWS --}}
