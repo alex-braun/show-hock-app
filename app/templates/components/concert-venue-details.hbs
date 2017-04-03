@@ -1,0 +1,24 @@
+{{#if (eq model.venue.displayName 'Unknown venue')}}
+  <h3>Unknown Venue</h3>
+{{else}}
+  <h3>Venue</h3>
+  <p>{{model.venue.displayName}}</p>
+{{/if}}
+  <p>{{model.venue.street}}</p>
+  <p>{{model.venue.zip}}</p>
+
+{{#if model.venue.city.displayName model.venue.city.state.displayName model.venue.city.country.displayName}}
+  <p>{{model.venue.city.displayName}}, {{model.venue.city.state.displayName}}, {{model.venue.city.country.displayName}}</p>
+{{else if model.location.city}}
+  <p>{{model.location.city}}</p>
+{{/if}}
+  <p>{{model.venue.phone}}</p>
+  <p>{{model.venue.website}}</p>
+  {{#if model.venue.capacity}}
+    <p>Capacity: <strong>{{model.venue.capacity}}</strong></p>
+  {{/if}}
+{{#if model.venue.lat}}
+  {{concert-location-map lat=model.venue.lat lng=model.venue.lng title=model.venue.displayName}}
+{{else}}
+  <h5>Sorry, at this time we do not have enough information to provide a map of this location.</h5>
+{{/if}}

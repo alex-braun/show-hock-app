@@ -10,15 +10,21 @@ store: Ember.inject.service('store'),
   // region: null,
   // country: null,
   clientIp: null,
+  regionId: null,
+  regionName: null,
+  state: null,
+  country: null,
 
 
-  init() {
-    this.set('clientIp', null);
-  },
+  // init() {
+  //   this.set('clientIp', null);
+  //   this.set('regionId', null);
+  //   this.set('regionName', null);
+  // },
 
   getIp() {
     return Ember.RSVP.hash({
-      clientIp: $.ajax({
+      clientIp: Ember.$.ajax({
           method: 'GET',
           url: "http://ipinfo.io/json"
         })
@@ -26,33 +32,23 @@ store: Ember.inject.service('store'),
           // this.set('city', response.city);
           // this.set('region', response.region);
           // this.set('country', response.country);
-          this.set('clientIp', response.ip);
+          return this.set('clientIp', response.ip);
         }),
 
     });
   },
 
-  getRegion() {
-    let ip = this.get('clientIp');
-    if (ip === null) {
-      return Ember.RSVP.hash({
-        clientIp: $.ajax({
-            method: 'GET',
-            url: "http://ipinfo.io/json"
-          })
-          .then(response => {
-            this.set('clientIp', response.ip);
-            this.get('store').query('location', { ip: response.ip }).then(response => {
-              console.log(response);
-              return response;
-            });
-          }),
-      });
-    } else {
-      this.get('store').query('location', { ip: ip }).then(response => {
-        console.log(response);
-        return response;
-      });
-    }
+  getRegion(ip) {
+    return this.get('store').query('location', { ip: ip } )
+    .then(response => {
+      let id = response.content[0].id;
+      let regionName = response.content[0]._data.metroArea.displayName;
+      let state = response.content[0]._data.metroArea.state.displayName;
+      let country = response.content[0]._data.metroArea.country.displayName;
+      return this.set('regionId', id),
+             this.set('regionName', regionName),
+             this.set('state', state),
+             this.set('country', country);
+    });
   },
 });

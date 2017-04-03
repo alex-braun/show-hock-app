@@ -1,0 +1,72 @@
+{{#if filteredResults}}
+
+    <h4>Also featuring: </h4>
+    {{#each filteredResults as |performance index|}}
+
+    {{#if (gt filteredResults.length 1)}}
+
+      {{#if (eq filteredResults.length 2)}}
+
+        {{#if (eq index 0)}}
+
+          <h4 class='artist-list'>
+            <strong><a href='javascript:;'
+              {{action 'goToArtist'
+              performance.artist.displayName
+              performance.artist.id}}>
+              {{performance.artist.displayName}}, </a></strong>
+          </h4>
+
+        {{else}}
+
+          <h4 class='artist-list'>
+            <strong><a href='javascript:;'
+              {{action 'goToArtist'
+              performance.artist.displayName
+              performance.artist.id}}>
+              {{performance.artist.displayName}}</a></strong>
+          </h4>
+
+        {{/if}}
+
+      {{else}}
+
+        {{#if (arr-last filteredResults.length index)}}
+
+          <h4 class='artist-list'>
+            <strong><a href='javascript:;'
+              {{action 'goToArtist'
+              performance.artist.displayName
+              performance.artist.id}}>
+              {{performance.artist.displayName}}</a></strong>
+          </h4>
+
+        {{else}}
+
+          <h4 class='artist-list'>
+            <strong><a href='javascript:;'
+              {{action 'goToArtist'
+              performance.artist.displayName
+              performance.artist.id}}>
+              {{performance.artist.displayName}}, </a></strong>
+          </h4>
+
+        {{/if}}
+
+      {{/if}}
+
+    {{else}}
+
+      <h4 class='artist-list'>
+        <strong><a href='javascript:;'
+          {{action 'goToArtist'
+          performance.artist.displayName
+          performance.artist.id}}>
+          {{performance.artist.displayName}}</a></strong>
+      </h4>
+
+    {{/if}}
+
+    {{/each}}
+
+{{/if}}

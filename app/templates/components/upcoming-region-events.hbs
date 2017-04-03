@@ -1,0 +1,15 @@
+<div class='upcoming-region-events-head'>
+  <h3>{{upper-case model.meta.total_entries}} SHOWS NEAR {{upper-case geoLocation.regionName}}</h3>
+</div>
+
+<div class='upcoming-region-events-list-wrapper'>
+  {{#each filteredResults as |event|}}
+    <h4><strong>{{no-parens event.displayName}}</strong></h4>
+    <p>{{format-mon event.start.date}} {{format-day event.start.date}}, {{format-year event.start.date}}</p>
+  {{/each}}
+
+</div>
+
+{{button-to-concert buttonTitle=buttonTitle
+                    buttonClick='getRegionShows'
+                    value=model.id}}
