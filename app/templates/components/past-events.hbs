@@ -1,0 +1,11 @@
+<h3>Other shows nearby</h3>
+<ul class='related-events-list'>
+  {{#each filteredResults as |event|}}
+  <li class='related-events-item'>
+    <p>{{format-weekday event.start.date}} {{format-mon event.start.date}} {{format-day event.start.date}}, {{format-year event.start.date}}</p>
+    <h5><strong>{{no-parens event.displayName}}</strong></h5>
+    <p>{{event.location.city}}</p>
+
+  </li>
+  {{/each}}
+</ul>

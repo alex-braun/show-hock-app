@@ -1,0 +1,94 @@
+<div class='artist-info-section'>
+
+
+  {{!-- {{#each model.venue.search.artist as |basic| }} --}}
+    {{!-- {{#if (eq basic.displayName model.venue.search.meta.artist) }} --}}
+      <figure class='artist-background-wrapper'>
+        {{!-- <img class='artist-background' src='{{model.venue.imageUrl}}' alt='{{basic.displayName}}'/> --}}
+      </figure>
+
+    {{!-- {{/if}} --}}
+  {{!-- {{/each}} --}}
+
+<div class='artist-info-wrapper'>
+
+  {{!-- {{#each model.venue.search.artist as |basic| }} --}}
+    {{!-- {{#if (eq basic.displayName model.venue.search.meta.artist) }} --}}
+    <figure class="artist-thumb-wrapper">
+      <img class="headliner image" src='{{model.venue.imageUrl}}' alt='{{model.venue.displayName}}'/>
+        {{!-- {{#if basic.onTourUntil}} --}}
+          {{!-- <figcaption class="artist-image-caption-text"><span class='tour-tag'>ON TOUR</span>
+          </figcaption> --}}
+        {{!-- {{/if}} --}}
+      </figure>
+    {{!-- {{/if}} --}}
+    {{!-- {{/each}} --}}
+
+  <div class='artist-info'>
+      {{!-- {{#each model.venue as |basic| }}
+        {{#if (eq basic.displayName model.venue.artist.meta.artist) }}
+        <figure class="artist-thumb-wrapper">
+          <img class="headliner image" src='{{basic.imageUrl}}' alt='{{basic.displayName}}'/>
+            {{#if basic.onTourUntil}}
+              <figcaption class="artist-image-caption-text"><span class='tour-tag'>ON TOUR</span>
+              </figcaption>
+            {{/if}}
+          </figure>
+        {{/if}}
+      {{/each}} --}}
+      {{!-- {{#each model.venue.search.artist as |basic|}} --}}
+        {{!-- {{#if (eq basic.displayName model.venue.search.meta.artist)}} --}}
+          <h1>{{model.venue.displayName}}</h1>
+
+          {{#if model.venue.street}}
+            <h4>{{model.venue.street}}</h4>
+          {{/if}}
+
+          {{#if model.venue.zip}}
+            <h4>{{model.venue.zip}}</h4>
+          {{/if}}
+          {{#if model.venue.city.state.displayName}}
+
+            <h4>{{model.venue.city.displayName}}, {{model.venue.city.state.displayName}}, {{model.venue.city.country.displayName}}</h4>
+
+          {{else}}
+
+            <h4>{{model.venue.city.displayName}}, {{model.venue.city.country.displayName}}</h4>
+
+          {{/if}}
+            <h4>{{model.venue.phone}}</h4>
+            <h4>
+              <a href={{model.venue.website}} target='_blank'>{{model.venue.website}}</a>
+            </h4>
+          {{!-- {{#if basic.onTourUntil}}
+            <h4>On Tour Until:
+              {{{format-month basic.onTourUntil}}}
+              {{{format-day basic.onTourUntil}}},
+              {{{format-year basic.onTourUntil}}}
+            </h4>
+
+          {{else if model.venue.artist.meta.total_entries}}
+            <h4>On Tour: Yes</h4>
+          {{else}}
+            <h4>Not on tour</h4>
+          {{/if}} --}}
+          {{!-- {{#if basic.onTourUntil}} --}}
+          {{#if model.calendar.meta.total_entries}}
+            <h4>Upcoming Events: {{model.calendar.meta.total_entries}}</h4>
+          {{else}}
+            <h4>Upcoming Concerts: None</h4>
+          {{/if}}
+        {{!-- {{/if}} --}}
+      {{!-- {{/each}} --}}
+    </div>
+  </div>
+</div>
+
+<div class='artist-event-section'>
+  <div class='artist-event-wrapper'>
+    {{outlet}}
+    {{!-- {{#if (neq model.venue.similar.firstObject.noMatch true)}} --}}
+      {{past-events model=model.region}}
+    {{!-- {{/if}} --}}
+  </div>
+</div>

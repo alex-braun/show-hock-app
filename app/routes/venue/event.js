@@ -1,0 +1,59 @@
+import Ember from 'ember';
+
+export default Ember.Route.extend({
+
+  // nameAndId: Ember.inject.service('access-artist-data'),
+  //
+  // artistId: null,
+  //
+  // beforeModel(data) {
+  //   this._super(...arguments);
+  //   let id = parseInt(data.params['artist.event'].artist_id),
+  //       name = data.params['artist.event'].artist_name;
+  //
+  //   this.get('nameAndId').addId(id);
+  //   this.get('nameAndId').addName(name);
+  //
+  // },
+  model (param) {
+    return Ember.RSVP.hash({
+
+      venue: this.get('store').findRecord('venue', param.venue_id)
+      .then((result) => {
+        let meta = result.get('meta');
+        return meta, result;
+      }),
+
+      calendar: this.get('store').findRecord('venue-calendar', param.venue_id, {
+        adapterOptions: { page: 1 }
+      })
+      .then((result) => {
+        let meta = result.get('meta');
+        return meta, result;
+      }),
+
+    })
+
+    .then((result) => {
+      return this.get('store').findRecord('region', result.venue.data.metroArea.id, { adapterOptions: { page: 1 }
+      })
+      .then((region) => {
+        let meta = region.get('meta');
+        result.region = region;
+        return meta, result;
+      });
+    });
+  },
+
+  // actions: {
+  //   goToArtist(name, id) {
+  //     this.transitionTo('artist.event.results',
+  //         name,
+  //         id,
+  //         { queryParams: {
+  //           page: 1,
+  //           }
+  //     });
+  //   }
+  // }
+});

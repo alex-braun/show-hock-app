@@ -9,6 +9,7 @@ export default Ember.Route.extend({
     },
 
     model(params) {
+      console.log(params);
       return this.get('store').findRecord('region', params.region_id, { adapterOptions: { page: params.page }
       })
       .then((result) => {

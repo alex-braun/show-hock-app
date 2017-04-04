@@ -26,6 +26,7 @@ export default Ember.Route.extend({
   },
 
   model (params) {
+    console.log('artist route');
     let allParams = {
       location: this.get('geoLocation').clientIp,
       artistName: this.get('artistEventParams').artist_name,

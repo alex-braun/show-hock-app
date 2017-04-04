@@ -1,0 +1,47 @@
+<div class='region-search-detail'>
+{{#if venue.noMatch}}
+  <h3>We were unable to find a region called  <strong>{{venue.id}}</strong></h3>
+  <p>Please try another area!</p>
+{{else}}
+    {{!-- {{#link-to 'region.event.results' (query-params getId=venue.metroArea.id page='1' location=venue.metroArea.displayName)}} --}}
+    {{!-- {{#if venue.lat}}
+      <div class="region-search-map-wrapper">
+        <img src={{venue.googleMapUrl}} alt="">
+      </div>
+    {{/if}} --}}
+
+    <figure class="venue-search-thumb-wrapper">
+      <img class="headliner image" src="{{venue.imageUrl}}" alt="{{venue.displayName}}" />
+      <figcaption class="image-caption-text">{{venue.displayName}}</figcaption>
+    </figure>
+
+    {{!-- <div class="venue-search-thumb-wrapper">
+        <img class='headliner image' src={{venue.imageUrl}} alt="">
+    </div> --}}
+
+    {{!-- {{#link-to 'region.event.results' (query-params getId=venue.metroArea.id page='1' location=venue.metroArea.displayName)}} --}}
+    {{#link-to 'venue.event.results' venue.id (query-params page='1')}}
+    {{!-- {{region-search-location-map}} --}}
+
+      <h3>{{venue.displayName}}</h3>
+      <h3>{{venue.id}}</h3>
+    {{#if venue.metroArea.state.displayName  venue.metroArea.country.displayName}}
+      <h4>{{venue.metroArea.displayName}}, {{venue.metroArea.state.displayName}},
+      {{venue.metroArea.country.displayName}}</h4>
+    {{else}}
+      <h4>{{venue.metroArea.displayName}},
+      {{venue.metroArea.country.displayName}}</h4>
+    {{/if}}
+    {{!-- {{#if (neq venue.city.displayName venue.metroArea.displayName)}}
+    <p>including {{venue.city.displayName}}</p>
+    {{/if}} --}}
+    {{/link-to}}
+
+{{/if}}
+</div>
+
+{{!-- <span {{action 'closeNavigationMenu'}}>
+  {{#link-to 'home' preventDefault=false}}
+    Go Home
+  {{/link-to}}
+</span> --}}

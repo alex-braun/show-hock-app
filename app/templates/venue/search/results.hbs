@@ -1,0 +1,7 @@
+<div class='region-search-main-listing'>
+  <ul class="event-listings row-fluid block-grid-3">
+    {{#each model.venue as |venue|}}
+        {{venue-search-detail venue=venue}}
+    {{/each}}
+  </ul>
+</div>

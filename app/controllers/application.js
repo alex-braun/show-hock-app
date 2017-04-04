@@ -10,9 +10,8 @@ export default Ember.Controller.extend({
 
     dropdowns: [
       {name: 'Artists'},
-      {name: 'Events'},
-      {name: 'Venues'},
-      {name: 'Region'}
+      {name: 'Region'},
+      {name: 'Venues'}
     ],
 
 

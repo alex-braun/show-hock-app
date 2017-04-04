@@ -14,5 +14,11 @@ export default Ember.Route.extend({
         this.transitionTo('region.search.results', param);
       }
     },
+
+    venueSearch(param) {
+      if (!(param === null || param === undefined || param.match(/^ *$/) !== null)) {
+        this.transitionTo('venue.search.results', param);
+      }
+    },
   },
 });
