@@ -297,11 +297,25 @@
 }
 
 .concert-location-map {
-    height: 300px;
-    width: 300px;
+    height: 250px;
+    width: 250px;
 }
 
 /*CONCERT ROUTE*/
+
+.concert-venue-details {
+  margin: 15px 0 15px 0;
+}
+
+.concert-venue-info {
+  width: 50%;
+  float: left;
+
+  h3 {
+    margin-top: 0;
+  }
+}
+
 .artist-concert {
   overflow: hidden;
 

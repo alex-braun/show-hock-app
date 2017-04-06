@@ -1,11 +1,12 @@
 {{!-- {{search-title title=model.meta.location}} --}}
-<div class='artist-event-listing'>
+<div class='venue-event-listing'>
 
 <ul class="event-listings row-fluid block-grid-3">
   {{#each model.event as |event|}}
     {{!-- <li class='region-detail-list'> --}}
       {{!-- <div class='region-detail col-xs-10'> --}}
-        {{region-detail event=event}}
+        {{venue-detail event=event
+                      goToConcert='goToConcert'}}
       {{!-- </div> --}}
     {{!-- </li> --}}
   {{/each}}

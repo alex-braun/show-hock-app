@@ -1,20 +1,20 @@
-<div class='artist-info-section'>
+<div class='venue-info-section'>
 
 
   {{!-- {{#each model.venue.search.artist as |basic| }} --}}
     {{!-- {{#if (eq basic.displayName model.venue.search.meta.artist) }} --}}
-      <figure class='artist-background-wrapper'>
+      <figure class='venue-background-wrapper'>
         {{!-- <img class='artist-background' src='{{model.venue.imageUrl}}' alt='{{basic.displayName}}'/> --}}
       </figure>
 
     {{!-- {{/if}} --}}
   {{!-- {{/each}} --}}
 
-<div class='artist-info-wrapper'>
+<div class='venue-info-wrapper'>
 
   {{!-- {{#each model.venue.search.artist as |basic| }} --}}
     {{!-- {{#if (eq basic.displayName model.venue.search.meta.artist) }} --}}
-    <figure class="artist-thumb-wrapper">
+    <figure class="venue-thumb-wrapper">
       <img class="headliner image" src='{{model.venue.imageUrl}}' alt='{{model.venue.displayName}}'/>
         {{!-- {{#if basic.onTourUntil}} --}}
           {{!-- <figcaption class="artist-image-caption-text"><span class='tour-tag'>ON TOUR</span>
@@ -24,7 +24,7 @@
     {{!-- {{/if}} --}}
     {{!-- {{/each}} --}}
 
-  <div class='artist-info'>
+  <div class='venue-info'>
       {{!-- {{#each model.venue as |basic| }}
         {{#if (eq basic.displayName model.venue.artist.meta.artist) }}
         <figure class="artist-thumb-wrapper">
@@ -84,8 +84,8 @@
   </div>
 </div>
 
-<div class='artist-event-section'>
-  <div class='artist-event-wrapper'>
+<div class='venue-event-section'>
+  <div class='venue-event-wrapper'>
     {{outlet}}
     {{!-- {{#if (neq model.venue.similar.firstObject.noMatch true)}} --}}
       {{past-events model=model.region}}

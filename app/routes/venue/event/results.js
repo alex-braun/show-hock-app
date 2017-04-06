@@ -22,5 +22,11 @@ export default Ember.Route.extend({
         let meta = result.get('meta');
         return meta, result;
     });
+  },
+
+  actions: {
+    goToConcert(concert) {
+      this.transitionTo('venue.event.concert', concert);
+    }
   }
 });

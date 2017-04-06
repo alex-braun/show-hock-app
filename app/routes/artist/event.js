@@ -68,7 +68,7 @@ export default Ember.Route.extend({
         for (let i = 0; i < 10; i++) {
           arr.push([i]);
         }
-           let selection = result.data.artist.objectsAt(arr);
+           let selection = result.get('artist').objectsAt(arr);
            selection = selection.filter((element) => {
              return element !== undefined;
            });

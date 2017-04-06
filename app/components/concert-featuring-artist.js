@@ -13,5 +13,9 @@ export default Ember.Component.extend({
     getFullList() {
       this.toggleProperty('isFullList');
     },
+
+    goToArtist(name, id) {
+      this.sendAction('goToArtist', name, id);
+    }
   }
 });

@@ -10,6 +10,7 @@
     {{artist-date event=model}}
 
     {{concert-featuring-artist isFullList=isFullList
+                                goToArtist='goToArtist'
                                 getFullList='getFullList'
                                 performances=model.performance
                                 concertId=model.id}}
@@ -24,23 +25,17 @@
     {{artist-date event=model}}
 
 
-      {{concert-also-featuring goToArtist='goToArtist'
-                               model=model}}
+    {{concert-featuring-artist isFullList=isFullList
+                                goToArtist='goToArtist'
+                                getFullList='getFullList' performances=model.performance concertId=model.id}}
     </div>
-{{log model.id}}
+
 {{/if}}
 
     {{!-- <p>Concert Popularity: {{model.popularity}}</p> --}}
 
   {{!-- VENUE DETAILS--}}
-  {{concert-venue-details model=model}}
 
-  {{#if model.calendar}}
-  {{upcoming-venue-events calendar=model.calendar
-                          concertId=model.id
-                          venue=model.venue.displayName
-                          venueId=model.venue.id
-                          goToVenue='goToVenue'}}
-  {{/if}}
+  {{concert-venue-details model=model}}
 
 </div>

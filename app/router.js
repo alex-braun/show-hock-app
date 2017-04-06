@@ -24,17 +24,17 @@ Router.map(function() {
       this.route('results', { path: '/:region_id/results' });
       });
     });
-    this.route('venue', function() {
-      this.route('search', function() {
-        this.route('results', { path: '/:venue_name/results' });
-      });
-      this.route('event', { path: '/event/:venue_id' }, function() {
-        this.route('results');
-      });
+  this.route('venue', function() {
+    this.route('search', function() {
+      this.route('results', { path: '/:venue_name/results' });
     });
+    this.route('event', { path: '/event/:venue_id' }, function() {
+      this.route('results');
+      this.route('concert', { path: '/concert/:concert_id' });
+    });
+  });
 
   this.route('event-search');
-
 });
 
 export default Router;

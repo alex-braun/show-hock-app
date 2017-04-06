@@ -8,7 +8,7 @@
 
 <div class='artist-grid-wrapper'>
   <ui class='row-fluid artist-grid block-grid-3'>
-  {{#each performance as |performance|}}
+  {{#each performances as |performance|}}
     <li>{{performance.artist.displayName}}</li>
   {{/each}}
   </ui>
@@ -16,12 +16,17 @@
 
 {{else}}
 
-  {{#each performance as |performance index|}}
-      {{#if (lt index 9)}}
-        <h4 class='artist-list'>{{performance.artist.displayName}}, </h4>
+  {{#each performances as |performance index|}}
+      {{#if (arr-last performances.length index)}}
+        <h4 class='artist-list'><a href='javascript:;'
+          {{action 'goToArtist' performance.artist.displayName performance.artist.id}}>{{performance.artist.displayName}}</a></h4>
+      {{else if (lt index 9)}}
+        <h4 class='artist-list'><a href='javascript:;'
+          {{action 'goToArtist' performance.artist.displayName performance.artist.id}}>{{performance.artist.displayName}}, </a></h4>
       {{else if (eq index 9)}}
           {{!-- <h4 class='artist-list'>{{performance.artist.displayName}}, <a class='get-more' href='#full-list'>see all...</a></h4> --}}
-        <h4 class='artist-list'>{{performance.artist.displayName}}, <a class='get-more' {{action 'getFullList' concertId}}>and more...</a></h4>
+        <h4 class='artist-list'><a href='javascript:;'
+          {{action 'goToArtist' performance.artist.displayName performance.artist.id}}>{{performance.artist.displayName}}, </a><a class='get-more' {{action 'getFullList' concertId}}>and more...</a></h4>
       {{/if}}
 
   {{/each}}

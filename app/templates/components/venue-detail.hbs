@@ -1,33 +1,66 @@
-<div class='region-search-detail'>
-{{#if regionSelect.noMatch}}
-  <h3>We were unable to find a region called  <strong>{{regionSelect.metroArea.displayName}}</strong></h3>
-  <p>Please try another area!</p>
+<div class='venue-event-detail'>
+
+{{artist-date event=event}}
+
+<div class='region-band-thumbs'>
+{{#if (eq event.type 'Festival') }}
+
+  <figure class="band-thumb-wrapper">
+    <img class="headliner image" src="{{event.imageUrl}}" alt="{{event.displayName}}" />
+    <figcaption class="image-caption-text">{{event.displayName}}</figcaption>
+  </figure>
+
+
 {{else}}
-    {{!-- {{#link-to 'region.event.results' (query-params getId=regionSelect.metroArea.id page='1' location=regionSelect.metroArea.displayName)}} --}}
-    <div class="region-search-map-wrapper">
-        {{!-- <img src='' alt="nothing"> --}}
-      <img src={{regionSelect.metroArea.googleMapUrl}} alt="">
-    </div>
-    {{!-- {{#link-to 'region.event.results' (query-params getId=regionSelect.metroArea.id page='1' location=regionSelect.metroArea.displayName)}} --}}
-    {{#link-to 'region.event.results' regionSelect.metroArea.id (query-params page='1')}}
-    {{!-- {{region-search-location-map}} --}}
-    {{#if regionSelect.metroArea.state.displayName  regionSelect.metroArea.country.displayName}}
-      <h3>{{regionSelect.metroArea.displayName}}, {{regionSelect.metroArea.state.displayName}},
-      {{regionSelect.metroArea.country.displayName}}</h3>
-    {{else}}
-      <h3>{{regionSelect.metroArea.displayName}},
-      {{regionSelect.metroArea.country.displayName}}</h3>
-    {{/if}}
-    {{#if (neq regionSelect.city.displayName regionSelect.metroArea.displayName)}}
-    <p>including {{regionSelect.city.displayName}}</p>
-    {{/if}}
-    {{/link-to}}
+  {{#each event.performance as |performance|}}
+    {{!-- {{#if (lt performance.billingIndex 4)}} --}}
+
+      <figure class="band-thumb-wrapper">
+        <img class="headliner image" src="{{performance.artist.imageUrl}}" alt="{{performance.artist.displayName}}" />
+        <figcaption class="image-caption-text">{{performance.artist.displayName}}</figcaption>
+      </figure>
+
+  {{/each}}
 
 {{/if}}
 </div>
 
-{{!-- <span {{action 'closeNavigationMenu'}}>
-  {{#link-to 'home' preventDefault=false}}
-    Go Home
-  {{/link-to}}
-</span> --}}
+<ul class='region-event-ul'>
+<li class='event'>
+  {{#if (eq event.type 'Festival') }}
+  {{!-- {{#link-to 'event' (query-params getId=regionSelect.metroArea.id page='1' location=regionSelect.metroArea.displayName)}} --}}
+    <h4><strong>{{event.displayName}}</strong></h4>
+    {{!-- {{/link-to}} --}}
+  {{else}}
+
+    {{artist-list event=event
+                  value=event.id
+                  goToConcert='goToConcert'}}
+  {{/if}}
+
+  {{#if (eq event.venue.displayName 'Unknown venue') }}
+    <h4>{{event.location.city}}</h4>
+  {{else}}
+    <h4>{{event.venue.displayName}}, {{event.location.city}}</h4>
+  {{/if}}
+
+  {{#if event.start.time}}
+  <h6>{{format-time event.start.time}}</h6>
+  {{/if}}
+  </li>
+</ul>
+
+{{#if (eq event.type 'Festival') }}
+
+{{list-every-artist event=event}}
+
+{{/if}}
+
+{{button-to-concert value=event.id
+                    buttonClick='goToConcert'
+                    buttonTitle=buttonTitle}}
+
+{{#if event.ageRestriction}}
+  <h6>{{event.ageRestriction}}</h6>
+{{/if}}
+</div>
