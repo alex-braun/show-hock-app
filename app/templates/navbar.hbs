@@ -1,127 +1,178 @@
+<nav role="navigation" class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+
+    <div class="navbar-header title navbar-left pull-left">
+      <a class="navbar-brand show-hock" href='javascript:;' {{action 'goToHome'}}>Show Hock</a>
+    </div>
+
+
+
+    <div class="navbar-header navbar-right pull-right">
+
+    <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    </div>
+
+    <div class="navbar-header location navbar-left pull-left">
+
+
+
+      <ul class="nav geo pull-left">
+
+        {{!-- <li class='navbar-text pull-left' ><a href='javascript:;'{{action 'goToRegion' location.regionId}}>{{location.regionName}}</a>
+        </li> --}}
+        <li class='navbar-text region pull-left' ><a href='javascript:;'{{action 'goToRegion' location.regionId}}>{{location.regionName}}</a>
+        </li>
+
+        {{!-- <li class='navbar-text change pull-left'>
+          <a href='javascript:;'{{action 'userChooseRegion'}}><div class='svg-wrapper map'>
+            {{svg-jar "map-marker" width='100%' height='100%'}}
+            {{svg-jar "map-marker" viewBox="0 0 15 10" width='100%' height='100%'}}
+          </div>Change Location</a>
+          <a href='javascript:;'{{action 'userChooseRegion'}}>Change Location</a>
+        </li> --}}
+
+
+
+      </ul>
+      {{!--
+      <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button> --}}
+    </div>
+
+    <div class="visible-xs-block clearfix"></div>
+
+    <div class="collapse navbar-collapse">
+
+      <ul class="nav navbar-nav search navbar-right">
+
+        <li class='search-field item'>
+          <form class="navbar-form navbar-right">
+
+            {{#if (eq dropdown.name 'Artists')}}
+              {{search-input keyword=enterArtist placeholder='Enter artist name'}}
+
+                <button type="submit" class="btn btn-success search-button visible-xs" {{action 'artistSearch' enterArtist keyword}}>
+                <span class='glyphicon glyphicon-search'></span>
+                Search
+                </button>
+
+            {{else if (eq dropdown.name 'Region')}}
+            {{search-input keyword=enterRegion placeholder='Enter region/city name'}}
+
+                <button type="submit" class="btn btn-success search-button visible-xs" {{action 'regionSearch' enterRegion keyword}}>
+                <span class='glyphicon glyphicon-search'></span>
+                Search
+                </button>
+
+            {{else if (eq dropdown.name 'Venues')}}
+            {{search-input keyword=enterVenue placeholder='Enter venue name'}}
+
+              <button type="submit" class="btn btn-success search-button visible-xs" {{action 'venueSearch' enterVenue keyword}}>
+              <span class='glyphicon glyphicon-search'></span>
+              Search
+              </button>
+
+            {{/if}}
+          </form>
+        </li>
+
+
+
+        <li class='search-select item'>
+          <select onchange= {{action (mut dropdownIndex)
+                value="target.value"}}
+                data-toggle="dropdown"
+                class="dropdown-list selectpicker"
+                role="button">
+          {{#each dropdowns as |dropdownChoice index|}}
+            <option value= {{ index }} selected= {{eq dropdownIndex index}}>{{dropdownChoice.name}}</option>
+          {{/each}}
+        </select>
+        </li>
+
+        <li class='navbar-text change pull-left'>
+          <a href='javascript:;'{{action 'userChooseRegion'}}><div class='svg-wrapper map'>
+            {{svg-jar "map-marker" width='100%' height='100%'}}
+            {{!-- {{svg-jar "map-marker" viewBox="0 0 15 10" width='100%' height='100%'}} --}}
+          </div>Change Location</a>
+          {{!-- <a href='javascript:;'{{action 'userChooseRegion'}}>Change Location</a> --}}
+        </li>
+
+      </ul>
+
+
+    </div>
+
+    {{!-- <div class='navbar-header space fill navbar-right pull-right'></div> --}}
+
+  </div>
+</nav>
+
+
+
+
+
+
+
+
+
 {{!-- <nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-
-      <span class="glyphicon glyphicon-pushpin" aria-hidden="true">
-      {{navbar-location class='navbar-brand'}}</span>
-    </div>
-
-    <div class="collapse navbar-collapse" id="main-navbar">
-      <ul class="nav navbar-nav">
-        {{#nav-link-to 'index'}}Home{{/nav-link-to}}
-        {{#nav-link-to 'artist.search'}}Artist Search{{/nav-link-to}}
-        {{#nav-link-to 'region.search'}}Region Search{{/nav-link-to}}
-
-      </ul>
-
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Sign Up</a></li>
-        <li><a href="#">Log In</a></li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav> --}}
-
-{{!-- <nav class="navbar navbar-default" role="navigation">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#search">Toggle search</button>
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#links">Toggle links</button> <a class="navbar-brand" href="#">Brand</a>
-
-    </div>
-    <ul class="collapse navbar-collapse nav navbar-nav" id="links">
-        <li class="active"><a href="#">Link</a>
-
-        </li>
-        <li><a href="#">Link</a>
-
-        </li>
-        <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-
-            <ul class="dropdown-menu">
-                <li><a href="#">Action</a>
-
-                </li>
-                <li><a href="#">Another action</a>
-
-                </li>
-                <li><a href="#">Something else here</a>
-
-                </li>
-                <li><a href="#">Separated link</a>
-
-                </li>
-                <li><a href="#">One more separated link</a>
-
-                </li>
-            </ul>
-        </li>
-    </ul>
-    <div class="collapse navbar-collapse" id="search">
-        <form class="navbar-form navbar-left" role="search">
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search">
-            </div>
-            <button type="submit" class="btn btn-default">Submit</button>
-        </form>
-    </div>
-</nav> --}}
-
-
-
-
-
-
-
-
-<nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid navbar-inner">
-
-    <div class="navbar-header">
-
+    <div class="navbar-header pull-right">
 
 
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-
-{{!--FOR THE SEARCH BAR--}}
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
+    </div>
 
+    <div class="navbar-header pull-left">
 
-      <a class="navbar-brand show-hock" href="/">Show Hock</a> {{svg-jar "powered-by-songkick-pink" width='100px' height='60px' viewBox='0 0 427 100'}}
-
+      <a class="navbar-brand show-hock" href="/">Show Hock</a>
 
     </div>
 
-    <ul class="collapse navbar-collapse nav navbar-nav navbar-right" id="bs-example-navbar-collapse-1">
+    <div class='geo-location-info navbar-header pull-left'>
 
-      {{!-- <ul class="nav navbar-nav"> --}}
-        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Link</a></li>
-    </ul>
+      <ul class='nav pull-left'>
 
+        <li class='navbar-text pull-left' ><a href='javascript:;'{{action 'goToRegion' location.regionId}}>{{location.regionName}}</a></li>
 
-{{!--FOR THE SEARCH BAR--}}
+        <li class='navbar-text pull-left'><a href='javascript:;'{{action 'userChooseRegion'}}><span>{{svg-jar "map-marker" width='22px' height='22px'}}</span>Change Location</a></li>
+      </ul>
+    </div>
+
     <div class="collapse search navbar-collapse" id="bs-example-navbar-collapse-2">
-        <form class="navbar-form navbar-left">
-        {{!-- <div class="form-group"> --}}
-        {{!-- {{search-input keyword=entered}} --}}
+
+      <ul class="nav navbar-nav pull-right">
+
+      <li class="dropdown">
+
+        <select onchange= {{action (mut dropdownIndex)
+                value="target.value"}}
+                data-toggle="dropdown"
+                class="dropdown-list selectpicker"
+                role="button">
+          {{#each dropdowns as |dropdownChoice index|}}
+            <option value= {{ index }} selected= {{eq dropdownIndex index}}>{{dropdownChoice.name}}</option>
+          {{/each}}
+        </select>
+      </li>
+      </ul>
+
+        <form class="navbar-form navbar-right">
 
           {{#if (eq dropdown.name 'Artists')}}
             {{search-input keyword=enterArtist placeholder='Enter artist name'}}
@@ -148,113 +199,11 @@
             </button>
 
           {{/if}}
-
-          {{!-- {{#link-to 'artist.search.results' (query-params search=entered)}}
-            <button type="submit" class="btn btn-success search-button visible-xs">
-            <span class='glyphicon glyphicon-search'></span>
-            Search
-            </button>
-          {{/link-to}} --}}
-
-        {{!-- </div> --}}
-        {{!-- {{search-input-dropdown}} --}}
       </form>
-      <ul class="nav navbar-nav navbar-left">
 
-      <li class="dropdown">
-
-        {{!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a> --}}
-
-        {{!-- <select><a href="#" onchange={{action (mut dropdownIndex) value='target.value'}} class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></a> --}}
-
-        {{!-- <select onchange= {{action (mut dropdownIndex) value="target.value" data-toggle="dropdown" class='dropdown-toggle' role='button' aria-haspopup="true" aria-expanded="false"}}> --}}
-        <select onchange= {{action (mut dropdownIndex)
-                value="target.value"}}
-                data-toggle="dropdown"
-                class="dropdown-list selectpicker"
-                role="button">
-          {{#each dropdowns as |dropdownChoice index|}}
-            <option value= {{ index }} selected= {{eq dropdownIndex index}}>{{dropdownChoice.name}}</option>
-          {{/each}}
-        </select>
-
-        {{!-- <ul class="dropdown-menu">
-          {{#each dropdowns as |dropdownChoice index|}}
-            <li><a value= {{ index }} selected= {{eq dropdownIndex index}}>{{dropdownChoice.name}}</a></li>
-          {{/each}}
-
-          <li><a href="#">Artists</a></li>
-          <li><a href="#">Regions</a></li>
-          <li><a href="#">Venues</a></li>
-
-        </ul> --}}
-      </li>
-      </ul>
-
-
-
-      {{!-- <select onchange={{action (mut vehicleIndex) value="target.value"}}>
-        {{#each vehicles as |vehicleChoice index|}}
-          <option value={{ index }} selected={{eq vehicleIndex index}}>{{vehicleChoice.name}}</option>
-        {{/each}}
-      </select>
-{{log thing}}
-      <p>
-        Vehicle: {{vehicle.name}}
-      </p>
-
-      <p>
-        Year: {{vehicle.year}}
-      </p> --}}
-
-{{!-- {{log dropdownItem}} --}}
     </div>
 
-    {{!-- <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"> --}}
-
-
-
-    {{!-- <ul class="collapse navbar-collapse nav navbar-nav navbar-right" id="bs-example-navbar-collapse-1"> --}}
-
-      {{!-- <ul class="nav navbar-nav"> --}}
-
-
-        {{!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Link</a></li>
-    </ul> --}}
-
-
-
-      {{!-- <ul class="nav navbar-nav navbar-left"> --}}
-      {{!-- <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="#">Action</a></li>
-          <li><a href="#">Another action</a></li>
-          <li><a href="#">Something else here</a></li>
-          <li role="separator" class="divider"></li>
-          <li><a href="#">Separated link</a></li>
-        </ul>
-      </li> --}}
-      {{!-- </ul> --}}
-      {{!-- <ul class="nav navbar-nav navbar-right"></ul> --}}
-    {{!-- </div> --}}
-
-
-
-
-
-
-    {{!--
-    <div class="navbar-header">
-      <form class="navbar-form navbar-left">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
-    </div> --}}
-  </div><!-- /.container-fluid -->
-</nav>
+  </div>
+</nav> --}}
 
 <div class="under-space"></div>

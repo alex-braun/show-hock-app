@@ -1,41 +1,37 @@
 import Ember from 'ember';
-// import ENV from 'show-hock-app/config/environment';
 
 export default Ember.Service.extend({
-// events: Ember.inject.service('region-events-onload'),
+
 store: Ember.inject.service('store'),
 
-///UNCOMMENT THIS WHEN YOU ARE READY!!!
-  // city: null,
-  // region: null,
-  // country: null,
   clientIp: null,
   regionId: null,
   regionName: null,
   state: null,
   country: null,
 
-
-  // init() {
-  //   this.set('clientIp', null);
-  //   this.set('regionId', null);
-  //   this.set('regionName', null);
+  // getIp() {
+  //   return Ember.RSVP.hash({
+  //     clientIp: Ember.$.ajax({
+  //         method: 'GET',
+  //         url: "http://ipinfo.io/json"
+  //       })
+  //       .then(response => {
+  //         console.log(response);
+  //         return this.set('clientIp', response.ip);
+  //       }),
+  //
+  //   });
   // },
 
   getIp() {
-    return Ember.RSVP.hash({
-      clientIp: Ember.$.ajax({
+      return Ember.$.ajax({
           method: 'GET',
           url: "http://ipinfo.io/json"
         })
         .then(response => {
-          // this.set('city', response.city);
-          // this.set('region', response.region);
-          // this.set('country', response.country);
           return this.set('clientIp', response.ip);
-        }),
-
-    });
+        });
   },
 
   getRegion(ip) {

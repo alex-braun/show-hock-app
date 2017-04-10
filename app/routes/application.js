@@ -20,5 +20,22 @@ export default Ember.Route.extend({
         this.transitionTo('venue.search.results', param);
       }
     },
+
+    goToRegion(id) {
+      this.transitionTo('region.event.results',
+          id,
+          { queryParams: {
+            page: 1,
+            }
+      });
+    },
+
+    goToHome() {
+      this.transitionTo('index');
+    },
+
+    userChooseRegion() {
+      this.transitionTo('user.change-location');
+    }
   },
 });

@@ -1,0 +1,24 @@
+<div class='region-search-header-wrapper'>
+  <div class='region-search-header'>
+    <h1>Change your location</h1>
+    <h4>Currently set to:   {{userLocationSetting.regionName}}</h4>
+    <div class='region-search-header-info'>
+      <div class='search-input-page-wrapper'>
+        <form>
+        {{search-input keyword=enterRegion placeholder='Enter your location'}}
+          <button type="submit" class="btn btn-success search-button" {{action 'regionSearch' enterRegion}}>
+          <span class='glyphicon glyphicon-search'></span>
+          Search
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class='region-search-main-wrapper'>
+  <div class='region-search-main'>
+    {{search-options-menu}}
+    {{outlet}}
+  </div>
+</div>

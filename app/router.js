@@ -35,6 +35,13 @@ Router.map(function() {
   });
 
   this.route('event-search');
+
+  this.route('user', function() {
+    this.route('change-location', function() {
+      this.route('results', { path: '/:region_name/results' } );
+      this.route('confirm');
+    });
+  });
 });
 
 export default Router;

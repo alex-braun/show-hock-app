@@ -1,27 +1,23 @@
 import Ember from 'ember';
 
-const { computed } = Ember;
-
 export default Ember.Route.extend({
 
-  // regionId: null,
+  regionName: null,
+  regionId: null,
   randArray: null,
-  geoLocation: Ember.inject.service(),
+  userLocationSetting: Ember.inject.service(),
+
 
   beforeModel() {
     this._super(...arguments);
-    let clientIp = this.get('geoLocation').clientIp;
-      if (clientIp === null || clientIp === undefined) {
-        return this.get('geoLocation').getIp()
-        .then(() =>
-        this.get('geoLocation').getRegion(this.get('geoLocation').clientIp));
-      } else {
-        return this.get('geoLocation').getRegion(clientIp);
-      }
+    return this.get('userLocationSetting').getRegion().then(() => {
+      return this.set('regionName',this.get('userLocationSetting').regionName),
+      this.set('regionId', this.get('userLocationSetting').regionId);
+    });
   },
 
   model() {
-    let regionId = this.get('geoLocation').regionId;
+    let regionId = this.get('regionId');
     return this.get('store').findRecord('region', regionId, { adapterOptions: { page: 1 }
     })
     .then((result) => {

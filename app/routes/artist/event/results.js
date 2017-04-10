@@ -2,7 +2,8 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
 
-  geoLocation: Ember.inject.service(),
+  // geoLocation: Ember.inject.service(),
+  userLocationSetting: Ember.inject.service(),
   accessArtistName: Ember.inject.service(),
   count: Ember.inject.service('access-artist-show-count'),
   artistEventParams: null,
@@ -17,17 +18,13 @@ export default Ember.Route.extend({
     this._super(...arguments);
     this.get('accessArtistName').add(param.params['artist.event']);
     this.set('artistEventParams', param.params['artist.event']);
-    let getGeo;
-    let ip = this.get('geoLocation').clientIp;
-    if (ip === null || ip === undefined) {
-      getGeo = this.get('geoLocation').getIp();
-    }
-    return getGeo;
+
+    this.get('userLocationSetting').getRegion();
   },
 
   model (params) {
     let allParams = {
-      location: this.get('geoLocation').clientIp,
+      location: this.get('userLocationSetting').regionId,
       artistName: this.get('artistEventParams').artist_name,
       artistId: this.get('artistEventParams').artist_id
     };
