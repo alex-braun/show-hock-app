@@ -4,7 +4,7 @@ export default Ember.Component.extend({
   classNames: ['upcoming-region-events'],
   buttonTitle: 'See More Shows',
 
-  geoLocation: Ember.inject.service(),
+  userLocationSetting: Ember.inject.service(),
 
   filteredResults: Ember.computed('model.event', function() {
     let result = this.get('model.event');
@@ -22,6 +22,10 @@ export default Ember.Component.extend({
   actions: {
     getRegionShows(id) {
       this.sendAction('getRegionShows', id);
+    },
+
+    userChooseRegion() {
+      this.sendAction('userChooseRegion');
     }
   }
 });

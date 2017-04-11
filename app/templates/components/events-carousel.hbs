@@ -1,4 +1,8 @@
+{{log sortedEvents}}
 <div id="carousel-inner-generic" class="carousel slide" data-ride="carousel">
+  <div class='carousel-inner-title'>
+    <h3>POPULAR in {{upper-case userLocationSetting.regionName}}</h3>
+  </div>
   <!-- Indicators -->
   <ol class="carousel-indicators">
     <li data-target="#carousel-inner-generic" data-slide-to="0" class="active"></li>
@@ -14,7 +18,7 @@
         <img src={{sortedEvents.0.performance.0.artist.imageUrl}} alt={{sortedEvents.0.performance.0.artist.displayName}} class='headliner image'>
       </figure>
       <div class="carousel-caption inner">
-          <p class='caption'>{{no-parens sortedEvents.0.displayName}}</p>
+          <p class='caption'><strong>{{no-parens sortedEvents.0.displayName}}</strong></p>
         <p class='caption'>{{format-mon sortedEvents.0.start.date}} {{format-day sortedEvents.0.start.date}}, {{format-year sortedEvents.0.start.date}}</p>
       </div>
     </div>
@@ -25,6 +29,7 @@
       </figure>
       <div class="carousel-caption inner">
           <p class='caption'>{{no-parens sortedEvents.1.displayName}}</p>
+          <p class='caption'>{{format-mon sortedEvents.0.start.date}} {{format-day sortedEvents.0.start.date}}, {{format-year sortedEvents.0.start.date}}</p>
       </div>
     </div>
 
@@ -34,6 +39,7 @@
       </figure>
       <div class="carousel-caption inner">
           <p class='caption'>{{no-parens sortedEvents.2.displayName}}</p>
+          <p class='caption'>{{format-mon sortedEvents.0.start.date}} {{format-day sortedEvents.0.start.date}}, {{format-year sortedEvents.0.start.date}}</p>
       </div>
     </div>
 
@@ -43,6 +49,7 @@
       </figure>
       <div class="carousel-caption inner">
           <p class='caption'>{{no-parens sortedEvents.3.displayName}}</p>
+          <p class='caption'>{{format-mon sortedEvents.0.start.date}} {{format-day sortedEvents.0.start.date}}, {{format-year sortedEvents.0.start.date}}</p>
       </div>
     </div>
 
@@ -52,6 +59,7 @@
       </figure>
       <div class="carousel-caption inner">
           <p class='caption'>{{no-parens sortedEvents.4.displayName}}</p>
+          <p class='caption'>{{format-mon sortedEvents.0.start.date}} {{format-day sortedEvents.0.start.date}}, {{format-year sortedEvents.0.start.date}}</p>
       </div>
     </div>
   </div>

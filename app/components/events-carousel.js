@@ -3,6 +3,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   classNames:['events-carousel'],
 
+  userLocationSetting: Ember.inject.service(),
   slideFrom: 0,
   slideTo: 0,
   slideClick: false,

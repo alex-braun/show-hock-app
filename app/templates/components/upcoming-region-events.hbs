@@ -1,5 +1,7 @@
 <div class='upcoming-region-events-head'>
-  <h3>{{upper-case model.meta.total_entries}} SHOWS NEAR {{upper-case geoLocation.regionName}}</h3>
+  <h3>{{upper-case model.meta.total_entries}} SHOWS NEAR {{upper-case userLocationSetting.regionName}}</h3>
+  {{change-location userChooseRegion='userChooseRegion'}}
+
 </div>
 
 <div class='upcoming-region-events-list-wrapper'>

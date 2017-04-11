@@ -59,6 +59,10 @@ export default Ember.Route.extend({
     getRegionShows(val) {
       console.log(val);
       this.transitionTo('region.event.results', val);
+    },
+
+    userChooseRegion() {
+      this.transitionTo('user.change-location');
     }
   }
 });

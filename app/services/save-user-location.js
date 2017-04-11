@@ -14,7 +14,6 @@ export default Ember.Service.extend({
       return this.set('regionSelectName', null),
              this.set('regionSelectId', null);
     } else {
-      console.log(cookies);
       return this.set('regionSelectName', cookies.loc),
              this.set('regionSelectId', cookies.region_id);
     }
@@ -26,7 +25,6 @@ export default Ember.Service.extend({
       cookieService.write('loc', region);
       cookieService.write('region_id', id);
       let cookies = cookieService.read();
-      console.log(cookies);
         return this.set('regionSelectName', cookies.loc),
         this.set('regionSelectId', cookies.region_id);
   },
