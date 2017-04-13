@@ -1,5 +1,88 @@
 //main artist view
 
+/*ARTIST SEARCH SECTION*/
+
+.popular-artists-wrapper {
+
+  .artist-search-wrapper {
+    overflow: hidden;
+  }
+
+  li.popular-artists-item {
+    width: 20%;
+    float: left;
+  }
+}
+
+.artist-search-wrapper {
+  overflow: hidden;
+}
+
+.artist-search-main-wrapper {
+  padding: 45px;
+  position: relative;
+  width: 100%;
+}
+
+.artist-search-main {
+  position: relative;
+  margin: 0 auto;
+  max-width: 1080px;
+  overflow-y: hidden;
+  min-height: 700px;
+
+  ul {
+    padding: 0;
+  }
+}
+
+.artist-search-main-listing {
+  width: 80%;
+  float: right;
+}
+
+.artist-search-header-wrapper {
+  overflow: hidden;
+  // padding: 15px;
+  position: relative;
+  width: 100%;
+  margin: 0;
+}
+
+.artist-search-header {
+  margin: 0 auto;
+  max-width: 1080px;
+  overflow: hidden;
+}
+
+.artist-search-header-info {
+  background-color: #191919;
+  margin: 0 auto;
+  padding: 5px 0 5px 10px;
+  position: relative;
+
+  h1 {
+    color: #fff;
+    margin-bottom: 15px;
+    margin-top: 0;
+  }
+
+  h4 {
+    color: #fff;
+  }
+}
+
+.region-results-wrapper {
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px dashed #2336b2;
+  overflow: hidden;
+
+  .band-thumb-wrapper {
+    float: left;
+  }
+}
+
 //ARTIST INTRO INFO SECTION (NAME, PICTURE, ON TOUR UNTIL)
 .artist-info-section {
   overflow: hidden;
@@ -229,7 +312,7 @@
   }
 }
 
-.similar-artists-wrapper {
+.results-sidebar-wrapper {
   border-left: 1px dashed #2336b2;
   display: block;
   float: right;
@@ -355,7 +438,7 @@
 @media (max-width: 1130px) {
 
   .artist-info-section {
-    width: 1130px;
+    // width: 1130px;
   }
 
   .artist-info-wrapper {
@@ -397,6 +480,13 @@
     -webkit-transform: translate(-50%,-25%);
     -ms-transform: translate(-50%,-25%);
     transform: translate(-50%,-40%);
+    }
+  }
+
+  .artist-info-section {
+    img.headliner {
+        height: 250px;
+        width: 250px;
     }
   }
 }
@@ -444,7 +534,7 @@
     min-width: 0;
   }
 
-  .similar-artists-wrapper {
+  .results-sidebar-wrapper {
     width: 100vw;
     padding-right: 50px;
     border: none;

@@ -3,6 +3,6 @@ export default function () {
     this.fromRoute('artist.search'),
     this.toRoute('artist.event'),
     this.use('fade'),
-    this.debug()
+    // this.debug()
   );
 }
