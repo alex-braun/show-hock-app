@@ -1,22 +1,42 @@
-<div class='region-search-header-wrapper'>
-  <div class='region-search-header'>
-    <h1>Region Results</h1>
-    <div class='region-search-header-info'>
-      <div class='search-input-page-wrapper'>
-        {{search-input keyword=entered}}
-        {{!-- {{#link-to 'region.search.results' (query-params search=entered)}} --}}
-          <button type="submit" class="btn btn-success">
-            Search
-          </button>
-          {{!-- {{/link-to}} --}}
-      </div>
+<div class='region-info-section'>
+  <figure class='region-background-wrapper'></figure>
+{{log model.matchReg.firstObject.id}}
+  <div class='region-info-wrapper'>
+    <figure class="region-thumb-wrapper">
+      <img class="headliner image" src='{{model.matchReg.firstObject.metroArea.googleMapHDUrl}}' alt='{{model.venue.displayName}}'/>
+    </figure>
+
+    <div class='region-info'>
+      <h1>{{model.matchReg.firstObject.metroArea.displayName}}</h1>
+
+      {{#if model.matchReg.firstObject.metroArea.state.displayName}}
+
+        <h4>{{model.matchReg.firstObject.metroArea.state.displayName}}, {{model.matchReg.firstObject.metroArea.country.displayName}}</h4>
+
+      {{else}}
+
+        <h4>{{model.matchReg.firstObject.metroArea.country.displayName}}</h4>
+
+      {{/if}}
+        <h4>{{model.venue.phone}}</h4>
+        <h4>
+          <a href={{model.venue.website}} target='_blank'>{{model.venue.website}}</a>
+        </h4>
+
+      {{#if model.region.meta.total_entries}}
+        <h4>Upcoming Events in {{model.matchReg.firstObject.metroArea.displayName}}: {{model.region.meta.total_entries}}</h4>
+      {{else}}
+        <h4>Upcoming Events in {{model.matchReg.firstObject.metroArea.displayName}}: None</h4>
+      {{/if}}
+
     </div>
   </div>
 </div>
 
-<div class='region-search-main-wrapper'>
-  <div class='region-search-main'>
-    {{search-options-menu}}
+<div class='region-event-section'>
+  <div class='region-event-wrapper'>
     {{outlet}}
+      {{nearby-regions locations=model.loc
+                       currLoc=model.matchReg.firstObject.id}}
   </div>
 </div>

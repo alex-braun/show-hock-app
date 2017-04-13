@@ -35,8 +35,8 @@ export default Ember.Route.extend({
     })
 
     .then((result) => {
-      console.log(result);
-      return this.get('store').findRecord('region', result.venue.get('metroArea').id, { adapterOptions: { page: 1 }
+      return this.get('store').findRecord('region', result.venue.get('metroArea').id, { adapterOptions: { page: 1,
+                        per_page: 50 }
       })
       .then((region) => {
         let meta = region.get('meta');

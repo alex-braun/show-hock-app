@@ -1,6 +1,29 @@
-<div class='region-search-detail'>
+<div class='region-results-wrapper'>
 
 {{artist-date event=event}}
+
+<ul class='region-event-ul'>
+<li class='event'>
+  {{#if (eq event.type 'Festival') }}
+  {{!-- {{#link-to 'event' (query-params getId=regionSelect.metroArea.id page='1' location=regionSelect.metroArea.displayName)}} --}}
+    <h4><strong>{{event.displayName}}</strong></h4>
+    {{!-- {{/link-to}} --}}
+  {{else}}
+    {{artist-list event=event}}
+  {{/if}}
+
+  {{#if (eq event.venue.displayName 'Unknown venue') }}
+    <h4>{{event.location.city}}</h4>
+  {{else}}
+    <h4>{{event.venue.displayName}}, {{event.location.city}}</h4>
+  {{/if}}
+
+  {{#if event.start.time}}
+  <h6>{{format-time event.start.time}}</h6>
+  {{/if}}
+  </li>
+</ul>
+
 
 <div class='region-band-thumbs'>
 {{#if (eq event.type 'Festival') }}
@@ -25,27 +48,8 @@
 {{/if}}
 </div>
 
-<ul class='region-event-ul'>
-<li class='event'>
-  {{#if (eq event.type 'Festival') }}
-  {{!-- {{#link-to 'event' (query-params getId=regionSelect.metroArea.id page='1' location=regionSelect.metroArea.displayName)}} --}}
-    <h4><strong>{{event.displayName}}</strong></h4>
-    {{!-- {{/link-to}} --}}
-  {{else}}
-    {{artist-list event=event}}
-  {{/if}}
+{{button-to-concert buttonTitle='Details'}}
 
-  {{#if (eq event.venue.displayName 'Unknown venue') }}
-    <h4>{{event.location.city}}</h4>
-  {{else}}
-    <h4>{{event.venue.displayName}}, {{event.location.city}}</h4>
-  {{/if}}
-
-  {{#if event.start.time}}
-  <h6>{{format-time event.start.time}}</h6>
-  {{/if}}
-  </li>
-</ul>
 
 {{#if (eq event.type 'Festival') }}
 

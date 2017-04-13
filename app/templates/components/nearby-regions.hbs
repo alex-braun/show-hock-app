@@ -1,0 +1,33 @@
+<h3 class='title'>Nearby Regions</h3>
+<ul class='nearby-regions-list'>
+  {{#each ordered as |location index|}}
+
+{{!-- location.state[index] !== location.state[index-1] --}}
+
+{{#if location.state}}
+
+  {{#if (prev-curr ordered index) }}
+    <h3>{{location.state}}</h3>
+  {{/if}}
+
+{{else}}
+
+  {{#if (prev-curr ordered index) }}
+    <h3>{{location.country}}</h3>
+  {{/if}}
+
+{{/if}}
+
+    <li class='nearby-regions-item'>
+
+      <h5>{{location.metroArea.displayName}}</h5>
+
+      {{!-- {{#if location.metroArea.state}}
+        <h5>{{location.metroArea.state.displayName}}, {{location.metroArea.country.displayName}}</h5>
+      {{else}}
+        <h5>{{location.metroArea.country.displayName}}</h5> --}}
+      {{!-- {{/if}} --}}
+
+    </li>
+  {{/each}}
+</ul>

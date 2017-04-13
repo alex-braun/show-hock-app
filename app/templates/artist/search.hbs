@@ -1,4 +1,21 @@
-<h1>Artist Search</h1>
-<h3>Results</h3>
+{{!-- <div class='region-search-header-wrapper'>
+  <div class='region-search-header'>
+    <div class='region-search-header-info'>
+      <h3>Search by Artist</h3>
+      <div class='search-input-page-wrapper'>
+        {{search-input keyword=entered}}
+          <button type="submit" class="btn btn-success">
+            Search
+          </button>
+      </div>
+    </div>
+  </div>
+</div> --}}
 
-{{outlet}}
+
+<div class='artist-search-main-wrapper'>
+  <div class='artist-search-main'>
+    {{search-options-menu}}
+    {{outlet}}
+  </div>
+</div>

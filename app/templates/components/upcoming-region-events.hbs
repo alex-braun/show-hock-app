@@ -4,13 +4,16 @@
 
 </div>
 
-<div class='upcoming-region-events-list-wrapper'>
+<ul class='upcoming-region-events-list-wrapper'>
+
   {{#each filteredResults as |event|}}
-    <h4><strong>{{no-parens event.displayName}}</strong></h4>
-    <p>{{format-mon event.start.date}} {{format-day event.start.date}}, {{format-year event.start.date}}</p>
+    <li class='upcoming-region-event item'>
+      <h4><strong>{{no-parens event.displayName}}</strong></h4>
+      <p>{{format-mon event.start.date}} {{format-day event.start.date}}, {{format-year event.start.date}}</p>
+    </li>
   {{/each}}
 
-</div>
+</ul>
 
 {{button-to-concert buttonTitle=buttonTitle
                     buttonClick='getRegionShows'

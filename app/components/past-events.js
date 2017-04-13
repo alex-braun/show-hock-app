@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  classNames: ['similar-artists-wrapper'],
+  classNames: ['results-sidebar-wrapper'],
 
   filteredResults: Ember.computed('model.event', function() {
     let result = this.get('model.event');

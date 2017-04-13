@@ -1,0 +1,35 @@
+
+<div class='artist-search-main-listing'>
+
+  <div class='artist-search-header-wrapper'>
+    <div class='artist-search-header'>
+      <div class='artist-search-header-info'>
+        <h3>Search by Artist</h3>
+        <div class='search-input-page-wrapper'>
+          {{search-input keyword=entered}}
+          {{!-- {{#link-to 'region.search.results' (query-params search=entered)}} --}}
+            <button type="submit" class="btn btn-success">
+              Search
+            </button>
+            {{!-- {{/link-to}} --}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {{popular-artists events=model.event}}
+</div>
+
+{{!-- <div class='region-search-main-listing'>
+
+<ul class="event-listings row-fluid block-grid-3">
+  {{#each model.event as |event|}}
+        {{region-detail event=event}}
+  {{/each}}
+</ul>
+</div>
+
+{{pagination-bar pages=model.meta
+                newPage='changeRegionPage'
+                previousPage='previousPage'
+                nextPage='nextPage'}} --}}

@@ -6,6 +6,7 @@ export default Ember.Route.extend({
   regionId: null,
   randArray: null,
   userLocationSetting: Ember.inject.service(),
+  geoLocation: Ember.inject.service(),
 
 
   beforeModel() {
@@ -16,53 +17,45 @@ export default Ember.Route.extend({
     });
   },
 
+
   model() {
     let regionId = this.get('regionId');
-    return this.get('store').findRecord('region', regionId, { adapterOptions: { page: 1 }
+    return this.get('store').findRecord('region', regionId, { adapterOptions: { page: 1,
+                      per_page: 100 }
     })
     .then((result) => {
-      // let mostPop = result.data.event.sortBy('popularity').reverse();
-      // let mostPop = result.sortBy('popularity').reverse();
-      // console.log(mostPop);
       let meta = result.get('meta');
       return meta, result;
     });
   },
 
-
-
-//   similar: this.get('store').findRecord('similar-artist', param.artist_id)
-//   .then((result) => {
-//     let arr = [];
-//     for (let i = 0; i < 10; i++) {
-//       arr.push([i]);
-//     }
-//        let selection = result.data.artist.objectsAt(arr);
-//        selection = selection.filter((element) => {
-//          return element !== undefined;
-//        });
-//        return selection;
-//   }),
-// });
   setupController(controller, model) {
     controller.set('model', model);
   },
-  // afterModel(model) {
-  //   let len = model.data.event.length;
-  //   let randArray = [];
-  //   for (let i = 0; i < 4; i++) {
-  //     randArray.push(Math.floor(Math.random()*(len-0)));
-  //   }
-  //   return this.set('randArray', randArray);
-  // }
+
   actions: {
     getRegionShows(val) {
-      console.log(val);
       this.transitionTo('region.event.results', val);
     },
 
     userChooseRegion() {
       this.transitionTo('user.change-location');
+    },
+
+    goToRegions() {
+      this.transitionTo('region.search');
+    },
+
+    goToArtists() {
+      this.transitionTo('artist.search.popular',
+        { queryParams: {
+          page: 1,
+        }
+      });
+    },
+
+    goToVenues() {
+      this.transitionTo('venue.search');
     }
   }
 });

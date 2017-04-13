@@ -1,13 +1,26 @@
-{{!-- {{search-title title=model.meta.location}} --}}
-<div class='region-search-main-listing'>
+{{!-- <div class='region-search-main-listing'>
 
 <ul class="event-listings row-fluid block-grid-3">
   {{#each model.event as |event|}}
-    {{!-- <li class='region-detail-list'> --}}
-      {{!-- <div class='region-detail col-xs-10'> --}}
+
         {{region-detail event=event}}
-      {{!-- </div> --}}
-    {{!-- </li> --}}
+
+  {{/each}}
+</ul>
+</div>
+
+{{pagination-bar pages=model.meta
+                newPage='changeRegionPage'
+                previousPage='previousPage'
+                nextPage='nextPage'}} --}}
+
+<div class='region-event-listing'>
+
+<ul class="event-listings row-fluid block-grid-3">
+  {{#each model.event as |event|}}
+
+        {{region-detail event=event}}
+
   {{/each}}
 </ul>
 </div>
@@ -16,3 +29,20 @@
                 newPage='changeRegionPage'
                 previousPage='previousPage'
                 nextPage='nextPage'}}
+
+{{!-- <div class='venue-event-listing'>
+
+<ul class="event-listings row-fluid block-grid-3">
+  {{#each model.event as |event|}}
+
+        {{venue-detail event=event
+                      goToConcert='goToConcert'}}
+
+  {{/each}}
+</ul>
+</div>
+
+{{pagination-bar pages=model.meta
+                newPage='changeRegionPage'
+                previousPage='previousPage'
+                nextPage='nextPage'}} --}}

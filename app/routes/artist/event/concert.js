@@ -7,14 +7,12 @@ export default Ember.Route.extend({
     return this.get('store').findRecord('concert', param.concert_id)
 
     .then((result) => {
-      console.log(result.get('venue').id);
 
       if (result.get('venue').id) {
 
         return this.get('store').findRecord('venue-calendar', result.get('venue').id, { adapterOptions: { page: 1 }})
 
         .then((calendar) => {
-
           let meta = calendar.get('meta');
           result.set('calendar', calendar);
           return meta, result;

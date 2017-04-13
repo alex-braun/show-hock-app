@@ -1,16 +1,26 @@
-<h1>Search Menu</h1>
+<h1>Menu</h1>
 <ul>
-  {{#link-to 'artist.search'}}
-  <li>Artists</li>
+
+  {{#link-to 'artist.search.popular'}}
+  <li>
+    {{svg-jar "singer" width='43.5px' height='43.5px'}}
+    {{svg-jar "guitar-player" width='43.5px' height='43.5px'}}
+    <h4>Artists</h4>
+  </li>
   {{/link-to}}
+
   {{#link-to 'region.search'}}
-  <li>Regions</li>
+  <li>
+    {{svg-jar "earth-music" width='43.5px' height='43.5px'}}
+    <h4>Regions</h4>
+  </li>
   {{/link-to}}
-  {{!-- {{#link-to 'concert.search'}} --}}
-  <li>Upcoming Events</li>
-  {{!-- {{/link-to}} --}}
-  {{!-- {{#link-to 'venue.search'}} --}}
-  <li>Venues</li>
-  {{!-- {{/link-to}} --}}
+
+  {{#link-to 'venue.search'}}
+  <li>
+    {{svg-jar "music-tent" width='76.5px' height="43.51px" viewBox="0 59 277.982 158.1"}}
+    <h4>Venues</h4>
+  </li>
+  {{/link-to}}
 
 </ul>

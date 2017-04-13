@@ -21,8 +21,9 @@ export default Ember.Route.extend({
       }
     },
 
-    goToRegion(id) {
+    goToRegion(name, id) {
       this.transitionTo('region.event.results',
+          name,
           id,
           { queryParams: {
             page: 1,
