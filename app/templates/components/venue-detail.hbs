@@ -2,29 +2,6 @@
 
 {{artist-date event=event}}
 
-<div class='region-band-thumbs'>
-{{#if (eq event.type 'Festival') }}
-
-  <figure class="band-thumb-wrapper">
-    <img class="headliner image" src="{{event.imageUrl}}"/>
-    <figcaption class="image-caption-text">{{event.displayName}}</figcaption>
-  </figure>
-
-
-{{else}}
-  {{#each event.performance as |performance|}}
-    {{!-- {{#if (lt performance.billingIndex 4)}} --}}
-
-      <figure class="band-thumb-wrapper">
-        <img class="headliner image" src="{{performance.artist.imageUrl}}"/>
-        <figcaption class="image-caption-text">{{performance.artist.displayName}}</figcaption>
-      </figure>
-
-  {{/each}}
-
-{{/if}}
-</div>
-
 <ul class='region-event-ul'>
 <li class='event'>
   {{#if (eq event.type 'Festival') }}
@@ -55,6 +32,29 @@
 {{list-every-artist event=event}}
 
 {{/if}}
+
+<div class='region-band-thumbs'>
+{{#if (eq event.type 'Festival') }}
+
+  <figure class="band-thumb-wrapper">
+    <img class="headliner image" src="{{event.imageUrl}}"/>
+    <figcaption class="image-caption-text">{{event.displayName}}</figcaption>
+  </figure>
+
+
+{{else}}
+  {{#each event.performance as |performance|}}
+    {{!-- {{#if (lt performance.billingIndex 4)}} --}}
+
+      <figure class="band-thumb-wrapper">
+        <img class="headliner image" src="{{performance.artist.imageUrl}}"/>
+        <figcaption class="image-caption-text">{{performance.artist.displayName}}</figcaption>
+      </figure>
+
+  {{/each}}
+
+{{/if}}
+</div>
 
 {{button-to-concert value=event.id
                     buttonClick='goToConcert'

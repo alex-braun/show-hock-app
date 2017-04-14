@@ -13,7 +13,7 @@
   {{#each model.search.artist as |basic| }}
     {{#if (eq basic.displayName model.search.meta.artist) }}
     <figure class="region-thumb-wrapper">
-      <img class="headliner image" src='{{basic.imageUrl}}' alt='{{basic.displayName}}'/>
+      <img class="headliner artist image" src='{{basic.imageUrl}}' alt='{{basic.displayName}}'/>
         {{#if basic.onTourUntil}}
           <figcaption class="on-tour-caption-text"><span class='tour-tag'>ON TOUR</span>
           </figcaption>

@@ -497,31 +497,42 @@ ul.nearby-regions-list {
 @media(max-width: 992px) {
 
   ul.region-event-ul {
-    width: 300px;
+    width: 290px;
   }
 
   .region-info {
-    margin-right: 140px;
+    margin-right: 170px;
   }
 
   .region-thumb-wrapper {
+    .headliner.region, .headliner.venue {
+      height: 170px;
+      width: 170px;
+    }
 
-    .headliner {
-      height: 140px;
-      width: 140px;
+    .headliner.artist {
+      height: 230px;
+      width: 230px;
     }
   }
 
   div.results-sidebar-wrapper {
-    width: 142px;
+    width: 172px;
   }
 
+  div.results-sidebar-wrapper.artist {
+    width: 232px;
+  }
   .region-event-listing, nav.pagination-wrapper {
-    padding-right: 152px;
+    padding-right: 182px;
   }
 
   .region-band-thumbs {
-    max-width: 282px;
+    max-width: 267px;
+
+    .band-thumb-wrapper {
+      margin: 2.5px;
+    }
 
     .headliner {
       height: 84px;
@@ -548,6 +559,11 @@ ul.nearby-regions-list {
     position: relative;
   }
 
+  div.results-sidebar-wrapper.artist {
+    width: 100%;
+    position: relative;
+  }
+
   ul.region-event-ul {
     width: 300px;
 
@@ -558,6 +574,28 @@ ul.nearby-regions-list {
 
   .region-event-listing, nav.pagination-wrapper {
     padding-right: 0;
+  }
+
+  .region-thumb-wrapper {
+
+    .headliner.artist {
+      height: 170px;
+      width: 170px;
+    }
+  }
+
+  .region-info {
+    h1 {
+      font-size: 28px;
+    }
+
+    h4 {
+      font-size: 16px;
+
+      a {
+        font-size: 14px;
+      }
+    }
   }
 
   .region-band-thumbs {
@@ -588,9 +626,27 @@ ul.nearby-regions-list {
 }
 
 @media(max-width: 480px) {
-  // .region-event-listing {
-  //   padding-right: 0;
-  // }
+
+  .region-info-wrapper {
+    min-height: 256px;
+  }
+
+  .region-info {
+    min-height: 172px;
+    margin-right: 0;
+
+    h1 {
+      font-size: 24px;
+    }
+
+    h4 {
+      font-size: 15px;
+
+      a {
+        font-size: 13px;
+      }
+    }
+  }
 
   .region-band-thumbs {
     max-width: 480px;
@@ -601,6 +657,24 @@ ul.nearby-regions-list {
     .headliner {
       height: 86px;
       width: 86px;
+    }
+  }
+}
+
+@media(max-width: 360px) {
+
+  .region-info {
+
+    h1 {
+      font-size: 22px;
+    }
+  }
+
+  .region-thumb-wrapper {
+
+    .headliner.venue,.headliner.artist,.headliner.region {
+      height: 140px;
+      width: 140px;
     }
   }
 }

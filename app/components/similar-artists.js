@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  classNames: ['results-sidebar-wrapper nearby-regions'],
+  classNames: ['results-sidebar-wrapper artist nearby-regions'],
 
   actions: {
     goToArtist(name, id) {
