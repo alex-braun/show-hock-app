@@ -11,7 +11,7 @@
         </ul>
       </div>
   {{else}} --}}
-    <div class='artist-event-listing'>
+  <div class='region-event-listing'>
       {{#if model.artist.event.firstObject.noMatch}}
         <h3>No upcoming concerts found for  <strong>{{name.name.artist_name}}</strong></h3>
 
@@ -19,11 +19,11 @@
         <h3><strong>Upcoming Concerts</strong></h3>
         <ul class="event-listings row-fluid block-grid-3">
           {{#each model.artist.event as |event|}}
-            <li class='artist-detail-list'>
+
               {{artist-detail event=event
                               goToConcert='goToConcert'
                               }}
-            </li>
+
           {{/each}}
         </ul>
       {{/if}}

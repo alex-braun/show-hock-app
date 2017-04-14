@@ -1,10 +1,44 @@
+<div class='region-results-wrapper'>
 
 {{#if event.noMatch}}
   <h4 class='artist-list'>No upcoming events found for  <strong>{{event.performance.displayName}}</strong></h4>
+
 {{else}}
 
 {{artist-date event=event}}
-<li class='artist-event'>
+
+<ul class='region-event-ul'>
+  <li class='event'>
+
+    {{#if (eq event.type 'Festival') }}
+
+      <h4 class='artist-list'>
+        <strong><a href='javascript:;'
+          {{action 'goToConcert' event.id}}>
+          {{event.displayName}}</a></strong>
+      </h4>
+
+      {{else}}
+        {{artist-list event=event
+                      value=event.id
+                      goToConcert='goToConcert'}}
+      {{/if}}
+
+      {{#if (eq event.venue.displayName 'Unknown venue') }}
+        <h4>{{event.location.city}}</h4>
+      {{else}}
+        <h4>{{event.venue.displayName}}, {{event.location.city}}</h4>
+      {{/if}}
+
+      {{#if event.start.time}}
+      <h6>{{format-time event.start.time}}</h6>
+      {{/if}}
+
+  </li>
+</ul>
+
+
+{{!-- <li class='artist-event'>
 
   {{#if (eq event.type 'Festival') }}
 
@@ -13,51 +47,30 @@
         {{action 'goToConcert' event.id}}>
         {{event.displayName}}</a></strong>
     </h4>
-    {{!-- {{#link-to 'artist.event.concert' concert}} --}}
 
     {{button-to-concert value=event.id
                         buttonClick='goToConcert'
-                        buttonTitle=buttonTitle}}
+                        buttonTitle=buttonTitle}} --}}
 
-    {{!-- {{yield (hash child=(component 'button-to-concert' onaction=(action 'parentAction') ) ) }} --}}
-  {{else}}
+
+  {{!-- {{else}}
     {{artist-list event=event
                   value=event.id
-                  goToConcert='goToConcert'}}
-    {{!-- {{#each event.performance as |performance|}}
-      {{#if (eq event.performance.length 1) }}
+                  goToConcert='goToConcert'}} --}}
 
-        <h4 class='artist-list'><strong>{{performance.artist.displayName}}</strong></h4>
-
-      {{else if (eq performance.billingIndex event.performance.length) }}
-        {{#if (gt event.performance.length 1) }}
-          <h4 class='artist-list'><strong>and {{performance.artist.displayName}}</strong></h4>
-        {{/if}}
-      {{else}}
-        <h4 class='artist-list'><strong>{{performance.artist.displayName}}, </strong></h4>
-      {{/if}}
-    {{/each}} --}}
 
     {{button-to-concert value=event.id
                         buttonClick='goToConcert'
                         buttonTitle=buttonTitle}}
 
-  {{/if}}
+  {{!-- {{/if}} --}}
 
-  {{!-- {{#if (eq event.type 'Festival') }}
-    <div class='artist-grid-wrapper'>
-      <ui class='row-fluid artist-grid block-grid-3'>
-      {{#each event.performance as |performance|}}
-        <li>{{performance.artist.displayName}}</li>
-      {{/each}}
-      </ui>
-    </div>
-  {{/if}} --}}
 
-  {{#if (eq event.venue.displayName 'Unknown venue') }}
+  {{!-- {{#if (eq event.venue.displayName 'Unknown venue') }}
     <h4>{{event.location.city}}</h4>
   {{else}}
     <h4>{{event.venue.displayName}}, {{event.location.city}}</h4>
-  {{/if}}
-  </li>
+  {{/if}} --}}
+  {{!-- </li> --}}
 {{/if}}
+</div>

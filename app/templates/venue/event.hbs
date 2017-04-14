@@ -1,12 +1,12 @@
-<div class='venue-info-section'>
-  <figure class='venue-background-wrapper'></figure>
+<div class='region-info-section'>
+  <figure class='region-background-wrapper'></figure>
 
-  <div class='venue-info-wrapper'>
-    <figure class="venue-thumb-wrapper">
+  <div class='region-info-wrapper'>
+    <figure class="region-thumb-wrapper">
       <img class="headliner image" src='{{model.venue.imageUrl}}' alt='{{model.venue.displayName}}'/>
     </figure>
 
-    <div class='venue-info'>
+    <div class='region-info'>
       <h1>{{model.venue.displayName}}</h1>
 
       {{#if model.venue.street}}
@@ -40,8 +40,8 @@
   </div>
 </div>
 
-<div class='venue-event-section'>
-  <div class='venue-event-wrapper'>
+<div class='region-event-section'>
+  <div class='region-event-wrapper'>
     {{outlet}}
       {{past-events model=model.region}}
   </div>

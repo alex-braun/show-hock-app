@@ -1,4 +1,4 @@
-<div class='upcoming-region-events-head'>
+<div class='upcoming-region-events-header'>
   <h3>{{upper-case model.meta.total_entries}} SHOWS NEAR {{upper-case userLocationSetting.regionName}}</h3>
   {{change-location userChooseRegion='userChooseRegion'}}
 
@@ -15,6 +15,8 @@
 
 </ul>
 
+{{#if (gt model.meta.total_entries 5 ) }}
 {{button-to-concert buttonTitle=buttonTitle
                     buttonClick='getRegionShows'
                     value=model.id}}
+{{/if}}

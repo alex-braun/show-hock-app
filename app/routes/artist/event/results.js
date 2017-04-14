@@ -19,7 +19,12 @@ export default Ember.Route.extend({
     this.get('accessArtistName').add(param.params['artist.event']);
     this.set('artistEventParams', param.params['artist.event']);
 
-    this.get('userLocationSetting').getRegion();
+    // this.get('userLocationSetting').getRegion();
+
+    return this.get('userLocationSetting').getRegion().then(() => {
+      return this.set('regionName',this.get('userLocationSetting').regionName),
+      this.set('regionId', this.get('userLocationSetting').regionId);
+    });
   },
 
   model (params) {

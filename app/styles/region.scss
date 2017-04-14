@@ -163,58 +163,58 @@ ul.region-event-ul {
   margin: 0;
 }
 
-.artist-background-wrapper {
-  height: 100%;
-  width: 100%;
+// .carousel-background-wrapper {
+//   height: 100%;
+//   width: 100%;
+//
+//   img {
+//     display: block;
+//     -webkit-transform: translate(-50%,-18%);
+//     -ms-transform: translate(-50%,-18%);
+//     transform: translate(-50%,-33%);
+//     -webkit-filter: blur(10px);
+//     -moz-filter: blur(10px);
+//     -o-filter: blur(10px);
+//     -ms-filter: blur(10px);
+//     filter: blur(10px);
+//     min-width: 106%;
+//     height: auto;
+//     z-index: 0;
+//     left: 50%;
+//     top: 50%;
+//     position: absolute;
+//   }
+//
+//   img:empty {
+//     background-color: #2336b2;
+//   }
+//
+//   .artist-background:empty {
+//     img {
+//       -webkit-filter: blur(0);
+//       -moz-filter: blur(0);
+//       -o-filter: blur(0);
+//       -ms-filter: blur(0);
+//       filter: blur(0);
+//       visibility: hidden;
+//     }
+//   }
+// }
 
-  img {
-    display: block;
-    -webkit-transform: translate(-50%,-18%);
-    -ms-transform: translate(-50%,-18%);
-    transform: translate(-50%,-33%);
-    -webkit-filter: blur(10px);
-    -moz-filter: blur(10px);
-    -o-filter: blur(10px);
-    -ms-filter: blur(10px);
-    filter: blur(10px);
-    min-width: 106%;
-    height: auto;
-    z-index: 0;
-    left: 50%;
-    top: 50%;
-    position: absolute;
-  }
-
-  img:empty {
-    background-color: #2336b2;
-  }
-
-  .artist-background:empty {
-    img {
-      -webkit-filter: blur(0);
-      -moz-filter: blur(0);
-      -o-filter: blur(0);
-      -ms-filter: blur(0);
-      filter: blur(0);
-      visibility: hidden;
-    }
-  }
-}
-
-.artist-background-wrapper::after {
-  -webkit-box-shadow: 5px 3px 32px 6px rgba(0,0,0,1) inset;
-  -moz-box-shadow: 5px 3px 32px 6px rgba(0,0,0,1) inset;
-  box-shadow: 0px 0px 15px 5px rgba(0,0,0,1) inset;
-  background: rgba(0, 0, 0, .1);
-  content: '';
-  display: block;
-  height: 100%;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 100%;
-  z-index: 0;
-}
+// .carousel-background-wrapper::after {
+//   -webkit-box-shadow: 5px 3px 32px 6px rgba(0,0,0,1) inset;
+//   -moz-box-shadow: 5px 3px 32px 6px rgba(0,0,0,1) inset;
+//   box-shadow: 0px 0px 15px 5px rgba(0,0,0,1) inset;
+//   background: rgba(0, 0, 0, .1);
+//   content: '';
+//   display: block;
+//   height: 100%;
+//   left: 0;
+//   position: absolute;
+//   top: 0;
+//   width: 100%;
+//   z-index: 0;
+// }
 
 .region-search-header {
   margin: 0 auto;
@@ -385,7 +385,7 @@ ul.region-event-ul {
   margin: 0 auto;
   padding: 5px 0 5px 10px;
   position: relative;
-  margin-right: 80px;
+  margin-right: 320px;
 
   h1 {
     color: #fff;
@@ -467,6 +467,10 @@ ul.nearby-regions-list {
     }
   }
 
+  .region-info {
+    margin-right: 250px;
+  }
+
   .region-band-thumbs {
     max-width: 348px;
 
@@ -481,11 +485,11 @@ ul.nearby-regions-list {
   }
 
 
-  .results-sidebar-wrapper.nearby-regions {
+  div.results-sidebar-wrapper {
     width: 252px;
   }
 
-  .region-event-listing {
+  .region-event-listing, nav.pagination-wrapper {
     padding-right: 265px;
   }
 }
@@ -496,6 +500,10 @@ ul.nearby-regions-list {
     width: 300px;
   }
 
+  .region-info {
+    margin-right: 140px;
+  }
+
   .region-thumb-wrapper {
 
     .headliner {
@@ -504,11 +512,11 @@ ul.nearby-regions-list {
     }
   }
 
-  .results-sidebar-wrapper.nearby-regions {
+  div.results-sidebar-wrapper {
     width: 142px;
   }
 
-  .region-event-listing {
+  .region-event-listing, nav.pagination-wrapper {
     padding-right: 152px;
   }
 
@@ -534,6 +542,12 @@ ul.nearby-regions-list {
 }
 
 @media(max-width: 768px) {
+
+  div.results-sidebar-wrapper {
+    width: 100%;
+    position: relative;
+  }
+
   ul.region-event-ul {
     width: 300px;
 
@@ -542,7 +556,7 @@ ul.nearby-regions-list {
     }
   }
 
-  .region-event-listing {
+  .region-event-listing, nav.pagination-wrapper {
     padding-right: 0;
   }
 
@@ -574,9 +588,9 @@ ul.nearby-regions-list {
 }
 
 @media(max-width: 480px) {
-  .region-event-listing {
-    padding-right: 0;
-  }
+  // .region-event-listing {
+  //   padding-right: 0;
+  // }
 
   .region-band-thumbs {
     max-width: 480px;

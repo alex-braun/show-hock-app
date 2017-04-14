@@ -4,14 +4,30 @@
   </div>
   <!-- Indicators -->
   <ol class="carousel-indicators">
-    <li data-target="#carousel-inner-generic" data-slide-to="0" class="active"></li>
-    <li data-target="#carousel-inner-generic" data-slide-to="1"></li>
-    <li data-target="#carousel-inner-generic" data-slide-to="2"></li>
-    <li data-target="#carousel-inner-generic" data-slide-to="3"></li>
-    <li data-target="#carousel-inner-generic" data-slide-to="4"></li>
+    {{#if sortedEvents.0.performance.0.artist.displayName}}
+      <li data-target="#carousel-inner-generic" data-slide-to="0" class="active"></li>
+    {{/if}}
+
+    {{#if sortedEvents.1.performance.0.artist.displayName}}
+      <li data-target="#carousel-inner-generic" data-slide-to="1"></li>
+    {{/if}}
+
+    {{#if sortedEvents.2.performance.0.artist.displayName}}
+      <li data-target="#carousel-inner-generic" data-slide-to="2"></li>
+    {{/if}}
+
+    {{#if sortedEvents.3.performance.0.artist.displayName}}
+      <li data-target="#carousel-inner-generic" data-slide-to="3"></li>
+    {{/if}}
+
+    {{#if sortedEvents.4.performance.0.artist.displayName}}
+      <li data-target="#carousel-inner-generic" data-slide-to="4"></li>
+    {{/if}}
   </ol>
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
+
+{{#if sortedEvents.0.performance.0.artist.displayName}}
     <div class="item active">
       <figure class='artist-thumb-wrapper'>
         <img src={{sortedEvents.0.performance.0.artist.imageUrl}} alt={{sortedEvents.0.performance.0.artist.displayName}} class='headliner image'>
@@ -21,6 +37,9 @@
         <p class='caption'>{{format-mon sortedEvents.0.start.date}} {{format-day sortedEvents.0.start.date}}, {{format-year sortedEvents.0.start.date}}</p>
       </div>
     </div>
+{{/if}}
+
+{{#if sortedEvents.1.performance.0.artist.displayName}}
 
     <div class="item">
       <figure class='artist-thumb-wrapper'>
@@ -31,6 +50,8 @@
           <p class='caption'>{{format-mon sortedEvents.1.start.date}} {{format-day sortedEvents.1.start.date}}, {{format-year sortedEvents.1.start.date}}</p>
       </div>
     </div>
+    {{/if}}
+    {{#if sortedEvents.2.performance.0.artist.displayName}}
 
     <div class="item">
       <figure class='artist-thumb-wrapper'>
@@ -41,6 +62,8 @@
           <p class='caption'>{{format-mon sortedEvents.2.start.date}} {{format-day sortedEvents.2.start.date}}, {{format-year sortedEvents.2.start.date}}</p>
       </div>
     </div>
+    {{/if}}
+    {{#if sortedEvents.3.performance.0.artist.displayName}}
 
     <div class="item">
       <figure class='artist-thumb-wrapper'>
@@ -51,6 +74,8 @@
           <p class='caption'>{{format-mon sortedEvents.3.start.date}} {{format-day sortedEvents.3.start.date}}, {{format-year sortedEvents.3.start.date}}</p>
       </div>
     </div>
+    {{/if}}
+    {{#if sortedEvents.4.performance.0.artist.displayName}}
 
     <div class="item">
       <figure class='artist-thumb-wrapper'>
@@ -61,6 +86,7 @@
           <p class='caption'>{{format-mon sortedEvents.4.start.date}} {{format-day sortedEvents.4.start.date}}, {{format-year sortedEvents.4.start.date}}</p>
       </div>
     </div>
+  {{/if}}
   </div>
 
   <!-- Controls -->

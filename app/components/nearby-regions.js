@@ -6,7 +6,11 @@ export default Ember.Component.extend({
 
   uniqueLocations: Ember.computed.uniqBy('locations', 'id'),
   uniqueLoc: Ember.computed.filter('uniqueLocations', function(loc) {
-    loc.set('state', loc.get('metroArea').state.displayName);
+    if (loc.get('metroArea').country.displayName === 'US') {
+      loc.set('state', loc.get('metroArea').state.displayName);
+    } else {
+      loc.set('state', 'noState');
+    }
     loc.set('country', loc.get('metroArea').country.displayName);
     return parseInt(loc.id) !== this.get('currLoc');
   }),
@@ -15,7 +19,4 @@ export default Ember.Component.extend({
   }),
   ordered: Ember.computed.sort('limited', 'sortAttrs'),
   sortAttrs: ['state'],
-
-  // sortedEvents: Ember.computed.sort('uniqueArtists', 'sortAttrs'),
-  // sortAttrs: ['popularity:desc'],
 });

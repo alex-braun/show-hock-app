@@ -5,14 +5,14 @@
 
 {{svg-jar "powered-by-songkick-pink" width='100px' height='100px'}} --}}
 
-<div class='artist-info-section event-info'>
+<div class='landing-info-section event-info'>
 
     {{event-carousel-outer events=model.event
                         slideFrom=slideFrom
                         slideTo=slideTo
                         slideClick=slideClick}}
 
-  <div class='event-info-wrapper index'>
+  <div class='landing-info-wrapper index'>
     {{upcoming-region-events model=model
                             getRegionShows='getRegionShows'
                             userChooseRegion='userChooseRegion'}}

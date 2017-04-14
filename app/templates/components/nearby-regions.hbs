@@ -4,7 +4,7 @@
 
 {{!-- location.state[index] !== location.state[index-1] --}}
 
-{{#if location.state}}
+{{#if (neq location.state 'noState')}}
 
   {{#if (prev-curr ordered index) }}
     <h3>{{location.state}}</h3>

@@ -29,7 +29,7 @@
 {{#if (eq event.type 'Festival') }}
 
   <figure class="band-thumb-wrapper">
-    <img class="headliner image" src="{{event.imageUrl}}" alt="{{event.displayName}}" />
+    <img class="headliner image" src="{{event.imageUrl}}">
     <figcaption class="image-caption-text">{{event.displayName}}</figcaption>
   </figure>
 
@@ -39,7 +39,7 @@
     {{!-- {{#if (lt performance.billingIndex 4)}} --}}
 
       <figure class="band-thumb-wrapper">
-        <img class="headliner image" src="{{performance.artist.imageUrl}}" alt="{{performance.artist.displayName}}" />
+        <img class="headliner image" src="{{performance.artist.imageUrl}}"/>
         <figcaption class="image-caption-text">{{performance.artist.displayName}}</figcaption>
       </figure>
 

@@ -1,7 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  classNames: ['artist-detail'],
+  tagName: 'li',
+  classNames: ['region-detail list-item'],
   buttonTitle: 'Details',
 
   actions: {

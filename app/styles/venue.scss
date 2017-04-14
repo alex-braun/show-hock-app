@@ -1,125 +1,125 @@
-.venue-info-section {
-  overflow: hidden;
-  padding: 15px;
-  position: relative;
-  width: 100%;
-  margin: 0;
-}
+// .venue-info-section {
+//   overflow: hidden;
+//   padding: 15px;
+//   position: relative;
+//   width: 100%;
+//   margin: 0;
+// }
 
-.venue-background-wrapper {
-  height: 100%;
-  width: 100%;
+// .venue-background-wrapper {
+//   height: 100%;
+//   width: 100%;
+//
+//   img {
+//     display: block;
+//     -webkit-transform: translate(-50%,-18%);
+//     -ms-transform: translate(-50%,-18%);
+//     transform: translate(-50%,-33%);
+//     -webkit-filter: blur(10px);
+//     -moz-filter: blur(10px);
+//     -o-filter: blur(10px);
+//     -ms-filter: blur(10px);
+//     filter: blur(10px);
+//     min-width: 106%;
+//     height: auto;
+//     z-index: 0;
+//     left: 50%;
+//     top: 50%;
+//     position: absolute;
+//   }
+//
+//   img:empty {
+//     background-color: #2336b2;
+//   }
+//
+//   .venue-background:empty {
+//     img {
+//       -webkit-filter: blur(0);
+//       -moz-filter: blur(0);
+//       -o-filter: blur(0);
+//       -ms-filter: blur(0);
+//       filter: blur(0);
+//       visibility: hidden;
+//     }
+//   }
+// }
 
-  img {
-    display: block;
-    -webkit-transform: translate(-50%,-18%);
-    -ms-transform: translate(-50%,-18%);
-    transform: translate(-50%,-33%);
-    -webkit-filter: blur(10px);
-    -moz-filter: blur(10px);
-    -o-filter: blur(10px);
-    -ms-filter: blur(10px);
-    filter: blur(10px);
-    min-width: 106%;
-    height: auto;
-    z-index: 0;
-    left: 50%;
-    top: 50%;
-    position: absolute;
-  }
+// .venue-background-wrapper::after {
+//   -webkit-box-shadow: 5px 3px 32px 6px rgba(0,0,0,1) inset;
+//   -moz-box-shadow: 5px 3px 32px 6px rgba(0,0,0,1) inset;
+//   box-shadow: 0px 0px 15px 5px rgba(0,0,0,1) inset;
+//   background: rgba(0, 0, 0, .1);
+//   content: '';
+//   display: block;
+//   height: 100%;
+//   left: 0;
+//   position: absolute;
+//   top: 0;
+//   width: 100%;
+//   z-index: 0;
+// }
 
-  img:empty {
-    background-color: #2336b2;
-  }
+// .venue-info-wrapper {
+//   margin: 0 auto;
+//   max-width: 1080px;
+//   overflow: hidden;
+// }
 
-  .venue-background:empty {
-    img {
-      -webkit-filter: blur(0);
-      -moz-filter: blur(0);
-      -o-filter: blur(0);
-      -ms-filter: blur(0);
-      filter: blur(0);
-      visibility: hidden;
-    }
-  }
-}
+// .venue-info {
+//   background-color: #191919;
+//   margin: 0 auto;
+//   padding: 5px 0 5px 10px;
+//   position: relative;
+//
+//   h1 {
+//     color: #fff;
+//     margin-bottom: 15px;
+//     margin-top: 0;
+//   }
+//
+//   h4 {
+//     color: #fff;
+//   }
+// }
 
-.venue-background-wrapper::after {
-  -webkit-box-shadow: 5px 3px 32px 6px rgba(0,0,0,1) inset;
-  -moz-box-shadow: 5px 3px 32px 6px rgba(0,0,0,1) inset;
-  box-shadow: 0px 0px 15px 5px rgba(0,0,0,1) inset;
-  background: rgba(0, 0, 0, .1);
-  content: '';
-  display: block;
-  height: 100%;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 100%;
-  z-index: 0;
-}
+// .venue-thumb-wrapper {
+//   border: 1px solid #000;
+//   float: right;
+//   padding: 0;
+//   position: relative;
+//   z-index: 1;
+//
+//   .headliner {
+//     background-color: #fff;
+//     display: block;
+//     height: 320px;
+//     width: 320px;
+//   }
+//
+//   .headliner:empty {
+//     background-image: url('../assets/images/microphone-with-wire.png');
+//     background-position: center;
+//     background-repeat: no-repeat;
+//   }
+// }
 
-.venue-info-wrapper {
-  margin: 0 auto;
-  max-width: 1080px;
-  overflow: hidden;
-}
+// .venue-event-section {
+//   padding: 15px;
+//   position: relative;
+//   width: 100%;
+// }
 
-.venue-info {
-  background-color: #191919;
-  margin: 0 auto;
-  padding: 5px 0 5px 10px;
-  position: relative;
-
-  h1 {
-    color: #fff;
-    margin-bottom: 15px;
-    margin-top: 0;
-  }
-
-  h4 {
-    color: #fff;
-  }
-}
-
-.venue-thumb-wrapper {
-  border: 1px solid #000;
-  float: right;
-  padding: 0;
-  position: relative;
-  z-index: 1;
-
-  .headliner {
-    background-color: #fff;
-    display: block;
-    height: 320px;
-    width: 320px;
-  }
-
-  .headliner:empty {
-    background-image: url('../assets/images/microphone-with-wire.png');
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-}
-
-.venue-event-section {
-  padding: 15px;
-  position: relative;
-  width: 100%;
-}
-
-.venue-event-wrapper {
-  position: relative;
-  margin: 0 auto;
-  max-width: 1080px;
-  overflow-y: hidden;
-  min-height: 700px;
-
-  ul {
-    padding: 0;
-  }
-}
+// .venue-event-wrapper {
+//   position: relative;
+//   margin: 0 auto;
+//   max-width: 1080px;
+//   overflow-y: hidden;
+//   min-height: 700px;
+//
+//   ul {
+//     padding: 0;
+//   }
+// }
 
 .venue-search-thumb-wrapper {
   float: right;
@@ -155,28 +155,25 @@
   z-index: 1;
 }
 
-.image-caption-text {
-  bottom: 0;
-  box-sizing: border-box;
-  color: #fff;
-  display: block;
-  font-weight: 700;
-  left: 0;
-  padding: 1em;
-  padding-bottom: 1.5em;
-  position: absolute;
-  text-align: center;
-  width: 100%;
-  z-index: 2;
-}
+// .image-caption-text {
+//   bottom: 0;
+//   box-sizing: border-box;
+//   color: #fff;
+//   display: block;
+//   font-weight: 700;
+//   left: 0;
+//   padding: 1em;
+//   padding-bottom: 1.5em;
+//   position: absolute;
+//   text-align: center;
+//   width: 100%;
+//   z-index: 2;
+// }
 
-.venue-events-main-listing {
-  width: 80%;
-  float: right;
-}
-
-.relate-events-list {
-}
+// .venue-events-main-listing {
+//   width: 80%;
+//   float: right;
+// }
 
 .related-events-item {
   margin: 10px 0 10px 0;
@@ -191,33 +188,33 @@
   }
 }
 
-.venue-event-listing {
-  width: 100%;
-  max-width: 745px;
-  min-width: 605px;
-  padding: 5px 0 5px 10px;
-  position: relative;
-  float: left;
-  margin-right: 375px;
-  margin-right: 335px;
-}
+// .venue-event-listing {
+//   width: 100%;
+//   max-width: 745px;
+//   min-width: 605px;
+//   padding: 5px 0 5px 10px;
+//   position: relative;
+//   float: left;
+//   margin-right: 375px;
+//   margin-right: 335px;
+// }
 
-.venue-event-detail {
-  .band-thumb-wrapper {
-    float: left;
-  }
-}
+// .venue-event-detail {
+//   .band-thumb-wrapper {
+//     float: left;
+//   }
+// }
 
-.venue-event-detail {
-  margin-bottom: 15px;
-  padding-bottom: 15px;
-  border-bottom: 1px dashed #2336b2;
-  overflow: hidden;
-
-  .button-to-concert-wrapper {
-    float: left;
-  }
-}
+// .venue-event-detail {
+//   margin-bottom: 15px;
+//   padding-bottom: 15px;
+//   border-bottom: 1px dashed #2336b2;
+//   overflow: hidden;
+//
+//   .button-to-concert-wrapper {
+//     float: left;
+//   }
+// }
 
 .upcoming-venue-events {
   overflow: hidden;
@@ -244,20 +241,5 @@
     margin: 0 auto;
     bottom: 0;
   }
-    .band-thumb-wrapper {
-      // left: 0;
-      // right: 0;
-      // width: 100%;
-      // text-align: center;
-      // margin: 0 auto;
-      // margin-left: 11px;
-      // margin-right: 11px;
-    }
-
-    // img {
-    //   display: block;
-    //   margin: 0 auto;
-    //   // margin-left: 30%;
-    // }
   }
 }
