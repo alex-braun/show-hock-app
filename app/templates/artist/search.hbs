@@ -1,21 +1,36 @@
-{{!-- <div class='region-search-header-wrapper'>
+{{!-- <div class="menu">
+  <h1>MENU</h1>
+</div> --}}
+<div class='region-search-header-wrapper ea-route'>
+
+  {{!-- <div class='search-menu'>
+    <div class="">ARTISTS</div>
+    <div class="">REGIONS</div>
+    <div class="">VENUES</div>
+    <div class="">ALL</div>
+  </div> --}}
   <div class='region-search-header'>
+    {{search-options-menu}}
+
+
     <div class='region-search-header-info'>
-      <h3>Search by Artist</h3>
+      <h1>SEARCH ARTISTS</h1>
       <div class='search-input-page-wrapper'>
         {{search-input keyword=entered}}
+        {{!-- {{#link-to 'region.search.results' (query-params search=entered)}} --}}
           <button type="submit" class="btn btn-success">
             Search
           </button>
+          {{!-- {{/link-to}} --}}
       </div>
     </div>
   </div>
-</div> --}}
+</div>
 
+<div class='region-search-main-wrapper'>
+  <div class='region-search-main ea-route'>
+    {{!-- {{search-options-menu}} --}}
 
-<div class='artist-search-main-wrapper'>
-  <div class='artist-search-main'>
-    {{search-options-menu}}
     {{outlet}}
   </div>
 </div>

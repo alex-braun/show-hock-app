@@ -3,23 +3,36 @@ import Ember from 'ember';
 export default Ember.Route.extend({
 
   actions: {
-    artistSearch(param) {
+
+    allSearch(param) {
       if (!(param === null || param === undefined || param.match(/^ *$/) !== null)) {
-        this.transitionTo('artist.search.results', param);
+        this.transitionTo('searches.search.results',
+        param,
+        { queryParams: {
+            page: 1,
+            per_page: 10
+          }
+        });
       }
     },
 
-    regionSearch(param) {
-      if (!(param === null || param === undefined || param.match(/^ *$/) !== null)) {
-        this.transitionTo('region.search.results', param);
-      }
-    },
+    // artistSearch(param) {
+    //   if (!(param === null || param === undefined || param.match(/^ *$/) !== null)) {
+    //     this.transitionTo('artist.search.results', param);
+    //   }
+    // },
 
-    venueSearch(param) {
-      if (!(param === null || param === undefined || param.match(/^ *$/) !== null)) {
-        this.transitionTo('venue.search.results', param);
-      }
-    },
+    // regionSearch(param) {
+    //   if (!(param === null || param === undefined || param.match(/^ *$/) !== null)) {
+    //     this.transitionTo('region.search.results', param);
+    //   }
+    // },
+
+    // venueSearch(param) {
+    //   if (!(param === null || param === undefined || param.match(/^ *$/) !== null)) {
+    //     this.transitionTo('venue.search.results', param);
+    //   }
+    // },
 
     goToRegion(name, id) {
       this.transitionTo('region.event.results',
@@ -27,6 +40,7 @@ export default Ember.Route.extend({
           id,
           { queryParams: {
             page: 1,
+            per_page: 50
             }
       });
     },

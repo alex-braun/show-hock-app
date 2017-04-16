@@ -1,30 +1,10 @@
-<li>
-    {{#if artistSelect.noMatch}}
-      <h3>{{artistSelect.displayName}}</h3>
-    {{else}}
-      {{!-- {{#link-to 'artist.event.results' (query-params getId=artistSelect.id
-      artist=artistSelect.displayName page=1)}} --}}
-      {{#link-to 'artist.event.results' artistSelect.displayName artistSelect.id (query-params page=1) }}
-      {{!-- {{#link-to 'artist.event.results' (query-params getId=artistSelect.id
-      artist=artistSelect.displayName)}} --}}
-      <div class='artist-search-wrapper'>
-        <h3>{{artistSelect.displayName}}</h3>
-        <figure class="band-thumb-wrapper">
-          <img class="headliner image" src="{{artistSelect.imageUrl}}" alt="{{artistSelect.displayName}}" />
-          <figcaption class="image-caption-text">{{artistSelect.displayName}}</figcaption>
-        </figure>
-      </div>
-      {{/link-to}}
-    {{/if}}
-</li>
-{{!-- {{#link-to 'artist.search.results' entered }} --}}
-
 {{!-- <li>
     {{#if artistSelect.noMatch}}
       <h3>{{artistSelect.displayName}}</h3>
     {{else}}
-      {{#link-to 'artist.event' (query-params getId=artistSelect.id
-      artist=artistSelect.displayName page=1)}}
+
+      {{#link-to 'artist.event.results' artistSelect.displayName artistSelect.id (query-params page=1) }}
+
       <div class='artist-search-wrapper'>
         <h3>{{artistSelect.displayName}}</h3>
         <figure class="band-thumb-wrapper">
@@ -35,3 +15,65 @@
       {{/link-to}}
     {{/if}}
 </li> --}}
+{{!-- <figure class="venue-search-thumb-wrapper">
+  <img class="headliner image" src="{{venue.imageUrl}}" alt="{{venue.displayName}}" />
+  <figcaption class="image-caption-text">{{venue.displayName}}</figcaption>
+</figure> --}}
+
+
+{{!-- <div class='region-search-detail'>
+{{#if artistSelect.noMatch}}
+  <h3>We were unable to find a artist called  <strong>{{artistSelect.displayName}}</strong></h3>
+{{else}}
+  <figure class="venue-search-thumb-wrapper">
+    <img src={{artistSelect.imageUrl}} alt="">
+    <figcaption class="image-caption-text">{{artistSelect.displayName}}</figcaption>
+  </figure>
+    {{#link-to 'artist.event.results' artistSelect.displayName artistSelect.id (query-params page='1')}}
+
+    {{/link-to}}
+
+{{/if}}
+</div> --}}
+
+
+
+
+
+
+
+
+
+
+<div class='region-search-detail'>
+{{#if artistSelect.noMatch}}
+  <h3>We were unable to find an artist called  <strong>{{artistSelect.displayName}}</strong></h3>
+{{else}}
+
+    <figure class="venue-search-thumb-wrapper">
+      <img class="headliner image" src="{{artistSelect.imageUrl}}" alt="{{artistSelect.displayName}}" />
+      <figcaption class="image-caption-text">{{artistSelect.displayName}}</figcaption>
+    </figure>
+
+    <div class='type-label'>
+      <h5>{{upper-case artistSelect.type}}</h5>
+    </div>
+      {{#link-to 'artist.event.results' artistSelect.displayName artistSelect.id (query-params page='1')}}
+
+      <h3>{{artistSelect.displayName}}</h3>
+{{log artistSelect}}
+      {{#if artistSelect.onTourUntil}}
+        <span class='tour-tag'>ON TOUR</span>
+      {{/if}}
+    {{!-- {{#if venue.metroArea.state.displayName  venue.metroArea.country.displayName}}
+      <h4>{{venue.metroArea.displayName}}, {{venue.metroArea.state.displayName}},
+      {{venue.metroArea.country.displayName}}</h4>
+    {{else}}
+      <h4>{{venue.metroArea.displayName}},
+      {{venue.metroArea.country.displayName}}</h4>
+    {{/if}} --}}
+
+    {{/link-to}}
+
+{{/if}}
+</div>

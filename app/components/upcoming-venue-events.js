@@ -13,7 +13,8 @@ export default Ember.Component.extend({
     }
     let selection = result.objectsAt(arr);
     selection = selection.filter((element) => {
-      return element.id !== parseInt(concertId);
+      console.log(element.id + ' ' + concertId);
+      return element.id !== concertId;
     });
     return selection;
   }),

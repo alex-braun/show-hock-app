@@ -17,6 +17,7 @@ Router.map(function() {
       this.route('concert', { path: '/concert/:concert_id' });
     });
   });
+
   this.route('region', function() {
     this.route('search', function() {
       this.route('results', { path: '/:region_name/results' });
@@ -26,6 +27,7 @@ Router.map(function() {
       this.route('results');
       });
     });
+
   this.route('venue', function() {
     this.route('search', function() {
       this.route('results', { path: '/:venue_name/results' });
@@ -42,6 +44,12 @@ Router.map(function() {
     this.route('change-location', function() {
       this.route('results', { path: '/:region_name/results' } );
       this.route('confirm');
+    });
+  });
+
+  this.route('searches', function() {
+    this.route('search', function() {
+      this.route('results', { path: '/:search_name/results' });
     });
   });
 });

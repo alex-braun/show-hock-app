@@ -1,16 +1,22 @@
 {{!-- {{search-title title=model.meta.location}} --}}
 <div class='region-event-listing'>
 
-<ul class="event-listings row-fluid block-grid-3">
-  {{#each model.event as |event|}}
-    {{!-- <li class='region-detail-list'> --}}
-      {{!-- <div class='region-detail col-xs-10'> --}}
-        {{venue-detail event=event
-                      goToConcert='goToConcert'}}
-      {{!-- </div> --}}
-    {{!-- </li> --}}
-  {{/each}}
-</ul>
+  {{#if model.event.firstObject.noMatch}}
+    <h3>No upcoming concerts at <strong>{{accessArtistParams.param}}</strong></h3>
+
+  {{else}}
+
+    <ul class="event-listings row-fluid block-grid-3">
+      {{#each model.event as |event|}}
+        {{!-- <li class='region-detail-list'> --}}
+          {{!-- <div class='region-detail col-xs-10'> --}}
+            {{venue-detail event=event
+                          goToConcert='goToConcert'}}
+          {{!-- </div> --}}
+        {{!-- </li> --}}
+      {{/each}}
+    </ul>
+{{/if}}
 </div>
 
 {{pagination-bar pages=model.meta

@@ -1,7 +1,17 @@
-<ul class="row-fluid block-grid-3">
+{{!-- <ul class="row-fluid block-grid-3">
   {{#each model.artist as |artist|}}
     <div class='artist-search-result'>
       {{artist-search-detail artistSelect=artist}}
     </div>
   {{/each}}
-</ul>
+</ul> --}}
+
+
+<div class='region-search-main-listing'>
+  <ul class="event-listings row-fluid block-grid-3">
+    {{#each model.artist as |artist|}}
+        {{!-- {{venue-search-detail venue=artist}} --}}
+        {{artist-search-detail artistSelect=artist}}
+    {{/each}}
+  </ul>
+</div>

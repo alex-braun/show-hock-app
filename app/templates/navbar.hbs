@@ -57,15 +57,20 @@
         <li class='search-field item'>
           <form class="navbar-form navbar-right">
 
-            {{#if (eq dropdown.name 'Artists')}}
-              {{search-input keyword=enterArtist placeholder='Enter artist name'}}
+            {{!-- {{#if (eq dropdown.name 'Artists')}} --}}
+              {{!-- {{search-input keyword=enterArtist placeholder='Enter artist name'}}
 
                 <button type="submit" class="btn btn-success search-button visible-xs" {{action 'artistSearch' enterArtist keyword}}>
                 <span class='glyphicon glyphicon-search'></span>
                 Search
+                </button> --}}
+    {{search-input keyword=enterName placeholder='Enter artist/region/venue'}}
+                <button type="submit" class="btn btn-success search-button visible-xs" {{action 'allSearch' enterName}}>
+                <span class='glyphicon glyphicon-search'></span>
+                Search
                 </button>
 
-            {{else if (eq dropdown.name 'Region')}}
+            {{!-- {{else if (eq dropdown.name 'Region')}}
             {{search-input keyword=enterRegion placeholder='Enter region/city name'}}
 
                 <button type="submit" class="btn btn-success search-button visible-xs" {{action 'regionSearch' enterRegion keyword}}>
@@ -81,13 +86,14 @@
               Search
               </button>
 
-            {{/if}}
+            {{/if}} --}}
           </form>
         </li>
 
 
+{{!-- {{menu-select dropdown=dropdown}} --}}
 
-        <li class='search-select item'>
+        {{!-- <li class='search-select item'>
           <select onchange= {{action (mut dropdownIndex)
                 value="target.value"}}
                 data-toggle="dropdown"
@@ -97,7 +103,7 @@
             <option value= {{ index }} selected= {{eq dropdownIndex index}}>{{dropdownChoice.name}}</option>
           {{/each}}
         </select>
-        </li>
+        </li> --}}
 
         <li class='navbar-text change pull-left'>
           {{change-location userChooseRegion='userChooseRegion'}}

@@ -1,7 +1,7 @@
 <div class='region-info-section'>
 
   {{#each model.search.artist as |basic| }}
-    {{#if (eq basic.displayName model.search.meta.artist) }}
+    {{#if (eq basic.displayName model.search.id) }}
     <figure class='region-background-wrapper'>
         <img class='artist-background' src='{{basic.imageUrl}}' alt='{{basic.displayName}}'/>
       </figure>
@@ -11,7 +11,7 @@
   <div class='region-info-wrapper'>
 
   {{#each model.search.artist as |basic| }}
-    {{#if (eq basic.displayName model.search.meta.artist) }}
+    {{#if (eq basic.displayName model.search.id) }}
     <figure class="region-thumb-wrapper">
       <img class="headliner artist image" src='{{basic.imageUrl}}' alt='{{basic.displayName}}'/>
         {{#if basic.onTourUntil}}
@@ -25,7 +25,7 @@
     <div class='region-info'>
 
       {{#each model.search.artist as |basic|}}
-        {{#if (eq basic.displayName model.search.meta.artist)}}
+        {{#if (eq basic.displayName model.search.id)}}
           <h1>{{basic.displayName}}</h1>
           {{#if basic.onTourUntil}}
             <h4>On Tour Until:

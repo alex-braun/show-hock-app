@@ -133,10 +133,21 @@ ul.region-event-ul {
 }
 
 .region-search-detail {
-  margin-bottom: 15px;
-  padding-bottom: 15px;
+  margin-bottom: 5px;
+  padding-bottom: 5px;
   border-bottom: 1px dashed #2336b2;
   overflow: hidden;
+
+  .type-label {
+    display: inline-block;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 7px;
+    // box-shadow: 1px 1px 1px rgba(0,0,0,.5);
+    h5 {
+      margin: 0;
+    }
+  }
 }
 
 .region-search-map-wrapper {
@@ -154,13 +165,43 @@ ul.region-event-ul {
   }
 }
 
+.menu {
+  float: left;
+}
 
 .region-search-header-wrapper {
+  // -webkit-box-shadow: 5px 3px 32px 6px rgba(0,0,0,1) inset;
+  // -moz-box-shadow: 5px 3px 32px 6px rgba(0,0,0,1) inset;
+  // box-shadow: -10px 10px 15px 5px rgba(0,0,0,1) inset;
   overflow: hidden;
-  padding: 45px 45px 0 45px;
+  padding: 0 15px 0 15px;
   position: relative;
-  width: 100%;
-  margin: 0;
+  // width: calc(100% - 100px);
+  margin: 0 0 10px 0;
+  // float: right;
+
+  .search-menu {
+    max-width: 1080px;
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+
+    div {
+      width: 25%;
+      border: 1px solid black;
+      background-color: grey;
+      float: left;
+    }
+  }
+}
+
+.region-search-header-wrapper.main-search {
+  margin-top: 15px;
+
+  .search-input-page-wrapper > h5 {
+    clear: both;
+    margin-top: 0;
+  }
 }
 
 // .carousel-background-wrapper {
@@ -218,8 +259,10 @@ ul.region-event-ul {
 
 .region-search-header {
   margin: 0 auto;
-  max-width: 1080px;
+  // max-width: 1080px;
+  max-width: 758px;
   overflow: hidden;
+  padding: 0 15px 0 15px;
 }
 
 .region-search-header-info {
@@ -269,7 +312,13 @@ ul.region-event-ul {
 
 // REGION EVENT SECTION
 .region-search-main-wrapper {
-  padding: 45px;
+  padding: 0 15px 15px 15px;
+  position: relative;
+  width: 100%;
+}
+
+.region-search-main-wrapper.ea-route {
+  padding: 0 15px 15px 15px;
   position: relative;
   width: 100%;
 }
@@ -277,14 +326,20 @@ ul.region-event-ul {
 .region-search-main {
   position: relative;
   margin: 0 auto;
-  max-width: 1080px;
+  // max-width: 1080px;
+  max-width: 758px;
   overflow-y: hidden;
-  min-height: 700px;
+  // min-height: 700px;
 
   ul {
     padding: 0;
   }
 }
+
+.region-search-main.ea-route  {
+  margin-top: -150px;
+}
+
 
 .region-search-main-listing {
   width: 80%;

@@ -26,9 +26,12 @@
 
       {{/if}}
         <h4>{{model.venue.phone}}</h4>
+
+      {{#if model.venue.website}}
         <h4>
           <a href={{model.venue.website}} target='_blank'>{{truncate model.venue.website 39}}</a>
         </h4>
+      {{/if}}
 
       {{#if model.calendar.meta.total_entries}}
         <h4>Upcoming Events: {{model.calendar.meta.total_entries}}</h4>

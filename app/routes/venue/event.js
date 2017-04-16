@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
 
+  accessArtistParams: Ember.inject.service(),
   // nameAndId: Ember.inject.service('access-artist-data'),
   //
   // artistId: null,
@@ -20,6 +21,8 @@ export default Ember.Route.extend({
 
       venue: this.get('store').findRecord('venue', param.venue_id)
       .then((result) => {
+        console.log(result.get('displayName'));
+        this.get('accessArtistParams').add(result.get('displayName'));
         let meta = result.get('meta');
         return meta, result;
       }),

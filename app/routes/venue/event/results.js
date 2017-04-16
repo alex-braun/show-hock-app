@@ -16,6 +16,7 @@ export default Ember.Route.extend({
   },
 
   model(params) {
+    console.log(this.get('venueId'));
     let venueId = this.get('venueId');
       return this.get('store').findRecord('venue-calendar', venueId.venue_id, { adapterOptions: { page: params.page }})
       .then((result) => {

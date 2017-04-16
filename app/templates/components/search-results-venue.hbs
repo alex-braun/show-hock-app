@@ -1,0 +1,20 @@
+<div class='region-search-detail'>
+
+    {{!-- <figure class="venue-search-thumb-wrapper">
+      <img class="headliner image" src="{{artist.imageUrl}}" alt="{{artist.displayName}}" />
+      <figcaption class="image-caption-text">{{artist.displayName}}</figcaption>
+    </figure> --}}
+    <h5>{{venue.displayName}}</h5>
+
+    {{#if venue.noMatch}}
+      <h5>No Results Found</h5>
+    {{/if}}
+
+    {{!-- {{#link-to 'artist.event.results' artist.id (query-params page='1')}}
+
+      <h3>{{artist.displayName}}</h3>
+
+
+
+    {{/link-to}} --}}
+</div>

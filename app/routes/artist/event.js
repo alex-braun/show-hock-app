@@ -42,7 +42,9 @@ export default Ember.Route.extend({
     return Ember.RSVP.hash({
 
 
-      search: this.get('store').findRecord('artist-search', param.artist_name)
+      search: this.get('store').findRecord('artist-search', param.artist_name, { adapterOptions: { page: 1,
+                        per_page: 1 }
+      })
       .then((result) => {
         // console.log(result.id);
         let meta = result.get('meta');

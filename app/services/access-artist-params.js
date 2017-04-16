@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Service.extend({
 
-  parameters: null,
+  param: null,
   // parameters: {
   //   artist: 311,
   //   getId: 486064,
@@ -10,6 +10,6 @@ export default Ember.Service.extend({
   // },
 
   add(params) {
-    this.set('parameters', params);
+    this.set('param', params);
   },
 });

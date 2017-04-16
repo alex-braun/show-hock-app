@@ -1,0 +1,50 @@
+{{!-- <div class='region-search-main-listing'> --}}
+
+  <div class='search-page-results artist'>
+    <div class='results-header artist'>
+      <h3>Artists</h3>
+      {{#if (gt model.artist.meta.total_entries 10)}}
+        <a href='javascript:;'{{action 'artistSearch' accessArtistParams.param}}><h4>See More</h4></a>
+      {{/if}}
+    </div>
+    {{#each model.artist.artist as |artist|}}
+      {{search-results-artist artist=artist
+                              goToArtist='goToArtist'}}
+    {{/each}}
+  </div>
+
+
+  <div class='search-page-results'>
+    <div class='results-header region'>
+    <h3>Regions</h3>
+      {{#if (gt model.region.meta.total_entries 10)}}
+      <a href='javascript:;'{{action 'regionSearch' accessArtistParams.param}}><h4>See More</h4></a>
+      {{/if}}
+    </div>
+  {{#each model.region.location as |region|}}
+    {{search-results-region region=region
+                            goToRegion='goToRegion'}}
+  {{/each}}
+  </div>
+
+  <div class='search-page-results'>
+    <div class='results-header venue'>
+      <h3>Venues</h3>
+      {{#if (gt model.venue.meta.total_entries 10)}}
+        <a href='javascript:;'{{action 'venueSearch' accessArtistParams.param}}><h4>See More</h4></a>
+      {{/if}}
+
+    </div>
+  {{#each model.venue.venue as |venue|}}
+    {{search-results-venue venue=venue}}
+  {{/each}}
+  </div>
+
+{{!-- </div> --}}
+
+
+  {{!-- <ul class="event-listings row-fluid block-grid-3">
+    {{#each model.location as |region|}}
+        {{region-search-detail regionSelect=region}}
+    {{/each}}
+  </ul> --}}

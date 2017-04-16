@@ -29,7 +29,10 @@ export default Ember.Route.extend({
         return meta, result;
       }),
 
-      search: this.get('store').findRecord('region-search', params.region_name)
+      search: this.get('store').findRecord('region-search', params.region_name, {
+        adapterOptions: { page: 1,
+                          per_page: 50}
+      })
       .then((result) => {
         let meta = result.get('meta');
         return meta, result;

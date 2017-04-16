@@ -34,8 +34,8 @@
   {{!-- VENUE DETAILS--}}
   {{concert-venue-details model=model}}
 
-  {{#if model.calendar}}
-  {{upcoming-venue-events calendar=model.calendar
+  {{#if (gt model.calendar.event.length 1)}}
+    {{upcoming-venue-events calendar=model.calendar
                           concertId=model.id
                           venue=model.venue.displayName
                           venueId=model.venue.id
