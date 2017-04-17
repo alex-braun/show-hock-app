@@ -1,27 +1,17 @@
-{{!-- <div class='region-search-detail'>
-
-    {{#if region.noMatch}}
-      <h5>No Results Found</h5>
-    {{else}}
-      <h5 class='artist-name'>{{region.metroArea.displayName}}</h5>
-    {{/if}}
-
-</div> --}}
-
 <div class='region-search-detail'>
 
 {{#if region.noMatch}}
-  <h5>No Results Found</h5>
+  <h5>No Results Found. {{#link-to 'region.search'}}Search by Regions{{/link-to}}</h5>
 {{else}}
 
   <a href='javascript:;'{{action 'goToRegion' region.metroArea.displayName region.metroArea.id}}>
 
     {{#if region.metroArea.state.displayName  region.metroArea.country.displayName}}
-        <h5>{{region.metroArea.displayName}}, {{region.metroArea.state.displayName}},
-      {{region.metroArea.country.displayName}}</h5>
+        <h5><strong>{{region.metroArea.displayName}}, {{region.metroArea.state.displayName}},
+      {{region.metroArea.country.displayName}}</strong></h5>
     {{else}}
-        <h5>{{region.metroArea.displayName}},
-      {{region.metroArea.country.displayName}}</h5>
+        <h5><strong>{{region.metroArea.displayName}},
+      {{region.metroArea.country.displayName}}</strong></h5>
     {{/if}}
 
     {{#if (neq region.city.displayName region.metroArea.displayName)}}
@@ -31,29 +21,3 @@
 
 {{/if}}
 </div>
-
-{{!-- <div class='region-search-detail'>
-{{#if regionSelect.noMatch}}
-  <h3>We were unable to find a region called  <strong>{{regionSelect.metroArea.displayName}}</strong></h3>
-  <p>Please try another area!</p>
-{{else}} --}}
-
-    {{!-- <div class="region-search-map-wrapper">
-      <img src={{regionSelect.metroArea.googleMapUrl}} alt="">
-    </div> --}}
-
-    {{!-- {{#link-to 'region.event.results' regionSelect.metroArea.displayName regionSelect.metroArea.id (query-params page='1')}}
-    {{#if regionSelect.metroArea.state.displayName  regionSelect.metroArea.country.displayName}}
-      <h3>{{regionSelect.metroArea.displayName}}, {{regionSelect.metroArea.state.displayName}},
-      {{regionSelect.metroArea.country.displayName}}</h3>
-    {{else}}
-      <h3>{{regionSelect.metroArea.displayName}},
-      {{regionSelect.metroArea.country.displayName}}</h3>
-    {{/if}}
-    {{#if (neq regionSelect.city.displayName regionSelect.metroArea.displayName)}}
-    <p>including {{regionSelect.city.displayName}}</p>
-    {{/if}}
-    {{/link-to}}
-
-{{/if}}
-</div> --}}

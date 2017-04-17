@@ -2,28 +2,61 @@
 
 {{artist-date event=event}}
 
-<ul class='region-event-ul'>
-<li class='event'>
-  {{#if (eq event.type 'Festival') }}
-  {{!-- {{#link-to 'event' (query-params getId=regionSelect.metroArea.id page='1' location=regionSelect.metroArea.displayName)}} --}}
-    <h4><strong>{{event.displayName}}</strong></h4>
-    {{!-- {{/link-to}} --}}
-  {{else}}
-    {{artist-list event=event}}
-  {{/if}}
+{{#if (eq event.type 'Festival') }}
 
-  {{#if (eq event.venue.displayName 'Unknown venue') }}
-    <h4>{{event.location.city}}</h4>
-  {{else}}
-    <h4>{{event.venue.displayName}}, {{event.location.city}}</h4>
-  {{/if}}
+  <ul class='region-event-ul festival'>
+    <li class='event'>
 
-  {{#if event.start.time}}
-  <h6>{{format-time event.start.time}}</h6>
-  {{/if}}
-  </li>
-</ul>
+      <div class='region-festival-header'>
+      <a href='javascript:;'{{action 'goToConcert' event.id}}>
+        <h4><strong>{{event.displayName}}</strong></h4>
+      </a>
+        <div class='type-label'>
+          <h5>FESTIVAL</h5>
+        </div>
+      </div>
 
+      <a href='javascript:;'{{action 'goToConcert' event.id}}>
+      {{list-every-artist event=event}}
+      </a>
+
+      {{#if (eq event.venue.displayName 'Unknown venue') }}
+        <h4>{{event.location.city}}</h4>
+      {{else}}
+        <h4>{{event.venue.displayName}}, {{event.location.city}}</h4>
+      {{/if}}
+
+      {{#if event.start.time}}
+      <h6>{{format-time event.start.time}}</h6>
+      {{/if}}
+
+    </li>
+  </ul>
+
+
+{{else}}
+
+  <ul class='region-event-ul'>
+    <li class='event'>
+
+        {{artist-list event=event
+                      goToConcert='goToConcert'}}
+
+
+      {{#if (eq event.venue.displayName 'Unknown venue') }}
+        <h4>{{event.location.city}}</h4>
+      {{else}}
+        <h4>{{event.venue.displayName}}, {{event.location.city}}</h4>
+      {{/if}}
+
+      {{#if event.start.time}}
+      <h6>{{format-time event.start.time}}</h6>
+      {{/if}}
+
+    </li>
+  </ul>
+
+{{/if}}
 
 <div class='region-band-thumbs'>
 {{#if (eq event.type 'Festival') }}
@@ -36,7 +69,6 @@
 
 {{else}}
   {{#each event.performance as |performance|}}
-    {{!-- {{#if (lt performance.billingIndex 4)}} --}}
 
       <figure class="band-thumb-wrapper">
         <img class="headliner image" src="{{performance.artist.imageUrl}}"/>
@@ -48,14 +80,9 @@
 {{/if}}
 </div>
 
-{{button-to-concert buttonTitle='Details'}}
-
-
-{{#if (eq event.type 'Festival') }}
-
-{{list-every-artist event=event}}
-
-{{/if}}
+{{button-to-concert buttonTitle='Details'
+                    value=event.id
+                    buttonClick='goToConcert'}}
 
 {{#if event.ageRestriction}}
   <h6>{{event.ageRestriction}}</h6>

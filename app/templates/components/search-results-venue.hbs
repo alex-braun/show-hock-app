@@ -4,12 +4,22 @@
       <img class="headliner image" src="{{artist.imageUrl}}" alt="{{artist.displayName}}" />
       <figcaption class="image-caption-text">{{artist.displayName}}</figcaption>
     </figure> --}}
-    <h5>{{venue.displayName}}</h5>
-
     {{#if venue.noMatch}}
-      <h5>No Results Found</h5>
-    {{/if}}
+        <h5>No Results Found. {{#link-to 'venue.search'}}Search by Venue{{/link-to}}</h5>
+    {{else}}
 
+      <a href='javascript:;'{{action 'goToRegion' region.metroArea.displayName region.metroArea.id}}>
+        <h5 class='venue-list'><strong>{{venue.displayName}}</strong></h5>
+
+      {{#if venue.city.state.displayName  venue.city.country.displayName}}
+        <h6 class='venue-list'>{{venue.city.displayName}}, {{venue.city.state.displayName}}</h6>
+      {{else}}
+        <h6 class='venue-list'>{{venue.city.displayName}},
+        {{venue.city.country.displayName}}</h6>
+      {{/if}}
+    </a>
+
+    {{/if}}
     {{!-- {{#link-to 'artist.event.results' artist.id (query-params page='1')}}
 
       <h3>{{artist.displayName}}</h3>
@@ -18,3 +28,29 @@
 
     {{/link-to}} --}}
 </div>
+
+
+
+
+
+
+
+{{!-- <div class='region-search-detail'>
+
+{{#if region.noMatch}}
+  <h5>No Results Found. {{#link-to 'region.search'}}Search by Regions{{/link-to}}</h5>
+{{else}}
+
+  <a href='javascript:;'{{action 'goToRegion' region.metroArea.displayName region.metroArea.id}}>
+
+    {{#if venue.city.state.displayName  venue.city.country.displayName}}
+        <h5>{{venue.city.state.displayName}}, {{venue.city.country.displayName}},
+      {{venue.city.country.displayName}}</h5>
+    {{else}}
+        <h5>{{venue.city.displayName}},
+      {{venue.city.country.displayName}}</h5>
+    {{/if}}
+  </a>
+
+{{/if}}
+</div> --}}

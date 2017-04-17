@@ -64,11 +64,23 @@
                 <span class='glyphicon glyphicon-search'></span>
                 Search
                 </button> --}}
-    {{search-input keyword=enterName placeholder='Enter artist/region/venue'}}
-                <button type="submit" class="btn btn-success search-button visible-xs" {{action 'allSearch' enterName}}>
+
+
+
+    {{search-input keyword=enterName placeholder='Enter artist / region / venue'}}
+                <button type="submit" class="btn search-button in-form" {{action 'allSearch' enterName}}>
                 <span class='glyphicon glyphicon-search'></span>
-                Search
                 </button>
+
+{{!--
+                {{input class='form-control'
+                        type="text"
+                        placeholder=placeholder
+                        value=keyword
+                        enter='reset'
+                        focus-out='isValidFocusOut'
+                        }} --}}
+                {{!-- <button class="search-button" type="submit" {{action 'allSearch' enterName}}><img src="//assets.sk-static.com/assets/nw/components/navigation-large-screen/search-5510d8d.svg" height="15" width="14" alt="search" class="navigation-submit"></button> --}}
 
             {{!-- {{else if (eq dropdown.name 'Region')}}
             {{search-input keyword=enterRegion placeholder='Enter region/city name'}}
@@ -90,6 +102,12 @@
           </form>
         </li>
 
+
+        {{!-- <form name="search" class="navigation-search-form">
+          <input type="hidden" name="type" value="initial">
+          <input name="query" type="search" value="" class="text navigation-search" placeholder="Enter artist / concert / venue">
+          <button class="search-button" type="submit" {{action 'clickSomething' value}}><img src="//assets.sk-static.com/assets/nw/components/navigation-large-screen/search-5510d8d.svg" height="15" width="14" alt="search" class="navigation-submit"></button>
+        </form> --}}
 
 {{!-- {{menu-select dropdown=dropdown}} --}}
 

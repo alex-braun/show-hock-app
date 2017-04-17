@@ -56,6 +56,6 @@ export default Ember.Route.extend({
 
     goToVenues() {
       this.transitionTo('venue.search');
-    }
+    },
   }
 });

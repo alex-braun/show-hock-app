@@ -19,7 +19,8 @@
 <ul class="event-listings row-fluid block-grid-3">
   {{#each model.event as |event|}}
 
-        {{region-detail event=event}}
+        {{region-detail event=event
+                        goToConcert='goToConcert'}}
 
   {{/each}}
 </ul>

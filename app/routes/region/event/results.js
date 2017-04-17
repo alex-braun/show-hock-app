@@ -31,5 +31,15 @@ export default Ember.Route.extend({
         let meta = result.get('meta');
         return meta, result;
       });
+    },
+
+    actions: {
+      goToConcert(concertId) {
+        this.transitionTo('region.event.concert', concertId, {
+          queryParams: {
+            page: 1
+          }
+        });
+      }
     }
 });

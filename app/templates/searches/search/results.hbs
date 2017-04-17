@@ -2,9 +2,9 @@
 
   <div class='search-page-results artist'>
     <div class='results-header artist'>
-      <h3>Artists</h3>
+      <h4>ARTISTS</h4>
       {{#if (gt model.artist.meta.total_entries 10)}}
-        <a href='javascript:;'{{action 'artistSearch' accessArtistParams.param}}><h4>See More</h4></a>
+        <a href='javascript:;'{{action 'artistSearch' accessArtistParams.param}}><h5 class='see-more'>See More</h5></a>
       {{/if}}
     </div>
     {{#each model.artist.artist as |artist|}}
@@ -16,9 +16,9 @@
 
   <div class='search-page-results'>
     <div class='results-header region'>
-    <h3>Regions</h3>
+    <h4>REGIONS</h4>
       {{#if (gt model.region.meta.total_entries 10)}}
-      <a href='javascript:;'{{action 'regionSearch' accessArtistParams.param}}><h4>See More</h4></a>
+      <a href='javascript:;'{{action 'regionSearch' accessArtistParams.param}}><h5 class='see-more'>See More</h5></a>
       {{/if}}
     </div>
   {{#each model.region.location as |region|}}
@@ -29,9 +29,9 @@
 
   <div class='search-page-results'>
     <div class='results-header venue'>
-      <h3>Venues</h3>
+      <h4>VENUES</h4>
       {{#if (gt model.venue.meta.total_entries 10)}}
-        <a href='javascript:;'{{action 'venueSearch' accessArtistParams.param}}><h4>See More</h4></a>
+        <a href='javascript:;'{{action 'venueSearch' accessArtistParams.param}}><h5 class='see-more'>See More</h5></a>
       {{/if}}
 
     </div>

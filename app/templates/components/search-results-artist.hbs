@@ -1,27 +1,12 @@
 <div class='region-search-detail'>
-
-    {{!-- <figure class="venue-search-thumb-wrapper">
-      <img class="headliner image" src="{{artist.imageUrl}}" alt="{{artist.displayName}}" />
-      <figcaption class="image-caption-text">{{artist.displayName}}</figcaption>
-    </figure> --}}
     {{#if artist.noMatch}}
-      <h5>No Results Found</h5>
+        <h5>No Results Found. {{#link-to 'artist.search'}}Search by Artist{{/link-to}}</h5>
     {{else}}
     <a href='javascript:;'{{action 'goToArtist' artist.displayName artist.id}}>
-      <h5 class='artist-name'>{{artist.displayName}}</h5></a>
+      <h5 class='artist-name'><strong>{{artist.displayName}}</strong></h5></a>
     {{/if}}
 
     {{#if artist.onTourUntil}}
       <h5 class='on-tour'>ON TOUR</h5>
     {{/if}}
-
-
-
-    {{!-- {{#link-to 'artist.event.results' artist.id (query-params page='1')}}
-
-      <h3>{{artist.displayName}}</h3>
-
-
-
-    {{/link-to}} --}}
 </div>

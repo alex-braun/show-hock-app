@@ -9,6 +9,7 @@ export default Ember.Service.extend({
   geoLocation: Ember.inject.service(),
 
   getRegion() {
+    let self = this;
     this.get('saveUserLocation').getRegionSelect();
     let region = this.get('saveUserLocation').regionSelectName;
 
@@ -23,11 +24,14 @@ export default Ember.Service.extend({
         });
     }
     else {
-      return this.get('geoLocation').getIp()
-      .then(() => {
-      return this.set('regionName', this.get('saveUserLocation').regionSelectName),
-      this.set('regionId', this.get('saveUserLocation').regionSelectId);
-      });
+      return new Ember.RSVP.Promise(function(resolve, reject) {
+      // .then(() => {
+      // return this.set('regionName', this.get('saveUserLocation').regionSelectName),
+      // this.set('regionId', this.get('saveUserLocation').regionSelectId);
+      resolve(self.set('regionName', self.get('saveUserLocation').regionSelectName),
+      self.set('regionId', self.get('saveUserLocation').regionSelectId));
+      // });
+    });
     }
   }
 });

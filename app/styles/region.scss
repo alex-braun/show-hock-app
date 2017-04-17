@@ -67,6 +67,26 @@ ul.region-event-ul {
   }
 }
 
+.region-event-ul.festival {
+  width: calc(100% - 125px);
+
+  .list-every-artist {
+    width: 100%;
+  }
+
+  .region-festival-header {
+    overflow: hidden;
+
+    .type-label {
+      float: right;
+    }
+
+    h4 {
+      float: left;
+    }
+  }
+}
+
 .region-band-thumbs {
   overflow: hidden;
   float: right;
@@ -137,17 +157,6 @@ ul.region-event-ul {
   padding-bottom: 5px;
   border-bottom: 1px dashed #2336b2;
   overflow: hidden;
-
-  .type-label {
-    display: inline-block;
-    background-color: rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    padding: 7px;
-    // box-shadow: 1px 1px 1px rgba(0,0,0,.5);
-    h5 {
-      margin: 0;
-    }
-  }
 }
 
 .region-search-map-wrapper {
@@ -197,6 +206,10 @@ ul.region-event-ul {
 
 .region-search-header-wrapper.main-search {
   margin-top: 15px;
+
+  .region-search-header {
+    max-width: 1080px;
+  }
 
   .search-input-page-wrapper > h5 {
     clear: both;
@@ -340,6 +353,9 @@ ul.region-event-ul {
   margin-top: -150px;
 }
 
+.region-search-main.main-search {
+  max-width: 1080px;
+}
 
 .region-search-main-listing {
   width: 80%;
@@ -376,9 +392,9 @@ ul.region-event-ul {
     position: absolute;
   }
 
-  img:empty {
-    background-color: #2336b2;
-  }
+  // img:empty {
+  //   background-color: #2336b2;
+  // }
 
   .region-background:empty {
     img {
@@ -555,6 +571,10 @@ ul.nearby-regions-list {
     width: 290px;
   }
 
+  .region-event-ul.festival {
+    width: calc(100% - 95px);
+  }
+
   .region-info {
     margin-right: 170px;
   }
@@ -620,11 +640,15 @@ ul.nearby-regions-list {
   }
 
   ul.region-event-ul {
-    width: 300px;
+    width: 100%;
 
     h4, h5 {
       font-size: 15px;
     }
+  }
+
+  .region-event-ul.festival {
+    width: 100%;
   }
 
   .region-event-listing, nav.pagination-wrapper {

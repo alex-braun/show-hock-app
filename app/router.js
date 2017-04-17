@@ -25,7 +25,8 @@ Router.map(function() {
     });
     this.route('event', { path: '/event/:region_name/:region_id' }, function() {
       this.route('results');
-      });
+      this.route('concert', { path: '/concert/:concert_id' } );
+    });
     });
 
   this.route('venue', function() {
