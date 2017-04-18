@@ -12,7 +12,7 @@ Router.map(function() {
       this.route('results', { path: '/:artist_name/results' });
       this.route('popular');
     });
-    this.route('event', { path: '/event/:artist_name/:artist_id' }, function() {
+    this.route('event', { path: '/:artist_name/:artist_id/event' }, function() {
       this.route('results');
       this.route('concert', { path: '/concert/:concert_id' });
     });
@@ -23,7 +23,7 @@ Router.map(function() {
       this.route('results', { path: '/:region_name/results' });
       this.route('popular');
     });
-    this.route('event', { path: '/event/:region_name/:region_id' }, function() {
+    this.route('event', { path: '/:region_name/:region_id/event' }, function() {
       this.route('results');
       this.route('concert', { path: '/concert/:concert_id' } );
     });
@@ -33,7 +33,7 @@ Router.map(function() {
     this.route('search', function() {
       this.route('results', { path: '/:venue_name/results' });
     });
-    this.route('event', { path: '/event/:venue_id' }, function() {
+    this.route('event', { path: '/:venue_id/event' }, function() {
       this.route('results');
       this.route('concert', { path: '/concert/:concert_id' });
     });
