@@ -249,6 +249,33 @@
   font-size: 16px;
 }
 
+.date-range-picker {
+  width: 100%;
+  position: relative;
+  float: left;
+
+  input, button {
+    font-size: 18px;
+  }
+  input {
+    width: 150px;
+  }
+}
+
+.min-date-cal {
+  position: absolute;
+  top: 42px;
+  left: 162px;
+  font-size: 24px;
+}
+
+.max-date-cal {
+  position: absolute;
+  top: 42px;
+  left: 335px;
+  font-size: 24px;
+}
+
 // .artist-detail {
 //   margin-bottom: 15px;
 //   padding-bottom: 15px;
@@ -480,7 +507,7 @@
   // }
 
   .upcoming-events-wrapper {
-    padding-right: 152px;
+    padding-right: 252px;
   }
 }
 
@@ -550,4 +577,42 @@
     -ms-transform: translate(-50%,-35%);
     transform: translate(-50%,-45%);
     }
+}
+
+@media (max-width: 550px) {
+  .date-range-picker {
+    width: 100%;
+    position: relative;
+    float: left;
+
+    h4 {
+      margin: 0;
+    }
+
+    input, button {
+      font-size: 18px;
+    }
+    input {
+      width: 100%;
+      // float: right;
+      clear: both;
+      border-radius: 3px;
+    }
   }
+
+  .min-date-cal {
+    position: absolute;
+    top: 46px;
+    left: auto;
+    right: 3px;
+    font-size: 24px;
+  }
+
+  .max-date-cal {
+    position: absolute;
+    top: 101px;
+    left: auto;
+    right: 3px;
+    font-size: 24px;
+  }
+}

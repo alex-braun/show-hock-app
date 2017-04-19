@@ -8,6 +8,8 @@ export default ApplicationAdapter.extend({
       let url = this.buildURL(type.modelName, id, snapshot, 'findRecord');
       let query = {
         page: Ember.get(snapshot.adapterOptions, 'page'),
+        min_date: Ember.get(snapshot.adapterOptions, 'min_date'),
+        max_date: Ember.get(snapshot.adapterOptions, 'max_date'),
         per_page: Ember.get(snapshot.adapterOptions, 'per_page')
       };
       return this.ajax(url, 'GET', { data: query });

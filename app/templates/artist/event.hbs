@@ -7,7 +7,7 @@
       </figure>
     {{/if}}
   {{/each}}
-
+{{log model}}
   <div class='region-info-wrapper'>
 
   {{#each model.search.artist as |basic| }}
@@ -39,8 +39,8 @@
           {{else}}
             <h4>Not on tour</h4>
           {{/if}}
-          {{#if model.artist.meta.total_entries}}
-            <h4>Upcoming Events: {{model.artist.meta.total_entries}}</h4>
+          {{#if count.upcomingCount}}
+            <h4>Upcoming Events: {{count.upcomingCount}}</h4>
           {{else}}
             <h4>Upcoming Concerts: None</h4>
           {{/if}}

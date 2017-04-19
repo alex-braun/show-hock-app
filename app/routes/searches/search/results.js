@@ -108,12 +108,15 @@ actions: {
   },
 
   goToArtist(name, id) {
+    console.log('hello?');
     this.transitionTo('artist.event.results',
       name,
       id,
       { queryParams: {
           page: 1,
-          per_page: 50
+          per_page: 50,
+          min_date: '',
+          max_date: ''
         }
       });
   },

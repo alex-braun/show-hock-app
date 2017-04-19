@@ -2,6 +2,9 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
 
+  accessRegionObj: Ember.inject.service(),
+  accessArtistShowCount: Ember.inject.service(),
+
   // nameAndId: Ember.inject.service('access-artist-data'),
 
   // artistId: null,
@@ -22,10 +25,13 @@ export default Ember.Route.extend({
 
       region: this.get('store').findRecord('region', params.region_id, {
         adapterOptions: { page: 1,
-                          per_page: 1 }
+                          per_page: 1,
+                          min_date: '',
+                          max_date: ''}
       })
       .then((result) => {
         let meta = result.get('meta');
+        this.get('accessArtistShowCount').addRegCount(meta.total_entries);
         return meta, result;
       }),
 
@@ -57,6 +63,7 @@ export default Ember.Route.extend({
         let meta = loc.get('meta');
         result.loc = loc;
         result.matchReg = matchReg;
+        this.get('accessRegionObj').add(matchReg);
         return meta, result;
       });
     });

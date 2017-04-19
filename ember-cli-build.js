@@ -6,7 +6,9 @@ module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
     // Add options here
   });
-
+  app.import('bower_components/bootstrap-daterangepicker/daterangepicker.js');
+  app.import('bower_components/bootstrap-daterangepicker/daterangepicker.scss');
+  app.import('bower_components/bootstrap-daterangepicker/daterangepicker.css');
   // Use `app.import` to add additional libraries to the generated
   // output files.
   //

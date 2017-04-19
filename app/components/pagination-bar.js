@@ -50,6 +50,9 @@ function paginationXS(curr,i, total) {
 
 
 function pagination(curr,i, total) {
+  if (total <= 13) {
+    return i;
+  }
 	if (total > 13) {
   //page number is 7 or less
     	if (curr - 6 <= 1) {

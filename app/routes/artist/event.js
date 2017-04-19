@@ -6,6 +6,7 @@ export default Ember.Route.extend({
 
 ////GET THE ARTIST NAME FOR USAGE IN NESTED ROUTES
   nameAndId: Ember.inject.service('access-artist-data'),
+  accessArtistShowCount: Ember.inject.service(),
   // accessArtistId: Ember.inject.service(),
   // geoLocation: Ember.inject.service(),
   // eventModel: null,
@@ -52,10 +53,14 @@ export default Ember.Route.extend({
       }),
 
       artist: this.get('store').findRecord('artist', param.artist_id, {
-        adapterOptions: { page: 1 }
+        adapterOptions: { page: 1,
+                          min_date: '',
+                          max_date: ''
+                        }
       })
       .then((result) => {
         let meta = result.get('meta');
+        this.get('accessArtistShowCount').addParent(meta.total_entries);
         return meta, result;
       }),
       //

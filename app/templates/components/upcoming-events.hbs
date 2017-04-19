@@ -1,7 +1,7 @@
 {{#if upcomingInfo.firstObject.noMatch}}
 {{!-- <li class='upcoming-events-item'> --}}
   <div class='upcoming-events-item-div'>
-  <h4>{{upcomingInfo.firstObject.performance.artist.displayName}} is not playing near you</h4>
+  <h4>{{upcomingInfo.firstObject.performance.artist.displayName}} is not playing in <strong>{{userLocationSetting.regionName}}</strong></h4>
   </div>
 {{else}}
   <div class='upcoming-events'>

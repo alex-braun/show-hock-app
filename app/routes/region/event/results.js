@@ -8,6 +8,12 @@ export default Ember.Route.extend({
       page: {
         refreshModel: true
       },
+      min_date: {
+        refreshModel: true
+      },
+      max_date: {
+        refreshModel: true
+      }
     },
 
     beforeModel(data) {
@@ -25,7 +31,9 @@ export default Ember.Route.extend({
 
       return this.get('store').findRecord('region', id, {
       adapterOptions: { page: params.page,
-                        per_page: 50 }
+                        per_page: 50,
+                        min_date: params.min_date,
+                        max_date: params.max_date }
       })
       .then((result) => {
         let meta = result.get('meta');

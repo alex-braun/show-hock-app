@@ -21,7 +21,9 @@ export default Ember.Route.extend({
   model() {
     let regionId = this.get('regionId');
     return this.get('store').findRecord('region', regionId, { adapterOptions: { page: 1,
-                      per_page: 100 }
+                      per_page: 100,
+                      min_date: '',
+                      max_date: ''}
     })
     .then((result) => {
       let meta = result.get('meta');
@@ -47,9 +49,11 @@ export default Ember.Route.extend({
     },
 
     goToArtists() {
-      this.transitionTo('artist.search.popular',
+      this.transitionTo('artist.search.index',
         { queryParams: {
           page: 1,
+          min_date: '',
+          max_date: ''
         }
       });
     },

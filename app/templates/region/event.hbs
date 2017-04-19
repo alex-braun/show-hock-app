@@ -23,7 +23,8 @@
         </h4>
 
       {{#if model.region.meta.total_entries}}
-        <h4>Upcoming Events in {{model.matchReg.firstObject.metroArea.displayName}}: {{model.region.meta.total_entries}}</h4>
+        {{!-- <h4>Upcoming Events in {{model.matchReg.firstObject.metroArea.displayName}}: {{model.region.meta.total_entries}}</h4> --}}
+        <h4>Upcoming Events in {{model.matchReg.firstObject.metroArea.displayName}}: {{count.regionCount}}</h4>
       {{else}}
         <h4>Upcoming Events in {{model.matchReg.firstObject.metroArea.displayName}}: None</h4>
       {{/if}}

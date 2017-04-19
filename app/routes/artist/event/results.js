@@ -4,6 +4,7 @@ export default Ember.Route.extend({
 
   // geoLocation: Ember.inject.service(),
   userLocationSetting: Ember.inject.service(),
+  // dateFilterParams: Ember.inject.service(),
   accessArtistName: Ember.inject.service(),
   count: Ember.inject.service('access-artist-show-count'),
   artistEventParams: null,
@@ -12,8 +13,17 @@ export default Ember.Route.extend({
     page: {
       refreshModel: true
     },
+    min_date: {
+      refreshModel: true
+    },
+    max_date: {
+      refreshModel: true
+    }
   },
-
+  //
+  // min_date (YYYY-MM-DD)
+  // max_date (YYYY-MM-DD)
+  //
   beforeModel(param) {
     this._super(...arguments);
     this.get('accessArtistName').add(param.params['artist.event']);
@@ -37,7 +47,9 @@ export default Ember.Route.extend({
     return Ember.RSVP.hash({
 
       artist: this.get('store').findRecord('artist', allParams.artistId, {
-        adapterOptions: { page: params.page }
+        adapterOptions: { page: params.page,
+                          min_date: params.min_date,
+                          max_date: params.max_date }
       })
       .then((result) => {
         let meta = result.get('meta');
@@ -66,6 +78,6 @@ export default Ember.Route.extend({
 
     goToConcert(value) {
       this.transitionTo('artist.event.concert', value);
-    }
+    },
   }
 });
