@@ -36,8 +36,17 @@ export default Ember.Route.extend({
   },
 
   actions: {
-    getRegionShows(val) {
-      this.transitionTo('region.event.results', val);
+    goToRegion(name, id) {
+      this.transitionTo('region.event.results',
+          name,
+          id,
+          { queryParams: {
+            page: 1,
+            per_page: 50,
+            min_date: '',
+            max_date: ''
+            }
+      });
     },
 
     userChooseRegion() {
@@ -46,6 +55,18 @@ export default Ember.Route.extend({
 
     goToRegions() {
       this.transitionTo('region.search.index',
+        { queryParams: {
+          page: 1,
+          min_date: '',
+          max_date: ''
+        }
+      });
+    },
+
+    goToConcert(concertId, regionName, regionId) {
+      console.log(concertId + ' '+ regionName + ' ' + regionId);
+      this.transitionTo('region.event.concert',
+        regionName, regionId, concertId,
         { queryParams: {
           page: 1,
           min_date: '',

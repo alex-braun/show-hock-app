@@ -21,7 +21,6 @@ export default Ember.Route.extend({
 
       venue: this.get('store').findRecord('venue', param.venue_id)
       .then((result) => {
-        console.log(result.get('displayName'));
         this.get('accessArtistParams').add(result.get('displayName'));
         let meta = result.get('meta');
         return meta, result;
@@ -39,7 +38,9 @@ export default Ember.Route.extend({
 
     .then((result) => {
       return this.get('store').findRecord('region', result.venue.get('metroArea').id, { adapterOptions: { page: 1,
-                        per_page: 50 }
+                        per_page: 50,
+                        min_date: '',
+                        max_date: ''}
       })
       .then((region) => {
         let meta = region.get('meta');

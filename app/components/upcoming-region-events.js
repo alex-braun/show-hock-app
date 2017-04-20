@@ -20,8 +20,12 @@ export default Ember.Component.extend({
   }),
 
   actions: {
-    getRegionShows(id) {
-      this.sendAction('getRegionShows', id);
+    goToRegion(name, id) {
+      this.sendAction('goToRegion', name, id);
+    },
+
+    goToConcert(concertId, regionName, regionId) {
+      this.sendAction('goToConcert', concertId, regionName, regionId);
     },
 
     userChooseRegion() {

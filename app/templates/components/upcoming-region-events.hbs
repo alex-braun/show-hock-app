@@ -8,7 +8,14 @@
 
   {{#each filteredResults as |event|}}
     <li class='upcoming-region-event item'>
-      <h4><strong>{{no-parens event.displayName}}</strong></h4>
+
+      <a href='javascript;' {{action 'goToConcert'
+                              event.id
+                              event.venue.metroArea.displayName
+                              event.venue.metroArea.id}}>
+        <h4><strong>{{no-parens event.displayName}}</strong></h4>
+      </a>
+
       <p>{{format-mon event.start.date}} {{format-day event.start.date}}, {{format-year event.start.date}}</p>
     </li>
   {{/each}}
@@ -16,7 +23,9 @@
 </ul>
 
 {{#if (gt model.meta.total_entries 5 ) }}
-{{button-to-concert buttonTitle=buttonTitle
-                    buttonClick='getRegionShows'
-                    value=model.id}}
+{{button-to-region buttonTitle='See More'
+                   buttonClick='goToRegion'
+                   regionId=model.id
+                   regionName=model.event.firstObject.venue.metroArea.displayName}}
 {{/if}}
+{{log filteredResults}}

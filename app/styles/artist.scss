@@ -217,8 +217,8 @@
   max-width: 1080px;
   position: relative;
   float: left;
-  margin-right: 375px;
-  padding-right: 335px;
+  // margin-right: 375px;
+  // padding-right: 335px;
   margin-bottom: 20px;
 }
 
@@ -253,6 +253,7 @@
   width: 100%;
   position: relative;
   float: left;
+  margin-bottom: 30px;
 
   input, button {
     font-size: 18px;
@@ -304,14 +305,15 @@
 }
 
 .artist-event-listing {
-  width: 100%;
+  // width: 100%;
   max-width: 745px;
-  min-width: 605px;
+  // min-width: 605px;
   padding: 5px 0 5px 10px;
   position: relative;
   float: left;
-  margin-right: 375px;
-  margin-right: 335px;
+  width: calc(100% - 272px);
+  // margin-right: 375px;
+  // margin-right: 335px;
 
   // clear: left;
 }
@@ -341,7 +343,7 @@
   float: right;
   padding: 10px;
   right: 0;
-  position: absolute;
+  // position: absolute;
   width: 322px;
   z-index: 99;
 }
@@ -482,7 +484,7 @@
 
 @media (max-width: 1110px) {
   .upcoming-events-wrapper {
-    padding-right: 265px;
+    // padding-right: 265px;
   }
 }
 
@@ -507,7 +509,15 @@
   // }
 
   .upcoming-events-wrapper {
-    padding-right: 252px;
+    // padding-right: 252px;
+  }
+
+  .artist-event-listing {
+    width: calc(100% - 182px);
+  }
+
+  .artist-event-listing.concert {
+    width: calc(100% - 252px);
   }
 }
 
@@ -549,6 +559,10 @@
   .artist-event-listing {
     width: 100%;
     min-width: 0;
+  }
+
+  .artist-event-listing.concert {
+    width: 100%;
   }
 
   // .results-sidebar-wrapper {

@@ -130,6 +130,15 @@ actions: {
           per_page: 50
         }
       });
+  },
+
+  goToVenue(id) {
+    this.transitionTo('venue.event.results',
+      id,
+      { queryParams: {
+          page: 1,
+        }
+      });
   }
 }
 

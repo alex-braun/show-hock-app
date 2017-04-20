@@ -516,15 +516,16 @@ ul.region-event-ul {
 }
 
 .region-event-listing {
-  width: 100%;
-  max-width: 1080px;
-  // min-width: 605px;
-  // padding: 5px 0 5px 10px;
+  // width: 100%;
+  // max-width: 1080px;
   position: relative;
   float: left;
-  margin-right: 375px;
-  // margin-right: 335px;
-  padding-right: 335px;
+  // margin-right: 375px;
+  // padding-right: 335px;
+}
+
+.region-event-listing.artist {
+  width: 735px;
 }
 
 
@@ -588,8 +589,11 @@ ul.nearby-regions-list {
     width: 252px;
   }
 
-  .region-event-listing, nav.pagination-wrapper {
-    padding-right: 265px;
+  .region-event-listing,
+  nav.pagination-wrapper,
+  .region-event-listing.artist {
+    // padding-right: 265px;
+    width: calc(100% - 272px);
   }
 }
 
@@ -626,8 +630,15 @@ ul.nearby-regions-list {
   div.results-sidebar-wrapper.artist {
     width: 232px;
   }
-  .region-event-listing, nav.pagination-wrapper {
-    padding-right: 252px;
+  .region-event-listing,
+  nav.pagination-wrapper {
+    // padding-right: 252px;
+    width: calc(100% - 182px);
+  }
+
+  .region-event-listing.artist {
+    // padding-right: 252px;
+    width: calc(100% - 252px);
   }
 
   .region-band-thumbs {
@@ -679,8 +690,10 @@ ul.nearby-regions-list {
     width: 100%;
   }
 
-  .region-event-listing, nav.pagination-wrapper {
+  .region-event-listing, nav.pagination-wrapper,
+  .region-event-listing.artist {
     padding-right: 0;
+    width: 100%;
   }
 
   .region-thumb-wrapper {

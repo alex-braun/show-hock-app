@@ -36,7 +36,8 @@
 
     </div>
   {{#each model.venue.venue as |venue|}}
-    {{search-results-venue venue=venue}}
+    {{search-results-venue venue=venue
+                           goToVenue='goToVenue'}}
   {{/each}}
   </div>
 

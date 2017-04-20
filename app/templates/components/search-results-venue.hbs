@@ -8,7 +8,7 @@
         <h5>No Results Found. {{#link-to 'venue.search'}}Search by Venue{{/link-to}}</h5>
     {{else}}
 
-      <a href='javascript:;'{{action 'goToRegion' region.metroArea.displayName region.metroArea.id}}>
+      <a href='javascript:;'{{action 'goToVenue' venue.id}}>
         <h5 class='venue-list'><strong>{{venue.displayName}}</strong></h5>
 
       {{#if venue.city.state.displayName  venue.city.country.displayName}}

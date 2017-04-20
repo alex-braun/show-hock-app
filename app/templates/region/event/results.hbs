@@ -13,13 +13,17 @@
                 newPage='changeRegionPage'
                 previousPage='previousPage'
                 nextPage='nextPage'}} --}}
-{{#unless model.noMatch}}
-{{date-range-picker filterDate='filterDate'
-                    min_date=min_date
-                    max_date=max_date}}
-{{/unless}}
+
+
+
 
 <div class='region-event-listing'>
+  {{#unless model.noMatch}}
+  {{date-range-picker filterDate='filterDate'
+                      min_date=min_date
+                      max_date=max_date}}
+  {{/unless}}
+
   {{#if model.noMatch}}
     <h3>No upcoming events found for  <strong>{{accessRegionObj.regionName.firstObject.metroArea.displayName}}</strong></h3>
   {{else}}
@@ -33,11 +37,17 @@
       {{/each}}
     </ul>
   {{/if}}
+
+  {{pagination-bar pages=model.meta
+                  newPage='changeRegionPage'
+                  previousPage='previousPage'
+                  nextPage='nextPage'}}
+
 </div>
 
 
 
-{{pagination-bar pages=model.meta
+{{!-- {{pagination-bar pages=model.meta
                 newPage='changeRegionPage'
                 previousPage='previousPage'
-                nextPage='nextPage'}}
+                nextPage='nextPage'}} --}}

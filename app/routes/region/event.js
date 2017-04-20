@@ -47,14 +47,12 @@ export default Ember.Route.extend({
 
     .then((result) => {
       let response = result.search.get('location');
-      console.log(response.length);
       let arr = [];
       for (let i = 0; i < response.length; i++) {
         arr.push([i]);
       }
       let matchReg = response.objectsAt(arr);
       matchReg = matchReg.filter((el) => {
-        console.log(el.id === parseInt(params.region_id));
         return el.id === parseInt(params.region_id);
       });
       return this.get('store').query('location_geo', {

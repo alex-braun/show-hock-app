@@ -357,17 +357,28 @@ div.svg-wrapper.map {
     margin-bottom: 0;
   }
 
+  a {
+    color: inherit;
+  }
+
+  a:hover {
+    text-decoration: none;
+  }
+
   .button-to-concert-wrapper {
     float: none;
     margin: 0 auto;
-    width: 132.56px;
+    text-align: center;
+    // width: 132.56px;
   }
 }
 
 .upcoming-region-events-header {
   text-align: center;
   padding: 15px;
-  background-color: #5C6BA8;
+  // background-color: #5C6BA8;
+  background-color: white;
+  color: black;
 }
 
 .upcoming-region-events-list-wrapper {
@@ -394,7 +405,8 @@ div.svg-wrapper.map {
   }
 
   .carousel-inner-title {
-    background-color: #5C6BA8;
+    // background-color: #5C6BA8;
+    background-color: white;
     text-align: center;
     padding: 15px;
   }
@@ -402,7 +414,7 @@ div.svg-wrapper.map {
   h3 {
     font-size: 20px;
     margin: 0;
-    color: white;
+    // color: white;
   }
 }
 
@@ -573,8 +585,8 @@ div.svg-wrapper.map {
   float: left;
   margin-bottom: 20px;
   text-align: center;
-  margin-right: 375px;
-  padding-right: 335px;
+  // margin-right: 375px;
+  // padding-right: 335px;
 }
 
 .pagination {
@@ -922,6 +934,11 @@ div.svg-wrapper.map {
     display: inline-block !important;
   }
 /*END NAVBAR STYLING*/
+
+  .landing-page-search-menu > div {
+    width: 100%;
+  }
+
   .pagination {
     display: inline-block;
     width: 100%;
