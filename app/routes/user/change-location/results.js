@@ -25,9 +25,12 @@ export default Ember.Route.extend({
   },
 
   actions: {
-
-    saveRegion(region, id) {
-      this.get('saveUserLocation').saveRegionSelect(region, id);
+    saveRegion(id, regObj) {
+      if (regObj.hasOwnProperty('state')) {
+        this.get('saveUserLocation').saveRegionSelect(regObj.displayName, id, regObj.country.displayName, regObj.state.displayName);
+      } else {
+        this.get('saveUserLocation').saveRegionSelect(regObj.displayName, id, regObj.country.displayName, false);
+      }
       this.transitionTo('/');
     }
   },

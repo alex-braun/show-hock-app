@@ -1,0 +1,27 @@
+{{!-- <div class='region-search-main-listing'>
+  <ul class="event-listings row-fluid block-grid-3">
+    {{#each model.region as |venue|}}
+        {{venues-in-region events=model.event}}
+    {{/each}}
+  </ul>
+</div> --}}
+
+{{!-- <div class="region-search-main-listing">
+
+  {{venues-in-region events=model.event}}
+
+</div> --}}
+
+{{!-- {{popular-artists events=model.event}}
+
+{{pagination-bar pages=model.meta
+                newPage='changeVenuePage'
+                previousPage='previousPage'
+                nextPage='nextPage'}} --}}
+
+
+<div class="region-search-main-listing">
+
+{{popular-artists events=model.event}}
+
+</div>

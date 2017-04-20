@@ -23,7 +23,9 @@ export default Ember.Route.extend({
     let id = this.get('userLocationSetting').regionId;
     return this.get('store').findRecord('region', id, {
       adapterOptions: { page: 1,
-                        per_page: 100 }
+                        per_page: 100,
+                        min_date: '',
+                        max_date: ''}
     })
       .then((result) => {
       let meta = result.get('meta');

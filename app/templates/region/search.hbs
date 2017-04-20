@@ -1,14 +1,12 @@
-<div class='region-search-header-wrapper'>
+{{!-- <div class='region-search-header-wrapper'>
   <div class='region-search-header'>
     <div class='region-search-header-info'>
       <h1>Search cities and regions throughout the world</h1>
       <div class='search-input-page-wrapper'>
         {{search-input keyword=entered}}
-        {{!-- {{#link-to 'region.search.results' (query-params search=entered)}} --}}
           <button type="submit" class="btn btn-success">
             Search
           </button>
-          {{!-- {{/link-to}} --}}
       </div>
     </div>
   </div>
@@ -17,6 +15,36 @@
 <div class='region-search-main-wrapper'>
   <div class='region-search-main'>
     {{search-options-menu}}
+    {{outlet}}
+  </div>
+</div> --}}
+
+
+
+
+
+<div class='region-info-section'>
+  {{!-- <figure class='region-background-wrapper'></figure> --}}
+  <div class='region-info-wrapper search'>
+    {{!-- {{search-options-menu}} --}}
+
+    <div class='region-info search'>
+
+      <h1>Search by Region</h1>
+      <form>
+      {{search-input-page keyword=entered}}
+        <button type="submit" class="btn btn-success" {{action 'regionSearch' entered}}>
+          Search
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class='region-search-main-wrapper'>
+  <div class='region-search-main ea-route'>
+    {{search-options-menu}}
+
     {{outlet}}
   </div>
 </div>

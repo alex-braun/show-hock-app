@@ -1,7 +1,19 @@
 <div class='region-info-section'>
-  <figure class='region-background-wrapper'></figure>
-  <h1>SEARCH ARTISTS</h1>
+  {{!-- <figure class='region-background-wrapper'></figure> --}}
+  <div class='region-info-wrapper search'>
+    {{!-- {{search-options-menu}} --}}
 
+    <div class='region-info search'>
+
+      <h1>Search by Artist</h1>
+      <form>
+      {{search-input-page keyword=entered}}
+        <button type="submit" class="btn btn-success" {{action 'artistSearch' entered}}>
+          Search
+        </button>
+      </form>
+    </div>
+  </div>
 </div>
 
 {{!-- <div class='region-search-header-wrapper ea-route'>
@@ -26,6 +38,7 @@
 
 <div class='region-search-main-wrapper'>
   <div class='region-search-main ea-route'>
+    {{search-options-menu}}
 
     {{outlet}}
   </div>

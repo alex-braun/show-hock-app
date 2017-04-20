@@ -4,6 +4,8 @@ export default Ember.Service.extend({
 
   regionName: null,
   regionId: null,
+  regionCountry: null,
+  regionState: null,
 
   saveUserLocation: Ember.inject.service(),
   geoLocation: Ember.inject.service(),
@@ -21,6 +23,8 @@ export default Ember.Service.extend({
         .then(() => {
           this.set('regionName', this.get('geoLocation').regionName);
           this.set('regionId', this.get('geoLocation').regionId);
+          this.set('regionCountry', this.get('geoLocation').regionCountry);
+          this.set('regionState', this.get('geoLocation').regionState);
         });
     }
     else {
@@ -29,7 +33,9 @@ export default Ember.Service.extend({
       // return this.set('regionName', this.get('saveUserLocation').regionSelectName),
       // this.set('regionId', this.get('saveUserLocation').regionSelectId);
       resolve(self.set('regionName', self.get('saveUserLocation').regionSelectName),
-      self.set('regionId', self.get('saveUserLocation').regionSelectId));
+      self.set('regionId', self.get('saveUserLocation').regionSelectId),
+      self.set('regionCountry', self.get('saveUserLocation').regionSelectCountry),
+      self.set('regionState', self.get('saveUserLocation').regionSelectState));
       // });
     });
     }

@@ -45,7 +45,13 @@ export default Ember.Route.extend({
     },
 
     goToRegions() {
-      this.transitionTo('region.search');
+      this.transitionTo('region.search.index',
+        { queryParams: {
+          page: 1,
+          min_date: '',
+          max_date: ''
+        }
+      });
     },
 
     goToArtists() {
@@ -59,7 +65,7 @@ export default Ember.Route.extend({
     },
 
     goToVenues() {
-      this.transitionTo('venue.search');
+      this.transitionTo('venue.search.index');
     },
   }
 });

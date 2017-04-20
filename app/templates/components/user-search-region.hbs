@@ -9,7 +9,14 @@
     </div>
     {{!-- {{#link-to 'region.event.results' (query-params getId=regionSelect.metroArea.id page='1' location=regionSelect.metroArea.displayName)}} --}}
     {{!-- {{#link-to 'user.change-location.confirm'}} --}}
-    <a href='javascript:;' {{action 'saveRegion' regionSelect.metroArea.displayName regionSelect.metroArea.id}}>
+    {{!-- <a href='javascript:;' {{action 'saveRegion'
+    regionSelect.metroArea.displayName
+    regionSelect.metroArea.id
+    regionSelect.metroArea.country.displayName
+    regionSelect.metroArea.state.displayName}}> --}}
+
+    <a href='javascript:;' {{action 'saveRegion' regionSelect.metroArea.id regionSelect.metroArea}}>
+
     {{!-- {{region-search-location-map}} --}}
     {{#if regionSelect.metroArea.state.displayName  regionSelect.metroArea.country.displayName}}
       <h3>{{regionSelect.metroArea.displayName}}, {{regionSelect.metroArea.state.displayName}},

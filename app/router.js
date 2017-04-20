@@ -10,7 +10,6 @@ Router.map(function() {
   this.route('artist', function() {
     this.route('search', function() {
       this.route('results', { path: '/:artist_name/results' });
-      this.route('popular');
     });
     this.route('event', { path: '/:artist_name/:artist_id/event' }, function() {
       this.route('results');
@@ -21,7 +20,6 @@ Router.map(function() {
   this.route('region', function() {
     this.route('search', function() {
       this.route('results', { path: '/:region_name/results' });
-      this.route('popular');
     });
     this.route('event', { path: '/:region_name/:region_id/event' }, function() {
       this.route('results');

@@ -13,13 +13,14 @@
                 newPage='changeRegionPage'
                 previousPage='previousPage'
                 nextPage='nextPage'}} --}}
+{{#unless model.noMatch}}
 {{date-range-picker filterDate='filterDate'
                     min_date=min_date
                     max_date=max_date}}
+{{/unless}}
 
 <div class='region-event-listing'>
-
-  {{#if model.region.event.firstObject.noMatch}}
+  {{#if model.noMatch}}
     <h3>No upcoming events found for  <strong>{{accessRegionObj.regionName.firstObject.metroArea.displayName}}</strong></h3>
   {{else}}
     <h3><strong>Upcoming Concerts ({{model.meta.total_entries}})</strong></h3>
@@ -33,45 +34,10 @@
     </ul>
   {{/if}}
 </div>
-{{log model}}
 
 
-
-
-{{!-- {{#if model.artist.event.firstObject.noMatch}}
-  <h3>No upcoming concerts found for  <strong>{{name.name.artist_name}}</strong></h3>
-
-{{else}}
-  <h3><strong>Upcoming Concerts ({{model.artist.meta.total_entries}})</strong></h3>
-  <ul class="event-listings row-fluid block-grid-3">
-    {{#each model.artist.event as |event|}}
-
-        {{artist-detail event=event
-                        goToConcert='goToConcert'
-                        }}
-
-    {{/each}}
-  </ul>
-{{/if}} --}}
 
 {{pagination-bar pages=model.meta
                 newPage='changeRegionPage'
                 previousPage='previousPage'
                 nextPage='nextPage'}}
-
-{{!-- <div class='venue-event-listing'>
-
-<ul class="event-listings row-fluid block-grid-3">
-  {{#each model.event as |event|}}
-
-        {{venue-detail event=event
-                      goToConcert='goToConcert'}}
-
-  {{/each}}
-</ul>
-</div>
-
-{{pagination-bar pages=model.meta
-                newPage='changeRegionPage'
-                previousPage='previousPage'
-                nextPage='nextPage'}} --}}

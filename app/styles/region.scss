@@ -340,7 +340,7 @@ ul.region-event-ul {
   position: relative;
   margin: 0 auto;
   // max-width: 1080px;
-  max-width: 758px;
+  max-width: 900px;
   overflow-y: hidden;
   // min-height: 700px;
 
@@ -350,7 +350,7 @@ ul.region-event-ul {
 }
 
 .region-search-main.ea-route  {
-  margin-top: -150px;
+  // margin-top: -150px;
 }
 
 .region-search-main.main-search {
@@ -368,6 +368,7 @@ ul.region-event-ul {
   position: relative;
   width: 100%;
   margin: 0;
+  // z-index: 999;
 }
 
 .region-background-wrapper {
@@ -427,6 +428,33 @@ ul.region-event-ul {
   margin: 0 auto;
   max-width: 1080px;
   overflow: hidden;
+}
+
+.region-info-wrapper.search {
+  margin: 0 auto;
+  max-width: 758px;
+  max-width: 900px;
+  overflow: hidden;
+
+  .region-info {
+    margin-right: 0;
+    background-color: inherit;
+    width: 80%;
+    float: right;
+    padding: 0;
+  }
+  h1 {
+    color: black;
+  }
+
+  .search-input {
+    display: inline-block;
+    width: calc(60% - 80px;)
+  }
+
+  input.form-control {
+    width: 100%;
+  }
 }
 
 .region-thumb-wrapper {

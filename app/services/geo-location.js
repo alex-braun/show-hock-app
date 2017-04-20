@@ -7,8 +7,8 @@ store: Ember.inject.service('store'),
   clientIp: null,
   regionId: null,
   regionName: null,
-  state: null,
-  country: null,
+  regionState: null,
+  regionCountry: null,
 
   // getIp() {
   //   return Ember.RSVP.hash({
@@ -43,8 +43,8 @@ store: Ember.inject.service('store'),
       let country = response.content[0]._data.metroArea.country.displayName;
       return this.set('regionId', id),
              this.set('regionName', regionName),
-             this.set('state', state),
-             this.set('country', country);
+             this.set('regionState', state),
+             this.set('regionCountry', country);
     });
   },
 });

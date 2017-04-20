@@ -47,12 +47,14 @@ export default Ember.Route.extend({
 
     .then((result) => {
       let response = result.search.get('location');
+      console.log(response.length);
       let arr = [];
       for (let i = 0; i < response.length; i++) {
         arr.push([i]);
       }
       let matchReg = response.objectsAt(arr);
       matchReg = matchReg.filter((el) => {
+        console.log(el.id === parseInt(params.region_id));
         return el.id === parseInt(params.region_id);
       });
       return this.get('store').query('location_geo', {
@@ -67,6 +69,11 @@ export default Ember.Route.extend({
         return meta, result;
       });
     });
+
+/////57839
+
+// lat/lng of NY, NY   Lodi is #67
+// 40.714269&lng=-74.005973
 
 
     // filteredResults: Ember.computed('model.performance', function() {
@@ -95,8 +102,17 @@ export default Ember.Route.extend({
 
 
   },
-  //
-  // actions: {
+  actions: {
+    goToRegion(name, id) {
+      this.transitionTo('region.event.results',
+          name,
+          id,
+          { queryParams: {
+            page: 1,
+            per_page: 50
+            }
+      });
+    },
   //   goToArtist(name, id) {
   //     this.transitionTo('artist.event.results',
   //         name,
@@ -105,6 +121,6 @@ export default Ember.Route.extend({
   //           page: 1,
   //           }
   //     });
-  //   }
+    }
 
 });

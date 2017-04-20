@@ -37,6 +37,7 @@
   <div class='region-event-wrapper'>
     {{outlet}}
       {{nearby-regions locations=model.loc
-                       currLoc=model.matchReg.firstObject.id}}
+                       currLoc=model.matchReg.firstObject.id
+                       goToRegion='goToRegion'}}
   </div>
 </div>

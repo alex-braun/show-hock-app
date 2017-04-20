@@ -19,4 +19,10 @@ export default Ember.Component.extend({
   }),
   ordered: Ember.computed.sort('limited', 'sortAttrs'),
   sortAttrs: ['state'],
+
+  actions: {
+    goToRegion(region, id) {
+      this.sendAction('goToRegion', region, id);
+    }
+  }
 });

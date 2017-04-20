@@ -290,8 +290,6 @@ div.svg-wrapper.map {
   }
 }
 
-
-
 .search-options-menu-wrapper {
   // width: 20%;
   float: left;
@@ -525,6 +523,24 @@ div.svg-wrapper.map {
 
   li {
     list-style-type: none;
+  }
+}
+
+.popular-artists {
+
+  h4 {
+    margin: 5px 0 5px 0;
+  }
+
+  .artist-event-date {
+    padding-top: 0;
+    font-size: 16px;
+  }
+
+  .artist-date {
+    clear: left;
+    display: inline-block;
+    float: left;
   }
 }
 
