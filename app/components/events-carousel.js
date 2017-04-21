@@ -24,7 +24,7 @@ export default Ember.Component.extend({
         clicked = true;
       });
 
-      // this.$(".carousel").carousel('pause');
+      this.$(".carousel").carousel('pause');
 
       this.$(".carousel").bind('slide.bs.carousel', function (e) {
         if (clicked) {
@@ -41,8 +41,21 @@ export default Ember.Component.extend({
     });
   },
 
+  actions: {
+    goToConcert( concertId, regionName, regionId) {
+      this.sendAction('goToConcert', concertId, regionName, regionId);
+    }
+  },
+
+  willClearRender() {
+    this._super(...arguments);
+    this.$(".carousel").carousel('pause');
+  },
+
   willDestroyElement() {
     this._super(...arguments);
     this.$('.carousel').off('.carousel');
-  }
+  },
+
+
 });

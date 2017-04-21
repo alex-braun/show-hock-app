@@ -5,9 +5,9 @@
       venueId}}>see all {{calendar.meta.total_entries}}</a>)
   </h4>
 
-<ul class='upcoming-venue-events list'>
+<ul class='upcoming-venue-events-list'>
 {{#each filteredResults as |event|}}
-  <li class='upcoming-venue-events item'>
+  <li class='upcoming-venue-events-item'>
 
     {{!-- {{#each event.performance as |performance index|}} --}}
       {{!-- {{#if (lt index 2)}} --}}
@@ -20,17 +20,19 @@
 
     {{!-- {{/each}} --}}
     {{!-- <img src={{event.performance.firstObject.artist.imageUrl}}> --}}
-    <div class='img-event-wrapper'>
-      <figure class="band-thumb-wrapper">
-        <img class="headliner image" src="{{event.performance.firstObject.artist.imageUrl}}" alt="{{event.performance.firstObject.artist.displayName}}" />
-        <figcaption class="image-caption-text">
-          {{format-mon event.start.date}} {{format-day event.start.date}}, {{format-year event.start.date}}
-          {{!-- {{event.performance.firstObject.artist.displayName}}
-          {{#if (gt event.performance.length 2)}} and
-          {{not-including-curr event.performance.length}} more
-          {{/if}} --}}
-        </figcaption>
-      </figure>
+    <div class='upcoming-venue-artist-centering'>
+      <div class='img-event-wrapper'>
+        <figure class="band-thumb-wrapper">
+          <img class="headliner image" src="{{event.performance.firstObject.artist.imageUrl}}" alt="{{event.performance.firstObject.artist.displayName}}" />
+          <figcaption class="image-caption-text">
+            {{format-mon event.start.date}} {{format-day event.start.date}}, {{format-year event.start.date}}
+            {{!-- {{event.performance.firstObject.artist.displayName}}
+            {{#if (gt event.performance.length 2)}} and
+            {{not-including-curr event.performance.length}} more
+            {{/if}} --}}
+          </figcaption>
+        </figure>
+      </div>
     </div>
   </li>
 {{/each}}

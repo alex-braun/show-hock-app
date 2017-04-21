@@ -15,7 +15,13 @@ export default Ember.Component.extend({
     return parseInt(loc.id) !== this.get('currLoc');
   }),
   limited: Ember.computed('uniqueLoc', function() {
-    return this.get('uniqueLoc').splice(0, 30);
+    let num;
+    if (this.get('uniqueLoc').length > 30) {
+      num = 30;
+    } else {
+      num = this.get('uniqueLoc').length;
+    }
+    return this.get('uniqueLoc').splice(0, num);
   }),
   ordered: Ember.computed.sort('limited', 'sortAttrs'),
   sortAttrs: ['state'],

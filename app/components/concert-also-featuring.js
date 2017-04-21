@@ -22,7 +22,7 @@ export default Ember.Component.extend({
   actions: {
     goToArtist(name, id) {
       this.sendAction('goToArtist', name, id);
-    }
+    },
   }
 });
 

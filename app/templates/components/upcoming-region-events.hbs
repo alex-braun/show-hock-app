@@ -8,7 +8,6 @@
 
   {{#each filteredResults as |event|}}
     <li class='upcoming-region-event item'>
-
       <a href='javascript;' {{action 'goToConcert'
                               event.id
                               event.venue.metroArea.displayName
@@ -28,4 +27,3 @@
                    regionId=model.id
                    regionName=model.event.firstObject.venue.metroArea.displayName}}
 {{/if}}
-{{log filteredResults}}

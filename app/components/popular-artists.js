@@ -11,6 +11,12 @@ export default Ember.Component.extend({
   sortAttrs: ['popularity:desc'],
   mostPop: Ember.computed('sortedEvents', function() {
     let arr = (this.get('sortedEvents'));
-    return arr.slice(0, 50);
+    let num;
+    if (arr.length > 50) {
+      num = 50;
+    } else {
+      num = arr.length;
+    }
+    return arr.slice(0, num);
   }),
 });

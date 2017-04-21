@@ -1,4 +1,4 @@
-<div class='artist-event-listing concert'>
+<div class='artist-event-listing'>
 {{!--FOR FESTIVALS--}}
 {{#if (eq model.type 'Festival')}}
     <div class='artist-concert festival'>
@@ -12,7 +12,8 @@
     {{concert-featuring-artist isFullList=isFullList
                                 getFullList='getFullList'
                                 performances=model.performance
-                                concertId=model.id}}
+                                concertId=model.id
+                                goToArtist='goToArtist'}}
   </div>
 
 {{else}}
@@ -23,16 +24,22 @@
 
     {{artist-date event=model}}
 
+    {{concert-featuring-artist isFullList=isFullList
+                                getFullList='getFullList'
+                                performances=model.performance
+                                concertId=model.id
+                                goToArtist='goToArtist'}}
 
-      {{concert-also-featuring goToArtist='goToArtist'
-                               model=model}}
+      {{!-- {{concert-also-featuring goToArtist='goToArtist'
+                               model=model}} --}}
     </div>
 {{/if}}
 
     {{!-- <p>Concert Popularity: {{model.popularity}}</p> --}}
 
   {{!-- VENUE DETAILS--}}
-  {{concert-venue-details model=model}}
+  {{concert-venue-details model=model
+                          goToVenue='goToVenue'}}
 
   {{#if (gt model.calendar.event.length 1)}}
     {{upcoming-venue-events calendar=model.calendar

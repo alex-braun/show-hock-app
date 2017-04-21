@@ -6,15 +6,23 @@ export default Ember.Component.extend({
 
   filteredResults: Ember.computed('calendar.event', function() {
     let concertId = this.get('concertId');
+
     let result = this.get('calendar.event');
+    let num;
+    if (result.length > 4) {
+      num = 4;
+    } else {
+      num = result.length;
+    }
     let arr = [];
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < num; i++) {
       arr.push([i]);
     }
     let selection = result.objectsAt(arr);
     selection = selection.filter((element) => {
-      console.log(element.id + ' ' + concertId);
+      if (element.id) {
       return element.id !== concertId;
+      }
     });
     return selection;
   }),

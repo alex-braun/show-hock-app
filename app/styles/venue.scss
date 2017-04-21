@@ -218,14 +218,30 @@
 
 .upcoming-venue-events {
   overflow: hidden;
+  clear: both;
 
-  .item {
+  ul {
+    float: none;
+  }
+
+  .upcoming-venue-artist-centering {
+    // float: right;
+    width: 96px;
+    height: 96px;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    // margin: 0 auto;
+    // overflow: hidden;
+  }
+
+  .upcoming-venue-events-item {
     width: 20%;
     margin: 0 2.5% 2.5% 0;
     float: left;
     list-style: none;
     text-align: center;
-    height: 180px;
+    min-height: 150px;
     position: relative;
     // border-bottom: 1px dashed #2336b2;
     // background-color: #D9D9D9;
@@ -235,10 +251,16 @@
     }
 
   .img-event-wrapper {
-    overflow: hidden;
-    position: absolute;
-    left: 3.07%;
+    left: 0;
+    right: 0;
     margin: 0 auto;
+    overflow: hidden;
+    // position: absolute;
+    position: relative;
+    margin-left: -50%;
+    // left: 3.07%;
+    // left: 17%;
+    // margin: 0 auto;
     bottom: 0;
   }
   }

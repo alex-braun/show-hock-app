@@ -50,7 +50,19 @@ export default Ember.Route.extend({
     });
   },
 
-  // actions: {
+  actions: {
+
+    regionConcert(concertId, regionName, regionId) {
+      this.transitionTo('region.event.concert',
+        regionName, regionId, concertId,
+          { queryParams: {
+            page: 1,
+            per_page: 50,
+            min_date: '',
+            max_date: ''
+          }
+        });
+    }
   //   goToArtist(name, id) {
   //     this.transitionTo('artist.event.results',
   //         name,
@@ -60,5 +72,5 @@ export default Ember.Route.extend({
   //           }
   //     });
   //   }
-  // }
+  }
 });

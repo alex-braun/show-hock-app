@@ -3,7 +3,12 @@
   {{#each filteredResults as |event|}}
   <li class='related-events-item'>
     <p>{{format-weekday event.start.date}} {{format-mon event.start.date}} {{format-day event.start.date}}, {{format-year event.start.date}}</p>
-    <h5><strong>{{no-parens event.displayName}}</strong></h5>
+    <a href='javascript;' {{action 'regionConcert'
+                            event.id
+                            event.venue.metroArea.displayName
+                            event.venue.metroArea.id}}>
+      <h5><strong>{{no-parens event.displayName}}</strong></h5>
+    </a>
     <p>{{event.location.city}}</p>
 
   </li>

@@ -108,7 +108,6 @@ actions: {
   },
 
   goToArtist(name, id) {
-    console.log('hello?');
     this.transitionTo('artist.event.results',
       name,
       id,

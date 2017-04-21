@@ -97,7 +97,6 @@ ul.region-event-ul {
   display: inline;
 }
 
-
 .band-thumb-wrapper {
   float: left;
   margin: 5px;
@@ -115,6 +114,23 @@ ul.region-event-ul {
     background-image: url('../assets/images/microphone-with-wire.png');
     background-position: 0 9px;
     background-repeat: no-repeat;
+  }
+}
+
+.upcoming-venue-events {
+
+  .band-thumb-wrapper {
+    float: left;
+    margin: 5px;
+    padding: 0;
+    position: relative;
+
+    .headliner {
+      border-radius: 50%;
+      display: block;
+      height: 86px;
+      width: 86px;
+    }
   }
 }
 
@@ -520,6 +536,7 @@ ul.region-event-ul {
   // max-width: 1080px;
   position: relative;
   float: left;
+  max-width: 735px;
   // margin-right: 375px;
   // padding-right: 335px;
 }

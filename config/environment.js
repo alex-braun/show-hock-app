@@ -6,7 +6,7 @@ module.exports = function(environment) {
     environment: environment,
     rootURL: '/',
     locationType: 'auto',
-    // apiHost: 'http://localhost:8080',
+    // apiHost: 'https://obscure-inlet-58315.herokuapp.com',
     apiHost: 'http://localhost:4741',
     EmberENV: {
       FEATURES: {

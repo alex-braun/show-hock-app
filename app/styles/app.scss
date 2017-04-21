@@ -323,7 +323,7 @@ div.svg-wrapper.map {
 
 .landing-info-section.event-info {
   width: 100%;
-  height: 525px;
+  height: 575px;
   padding: 0;
   margin: 0;
   position: relative;
@@ -336,16 +336,24 @@ div.svg-wrapper.map {
   max-width: 1080px;
   margin: 0 auto;
   padding: 15px;
+
+  a {
+    color: inherit;
+  }
+
+  a:hover {
+    text-decoration: none;
+  }
 }
 
 .upcoming-region-events {
   background-color: rgba(0, 0, 0, 0.7);
   position: relative;
   color: white;
-  width: 422px;
-  height: 475px;
+  width: 447px;
+  height: 525px;
   float: left;
-  margin-top: -500px;
+  margin-top: -550px;
 
   h3 {
     font-size: 20px;
@@ -357,9 +365,9 @@ div.svg-wrapper.map {
     margin-bottom: 0;
   }
 
-  a {
-    color: inherit;
-  }
+  // a {
+  //   color: inherit;
+  // }
 
   a:hover {
     text-decoration: none;
@@ -395,13 +403,13 @@ div.svg-wrapper.map {
 
 .events-carousel {
   float: right;
-  margin-top: -500px;
+  margin-top: -550px;
   position: relative;
-  height: 475px;
+  height: 525px;
 
   img.headliner {
-    height: 422px;
-    width: 422px;
+    height: 472px;
+    width: 472px;
   }
 
   .carousel-inner-title {
@@ -453,11 +461,11 @@ div.svg-wrapper.map {
 }
 
 .carousel-caption.inner {
-  top: 318px;
+  top: 358px;
   left: 0px;
   text-align: left;
   width: 100%;
-  padding-bottom: 104px;
+  padding-bottom: 114px;
   background-color: rgba(0, 0, 0, 0.7);
 
   p.caption {
@@ -701,12 +709,12 @@ div.svg-wrapper.map {
   }
 
   .landing-info-section.event-info {
-    height: 450px;
+    height: 500px;
   }
 
   .upcoming-region-events {
-    height: 400px;
-    margin-top: -425px;
+    height: 450px;
+    margin-top: -475px;
 
     p {
       margin: 0;
@@ -733,10 +741,10 @@ div.svg-wrapper.map {
 
 .events-carousel {
   display: inline-block;
-  margin-top: -450px;
+  margin-top: -500px;
   width: 422px;
   top: 25px;
-  height: 346px;
+  height: 396px;
 
   .carousel {
     width: 100%;
@@ -752,12 +760,12 @@ div.svg-wrapper.map {
 
   img.headliner {
     display: block;
-    height: auto;
+    // height: auto;
     // width: 100%;
   }
 
   .carousel-caption {
-    top: 242px;
+    top: 282px;
   }
 
   .carousel-indicators {
@@ -825,14 +833,15 @@ div.svg-wrapper.map {
   }
 
   .upcoming-region-events {
-    width: 720px;
+    width: 600px;
     left: 0;
     right: 0;
     display: inline-block;
     position: absolute;
     float: none;
     margin: 0 auto;
-    margin-top: 20px;
+    margin-top: 15px;
+    height: 420px;
 
     h4 {
       font-size: 16px;
@@ -850,28 +859,30 @@ div.svg-wrapper.map {
   }
 
   .events-carousel {
-    width: 720px;
+    width: 600px;
     float: none;
     right: 0;
     left: 0;
-    top: 450px;
+    top: 475px;
     margin: 0 auto;
     position: absolute;
-    height: 400px;
+    height: 371px;
 
     img.headliner {
       // left: 50%;
       // right: 50%;
+      height: auto;
       width: 100%;
       min-width: 120%;
       display: block;
-      -webkit-transform: translate(-50%,-23%);
-      -ms-transform: translate(-50%,-23%);
-      transform: translate(-16%,-10%);
+      -webkit-transform: translate(-10%,-2%);
+      -ms-transform: translate(-10%,-2%);
+      transform: translate(-10%,-2%);
     }
 
     .carousel-caption {
-      top: 296px;
+      top: 267px;
+      padding-bottom: 104px;
     }
   }
 
@@ -962,7 +973,7 @@ div.svg-wrapper.map {
 
   .events-carousel {
     width: 90%;
-    top: 435px;
+    top: 450px;
   }
 
     .landing-info-section.event-info {
@@ -1060,6 +1071,27 @@ div.svg-wrapper.map {
     height: 400px;
   }
 
+  .upcoming-venue-events {
+    overflow: hidden;
+
+    .upcoming-venue-events-item {
+      // width: 25%;
+      width: 96px;
+      margin: 0;
+
+      h5 {
+        margin: 5px 0 5px 0;
+      }
+
+      .img-event-wrapper {
+        left: 0.5%;
+      }
+    }
+  }
+
+
+
+
   .event-carousel-outer {
     height: 450px;
   }
@@ -1067,6 +1099,7 @@ div.svg-wrapper.map {
   .events-carousel {
     width: 100%;
     padding: 25px;
+    height: 400px;
     position: relative;
     top: 0;
     background-color: $dark;
@@ -1095,6 +1128,19 @@ div.svg-wrapper.map {
   .carousel-background-wrapper.event {
     img {
       min-width: 140%;
+    }
+  }
+
+  .artist-concert {
+
+    .artist-date > li {
+      font-size: 18px;
+    }
+  }
+  .artist-concert.concert {
+
+    h3 {
+      font-size: 20px;
     }
   }
 }

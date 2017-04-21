@@ -4,7 +4,6 @@ export default Ember.Route.extend({
 
   actions: {
     artistSearch(param) {
-      console.log(param);
       if (!(param === null || param === undefined || param.match(/^ *$/) !== null)) {
         this.transitionTo('artist.search.results',
         param,

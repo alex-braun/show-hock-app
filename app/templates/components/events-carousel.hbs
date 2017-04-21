@@ -26,15 +26,19 @@
   </ol>
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
-
 {{#if sortedEvents.0.performance.0.artist.displayName}}
     <div class="item active">
       <figure class='artist-thumb-wrapper'>
         <img src={{sortedEvents.0.performance.0.artist.imageUrl}} alt={{sortedEvents.0.performance.0.artist.displayName}} class='headliner image'>
       </figure>
       <div class="carousel-caption inner">
+        <a href='javascript;' {{action 'goToConcert'
+                                sortedEvents.0.id
+                                sortedEvents.0.venue.metroArea.displayName
+                                sortedEvents.0.venue.metroArea.id}}>
           <p class='caption'><strong>{{no-parens sortedEvents.0.displayName}}</strong></p>
-        <p class='caption'>{{format-mon sortedEvents.0.start.date}} {{format-day sortedEvents.0.start.date}}, {{format-year sortedEvents.0.start.date}}</p>
+          <p class='caption'>{{format-mon sortedEvents.0.start.date}} {{format-day sortedEvents.0.start.date}}, {{format-year sortedEvents.0.start.date}}</p>
+        </a>
       </div>
     </div>
 {{/if}}
@@ -46,8 +50,13 @@
         <img src={{sortedEvents.1.performance.0.artist.imageUrl}} alt={{sortedEvents.1.performance.0.artist.imageUrl}} class='headliner image'>
       </figure>
       <div class="carousel-caption inner">
+        <a href='javascript;' {{action 'goToConcert'
+                                sortedEvents.1.id
+                                sortedEvents.1.venue.metroArea.displayName
+                                sortedEvents.1.venue.metroArea.id}}>
           <p class='caption'><strong>{{no-parens sortedEvents.1.displayName}}</strong></p>
           <p class='caption'>{{format-mon sortedEvents.1.start.date}} {{format-day sortedEvents.1.start.date}}, {{format-year sortedEvents.1.start.date}}</p>
+        </a>
       </div>
     </div>
     {{/if}}
@@ -58,8 +67,13 @@
         <img src={{sortedEvents.2.performance.0.artist.imageUrl}} alt={{sortedEvents.2.performance.0.artist.imageUrl}} class='headliner image'>
       </figure>
       <div class="carousel-caption inner">
+        <a href='javascript;' {{action 'goToConcert'
+                                sortedEvents.2.id
+                                sortedEvents.2.venue.metroArea.displayName
+                                sortedEvents.2.venue.metroArea.id}}>
           <p class='caption'><strong>{{no-parens sortedEvents.2.displayName}}</strong></p>
           <p class='caption'>{{format-mon sortedEvents.2.start.date}} {{format-day sortedEvents.2.start.date}}, {{format-year sortedEvents.2.start.date}}</p>
+        </a>
       </div>
     </div>
     {{/if}}
@@ -70,8 +84,13 @@
         <img src={{sortedEvents.3.performance.0.artist.imageUrl}} alt={{sortedEvents.3.performance.0.artist.imageUrl}} class='headliner image'>
       </figure>
       <div class="carousel-caption inner">
+        <a href='javascript;' {{action 'goToConcert'
+                                sortedEvents.3.id
+                                sortedEvents.3.venue.metroArea.displayName
+                                sortedEvents.3.venue.metroArea.id}}>
           <p class='caption'><strong>{{no-parens sortedEvents.3.displayName}}</strong></p>
           <p class='caption'>{{format-mon sortedEvents.3.start.date}} {{format-day sortedEvents.3.start.date}}, {{format-year sortedEvents.3.start.date}}</p>
+        </a>
       </div>
     </div>
     {{/if}}
@@ -82,8 +101,13 @@
         <img src={{sortedEvents.4.performance.0.artist.imageUrl}} alt={{sortedEvents.4.performance.0.artist.imageUrl}} class='headliner image'>
       </figure>
       <div class="carousel-caption inner">
+        <a href='javascript;' {{action 'goToConcert'
+                                sortedEvents.4.id
+                                sortedEvents.4.venue.metroArea.displayName
+                                sortedEvents.4.venue.metroArea.id}}>
           <p class='caption'><strong>{{no-parens sortedEvents.4.displayName}}</strong></p>
           <p class='caption'>{{format-mon sortedEvents.4.start.date}} {{format-day sortedEvents.4.start.date}}, {{format-year sortedEvents.4.start.date}}</p>
+        </a>
       </div>
     </div>
   {{/if}}

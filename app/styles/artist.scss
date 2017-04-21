@@ -260,6 +260,7 @@
   }
   input {
     width: 150px;
+    border: 1px solid black;
   }
 }
 
@@ -308,7 +309,8 @@
   // width: 100%;
   max-width: 745px;
   // min-width: 605px;
-  padding: 5px 0 5px 10px;
+  // padding: 5px 0 5px 10px;
+  padding: 0;
   position: relative;
   float: left;
   width: calc(100% - 272px);
@@ -413,6 +415,14 @@
 
 .concert-venue-details {
   margin: 15px 0 15px 0;
+
+  p {
+    margin-bottom: 5px;
+  }
+}
+
+.concert-map-wrapper {
+  float: right;
 }
 
 .concert-venue-info {
@@ -436,6 +446,7 @@
 
 .concert-featuring-artist {
   float: left;
+  width: calc(100% - 100px);
 }
 
 .concert-image-wrapper {
@@ -628,5 +639,10 @@
     left: auto;
     right: 3px;
     font-size: 24px;
+  }
+
+  .concert-map-wrapper {
+    clear: left;
+    float: left;
   }
 }

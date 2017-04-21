@@ -72,7 +72,14 @@ export default Ember.Route.extend({
       similar: this.get('store').findRecord('similar-artist', param.artist_id)
       .then((result) => {
         let arr = [];
-        for (let i = 0; i < 10; i++) {
+        let num;
+        let len = result.get('artist').length;
+        if (len > 10) {
+          num = 10;
+        } else {
+          num = len;
+        }
+        for (let i = 0; i < num; i++) {
           arr.push([i]);
         }
            let selection = result.get('artist').objectsAt(arr);

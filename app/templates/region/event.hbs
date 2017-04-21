@@ -24,7 +24,8 @@
 
       {{#if model.region.meta.total_entries}}
         {{!-- <h4>Upcoming Events in {{model.matchReg.firstObject.metroArea.displayName}}: {{model.region.meta.total_entries}}</h4> --}}
-        <h4>Upcoming Events in {{model.matchReg.firstObject.metroArea.displayName}}: {{count.regionCount}}</h4>
+
+        <h4>Upcoming Events in <a href='javascript;' {{action 'goToRegion' model.matchReg.firstObject.metroArea.displayName model.matchReg.firstObject.metroArea.id}}>{{model.matchReg.firstObject.metroArea.displayName}}</a> : {{count.regionCount}}</h4>
       {{else}}
         <h4>Upcoming Events in {{model.matchReg.firstObject.metroArea.displayName}}: None</h4>
       {{/if}}
