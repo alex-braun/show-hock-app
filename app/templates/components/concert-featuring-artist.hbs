@@ -1,10 +1,4 @@
-{{!-- {{#if isFullList}} --}}
   <h4>Featuring:  {{#if isFullList}}<a class='get-more' {{action 'getFullList' concertId}}>See Less</a>{{/if}}</h4>
-{{!-- {{else}} --}}
-  {{!-- <h4>Featuring: </h4> --}}
-{{!-- {{/if}} --}}
-
-{{!-- {{#if isFullList}} --}}
 
 {{#liquid-if isFullList class='toLeft-list'}}
 
@@ -28,7 +22,6 @@
         <h4 class='artist-list'><a href='javascript:;'
           {{action 'goToArtist' performance.artist.displayName performance.artist.id}}>{{performance.artist.displayName}}, </a></h4>
       {{else if (eq index 9)}}
-          {{!-- <h4 class='artist-list'>{{performance.artist.displayName}}, <a class='get-more' href='#full-list'>see all...</a></h4> --}}
         <h4 class='artist-list'><a href='javascript:;'
           {{action 'goToArtist' performance.artist.displayName performance.artist.id}}>{{performance.artist.displayName}}, </a><a class='get-more' {{action 'getFullList' concertId}}>(see all)...</a></h4>
       {{/if}}
@@ -36,4 +29,3 @@
   {{/each}}
 
 {{/liquid-if}}
-{{!-- {{/if}} --}}

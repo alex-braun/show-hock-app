@@ -33,18 +33,3 @@ export default Ember.Component.extend({
     }
   }
 });
-
-
-// filteredResults: Ember.computed('model.performance', function() {
-//   let currArtist = this.get('nameAndId').artistId;
-//   let result = this.get('model.performance');
-//   let arr = [];
-//   for (let i = 0; i < result.length; i++) {
-//     arr.push([i]);
-//   }
-//   let selection = result.objectsAt(arr);
-//   selection = selection.filter((element) => {
-//     return element.artist.id !== currArtist;
-//   });
-//   return selection;
-// }),

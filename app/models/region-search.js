@@ -3,6 +3,5 @@ import DS from 'ember-data';
 export default DS.Model.extend({
   location: DS.attr(),
   meta: DS.attr(),
-  // metroArea: DS.attr(),
   noMatch: DS.attr()
 });

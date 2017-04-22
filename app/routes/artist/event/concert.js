@@ -3,7 +3,6 @@ import Ember from 'ember';
 export default Ember.Route.extend({
 
   model (param) {
-    // return this.get('store').query('concert', params);
     return this.get('store').findRecord('concert', param.concert_id)
 
     .then((result) => {
@@ -24,33 +23,26 @@ export default Ember.Route.extend({
     });
   },
 
-  // actions: {
-  //   getFullList(concertId) {
-  //
-  //     console.log(concertId);
-  //     return this.get('store').findRecord('concert', {id: concertId});
-  //   }
-  // }
   actions: {
     goToArtist(name, id) {
       this.transitionTo('artist.event.results',
-          name,
-          id,
-          { queryParams: {
+        name,
+        id,
+        { queryParams: {
             page: 1,
             min_date: '',
             max_date: '',
-            }
-      });
-  },
+          }
+        });
+    },
 
-  goToVenue(id) {
-    this.transitionTo('venue.event.results',
+    goToVenue(id) {
+      this.transitionTo('venue.event.results',
         id,
         { queryParams: {
           page: 1,
           }
-    });
-}
-}
+        });
+    }
+  }
 });

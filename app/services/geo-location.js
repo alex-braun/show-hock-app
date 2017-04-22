@@ -10,21 +10,9 @@ store: Ember.inject.service('store'),
   regionState: null,
   regionCountry: null,
 
-  // getIp() {
-  //   return Ember.RSVP.hash({
-  //     clientIp: Ember.$.ajax({
-  //         method: 'GET',
-  //         url: "http://ipinfo.io/json"
-  //       })
-  //       .then(response => {
-  //         console.log(response);
-  //         return this.set('clientIp', response.ip);
-  //       }),
-  //
-  //   });
-  // },
-
   getIp() {
+    let self = this;
+    if (this.get('clientIp') === null) {
       return Ember.$.ajax({
           method: 'GET',
           url: "http://ipinfo.io/json"
@@ -32,6 +20,11 @@ store: Ember.inject.service('store'),
         .then(response => {
           return this.set('clientIp', response.ip);
         });
+    } else {
+        return new Ember.RSVP.Promise(function(resolve, reject) {
+          resolve(self.get('clientIp'));
+        });
+    }
   },
 
   getRegion(ip) {

@@ -20,8 +20,6 @@
   <div class='artist-concert concert'>
     <h3><strong>{{no-parens model.displayName}}</strong></h3>
 
-    {{!-- {{purchase-tickets event=model}} --}}
-
     {{artist-date event=model}}
     {{purchase-tickets event=model}}
 
@@ -30,14 +28,8 @@
                                 performances=model.performance
                                 concertId=model.id
                                 goToArtist='goToArtist'}}
-
-      {{!-- {{concert-also-featuring goToArtist='goToArtist'
-                               model=model}} --}}
     </div>
 {{/if}}
-
-    {{!-- <p>Concert Popularity: {{model.popularity}}</p> --}}
-
   {{!-- VENUE DETAILS--}}
   {{concert-venue-details model=model
                           goToVenue='goToVenue'}}

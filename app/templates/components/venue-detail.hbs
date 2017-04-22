@@ -5,9 +5,7 @@
 <ul class='region-event-ul'>
 <li class='event'>
   {{#if (eq event.type 'Festival') }}
-  {{!-- {{#link-to 'event' (query-params getId=regionSelect.metroArea.id page='1' location=regionSelect.metroArea.displayName)}} --}}
     <h4><strong>{{event.displayName}}</strong></h4>
-    {{!-- {{/link-to}} --}}
   {{else}}
 
     {{artist-list event=event
@@ -44,7 +42,6 @@
 
 {{else}}
   {{#each event.performance as |performance|}}
-    {{!-- {{#if (lt performance.billingIndex 4)}} --}}
 
       <figure class="band-thumb-wrapper">
         <img class="headliner image" src="{{performance.artist.imageUrl}}"/>

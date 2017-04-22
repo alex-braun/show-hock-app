@@ -4,12 +4,6 @@ export default Ember.Route.extend({
 
   userLocationSetting: Ember.inject.service(),
 
-  // queryParams: {
-  //   page: {
-  //     refreshModel: true
-  //   },
-  // },
-
   beforeModel() {
     this._super(...arguments);
     return this.get('userLocationSetting').getRegion().then(() => {

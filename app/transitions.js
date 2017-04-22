@@ -13,12 +13,12 @@ export default function () {
     this.use('toDown'),
     this.reverse('toUp')
   );
-  this.transition(
-    this.fromRoute('index'),
-    this.toRoute('region'),
-    this.use('fade'),
-    this.reverse('fade')
-  );
+  // this.transition(
+  //   this.fromRoute('index'),
+  //   this.toRoute('region'),
+  //   this.use('fade'),
+  //   this.reverse('fade')
+  // );
   this.transition(
     this.hasClass('toLeft-list'),
     this.use('toLeft')

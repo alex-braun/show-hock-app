@@ -20,10 +20,6 @@ export default Ember.Route.extend({
       this._super(...arguments);
       let id = parseInt(data.params['region.event'].region_id);
       this.set('regionId', id);
-          // name = data.params['region.event'].region_name;
-
-      // this.get('nameAndId').addId(id);
-      // this.get('nameAndId').addName(name);
     },
 
     model(params) {

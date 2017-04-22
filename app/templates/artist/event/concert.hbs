@@ -7,7 +7,6 @@
       <div class='concert-image-wrapper'>
         <img src={{model.imageUrl}}>
       </div>
-      {{!-- <h2><strong>{{no-parens model.displayName}}</strong></h2> --}}
 
     {{artist-date event=model}}
     {{purchase-tickets event=model}}
@@ -16,8 +15,6 @@
                                 getFullList='getFullList'
                                 performances=model.performance
                                 concertId=model.id}}
-    {{!-- {{purchase-tickets event=model}} --}}
-
   </div>
 
 {{else}}
@@ -32,8 +29,6 @@
                                model=model}}
     </div>
 {{/if}}
-
-    {{!-- <p>Concert Popularity: {{model.popularity}}</p> --}}
 
   {{!-- VENUE DETAILS--}}
   {{concert-venue-details model=model}}

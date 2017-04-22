@@ -3,19 +3,7 @@ import Ember from 'ember';
 export default Ember.Route.extend({
 
   accessArtistParams: Ember.inject.service(),
-  // nameAndId: Ember.inject.service('access-artist-data'),
-  //
-  // artistId: null,
-  //
-  // beforeModel(data) {
-  //   this._super(...arguments);
-  //   let id = parseInt(data.params['artist.event'].artist_id),
-  //       name = data.params['artist.event'].artist_name;
-  //
-  //   this.get('nameAndId').addId(id);
-  //   this.get('nameAndId').addName(name);
-  //
-  // },
+
   model (param) {
     return Ember.RSVP.hash({
 
@@ -51,7 +39,6 @@ export default Ember.Route.extend({
   },
 
   actions: {
-
     regionConcert(concertId, regionName, regionId) {
       this.transitionTo('region.event.concert',
         regionName, regionId, concertId,
@@ -61,16 +48,7 @@ export default Ember.Route.extend({
             min_date: '',
             max_date: ''
           }
-        });
+      });
     }
-  //   goToArtist(name, id) {
-  //     this.transitionTo('artist.event.results',
-  //         name,
-  //         id,
-  //         { queryParams: {
-  //           page: 1,
-  //           }
-  //     });
-  //   }
   }
 });

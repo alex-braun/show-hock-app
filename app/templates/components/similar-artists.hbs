@@ -1,35 +1,33 @@
-{{!-- <div class='results-sidebar-wrapper'> --}}
   <h3>Similar Artists</h3>
 <ul class="similar-artists">
 
   {{#each similar as |similar|}}
 
+    <li class='similar-artists-list'>
 
-  <li class='similar-artists-list'>
+      <div class='clearfix visible-sm'></div>
+        <a href='javascript:;' {{action 'goToArtist'
+                                 similar.displayName
+                                 similar.id}}>
+          <figure class="similar-artists-thumb-wrapper">
+            <img class="headliner image" src="{{similar.imageUrl}}" alt="{{similar.displayName}}" />
+          </figure>
+        </a>
 
-<div class='clearfix visible-sm'></div>
-<a href='javascript:;'
-{{action 'goToArtist'
-similar.displayName
-similar.id}}><figure class="similar-artists-thumb-wrapper">
-
-
-<img class="headliner image" src="{{similar.imageUrl}}" alt="{{similar.displayName}}" />
-      {{!-- <figcaption class="image-caption-text">{{similar.displayName}}</figcaption> --}}
-    </figure></a>
-    <a href='javascript:;'
-    {{action 'goToArtist'
-    similar.displayName
-    similar.id}}><ul class='similar-artists-text'>
-        <li>{{similar.displayName}}</li>
-      {{#if similar.onTourUntil}}
-        <li>On Tour Until: {{similar.onTourUntil}}</li>
-      {{/if}}
-    </ul></a>
+        <a href='javascript:;' {{action 'goToArtist'
+                                 similar.displayName
+                                 similar.id}}>
+          <ul class='similar-artists-text'>
+            <li>{{similar.displayName}}</li>
+              {{#if similar.onTourUntil}}
+                <li>On Tour Until: {{similar.onTourUntil}}</li>
+              {{/if}}
+          </ul>
+        </a>
     </li>
   {{/each}}
+
 </ul>
-{{!-- </div> --}}
 
 
 

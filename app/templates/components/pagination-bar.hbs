@@ -25,28 +25,7 @@
 
       {{/if}}
 
-{{!-- 315px --}}
-
-
-
 {{!--PAGE NUMBERS SELECTION--}}
-      {{!-- {{#each pageNumbers as |pageNumber|}}
-
-        {{#if (eq pages.current_page pageNumber) }}
-          <li class="active">
-            <a href="#" aria-label="Page">
-            <span>{{pageNumber}}<span class="sr-only">(current)</span></span>
-            </a>
-          </li>
-        {{else}}
-          <li class="inactive" {{action 'newPage' pageNumber}}>
-            <a href="#" aria-label="Page">
-            <span>{{pageNumber}}<span class="sr-only">(current)</span></span>
-            </a>
-          </li>
-        {{/if}}
-      {{/each}} --}}
-
       {{#if media.isCell}}
 
         {{#each displayedXS as |pageNumber|}}
@@ -100,98 +79,7 @@
             </li>
           {{/if}}
         {{/each}}
-
       {{/if}}
-
-
-
-            {{!-- {{#each pageNumbers as |pageNumber|}}
-
-            {{#if (gt pages.total_pages 10)}}
-
-              {{#if (pagination-prev current_page)}}
-
-                {{#if (lt pageNumber 9)}}
-
-                    {{#if (eq pages.current_page pageNumber) }}
-                      <li class="active">
-                        <a href="#" aria-label="Page">
-                        <span>{{pageNumber}}<span class="sr-only">(current)</span></span>
-                        </a>
-                      </li>
-                    {{else}}
-                      <li class="inactive" {{action 'newPage' pageNumber}}>
-                        <a href="#" aria-label="Page">
-                        <span>{{pageNumber}}<span class="sr-only">(current)</span></span>
-                        </a>
-                      </li>
-                    {{/if}}
-
-                {{else if (arr-last pages.total_pages pageNumber)}}
-                      <li class="inactive">
-                        <a href="#" aria-label="Page">
-                        <span>...<span class="sr-only">(current)</span></span>
-                        </a>
-                      </li>
-                {{else if (eq pages.total_pages pageNumber)}}
-                      <li class="inactive" {{action 'newPage' pageNumber}}>
-                        <a href="#" aria-label="Page">
-                        <span>{{pageNumber}}<span class="sr-only">(current)</span></span>
-                        </a>
-                      </li>
-                {{/if}}
-              {{/if}}
-
-          {{else if (pagination-curr pages.current_page pages.total_pages)}}
-            {{#if (eq pageNumber 1)}}
-              <li class="inactive" {{action 'newPage' pageNumber}}>
-                <a href="#" aria-label="Page">
-                <span>{{pageNumber}}<span class="sr-only">(current)</span></span>
-                </a>
-              </li>
-            {{else if (subtract-from pages.current_page pageNumber 3)}}
-              <li class="inactive" {{action 'newPage' pageNumber}}>
-                <a href="#" aria-label="Page">
-                <span>{{pageNumber}}<span class="sr-only">(current)</span></span>
-                </a>
-              </li>
-            {{/if}}
-          {{/if}}
-
-            {{else}}
-              {{#if (lt pages.current_page 5)}}
-                {{#if (eq pages.current_page pageNumber) }}
-                  <li class="active">
-                    <a href="#" aria-label="Page">
-                    <span>{{pageNumber}}<span class="sr-only">(current)</span></span>
-                    </a>
-                  </li>
-                {{else}}
-
-                {{/if}}
-              {{/if}}
-
-            {{/if}} --}}
-
-              {{!-- {{#if (eq pages.current_page pageNumber) }}
-                <li class="active">
-                  <a href="#" aria-label="Page">
-                  <span>{{pageNumber}}<span class="sr-only">(current)</span></span>
-                  </a>
-                </li>
-              {{else}}
-                <li class="inactive" {{action 'newPage' pageNumber}}>
-                  <a href="#" aria-label="Page">
-                  <span>{{pageNumber}}<span class="sr-only">(current)</span></span>
-                  </a>
-                </li>
-              {{/if}}
-            {{/each}}--}}
-
-
-
-
-
 
 {{!--NEXT PAGE BUTTON--}}
       {{#if (eq pages.current_page pages.total_pages)}}

@@ -5,21 +5,6 @@ export default Ember.Route.extend({
   accessRegionObj: Ember.inject.service(),
   accessArtistShowCount: Ember.inject.service(),
 
-  // nameAndId: Ember.inject.service('access-artist-data'),
-
-  // artistId: null,
-
-  // beforeModel(data) {
-  //   this._super(...arguments);
-  //   console.log(data);
-  //   let id = parseInt(data.params['region.event'].region_id),
-  //       name = data.params['region.event'].region_name;
-  //
-  //   this.get('nameAndId').addId(id);
-  //   this.get('nameAndId').addName(name);
-  //
-  // },
-
   model (params) {
     return Ember.RSVP.hash({
 
@@ -67,58 +52,18 @@ export default Ember.Route.extend({
         return meta, result;
       });
     });
-
-/////57839
-
-// lat/lng of NY, NY   Lodi is #67
-// 40.714269&lng=-74.005973
-
-
-    // filteredResults: Ember.computed('model.performance', function() {
-    //   let currArtist = this.get('nameAndId').artistId;
-    //   let result = this.get('model.performance');
-    //   let arr = [];
-    //   for (let i = 0; i < result.length; i++) {
-    //     arr.push([i]);
-    //   }
-    //   let selection = result.objectsAt(arr);
-    //   selection = selection.filter((element) => {
-    //     return element.artist.id !== currArtist;
-    //   });
-    //   return selection;
-    // }),
-    //
-    // actions: {
-    //   goToArtist(name, id) {
-    //     this.sendAction('goToArtist', name, id);
-    //   }
-    // }
-    // });
-
-
-
-
-
   },
+
   actions: {
     goToRegion(name, id) {
       this.transitionTo('region.event.results',
-          name,
-          id,
-          { queryParams: {
+        name,
+        id,
+        { queryParams: {
             page: 1,
             per_page: 50
-            }
+          }
       });
     },
-  //   goToArtist(name, id) {
-  //     this.transitionTo('artist.event.results',
-  //         name,
-  //         id,
-  //         { queryParams: {
-  //           page: 1,
-  //           }
-  //     });
-    }
-
+  }
 });

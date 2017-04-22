@@ -29,14 +29,10 @@ export default Ember.Service.extend({
     }
     else {
       return new Ember.RSVP.Promise(function(resolve, reject) {
-      // .then(() => {
-      // return this.set('regionName', this.get('saveUserLocation').regionSelectName),
-      // this.set('regionId', this.get('saveUserLocation').regionSelectId);
-      resolve(self.set('regionName', self.get('saveUserLocation').regionSelectName),
-      self.set('regionId', self.get('saveUserLocation').regionSelectId),
-      self.set('regionCountry', self.get('saveUserLocation').regionSelectCountry),
-      self.set('regionState', self.get('saveUserLocation').regionSelectState));
-      // });
+        resolve(self.set('regionName', self.get('saveUserLocation').regionSelectName),
+        self.set('regionId', self.get('saveUserLocation').regionSelectId),
+        self.set('regionCountry', self.get('saveUserLocation').regionSelectCountry),
+        self.set('regionState', self.get('saveUserLocation').regionSelectState));
     });
     }
   }

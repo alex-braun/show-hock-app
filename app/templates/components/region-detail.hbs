@@ -1,93 +1,3 @@
-{{!-- <div class='region-results-wrapper'>
-
-{{artist-date event=event}}
-
-{{#if (eq event.type 'Festival') }}
-
-  <ul class='region-event-ul festival'>
-    <li class='event'>
-
-      <div class='region-festival-header'>
-      <a href='javascript:;'{{action 'goToConcert' event.id}}>
-        <h4><strong>{{event.displayName}}</strong></h4>
-      </a>
-        <div class='type-label'>
-          <h5>FESTIVAL</h5>
-        </div>
-      </div>
-
-      <a href='javascript:;'{{action 'goToConcert' event.id}}>
-      {{list-every-artist event=event}}
-      </a>
-
-      {{#if (eq event.venue.displayName 'Unknown venue') }}
-        <h4>{{event.location.city}}</h4>
-      {{else}}
-        <h4>{{event.venue.displayName}}, {{event.location.city}}</h4>
-      {{/if}}
-
-      {{#if event.start.time}}
-      <h6>{{format-time event.start.time}}</h6>
-      {{/if}}
-
-    </li>
-  </ul>
-
-
-{{else}}
-
-  <ul class='region-event-ul'>
-    <li class='event'>
-
-        {{artist-list event=event
-                      goToConcert='goToConcert'}}
-
-
-      {{#if (eq event.venue.displayName 'Unknown venue') }}
-        <h4>{{event.location.city}}</h4>
-      {{else}}
-        <h4>{{event.venue.displayName}}, {{event.location.city}}</h4>
-      {{/if}}
-
-      {{#if event.start.time}}
-      <h6>{{format-time event.start.time}}</h6>
-      {{/if}}
-
-    </li>
-  </ul>
-
-{{/if}}
-
-<div class='region-band-thumbs'>
-{{#if (eq event.type 'Festival') }}
-
-  <figure class="band-thumb-wrapper">
-    <img class="headliner image" src="{{event.imageUrl}}">
-    <figcaption class="image-caption-text">{{event.displayName}}</figcaption>
-  </figure>
-
-
-{{else}}
-  {{#each event.performance as |performance|}}
-
-      <figure class="band-thumb-wrapper">
-        <img class="headliner image" src="{{performance.artist.imageUrl}}"/>
-        <figcaption class="image-caption-text">{{performance.artist.displayName}}</figcaption>
-      </figure>
-
-  {{/each}}
-
-{{/if}}
-</div>
-
-{{button-to-concert buttonTitle='Details'
-                    value=event.id
-                    buttonClick='goToConcert'}}
-
-{{#if event.ageRestriction}}
-  <h6>{{event.ageRestriction}}</h6>
-{{/if}}
-</div> --}}
 <div class='region-results-wrapper'>
 
 {{artist-date event=event}}
@@ -105,31 +15,9 @@
           <h5>FESTIVAL</h5>
         </div>
       </div>
-    {{!-- {{artist-list event=event
-              goToConcert='goToConcert'}} --}}
+
 {{festival-artist-list event=event
                        goToConcert='goToConcert'}}
-      {{!-- {{#each event.performance as |performance index|}}
-          {{#if (arr-last performances.length index)}}
-            {{#if (lt performances.length 10)}}
-            <h4 class='artist-list'> performance.artist.id}}>{{performance.artist.displayName}}</h4>
-            {{/if}}
-          {{else if (lt index 9)}}
-            <h4 class='artist-list'>{{performance.artist.displayName}}, </h4>
-          {{else if (eq index 9)}}
-            <h4 class='artist-list'>{{performance.artist.displayName}}, and {{event.performance.length}} more...</h4>
-          {{/if}}
-      {{/each}} --}}
-
-      {{!-- <a href='javascript:;'{{action 'goToConcert' event.id}}>
-      {{list-every-artist event=event}}
-      </a> --}}
-
-      {{!-- {{#if (eq event.venue.displayName 'Unknown venue') }}
-        <h4>{{event.location.city}}</h4>
-      {{else}}
-        <h4>{{event.venue.displayName}}, {{event.location.city}}</h4>
-      {{/if}} --}}
 
       {{#if (eq event.venue.displayName 'Unknown venue') }}
         <h4>{{event.location.city}}</h4>

@@ -13,14 +13,3 @@ export default Ember.Service.extend({
     return this.set('artistId', param);
   }
 });
-
-
-// addName(param) {
-//   return Ember.RSVP.hash({
-//     artistName: this.set('artistParam', param),
-//     // .then(response => {
-//     //   return this.set('clientIp', response.ip);
-//     // }),
-//
-// });
-// }

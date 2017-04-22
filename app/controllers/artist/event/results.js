@@ -44,11 +44,3 @@ export default Ember.Controller.extend({
    },
   }
 });
-
-// pageNumbers: Ember.computed('pages.current_page', function() {
-//   let num = Array(this.get('pages.total_pages'));
-//   for (let i = 0; i < num.length; i++) {
-//     num[i] = i + 1;
-//   }
-//   return num;
-// }),

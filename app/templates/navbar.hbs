@@ -18,34 +18,10 @@
     </div>
 
     <div class="navbar-header location navbar-left pull-left">
-
-
-
       <ul class="nav geo pull-left">
-
-        {{!-- <li class='navbar-text pull-left' ><a href='javascript:;'{{action 'goToRegion' location.regionId}}>{{location.regionName}}</a>
-        </li> --}}
         <li class='navbar-text region pull-left' ><a href='javascript:;'{{action 'goToRegion' location.regionName location.regionId}}>{{location.regionName}}</a>
         </li>
-
-        {{!-- <li class='navbar-text change pull-left'>
-          <a href='javascript:;'{{action 'userChooseRegion'}}><div class='svg-wrapper map'>
-            {{svg-jar "map-marker" width='100%' height='100%'}}
-            {{svg-jar "map-marker" viewBox="0 0 15 10" width='100%' height='100%'}}
-          </div>Change Location</a>
-          <a href='javascript:;'{{action 'userChooseRegion'}}>Change Location</a>
-        </li> --}}
-
-
-
       </ul>
-      {{!--
-      <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button> --}}
     </div>
 
     <div class="visible-xs-block clearfix"></div>
@@ -57,177 +33,20 @@
         <li class='search-field item'>
           <form class="navbar-form navbar-right">
 
-            {{!-- {{#if (eq dropdown.name 'Artists')}} --}}
-              {{!-- {{search-input keyword=enterArtist placeholder='Enter artist name'}}
-
-                <button type="submit" class="btn btn-success search-button visible-xs" {{action 'artistSearch' enterArtist keyword}}>
-                <span class='glyphicon glyphicon-search'></span>
-                Search
-                </button> --}}
-
-
-
     {{search-input keyword=enterName placeholder='Enter artist / region / venue'}}
                 <button type="submit" class="btn search-button in-form" {{action 'allSearch' enterName}}>
                 <span class='glyphicon glyphicon-search'></span>
                 </button>
-
-{{!--
-                {{input class='form-control'
-                        type="text"
-                        placeholder=placeholder
-                        value=keyword
-                        enter='reset'
-                        focus-out='isValidFocusOut'
-                        }} --}}
-                {{!-- <button class="search-button" type="submit" {{action 'allSearch' enterName}}><img src="//assets.sk-static.com/assets/nw/components/navigation-large-screen/search-5510d8d.svg" height="15" width="14" alt="search" class="navigation-submit"></button> --}}
-
-            {{!-- {{else if (eq dropdown.name 'Region')}}
-            {{search-input keyword=enterRegion placeholder='Enter region/city name'}}
-
-                <button type="submit" class="btn btn-success search-button visible-xs" {{action 'regionSearch' enterRegion keyword}}>
-                <span class='glyphicon glyphicon-search'></span>
-                Search
-                </button>
-
-            {{else if (eq dropdown.name 'Venues')}}
-            {{search-input keyword=enterVenue placeholder='Enter venue name'}}
-
-              <button type="submit" class="btn btn-success search-button visible-xs" {{action 'venueSearch' enterVenue keyword}}>
-              <span class='glyphicon glyphicon-search'></span>
-              Search
-              </button>
-
-            {{/if}} --}}
           </form>
         </li>
 
-
-        {{!-- <form name="search" class="navigation-search-form">
-          <input type="hidden" name="type" value="initial">
-          <input name="query" type="search" value="" class="text navigation-search" placeholder="Enter artist / concert / venue">
-          <button class="search-button" type="submit" {{action 'clickSomething' value}}><img src="//assets.sk-static.com/assets/nw/components/navigation-large-screen/search-5510d8d.svg" height="15" width="14" alt="search" class="navigation-submit"></button>
-        </form> --}}
-
-{{!-- {{menu-select dropdown=dropdown}} --}}
-
-        {{!-- <li class='search-select item'>
-          <select onchange= {{action (mut dropdownIndex)
-                value="target.value"}}
-                data-toggle="dropdown"
-                class="dropdown-list selectpicker"
-                role="button">
-          {{#each dropdowns as |dropdownChoice index|}}
-            <option value= {{ index }} selected= {{eq dropdownIndex index}}>{{dropdownChoice.name}}</option>
-          {{/each}}
-        </select>
-        </li> --}}
-
         <li class='navbar-text change pull-left'>
           {{change-location userChooseRegion='userChooseRegion'}}
-          {{!-- <a href='javascript:;'{{action 'userChooseRegion'}}>
-            <div class='svg-wrapper map'>
-            {{svg-jar "map-marker" width='100%' height='100%'}}
-          </div>Change Location</a> --}}
         </li>
 
       </ul>
-
-
     </div>
-
-    {{!-- <div class='navbar-header space fill navbar-right pull-right'></div> --}}
-
   </div>
 </nav>
-
-
-
-
-
-
-
-
-
-{{!-- <nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container-fluid navbar-inner">
-    <div class="navbar-header pull-right">
-
-
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-    </div>
-
-    <div class="navbar-header pull-left">
-
-      <a class="navbar-brand show-hock" href="/">Show Hock</a>
-
-    </div>
-
-    <div class='geo-location-info navbar-header pull-left'>
-
-      <ul class='nav pull-left'>
-
-        <li class='navbar-text pull-left' ><a href='javascript:;'{{action 'goToRegion' location.regionId}}>{{location.regionName}}</a></li>
-
-        <li class='navbar-text pull-left'><a href='javascript:;'{{action 'userChooseRegion'}}><span>{{svg-jar "map-marker" width='22px' height='22px'}}</span>Change Location</a></li>
-      </ul>
-    </div>
-
-    <div class="collapse search navbar-collapse" id="bs-example-navbar-collapse-2">
-
-      <ul class="nav navbar-nav pull-right">
-
-      <li class="dropdown">
-
-        <select onchange= {{action (mut dropdownIndex)
-                value="target.value"}}
-                data-toggle="dropdown"
-                class="dropdown-list selectpicker"
-                role="button">
-          {{#each dropdowns as |dropdownChoice index|}}
-            <option value= {{ index }} selected= {{eq dropdownIndex index}}>{{dropdownChoice.name}}</option>
-          {{/each}}
-        </select>
-      </li>
-      </ul>
-
-        <form class="navbar-form navbar-right">
-
-          {{#if (eq dropdown.name 'Artists')}}
-            {{search-input keyword=enterArtist placeholder='Enter artist name'}}
-
-              <button type="submit" class="btn btn-success search-button visible-xs" {{action 'artistSearch' enterArtist keyword}}>
-              <span class='glyphicon glyphicon-search'></span>
-              Search
-              </button>
-
-          {{else if (eq dropdown.name 'Region')}}
-          {{search-input keyword=enterRegion placeholder='Enter region/city name'}}
-
-              <button type="submit" class="btn btn-success search-button visible-xs" {{action 'regionSearch' enterRegion keyword}}>
-              <span class='glyphicon glyphicon-search'></span>
-              Search
-              </button>
-
-          {{else if (eq dropdown.name 'Venues')}}
-          {{search-input keyword=enterVenue placeholder='Enter venue name'}}
-
-            <button type="submit" class="btn btn-success search-button visible-xs" {{action 'venueSearch' enterVenue keyword}}>
-            <span class='glyphicon glyphicon-search'></span>
-            Search
-            </button>
-
-          {{/if}}
-      </form>
-
-    </div>
-
-  </div>
-</nav> --}}
 
 <div class="under-space"></div>

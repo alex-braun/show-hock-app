@@ -3,8 +3,5 @@ import DS from 'ember-data';
 export default DS.Model.extend({
   artist: DS.attr(),
   meta: DS.attr(),
-  // displayName: DS.attr(),
-  // onTourUntil: DS.attr(),
-  // imageUrl: DS.attr(),
   noMatch: DS.attr(),
 });

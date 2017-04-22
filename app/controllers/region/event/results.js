@@ -10,14 +10,6 @@ export default Ember.Controller.extend({
   min_date: '',
   max_date: '',
 
-  // others: Ember.computed('model.similar.length', function() {
-  //   let num = Array(this.get('model.similar.length'));
-  //   for (let i = 0; i < num.length; i++) {
-  //     num[i] = i + 1;
-  //   }
-  //   return num;
-  // }),
-
   actions: {
     changeRegionPage(param) {
       this.set('page', param);

@@ -1,54 +1,8 @@
-// import Ember from 'ember';
-//
-// export default Ember.Route.extend({
-//
-//   userLocationSetting: Ember.inject.service(),
-//
-//   queryParams: {
-//     page: {
-//       refreshModel: true
-//     },
-//   },
-//
-//   beforeModel() {
-//     this._super(...arguments);
-//     return this.get('userLocationSetting').getRegion().then(() => {
-//       return this.set('regionName',this.get('userLocationSetting').regionName),
-//       this.set('regionId', this.get('userLocationSetting').regionId),
-//       this.set('regionCountry', this.get('userLocationSetting').regionCountry),
-//       this.set('regionState', this.get('userLocationSetting').regionState);
-//     });
-//   },
-//
-//   model(param) {
-//     let id;
-//     if (this.get('userLocationSetting').regionState) {
-//       id = this.get('userLocationSetting').regionName + this.get('userLocationSetting').regionState;
-//     } else {
-//       id = this.get('userLocationSetting').regionName + this.get('userLocationSetting').regionCountry;
-//     }
-//     return this.get('store').findRecord('venue-search', id, {
-//       adapterOptions: { page: param.page,
-//                         per_page: 50 }
-//     })
-//       .then((result) => {
-//       let meta = result.get('meta');
-//       return meta, result;
-//     });
-//   }
-// });
-
 import Ember from 'ember';
 
 export default Ember.Route.extend({
 
   userLocationSetting: Ember.inject.service(),
-
-  // queryParams: {
-  //   page: {
-  //     refreshModel: true
-  //   },
-  // },
 
   beforeModel() {
     this._super(...arguments);

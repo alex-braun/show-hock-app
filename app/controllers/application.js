@@ -19,15 +19,5 @@ export default Ember.Controller.extend({
   init() {
     this._super(...arguments);
     this.get('location').getRegion();
-    // console.log('hello');
-    // Ember.run.scheduleOnce('afterRender', this, function() {
-    //   console.log('afterRender');
-    //   this.$("select").prettyDropdown({
-    //     height: 30
-    //   });
-    // });
   },
-
-
-
 });

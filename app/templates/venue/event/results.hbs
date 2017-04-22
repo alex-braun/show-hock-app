@@ -1,4 +1,3 @@
-{{!-- {{search-title title=model.meta.location}} --}}
 <div class='region-event-listing'>
 
   {{#if model.event.firstObject.noMatch}}
@@ -8,12 +7,8 @@
 
     <ul class="event-listings row-fluid block-grid-3">
       {{#each model.event as |event|}}
-        {{!-- <li class='region-detail-list'> --}}
-          {{!-- <div class='region-detail col-xs-10'> --}}
             {{venue-detail event=event
                           goToConcert='goToConcert'}}
-          {{!-- </div> --}}
-        {{!-- </li> --}}
       {{/each}}
     </ul>
 {{/if}}
@@ -22,41 +17,4 @@
                 newPage='changeRegionPage'
                 previousPage='previousPage'
                 nextPage='nextPage'}}
-
 </div>
-
-
-
-
-
-
-
-
-
-{{!-- <div class='region-event-listing'>
-  {{#unless model.noMatch}}
-  {{date-range-picker filterDate='filterDate'
-                      min_date=min_date
-                      max_date=max_date}}
-  {{/unless}}
-
-  {{#if model.noMatch}}
-    <h3>No upcoming events found for  <strong>{{accessRegionObj.regionName.firstObject.metroArea.displayName}}</strong></h3>
-  {{else}}
-    <h3><strong>Upcoming Concerts ({{model.meta.total_entries}})</strong></h3>
-    <ul class="event-listings row-fluid block-grid-3">
-      {{#each model.event as |event|}}
-
-            {{region-detail event=event
-                            goToConcert='goToConcert'}}
-
-      {{/each}}
-    </ul>
-  {{/if}}
-
-  {{pagination-bar pages=model.meta
-                  newPage='changeRegionPage'
-                  previousPage='previousPage'
-                  nextPage='nextPage'}}
-
-</div> --}}
