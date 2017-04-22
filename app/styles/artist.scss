@@ -446,6 +446,8 @@
 
 .concert-featuring-artist {
   float: left;
+  clear: left;
+  margin-top: 5px;
   width: calc(100% - 100px);
 }
 
@@ -540,6 +542,17 @@
 
 @media (max-width: 768px) {
 
+  .concert-featuring-artist {
+    margin-top: 15px;
+    width: 100%;
+  }
+
+  .artist-concert {
+
+    h2 {
+      font-size: 24px;
+    }
+  }
   // .artist-event-section {
   //   width: 100%;
   // }

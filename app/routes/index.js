@@ -64,7 +64,6 @@ export default Ember.Route.extend({
     },
 
     goToConcert(concertId, regionName, regionId) {
-      console.log(concertId + regionName + regionId);
       this.transitionTo('region.event.concert',
         regionName, regionId, concertId,
         { queryParams: {

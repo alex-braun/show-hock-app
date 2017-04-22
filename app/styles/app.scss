@@ -546,6 +546,12 @@ div.svg-wrapper.map {
   }
 }
 
+.artist-also-featuring {
+  clear: left;
+  margin-top: 10px;
+  float: left;
+}
+
 .popular-artists {
 
   h4 {
@@ -678,6 +684,10 @@ div.svg-wrapper.map {
     -ms-transform: translate(-50%,-23%);
     transform: translate(-50%,-50%);
   }
+}
+
+.festival-artist-list {
+  width: calc(100% - 83px);
 }
 
 /*******************MEDIA QUERIES*************************/

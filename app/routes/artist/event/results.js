@@ -43,7 +43,6 @@ export default Ember.Route.extend({
       artistName: this.get('artistEventParams').artist_name,
       artistId: this.get('artistEventParams').artist_id
     };
-
     return Ember.RSVP.hash({
 
       artist: this.get('store').findRecord('artist', allParams.artistId, {

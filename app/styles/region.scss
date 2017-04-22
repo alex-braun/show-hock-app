@@ -607,7 +607,6 @@ ul.nearby-regions-list {
   }
 
   .region-event-listing,
-  nav.pagination-wrapper,
   .region-event-listing.artist {
     // padding-right: 265px;
     width: calc(100% - 272px);
@@ -647,9 +646,7 @@ ul.nearby-regions-list {
   div.results-sidebar-wrapper.artist {
     width: 232px;
   }
-  .region-event-listing,
-  nav.pagination-wrapper {
-    // padding-right: 252px;
+  .region-event-listing {
     width: calc(100% - 182px);
   }
 

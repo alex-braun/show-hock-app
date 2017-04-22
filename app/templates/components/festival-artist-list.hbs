@@ -1,0 +1,13 @@
+<a href='javascript:;' {{action 'goToConcert' event.id}}>
+  {{#each event.performance as |performance index|}}
+      {{#if (arr-last performances.length index)}}
+        {{#if (lt performances.length 10)}}
+        <h4 class='artist-list'> performance.artist.id}}>{{performance.artist.displayName}}</h4>
+        {{/if}}
+      {{else if (lt index 9)}}
+        <h4 class='artist-list'>{{performance.artist.displayName}}, </h4>
+      {{else if (eq index 9)}}
+        <h4 class='artist-list'>{{performance.artist.displayName}}, and {{event.performance.length}} more...</h4>
+      {{/if}}
+  {{/each}}
+</a>

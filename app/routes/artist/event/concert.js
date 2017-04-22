@@ -38,6 +38,8 @@ export default Ember.Route.extend({
           id,
           { queryParams: {
             page: 1,
+            min_date: '',
+            max_date: '',
             }
       });
   },
