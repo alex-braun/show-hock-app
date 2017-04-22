@@ -1,9 +1,0 @@
-<select onchange= {{action 'dropdownIndex'
-      value="target.value"}}
-      data-toggle="dropdown"
-      class="dropdown-list selectpicker"
-      role="button">
-{{#each dropdowns as |dropdownChoice index|}}
-  <option value= {{ index }} selected= {{eq dropdownIndex index}}>{{dropdownChoice.name}}</option>
-{{/each}}
-</select>
