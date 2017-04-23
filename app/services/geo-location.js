@@ -15,11 +15,12 @@ store: Ember.inject.service('store'),
     if (this.get('clientIp') === null) {
       return Ember.$.ajax({
           method: 'GET',
-          url: "http://ipinfo.io/json"
+          url: "https://ipinfo.io/json"
         })
         .then(response => {
           return this.set('clientIp', response.ip);
-        });
+        })
+        .catch(() => { return this.set('clientIp', 404); });
     } else {
         return new Ember.RSVP.Promise(function(resolve, reject) {
           resolve(self.get('clientIp'));

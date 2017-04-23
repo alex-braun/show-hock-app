@@ -15,7 +15,7 @@
         <h4><strong>{{no-parens event.displayName}}</strong></h4>
       </a>
 
-      <p>{{format-mon event.start.date}} {{format-day event.start.date}}, {{format-year event.start.date}}</p>
+      <p>{{format-mon event.start.date}} {{format-day event.start.date}}, {{format-year event.start.date}} {{#if event.end.date}} - {{format-mon event.end.date}}, {{format-day event.end.date}}, {{format-year event.end.date}}{{/if}}</p>
     </li>
   {{/each}}
 

@@ -15,6 +15,15 @@ export default Ember.Route.extend({
             page: 1,
           }
       });
+    },
+
+    goToVenue(id) {
+      this.transitionTo('venue.event.results',
+        id,
+        { queryParams: {
+          page: 1,
+          }
+        });
     }
   }
 });

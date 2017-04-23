@@ -17,13 +17,25 @@ export default Ember.Service.extend({
     if (region === null || region === undefined) {
 
       return this.get('geoLocation').getIp()
-      .then(() =>
-        this.get('geoLocation').getRegion(this.get('geoLocation').clientIp))
+      .then(() => {
+        if (this.get('geoLocation').clientIp !== 404) {
+          return this.get('geoLocation').getRegion(this.get('geoLocation').clientIp);
+        } else {
+          return;
+        }
+      })
         .then(() => {
-          this.set('regionName', this.get('geoLocation').regionName);
-          this.set('regionId', this.get('geoLocation').regionId);
-          this.set('regionCountry', this.get('geoLocation').regionCountry);
-          this.set('regionState', this.get('geoLocation').regionState);
+          if (this.get('geoLocation').clientIp !== 404) {
+          return this.set('regionName', this.get('geoLocation').regionName),
+                 this.set('regionId', this.get('geoLocation').regionId),
+                 this.set('regionCountry', this.get('geoLocation').regionCountry),
+                 this.set('regionState', this.get('geoLocation').regionState);
+        } else {
+          return this.set('regionName', 'New York'),
+                 this.set('regionId', '7644'),
+                 this.set('regionCountry', 'US'),
+                 this.set('regionState', 'NY');
+        }
         });
     }
     else {
