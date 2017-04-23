@@ -6,8 +6,8 @@ module.exports = function(environment) {
     environment: environment,
     rootURL: '/',
     locationType: 'auto',
-    apiHost: 'https://obscure-inlet-58315.herokuapp.com',
-    // apiHost: 'http://localhost:4741',
+    // apiHost: 'https://obscure-inlet-58315.herokuapp.com',
+    apiHost: 'http://localhost:4741',
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -66,7 +66,9 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-
+    ENV.rootURL = 'show-hock-app';
+    ENV.locationType = 'hash';
+    ENV.apiHost = 'https://obscure-inlet-58315.herokuapp.com';
   }
 
   return ENV;
