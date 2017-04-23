@@ -459,7 +459,8 @@ ul.region-event-ul {
 .region-event-listing {
   position: relative;
   float: left;
-  max-width: 735px;
+  // max-width: 735px;
+  width: 735px;
 }
 
 .region-event-listing.artist {

@@ -14,7 +14,6 @@ export default Ember.Service.extend({
     let self = this;
     this.get('saveUserLocation').getRegionSelect();
     let region = this.get('saveUserLocation').regionSelectName;
-
     if (region === null || region === undefined) {
 
       return this.get('geoLocation').getIp()

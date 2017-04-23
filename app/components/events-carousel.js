@@ -24,7 +24,7 @@ export default Ember.Component.extend({
         clicked = true;
       });
 
-      this.$(".carousel").carousel('pause');
+      // this.$(".carousel").carousel('pause');
 
       this.$(".carousel").bind('slide.bs.carousel', function (e) {
         if (clicked) {

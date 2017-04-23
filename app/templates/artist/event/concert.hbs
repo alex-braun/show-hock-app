@@ -31,7 +31,8 @@
 {{/if}}
 
   {{!-- VENUE DETAILS--}}
-  {{concert-venue-details model=model}}
+  {{concert-venue-details model=model
+                          goToVenue='goToVenue'}}
 
   {{#if (gt model.calendar.event.length 1)}}
     {{upcoming-venue-events calendar=model.calendar
