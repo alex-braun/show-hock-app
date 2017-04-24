@@ -210,6 +210,21 @@ ul.region-event-ul {
       float: left;
     }
   }
+
+  .searches-back-button {
+    padding: 8px 10.5px 8px 10.5px;
+    float: right;
+  }
+
+  .searches-back-button:hover {
+    background-color: #C70A24;
+    color: white;
+  }
+
+  .glyphicon-remove {
+    font-size: 24px;
+  }
+
 }
 
 .region-search-header-wrapper.main-search {
@@ -599,7 +614,7 @@ ul.nearby-regions-list {
   }
 }
 
-@media(max-width: 768px) {
+@media(max-width: 767px) {
 
   div.results-sidebar-wrapper {
     width: 100%;
@@ -636,6 +651,21 @@ ul.nearby-regions-list {
       width: 170px;
     }
   }
+
+  .region-search-main-listing {
+    width: 100%;
+  }
+
+  // .region-info-section {
+
+    div.region-info-wrapper.search {
+      min-height: 0;
+
+      .region-info.search {
+        min-height: 0;
+      }
+    }
+  // }
 
   .region-info {
     h1 {

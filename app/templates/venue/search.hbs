@@ -1,20 +1,22 @@
+{{#if media.isMobile}}
+  {{search-options-menu-mobile}}
+{{/if}}
 <div class='region-info-section'>
   <div class='region-info-wrapper search'>
     <div class='region-info search'>
       <h1>Search by Venue</h1>
-      <form>
-      {{search-input-page keyword=entered}}
-        <button type="submit" class="btn btn-success" {{action 'venueSearch' entered}}>
-          Search
-        </button>
-      </form>
+      {{search-input-page-wrapper search='venueSearch'
+                                  formDesc='Search by Venue Name'}}
+
     </div>
   </div>
 </div>
 
 <div class='region-search-main-wrapper'>
   <div class='region-search-main ea-route'>
-    {{search-options-menu}}
+    {{#unless media.isMobile}}
+      {{search-options-menu}}
+    {{/unless}}
 
     {{outlet}}
   </div>

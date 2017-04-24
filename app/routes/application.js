@@ -6,7 +6,8 @@ export default Ember.Route.extend({
 
     allSearch(param) {
       if (!(param === null || param === undefined || param.match(/^ *$/) !== null)) {
-        this.transitionTo('searches.search.results',
+        // this.transitionTo('searches.search.results',
+        this.replaceWith('searches.search.results',
         param,
         { queryParams: {
             page: 1,

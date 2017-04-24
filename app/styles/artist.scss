@@ -196,13 +196,26 @@
   list-style-type: none;
 }
 
+.artist-event-location {
+  clear: left;
+  float: left;
+  width: calc(100% - 100px);
+}
+
 .artist-event {
-  margin-right: 50px;
+  // margin-right: 50px;
+  list-style: none;
   padding-top: 10px;
+  overflow: hidden;
 
   h4 {
     font-size: 16px;
   }
+}
+
+.artist-list-wrapper {
+  width: calc(100% - 100px);
+  float: left;
 }
 
 .artist-detail-list {
@@ -376,7 +389,7 @@
 }
 
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
 
   .concert-featuring-artist {
     margin-top: 15px;

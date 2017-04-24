@@ -38,6 +38,7 @@
             </li>
 
           <li class='artist-event'>
+            <div class=artist-list-wrapper>
             {{#if (eq event.type 'Festival') }}
               <h4><strong>{{event.displayName}}</strong></h4>
               {{purchase-tickets event=event}}
@@ -54,14 +55,17 @@
                   <h4 class='artist-list'><strong>{{performance.artist.displayName}}, </strong></h4>
                 {{/if}}
               {{/each}}
-              {{purchase-tickets event=event}}
             {{/if}}
-
-            {{#if (eq event.venue.displayName 'Unknown venue') }}
-              <h4>{{event.location.city}}</h4>
-            {{else}}
-              <h4>{{event.venue.displayName}}, {{event.location.city}}</h4>
-            {{/if}}
+          </div>
+          {{!-- {{purchase-tickets event=event}} --}}
+            <div class='artist-event-location'>
+              {{#if (eq event.venue.displayName 'Unknown venue') }}
+                <h4>{{event.location.city}}</h4>
+              {{else}}
+                <h4>{{event.venue.displayName}}, {{event.location.city}}</h4>
+              {{/if}}
+            </div>
+            {{purchase-tickets event=event}}
           </li>
         </div>
 
