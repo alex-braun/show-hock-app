@@ -25,7 +25,7 @@ Router.map(function() {
       this.route('results');
       this.route('concert', { path: '/concert/:concert_id' } );
     });
-    });
+  });
 
   this.route('venue', function() {
     this.route('search', function() {
@@ -36,8 +36,6 @@ Router.map(function() {
       this.route('concert', { path: '/concert/:concert_id' });
     });
   });
-
-  this.route('event-search');
 
   this.route('user', function() {
     this.route('change-location', function() {
@@ -51,6 +49,10 @@ Router.map(function() {
       this.route('results', { path: '/:search_name/results' });
     });
   });
+
+  this.route('sign-up');
+  this.route('sign-in');
+  this.route('change-password');
 });
 
 export default Router;

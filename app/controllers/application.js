@@ -1,6 +1,10 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+  auth: Ember.inject.service(),
+
+  user: Ember.computed.alias('auth.credentials.email'),
+  isAuthenticated: Ember.computed.alias('auth.isAuthenticated'),
 
   location: Ember.inject.service('user-location-setting'),
   // dropdownIndex: 0,
@@ -20,4 +24,19 @@ export default Ember.Controller.extend({
     this._super(...arguments);
     this.get('location').getRegion();
   },
+
+actions: {
+  signOut () {
+    this.get('auth').signOut()
+      .then(() => this.get('store').unloadAll())
+      .then(() => this.transitionTo('sign-in'))
+      .then(() => {
+        this.get('flashMessages').warning('You have been signed out.');
+      })
+      .catch(() => {
+        this.get('flashMessages')
+        .danger('There was a problem. Are you sure you\'re signed-in?');
+      });
+    },
+  }
 });

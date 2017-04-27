@@ -1,6 +1,6 @@
 import { moduleFor, test } from 'ember-qunit';
 
-moduleFor('route:event-search', 'Unit | Route | event search', {
+moduleFor('route:change-password', 'Unit | Route | change password', {
   // Specify the other units that are required for this test.
   // needs: ['controller:foo']
 });
