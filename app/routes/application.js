@@ -3,7 +3,6 @@ import Ember from 'ember';
 export default Ember.Route.extend({
   auth: Ember.inject.service(),
   flashMessages: Ember.inject.service(),
-
   getUserCalendars: Ember.inject.service(),
   isAuthenticated: Ember.computed.alias('auth.isAuthenticated'),
   userLocationSetting: Ember.inject.service(),
@@ -18,7 +17,6 @@ export default Ember.Route.extend({
 
   model() {
     if (this.get('isAuthenticated')) {
-      console.log('authenticated');
       this.get('getUserCalendars').getCalendar();
     }
   },

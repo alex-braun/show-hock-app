@@ -1,7 +1,5 @@
 import ActiveModelAdapter from 'active-model-adapter';
-
 import ENV from 'show-hock-app/config/environment';
-
 import Ember from 'ember';
 
 export default ActiveModelAdapter.extend({

@@ -231,6 +231,35 @@ div.svg-wrapper.map {
 .show-hock {
   font-family: 'Audiowide';
 }
+
+.my-shows {
+  margin-top: 8px;
+
+  li {
+    width: 110px;
+  }
+
+  .user-shows {
+    font-size: 16px;
+    line-height: 28px;
+
+    div {
+      display: inline;
+      text-align: center;
+      margin-right: 0;
+      content: '';
+      width: 28px;
+      height: 28px;
+      float: right;
+      border-radius: 50%;
+      background-color: $red;
+      font-size: 18px;
+    }
+  }
+}
+
+
+
 ///////END NAVBAR STYLING////////
 
 .search-button.in-form {

@@ -8,6 +8,11 @@ store: Ember.inject.service('store'),
   userEventIdArr: [],
   userCalenIdArr: [],
 
+  init() {
+    this.set('userCalendar', {});
+    this.set('userEventIdArr', []);
+  },
+
   getCalendar() {
     this.set('userCalendar', {});
     this.set('userEventIdArr', []);

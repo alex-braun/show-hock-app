@@ -23,6 +23,20 @@
     {{artist-date event=model}}
     {{purchase-tickets event=model}}
 
+    {{tracking-buttons-concert model=model
+                               trackEvent='trackEvent'
+                               unTrackEvent='unTrackEvent'
+                               userPicked=userPicked}}
+    {{!-- {{#if userPicked}}
+    {{button-untrack-event value=model
+                         buttonTitle='Tracked!!'
+                         buttonClick='unTrackEvent'}}
+    {{else}}
+    {{button-track-event value=model
+                         buttonTitle='Track Event'
+                         buttonClick='trackEvent'}}
+    {{/if}} --}}
+
     {{concert-featuring-artist isFullList=isFullList
                                 getFullList='getFullList'
                                 performances=model.performance

@@ -1,0 +1,10 @@
+{{#if userPicked}}
+
+{{button-untrack-event value=model
+                     buttonTitle='Tracked!!'
+                     buttonClick='unTrackEvent'}}
+{{else}}
+{{button-track-event value=model
+                     buttonTitle='Track Event'
+                     buttonClick='trackEvent'}}
+{{/if}}

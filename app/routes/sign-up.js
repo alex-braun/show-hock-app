@@ -12,6 +12,7 @@ export default Ember.Route.extend({
       .then(() => {
         this.get('flashMessages')
         .success('Successfully signed-up! You have also been signed-in.');
+        this.get('getUserCalendars').getCalendar();
       })
       .catch(() => {
         this.get('flashMessages')

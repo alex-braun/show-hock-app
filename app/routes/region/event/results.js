@@ -95,8 +95,7 @@ export default Ember.Route.extend({
         });
       })
       .catch((response) => {
-        let mes = response.message.split(" ");
-        let showId = parseInt(mes[mes.length - 1]);
+        let showId = response.errors[0].id;
         let calendar = this.get('store').createRecord('calendar', {
           event_id: event.id,
           show_id: showId,
@@ -105,7 +104,6 @@ export default Ember.Route.extend({
         calendar.save()
         .then(() => this.get('getUserCalendars').getCalendar());
       });
-
     },
 
 

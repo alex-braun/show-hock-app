@@ -4,6 +4,8 @@ export default Ember.Route.extend({
 
   accessRegionObj: Ember.inject.service(),
   accessArtistShowCount: Ember.inject.service(),
+  getUserCalendars: Ember.inject.service(),
+
 
   model (params) {
     return Ember.RSVP.hash({

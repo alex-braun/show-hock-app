@@ -2,6 +2,8 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
 
+  getUserCalendars: Ember.inject.service(),
+
   model (param) {
     return this.get('store').findRecord('concert', param.concert_id)
 
