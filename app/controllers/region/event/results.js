@@ -10,6 +10,20 @@ export default Ember.Controller.extend({
   min_date: '',
   max_date: '',
 
+  userEventArr: [],
+  getUserCalendars: Ember.inject.service(),
+  //
+  // Ember.computed('model', function() {
+  //
+  // }),
+  //
+  init() {
+    this._super(...arguments);
+    this.set('userEventArr', []);
+    let eventIds = this.get('getUserCalendars').userEventIdArr;
+    this.set('userEventArr', eventIds);
+  },
+
   actions: {
     changeRegionPage(param) {
       this.set('page', param);

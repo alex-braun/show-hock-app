@@ -5,6 +5,7 @@ export default Ember.Controller.extend({
 
   user: Ember.computed.alias('auth.credentials.email'),
   isAuthenticated: Ember.computed.alias('auth.isAuthenticated'),
+  getUserCalendars: Ember.inject.service(),
 
   location: Ember.inject.service('user-location-setting'),
   // dropdownIndex: 0,
@@ -23,6 +24,12 @@ export default Ember.Controller.extend({
   init() {
     this._super(...arguments);
     this.get('location').getRegion();
+  },
+
+  didRender() {
+      if (this.get('isAuthenticated')) {
+        this.get('getUserCalendars').getCalendar();
+      }
   },
 
 actions: {

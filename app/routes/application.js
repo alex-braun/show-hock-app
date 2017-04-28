@@ -4,6 +4,25 @@ export default Ember.Route.extend({
   auth: Ember.inject.service(),
   flashMessages: Ember.inject.service(),
 
+  getUserCalendars: Ember.inject.service(),
+  isAuthenticated: Ember.computed.alias('auth.isAuthenticated'),
+  userLocationSetting: Ember.inject.service(),
+
+  beforeModel() {
+    this._super(...arguments);
+    return this.get('userLocationSetting').getRegion().then(() => {
+      return this.set('regionName',this.get('userLocationSetting').regionName),
+             this.set('regionId', this.get('userLocationSetting').regionId);
+    });
+  },
+
+  model() {
+    if (this.get('isAuthenticated')) {
+      console.log('authenticated');
+      this.get('getUserCalendars').getCalendar();
+    }
+  },
+
   actions: {
 
     // signOut () {
