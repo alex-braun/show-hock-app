@@ -8,7 +8,10 @@
     <ul class="event-listings row-fluid block-grid-3">
       {{#each model.event as |event|}}
             {{venue-detail event=event
-                          goToConcert='goToConcert'}}
+                           userEventArr=userEventArr
+                           goToConcert='goToConcert'
+                           trackEvent='trackEvent'
+                           unTrackEvent='unTrackEvent'}}
       {{/each}}
     </ul>
 {{/if}}

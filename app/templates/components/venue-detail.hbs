@@ -53,6 +53,16 @@
 {{/if}}
 </div>
 
+{{#if userPicked}}
+{{button-untrack-event value=event
+                     buttonTitle='Tracked!!'
+                     buttonClick='unTrackEvent'}}
+{{else}}
+{{button-track-event value=event
+                     buttonTitle='Track Event'
+                     buttonClick='trackEvent'}}
+{{/if}}
+
 {{button-to-concert value=event.id
                     buttonClick='goToConcert'
                     buttonTitle=buttonTitle}}
