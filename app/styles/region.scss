@@ -22,6 +22,7 @@
 
   h4 {
     font-size: 16px;
+    margin: 5px 0 5px 0;
   }
 }
 
@@ -58,10 +59,22 @@ ul.region-event-ul {
 
   .event {
     margin: 0;
+    list-style: none;
   }
 
   .artist-event {
     margin: 0;
+  }
+}
+
+.user-list {
+
+  .region-event-ul {
+    padding-left: 0;
+  }
+
+  .artist-date {
+    padding-left: 0;
   }
 }
 
@@ -410,6 +423,25 @@ ul.region-event-ul {
 
   input.form-control {
     width: 100%;
+  }
+}
+
+
+.region-info-wrapper.user-list {
+  margin: 0 auto;
+  max-width: 758px;
+  max-width: 700px;
+  overflow: hidden;
+
+  .region-info {
+    margin-right: 0;
+    background-color: inherit;
+    width: 80%;
+    float: right;
+    padding: 0;
+  }
+  h1 {
+    color: black;
   }
 }
 

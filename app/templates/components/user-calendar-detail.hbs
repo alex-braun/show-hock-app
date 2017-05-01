@@ -1,0 +1,105 @@
+<div class='region-results-wrapper'>
+
+{{!--ARTIST DATE  --}}
+<ul class='artist-date'>
+  <li class='artist-event-date'>
+    <strong>
+      {{{format-weekday calendar.show.start}}},
+      {{{format-month calendar.show.start}}}
+      {{{format-day calendar.show.start}}},
+      {{{format-year calendar.show.start}}}
+
+  {{#if calendar.show.end}}
+    -
+      {{{format-weekday calendar.show.end}}},
+      {{{format-month calendar.show.end}}}
+      {{{format-day calendar.show.end}}},
+      {{{format-year calendar.show.end}}}
+  {{/if}}
+      </strong>
+  </li>
+</ul>
+
+
+
+{{!--ARTIST LIST  --}}
+
+{{!-- {{#each calendar.show.performers as |perform|}}
+  <h5>{{perform.artist_name}}</h5>
+{{/each}} --}}
+
+<ul class='region-event-ul'>
+  <li class='event'>
+    <li class='artist-event'>
+    <a href='javascript:;' {{action 'goToConcert' event.id}}>
+    {{#each calendar.show.performers as |performance index|}}
+      {{#if (eq calendar.show.performers.length 1) }}
+        <h4 class='artist-list'><strong>{{performance.artistName}}</strong></h4>
+      {{else if (arr-last calendar.show.performers.length index) }}
+        {{#if (gt calendar.show.performers.length 1) }}
+          <h4 class='artist-list'><strong>{{performance.artistName}}</strong></h4>
+        {{/if}}
+      {{else}}
+        <h4 class='artist-list'><strong>{{performance.artistName}}, </strong></h4>
+      {{/if}}
+    {{/each}}
+    </a>
+  </li>
+    {{#if (eq calendar.show.venue_name 'Unknown venue') }}
+      <h4>{{calendar.show.city}}</h4>
+    {{else}}
+      <h4>{{calendar.show.venueName}}, {{calendar.show.city}}</h4>
+    {{/if}}
+  </li>
+
+  <div class="user-popularity">
+    {{#if (gt calendar.show.users.length 2)}}
+    <h5>{{not-including-curr calendar.show.users.length}} others interested in this event</h5>
+    {{else if (eq calendar.show.users.length 2)}}
+    <h5>{{not-including-curr calendar.show.users.length}} other interested in this event</h5>
+    {{/if}}
+  </div>
+
+</ul>
+
+    <div class='user-stuff'>
+
+    {{!-- <h2>show start: {{calendar.show.start}}</h2> --}}
+    {{!-- <h2>show event name: {{calendar.show.event_name}}</h2> --}}
+    {{!-- <h3>show venue name: {{calendar.show.venue_name}}</h3> --}}
+    {{!-- <h4>show city: {{calendar.show.city}}</h4> --}}
+
+    {{!-- <p>Users going to this event: {{calendar.show.users.length}}</p>
+    {{#each calendar.show.users as |user|}}
+      <p>Users going to this event: {{user.email}}</p>
+    {{/each}} --}}
+
+    {{!-- <p>show object: {{calendar.show.id}}</p>
+    <p>show region name: {{calendar.show.region_name}}</p>
+    <p>show id: {{calendar.show_id}}</p> --}}
+
+  </div>
+
+  <div class='region-band-thumbs'>
+  {{#if (eq event.type 'Festival') }}
+
+    <figure class="band-thumb-wrapper">
+      <img class="headliner image" src="{{event.imageUrl}}">
+      <figcaption class="image-caption-text">{{event.displayName}}</figcaption>
+    </figure>
+
+
+  {{else}}
+    {{#each event.performance as |performance|}}
+
+        <figure class="band-thumb-wrapper">
+          <img class="headliner image" src="{{performance.artist.imageUrl}}"/>
+          <figcaption class="image-caption-text">{{performance.artist.displayName}}</figcaption>
+        </figure>
+
+    {{/each}}
+
+  {{/if}}
+  </div>
+
+</div>

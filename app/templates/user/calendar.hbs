@@ -1,0 +1,22 @@
+<div class='region-info-section'>
+  <div class='region-info-wrapper user-list'>
+    {{!-- <div class='region-info search user-list'> --}}
+    <ul class='event-listings row-fluid block-grid'>
+      {{#each model as |calendar|}}
+
+        {{user-calendar-detail calendar=calendar}}
+
+      {{/each}}
+    </ul>
+  </div>
+</div>
+
+
+
+
+{{!-- export default DS.Model.extend({
+  artist_id: DS.attr('number'),
+  artist_name: DS.attr('string'),
+  artist_img: DS.attr('string'),
+  show_id: DS.attr('number')
+}); --}}

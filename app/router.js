@@ -42,6 +42,7 @@ Router.map(function() {
       this.route('results', { path: '/:region_name/results' } );
       this.route('confirm');
     });
+    this.route('calendar');
   });
 
   this.route('searches', function() {

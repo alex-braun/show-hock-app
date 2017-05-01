@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  tagName: 'ul',
-  classNames:['artist-date']
+  tagName: 'li',
+  classNames: ['region-search list-item'],
 });

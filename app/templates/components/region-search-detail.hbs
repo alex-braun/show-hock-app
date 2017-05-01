@@ -1,23 +1,23 @@
 <div class='region-search-detail'>
-{{#if regionSelect.noMatch}}
-  <h3>We were unable to find a region called  <strong>{{regionSelect.metroArea.displayName}}</strong></h3>
+{{#if region.noMatch}}
+  <h3>We were unable to find a region called  <strong>{{region.metroArea.displayName}}</strong></h3>
   <p>Please try another area!</p>
 {{else}}
 
     <div class="region-search-map-wrapper">
-      <img src={{regionSelect.metroArea.googleMapUrl}} alt="">
+      <img src={{region.metroArea.googleMapUrl}} alt="">
     </div>
-    {{#link-to 'region.event.results' regionSelect.metroArea.displayName regionSelect.metroArea.id (query-params page='1')}}
+    {{#link-to 'region.event.results' region.metroArea.displayName region.metroArea.id (query-params page='1')}}
 
-    {{#if regionSelect.metroArea.state.displayName  regionSelect.metroArea.country.displayName}}
-      <h3>{{regionSelect.metroArea.displayName}}, {{regionSelect.metroArea.state.displayName}},
-      {{regionSelect.metroArea.country.displayName}}</h3>
+    {{#if region.metroArea.state.displayName  region.metroArea.country.displayName}}
+      <h3>{{region.metroArea.displayName}}, {{region.metroArea.state.displayName}},
+      {{region.metroArea.country.displayName}}</h3>
     {{else}}
-      <h3>{{regionSelect.metroArea.displayName}},
-      {{regionSelect.metroArea.country.displayName}}</h3>
+      <h3>{{region.metroArea.displayName}},
+      {{region.metroArea.country.displayName}}</h3>
     {{/if}}
-    {{#if (neq regionSelect.city.displayName regionSelect.metroArea.displayName)}}
-    <p>including {{regionSelect.city.displayName}}</p>
+    {{#if (neq region.city.displayName region.metroArea.displayName)}}
+    <p>including {{region.city.displayName}}</p>
     {{/if}}
     {{/link-to}}
 

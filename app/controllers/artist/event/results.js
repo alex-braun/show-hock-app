@@ -38,8 +38,8 @@ export default Ember.Controller.extend({
       } else {
         max_date = '';
       }
-      this.set('min_date', min_date);
-      this.set('max_date', max_date);
+      this.set('minDate', min_date);
+      this.set('maxDate', max_date);
       this.set('page', 1);
    },
   }

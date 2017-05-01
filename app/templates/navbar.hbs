@@ -35,9 +35,12 @@
       {{#if isAuthenticated}}
       <ul class='nav my-shows pull-left'>
         <li class="navbar-text pull-left">
-          <a href='javascript:;' class='user-shows'>
+          {{#link-to 'user.calendar' class='user-shows'}}
+          {{!-- <a href='javascript:;' class='user-shows'> --}}
             My Shows <div>{{getUserCalendars.userEventIdArr.length}}</div>
-          </a>
+
+          {{!-- </a> --}}
+          {{/link-to}}
         </li>
       </ul>
       {{/if}}
