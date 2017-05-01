@@ -22,7 +22,7 @@ store: Ember.inject.service('store'),
       let userCalendar = response;
       let calendarObj = userCalendar.get('content');
       for (let i = 0; i < calendarObj.length; i++) {
-        this.get('userEventIdArr').pushObject(calendarObj[i]._data.event_id);
+        this.get('userEventIdArr').pushObject(calendarObj[i]._data.eventId);
         this.get('userCalenIdArr').pushObject(calendarObj[i].id);
       }
     });

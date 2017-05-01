@@ -1,16 +1,25 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
-  event_id: DS.attr('number'),
-  event_name: DS.attr('string'),
+  eventId: DS.attr('number'),
+  eventName: DS.attr('string'),
   // artists: DS.attr(),
-  region_id: DS.attr('number'),
-  region_name: DS.attr('string'),
-  venue_id: DS.attr('number'),
-  venue_name: DS.attr('string'),
+  regionId: DS.attr('number'),
+  regionName: DS.attr('string'),
+  venueId: DS.attr('number'),
+  venueName: DS.attr('string'),
   start: DS.attr(),
   end: DS.attr(),
   city: DS.attr('string'),
-  users: DS.hasMany('user'),
-  performers: DS.hasMany('performer')
+  type: DS.attr('string'),
+
+  users: DS.hasMany('user', {
+    async: false
+  }),
+  calendars: DS.hasMany('calendar', {
+    async: false
+  }),
+  performers: DS.hasMany('performer', {
+    async: false
+  })
 });
