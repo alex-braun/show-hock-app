@@ -365,9 +365,18 @@
   float: right;
 
   img {
-    width: 150px;
+    width: 100px;
+  }
+
+  img:empty {
+    background-image: url('../assets/images/microphone-with-wire.png');
+    background-position: 0 5px;
+    background-size: 100px;
+    background-repeat: no-repeat;
   }
 }
+
+
 
 .concert {
 

@@ -266,6 +266,48 @@ div.svg-wrapper.map {
 
 ///////END NAVBAR STYLING////////
 
+
+
+///////////SIGN-IN-SIGN-UP//////////
+.form-horizontal .form-group {
+  margin: 0;
+}
+
+.authentication-buttons {
+  display: inline-block;
+  float: left;
+  margin-top: 10px;
+}
+
+.change-password-wrapper {
+  display: inline-block;
+  margin-top: 8px;
+  margin-left: 5px;
+  float: left;
+}
+
+.region-info-section.sign-up {
+
+  .artist-concert.festival {
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+
+    & .concert-image-wrapper {
+      margin: 0 auto;
+      float: none;
+      width: 150px;
+    }
+  }
+ }
+
+.alert {
+  padding: 16px;
+}
+
+
+
+/////////END SIGN-IN SIGN-UP/////////////
 .search-button.in-form {
   background-color: transparent;
   margin-left: -25px;

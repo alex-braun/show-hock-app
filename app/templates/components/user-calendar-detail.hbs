@@ -4,17 +4,17 @@
 <ul class='artist-date'>
   <li class='artist-event-date'>
     <strong>
-      {{{format-weekday calendar.show.start}}},
-      {{{format-month calendar.show.start}}}
-      {{{format-day calendar.show.start}}},
-      {{{format-year calendar.show.start}}}
+      {{{format-weekday calendar.show.startDate}}},
+      {{{format-month calendar.show.startDate}}}
+      {{{format-day calendar.show.startDate}}},
+      {{{format-year calendar.show.startDate}}}
 
-  {{#if calendar.show.end}}
+  {{#if (neq calendar.show.endDate calendar.show.startDate)}}
     -
-      {{{format-weekday calendar.show.end}}},
-      {{{format-month calendar.show.end}}}
-      {{{format-day calendar.show.end}}},
-      {{{format-year calendar.show.end}}}
+      {{{format-weekday calendar.show.endDate}}},
+      {{{format-month calendar.show.endDate}}}
+      {{{format-day calendar.show.endDate}}},
+      {{{format-year calendar.show.endDate}}}
   {{/if}}
       </strong>
   </li>
@@ -31,7 +31,9 @@
 <ul class='region-event-ul'>
   <li class='event'>
     <li class='artist-event'>
-    <a href='javascript:;' {{action 'goToConcert' event.id}}>
+    <a href='javascript:;' {{action 'goToConcert' calendar.show.eventId
+                                                  calendar.show.regionName
+                                                  calendar.show.regionId}}>
     {{#each calendar.show.performers as |performance index|}}
       {{#if (eq calendar.show.performers.length 1) }}
         <h4 class='artist-list'><strong>{{performance.artistName}}</strong></h4>

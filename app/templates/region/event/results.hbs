@@ -1,5 +1,4 @@
 <div class='region-event-listing'>
-
   {{#unless model.noMatch}}
   {{date-range-picker filterDate='filterDate'
                       min_date=min_date
@@ -17,8 +16,9 @@
                             userEventArr=userEventArr
                             goToConcert='goToConcert'
                             trackEvent='trackEvent'
-                            unTrackEvent='unTrackEvent'}}
-
+                            unTrackEvent='unTrackEvent'
+                            isAuthenticated=isAuthenticated
+                            goToAuthenticate='goToAuthenticate'}}
       {{/each}}
     </ul>
   {{/if}}
@@ -28,4 +28,3 @@
                   previousPage='previousPage'
                   nextPage='nextPage'}}
 </div>
-{{!-- {{isAuthenticated}} --}}

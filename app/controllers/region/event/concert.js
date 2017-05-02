@@ -3,6 +3,8 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
 
   userPicked: true,
+  auth: Ember.inject.service(),
+  isAuthenticated: Ember.computed.alias('auth.isAuthenticated'),
   // getUserCalendars: Ember.inject.service(),
   //
   // didInsertElement() {

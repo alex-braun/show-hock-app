@@ -1,5 +1,4 @@
 <div class='region-event-listing artist'>
-
 {{upcoming-events upcomingInfo=model.upcomingInfo}}
 {{#unless model.noMatch}}
 {{date-range-picker filterDate='filterDate'
@@ -19,7 +18,9 @@
                               userEventArr=userEventArr
                               goToConcert='goToConcert'
                               trackEvent='trackEvent'
-                              unTrackEvent='unTrackEvent'}}
+                              unTrackEvent='unTrackEvent'
+                              isAuthenticated=isAuthenticated
+                              goToAuthenticate='goToAuthenticate'}}
 
           {{/each}}
         </ul>

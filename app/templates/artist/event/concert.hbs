@@ -24,10 +24,16 @@
     {{artist-date event=model}}
     {{purchase-tickets event=model}}
 
-    {{tracking-buttons-concert model=model
+    {{!-- {{tracking-buttons-concert model=model
                                trackEvent='trackEvent'
                                unTrackEvent='unTrackEvent'
-                               userPicked=userPicked}}
+                               userPicked=userPicked}} --}}
+   {{tracking-buttons-concert model=model
+                              trackEvent='trackEvent'
+                              unTrackEvent='unTrackEvent'
+                              userPicked=userPicked
+                              isAuthenticated=isAuthenticated
+                              goToAuthenticate='goToAuthenticate'}}
 
       {{concert-also-featuring goToArtist='goToArtist'
                                model=model}}

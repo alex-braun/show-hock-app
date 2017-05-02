@@ -19,12 +19,10 @@ export default Ember.Route.extend({
         this.transitionTo('application');
       })
       .then(() => {
-        console.log('Thanks for signing in!');
-        this.get('flashMessages').success('Thanks for signing in!');
+        // this.get('flashMessages').success('Thanks for signing in!');
         this.get('getUserCalendars').getCalendar();
       })
       .catch(() => {
-        console.log('There was a problem. Please try again.');
         this.get('flashMessages')
         .danger('There was a problem. Please try again.');
       });

@@ -4,6 +4,8 @@ import moment from 'moment';
 export default Ember.Controller.extend({
 
   name: Ember.inject.service('access-artist-name'),
+  auth: Ember.inject.service(),
+  isAuthenticated: Ember.computed.alias('auth.isAuthenticated'),
 
   queryParams: ['page', 'min_date', 'max_date'],
   page: 'page',
@@ -38,8 +40,8 @@ export default Ember.Controller.extend({
       } else {
         max_date = '';
       }
-      this.set('minDate', min_date);
-      this.set('maxDate', max_date);
+      this.set('min_date', min_date);
+      this.set('max_date', max_date);
       this.set('page', 1);
    },
   }

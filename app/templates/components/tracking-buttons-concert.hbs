@@ -1,10 +1,16 @@
-{{#if userPicked}}
+{{#if isAuthenticated}}
+  {{#if userPicked}}
 
-{{button-untrack-event value=model
-                     buttonTitle='Tracked!!'
-                     buttonClick='unTrackEvent'}}
+  {{button-untrack-event value=model
+                       buttonTitle='Tracked!!'
+                       buttonClick='unTrackEvent'}}
+  {{else}}
+  {{button-track-event value=model
+                       buttonTitle='Track Event'
+                       buttonClick='trackEvent'}}
+  {{/if}}
 {{else}}
-{{button-track-event value=model
+  {{button-track-event value=model.id
                      buttonTitle='Track Event'
-                     buttonClick='trackEvent'}}
+                     buttonClick='goToAuthenticate'}}
 {{/if}}

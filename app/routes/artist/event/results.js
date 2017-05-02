@@ -71,76 +71,91 @@ export default Ember.Route.extend({
       this.transitionTo('artist.event.concert', value);
     },
 
-    //// this.get('getUserCalendars').getCalendar() updates the current user calendar.
+    goToAuthenticate(eventId) {
+      this.transitionTo('sign-up.new', eventId);
+    },
+
+    // TRACK THIS SHOW////
     trackEvent(event) {
-        let start;
-        let end;
-        if (event.start) {
-          start = event.start.date;
-        } else {
-          start = null;
-        }
-        if (event.end) {
-          end = event.end.date;
-        } else {
-          end = null;
-        }
-        let show = this.get('store').createRecord('show', {
-          event_id: event.id,
-          event_name: event.displayName,
-          region_id: event.venue.metroArea.id,
-          region_name: event.venue.metroArea.displayName,
-          venue_id: event.venue.id,
-          venue_name: event.venue.displayName,
-          start: start,
-          end: end,
-          city: event.location.city
-        });
+      let start;
+      let end;
+      if (event.start) {
+        start = event.start.date;
+      } else {
+        start = null;
+      }
+      if (event.end) {
+        end = event.end.date;
+      } else {
+        end = start;
+      }
+      // CREATE A RECORD OF THE SHOW...///
+      let show = this.get('store').createRecord('show', {
+        eventId: event.id,
+        eventName: event.displayName,
+        regionId: event.venue.metroArea.id,
+        regionName: event.venue.metroArea.displayName,
+        venueId: event.venue.id,
+        venueName: event.venue.displayName,
+        startDate: start,
+        endDate: end,
+        city: event.location.city
+      });
+      // ...AND SAVE THE USER'S CALENDAR ALONG WITH ADDING PERFORMER'S ARRAY///
         show.save()
         .then((trackingRes) => {
           let calendar = this.get('store').createRecord('calendar', {
-            event_id: trackingRes.get('event_id'),
-            show_id: trackingRes.get('id'),
+            eventId: event.id,
             show: trackingRes,
           });
           calendar.save()
-          .then(() => this.get('getUserCalendars').getCalendar())
           .then(() => {
           for (let i = 0; i < event.performance.length; i++) {
             let perform = this.get('store').createRecord('performer', {
-              show_id: trackingRes.get('id'),
-              artist_id: event.performance[i].artist.id,
-              artist_name: event.performance[i].artist.displayName,
-              artist_img: event.performance[i].artist.imageUrl,
+              show: trackingRes,
+              artistId: event.performance[i].artist.id,
+              artistName: event.performance[i].artist.displayName,
+              artistImg: event.performance[i].artist.imageUrl,
             });
             perform.save();
           }
+        }).then(() => {
+          show.reload();
+          this.get('getUserCalendars').getCalendar();
         });
       })
-      .catch((response) => {
-        let showId = response.errors[0].id;
-        let calendar = this.get('store').createRecord('calendar', {
-          event_id: event.id,
-          show_id: showId,
-          show: showId,
+    ////...UNLESS THE SHOW RECORD EXISTS. THEN FIND THE RECORD, AND CREATE THAT USER'S CALENDAR (`302` FOUND ERRROR).
+        .catch((existingShow) => {
+          this.get('store').findRecord('show', existingShow.errors[0].id)
+          .then((show) => {
+          let calendar = this.get('store').createRecord('calendar', {
+            eventId: event.id,
+            show: show,
+          });
+          calendar.save()
+          .then(() => {
+            show.reload();
+            this.get('getUserCalendars').getCalendar();
+          });
         });
-        calendar.save()
-        .then(() => this.get('getUserCalendars').getCalendar());
       });
     },
+
 
     unTrackEvent(event) {
       let userCalendar = this.get('getUserCalendars').userCalendar;
          let calendarArr = userCalendar.get('content');
          let id;
       calendarArr.forEach(function(each) {
-        if (each._data.event_id === event.id) {
+        if (each._data.eventId === event.id) {
           id = each.id;
         }
       });
       this.get('store').findRecord('calendar', id, { backgroundReload: false }).then((calendar) => {
         calendar.destroyRecord()
-        .then(() => this.get('getUserCalendars').getCalendar());
+        .then(() => {
+          this.get('getUserCalendars').getCalendar();
+        });
       });
     }
   }

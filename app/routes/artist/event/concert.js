@@ -47,7 +47,13 @@ export default Ember.Route.extend({
         });
     },
 
+    goToAuthenticate(eventId) {
+      this.transitionTo('sign-up.new', eventId);
+    },
+
+    // TRACK THIS SHOW////
     trackEvent(event) {
+      console.log(event);
       let start;
       let end;
       if (event.get('start')) {
@@ -58,50 +64,58 @@ export default Ember.Route.extend({
       if (event.get('end')) {
         end = event.get('end').date;
       } else {
-        end = null;
+        end = start;
       }
+    // CREATE A RECORD OF THE SHOW...///
       let show = this.get('store').createRecord('show', {
-        event_id: parseInt(event.id),
-        event_name: event.get('displayName'),
-        region_id: event.get('venue').metroArea.id,
-        region_name: event.get('venue').metroArea.displayName,
-        venue_id: event.get('venue').id,
-        venue_name: event.get('venue').displayName,
-        start: start,
-        end: end,
+        eventId: event.get('id'),
+        eventName: event.get('displayName'),
+        regionId: event.get('venue').metroArea.id,
+        regionName: event.get('venue').metroArea.displayName,
+        venueId: event.get('venue').id,
+        venueName: event.get('venue').displayName,
+        startDate: start,
+        endDate: end,
         city: event.get('location').city
       });
+    // ...AND SAVE THE USER'S CALENDAR ALONG WITH ADDING PERFORMER'S ARRAY///
       show.save()
       .then((trackingRes) => {
         let calendar = this.get('store').createRecord('calendar', {
-          event_id: trackingRes.get('event_id'),
-          show_id: trackingRes.get('id'),
+          eventId: event.get('id'),
           show: trackingRes,
         });
         calendar.save()
-        .then(() => this.get('getUserCalendars').getCalendar())
         .then(() => {
-        for (let i = 0; i < event.performance.length; i++) {
+        for (let i = 0; i < event.get('performance').length; i++) {
           let perform = this.get('store').createRecord('performer', {
-            show_id: trackingRes.get('id'),
-            artist_id: event.performance[i].artist.id,
-            artist_name: event.performance[i].artist.displayName,
-            artist_img: event.performance[i].artist.imageUrl,
+            show: trackingRes,
+            artistId: event.get('performance')[i].artist.id,
+            artistName: event.get('performance')[i].artist.displayName,
+            artistImg: event.get('performance')[i].artist.image_url,
           });
           perform.save();
         }
+        })
+        .then(() => {
+          show.reload();
+          this.get('getUserCalendars').getCalendar();
         });
       })
-      .catch((response) => {
-        let showId = response.errors[0].id;
+
+    ////...UNLESS THE SHOW RECORD EXISTS. THEN FIND THE RECORD, AND CREATE THAT USER'S CALENDAR.
+      .catch((existingShow) => {
+        this.get('store').findRecord('show', existingShow.errors[0].id)
+        .then((show) => {
         let calendar = this.get('store').createRecord('calendar', {
-          event_id: event.id,
-          show_id: showId,
-          show: showId,
+          eventId: event.get('id'),
+          show: show,
         });
         calendar.save()
-        .then(() => {
-          this.get('getUserCalendars').getCalendar();
+          .then(() => {
+            show.reload();
+            this.get('getUserCalendars').getCalendar();
+          });
         });
       });
     },
@@ -111,7 +125,7 @@ export default Ember.Route.extend({
          let calendarArr = userCalendar.get('content');
          let id;
       calendarArr.forEach(function(each) {
-        if (each._data.event_id === parseInt(event.get('id'))) {
+        if (each._data.eventId === parseInt(event.id)) {
           id = each.id;
         }
       });

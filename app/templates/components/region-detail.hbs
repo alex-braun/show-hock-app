@@ -1,6 +1,5 @@
 <div class='region-results-wrapper'>
 {{!-- {{log userPicked}} --}}
-
 {{artist-date event=event}}
 
 {{#if (eq event.type 'Festival') }}
@@ -75,18 +74,36 @@
 {{/if}}
 </div>
 
-{{#if userPicked}}
-{{button-untrack-event value=event
-                     buttonTitle='Tracked!!'
-                     buttonClick='unTrackEvent'}}
-{{else}}
-{{button-track-event value=event
-                     buttonTitle='Track Event'
-                     buttonClick='trackEvent'}}
-{{/if}}
 {{button-to-concert buttonTitle='Details'
                     value=event.id
                     buttonClick='goToConcert'}}
+
+{{tracking-buttons-concert model=event
+                           trackEvent='trackEvent'
+                           unTrackEvent='unTrackEvent'
+                           userPicked=userPicked
+                           isAuthenticated=isAuthenticated
+                           goToAuthenticate='goToAuthenticate'}}
+
+{{!-- <div class='button-track-event-wrapper'>
+  {{#if isAuthenticated}}
+    {{#if userPicked}}
+    {{button-untrack-event value=event
+                         buttonTitle='Tracked!!'
+                         buttonClick='unTrackEvent'}}
+    {{else}}
+    {{button-track-event value=event
+                         buttonTitle='Track Event'
+                         buttonClick='trackEvent'}}
+    {{/if}}
+
+  {{else}}
+
+    {{button-track-event value=event.id
+                         buttonTitle='Track Event'
+                         buttonClick='goToAuthenticate'}}
+  {{/if}}
+</div> --}}
 
 {{#if event.ageRestriction}}
   <h6>{{event.ageRestriction}}</h6>

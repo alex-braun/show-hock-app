@@ -2,9 +2,11 @@
   <div class='region-info-wrapper user-list'>
     {{!-- <div class='region-info search user-list'> --}}
     <ul class='event-listings row-fluid block-grid'>
+{{log model}}
       {{#each model as |calendar|}}
 
-        {{user-calendar-detail calendar=calendar}}
+        {{user-calendar-detail calendar=calendar
+                               goToConcert='goToConcert'}}
 
       {{/each}}
     </ul>

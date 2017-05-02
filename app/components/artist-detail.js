@@ -30,6 +30,10 @@ export default Ember.Component.extend({
    unTrackEvent(event) {
      this.set('userPicked', false);
      this.sendAction('unTrackEvent', event);
+   },
+
+   goToAuthenticate(event) {
+     this.sendAction('goToAuthenticate', event);
    }
  }
 });

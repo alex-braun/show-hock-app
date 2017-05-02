@@ -5,7 +5,7 @@ export default Ember.Component.extend({
   tagName: 'li',
   classNames: ['region-detail list-item'],
 
-  buttonTitle: 'Details',
+  userPicked: false,
 
   getUserCalendars: Ember.inject.service(),
 
@@ -52,6 +52,10 @@ export default Ember.Component.extend({
     unTrackEvent(event) {
       this.set('userPicked', false);
       this.sendAction('unTrackEvent', event);
+    },
+
+    goToAuthenticate(event) {
+      this.sendAction('goToAuthenticate', event);
     }
   }
 });

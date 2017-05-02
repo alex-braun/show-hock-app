@@ -6,7 +6,13 @@
 .region-results-wrapper {
   div.button-to-concert-wrapper {
     clear: left;
+    float: left;
   }
+}
+
+.button-track-event-wrapper {
+  float: left;
+  margin-left: 20px;
 }
 
 .date {

@@ -31,8 +31,8 @@ export default Ember.Component.extend({
   init() {
     this._super(...arguments);
     let userCalendar = this.get('getUserCalendars').userEventIdArr;
-    console.log(userCalendar);
-    console.log(this.get('event').id);
+    // console.log(userCalendar);
+    // console.log(this.get('event').id);
     if (userCalendar.includes(this.get('event').id)) {
       return this.set('userPicked', true);
     } else {
@@ -120,6 +120,10 @@ export default Ember.Component.extend({
     unTrackEvent(event) {
       this.set('userPicked', false);
       this.sendAction('unTrackEvent', event);
+    },
+
+    goToAuthenticate(event) {
+      this.sendAction('goToAuthenticate', event);
     }
   }
 });

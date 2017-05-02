@@ -53,19 +53,16 @@
 {{/if}}
 </div>
 
-{{#if userPicked}}
-{{button-untrack-event value=event
-                     buttonTitle='Tracked!!'
-                     buttonClick='unTrackEvent'}}
-{{else}}
-{{button-track-event value=event
-                     buttonTitle='Track Event'
-                     buttonClick='trackEvent'}}
-{{/if}}
-
 {{button-to-concert value=event.id
                     buttonClick='goToConcert'
-                    buttonTitle=buttonTitle}}
+                    buttonTitle='Details'}}
+
+{{tracking-buttons-concert model=event
+                           trackEvent='trackEvent'
+                           unTrackEvent='unTrackEvent'
+                           userPicked=userPicked
+                           isAuthenticated=isAuthenticated
+                           goToAuthenticate='goToAuthenticate'}}
 
 {{#if event.ageRestriction}}
   <h6>{{event.ageRestriction}}</h6>

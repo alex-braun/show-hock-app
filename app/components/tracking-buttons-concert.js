@@ -2,8 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
 
-  // tagName: 'li',
-  // classNames: ['region-detail list-item'],
+  classNames: ['button-track-event-wrapper'],
 
   userPicked: false,
 
@@ -28,6 +27,10 @@ export default Ember.Component.extend({
     unTrackEvent(event) {
       this.sendAction('unTrackEvent', event);
       this.set('userPicked', false);
+    },
+
+    goToAuthenticate(event) {
+      this.sendAction('goToAuthenticate', event);
     }
   }
 });
