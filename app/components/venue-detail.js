@@ -9,26 +9,6 @@ export default Ember.Component.extend({
 
   getUserCalendars: Ember.inject.service(),
 
-  // userSelected: Ember.computed('event', function() {
-  //   let userCalendar = this.get('userEventArr');
-  //   if (userCalendar.includes(this.get('event').id)) {
-  //     console.log('it is included');
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // }),
-
-  // userSelected: Ember.computed('event', function() {
-  //   let userCalendar = this.get('userEventArr');
-  //   if (userCalendar.includes(this.get('event').id)) {
-  //     console.log('it is included');
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // }),
-
   init() {
     this._super(...arguments);
     let userCalendar = this.get('getUserCalendars').userEventIdArr;

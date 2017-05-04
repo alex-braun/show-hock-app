@@ -1,34 +1,12 @@
 <div class='region-search-header-wrapper main-search'>
   <div class='region-search-header'>
-    {{!-- <button type="button" class="btn btn-success searches-back-button" {{action 'back'}}><span class='glyphicon glyphicon-remove'></span>
-    </button> --}}
+
     <div class="searches-back-button" {{action 'back'}}><span class='glyphicon glyphicon-remove'></span>
     </div>
-      {{!-- <div class='search-input-page-wrapper'> --}}
 
-      {{search-input-page-wrapper search='allSearch'
+      {{search-input-page-wrapper search='searchAll'
                                   formDesc='Search for Artists, Citie, Regions, Venues'}}
-        {{!-- <form class='search-input-page-wrapper'>
 
-        {{search-input-main keyword=entered}}
-
-        <div class=search-button-wrapper>
-
-          <button type="submit" class="btn search-button-page in-form" {{action 'allSearch' entered}}>
-            <span class='glyphicon glyphicon-search'></span>
-          </button>
-
-          {{#if buttonVisible}}
-          <button type="button" class="btn search-button-reset in-form" {{action 'reset'}}>
-            <span class='glyphicon glyphicon-remove'></span>
-          </button>
-          {{/if}}
-
-        </div>
-
-          <h5>Artists, Venues, or city/state</h5>
-        </form> --}}
-      {{!-- </div> --}}
   </div>
 </div>
 

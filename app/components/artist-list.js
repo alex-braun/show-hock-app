@@ -5,8 +5,8 @@ export default Ember.Component.extend({
   classNames: ['artist-event'],
 
   actions: {
-    goToConcert(concertId) {
-      this.sendAction('goToConcert', concertId);
+    goToConcert(concert) {
+      this.sendAction('goToConcert', concert);
     }
   }
 });

@@ -9,7 +9,6 @@
   {{else}}
 
     {{artist-list event=event
-                  value=event.id
                   goToConcert='goToConcert'}}
   {{/if}}
 
@@ -53,7 +52,7 @@
 {{/if}}
 </div>
 
-{{button-to-concert value=event.id
+{{button-to-concert value=event
                     buttonClick='goToConcert'
                     buttonTitle='Details'}}
 

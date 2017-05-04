@@ -6,13 +6,16 @@ export default Ember.Route.extend({
   getUserCalendars: Ember.inject.service(),
   isAuthenticated: Ember.computed.alias('auth.isAuthenticated'),
   userLocationSetting: Ember.inject.service(),
+  accessArtistParams: Ember.inject.service(),
 
   beforeModel() {
     this._super(...arguments);
+
     return this.get('userLocationSetting').getRegion().then(() => {
       return this.set('regionName',this.get('userLocationSetting').regionName),
              this.set('regionId', this.get('userLocationSetting').regionId);
     });
+
   },
 
   model() {
@@ -22,19 +25,6 @@ export default Ember.Route.extend({
   },
 
   actions: {
-
-    // signOut () {
-    //   this.get('auth').signOut()
-    //     .then(() => this.get('store').unloadAll())
-    //     .then(() => this.transitionTo('sign-in'))
-    //     .then(() => {
-    //       this.get('flashMessages').warning('You have been signed out.');
-    //     })
-    //     .catch(() => {
-    //       this.get('flashMessages')
-    //       .danger('There was a problem. Are you sure you\'re signed-in?');
-    //     });
-    // },
 
     error (reason) {
       let unauthorized = reason.errors && reason.errors.some((error) =>
@@ -52,19 +42,6 @@ export default Ember.Route.extend({
       return false;
     },
 
-    allSearch(param) {
-      if (!(param === null || param === undefined || param.match(/^ *$/) !== null)) {
-        // this.transitionTo('searches.search.results',
-        this.replaceWith('searches.search.results',
-        param,
-        { queryParams: {
-            page: 1,
-            per_page: 10
-          }
-        });
-      }
-    },
-
     goToRegion(name, id) {
       this.transitionTo('region.event.results',
           name,
@@ -78,6 +55,7 @@ export default Ember.Route.extend({
 
     goToHome() {
       this.transitionTo('index');
+      this.get('accessArtistParams').add(null);
     },
 
     userChooseRegion() {

@@ -8,6 +8,14 @@
       <h2><strong>{{no-parens model.displayName}}</strong></h2>
 
     {{artist-date event=model}}
+    {{purchase-tickets event=model.uri}}
+
+    {{tracking-buttons-concert model=model
+                               trackEvent='trackEvent'
+                               unTrackEvent='unTrackEvent'
+                               userPicked=userPicked
+                               isAuthenticated=isAuthenticated
+                               goToAuthenticate='goToAuthenticate'}}
 
     {{concert-featuring-artist isFullList=isFullList
                                 goToArtist='goToArtist'
@@ -20,7 +28,9 @@
   <div class='artist-concert concert'>
     <h3><strong>{{no-parens model.displayName}}</strong></h3>
 
-    {{purchase-tickets event=model}}
+    {{artist-date event=model}}
+
+    {{purchase-tickets event=model.uri}}
 
     {{tracking-buttons-concert model=model
                                trackEvent='trackEvent'
@@ -28,8 +38,6 @@
                                userPicked=userPicked
                                isAuthenticated=isAuthenticated
                                goToAuthenticate='goToAuthenticate'}}
-
-    {{artist-date event=model}}
 
 
     {{concert-featuring-artist isFullList=isFullList

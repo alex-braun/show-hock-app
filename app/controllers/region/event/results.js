@@ -14,11 +14,7 @@ export default Ember.Controller.extend({
 
   userEventArr: [],
   getUserCalendars: Ember.inject.service(),
-  //
-  // Ember.computed('model', function() {
-  //
-  // }),
-  //
+
   init() {
     this._super(...arguments);
     this.set('userEventArr', []);

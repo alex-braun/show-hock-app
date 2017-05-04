@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  // tagName: 'input'
+
   classNames: ['form-group search-input search-input-em-wrap'],
 
   actions: {

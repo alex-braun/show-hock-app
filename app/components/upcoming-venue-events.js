@@ -2,7 +2,6 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   classNames: ['upcoming-venue-events'],
-  // concertId: Ember.inject.service('access-concert-id'),
 
   filteredResults: Ember.computed('calendar.event', function() {
     let concertId = this.get('concertId');

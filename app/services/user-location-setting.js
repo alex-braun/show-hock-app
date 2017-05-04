@@ -9,7 +9,7 @@ export default Ember.Service.extend({
 
   saveUserLocation: Ember.inject.service(),
   geoLocation: Ember.inject.service(),
-
+///CALL TO GET COOKIES.  IF NO USER LOCATION COOKIES, GET THE IP ADDRESS.
   getRegion() {
     let self = this;
     this.get('saveUserLocation').getRegionSelect();
@@ -24,6 +24,7 @@ export default Ember.Service.extend({
           return;
         }
       })
+///IF THE CLIENT IP CANNOT BE ASCERTAINED, DEFAULT TO N.Y.C.
         .then(() => {
           if (this.get('geoLocation').clientIp !== 404) {
           return this.set('regionName', this.get('geoLocation').regionName),
@@ -38,6 +39,7 @@ export default Ember.Service.extend({
         }
         });
     }
+///NEEEDS TO RETURN A PROMISE WITH COOKIE DATA.
     else {
       return new Ember.RSVP.Promise(function(resolve, reject) {
         resolve(self.set('regionName', self.get('saveUserLocation').regionSelectName),

@@ -2,14 +2,14 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
 
-  accessArtistParams: Ember.inject.service(),
+  accessVenueName: Ember.inject.service(),
 
   model (param) {
     return Ember.RSVP.hash({
 
       venue: this.get('store').findRecord('venue', param.venue_id)
       .then((result) => {
-        this.get('accessArtistParams').add(result.get('displayName'));
+        this.get('accessVenueName').add(result.get('displayName'));
         let meta = result.get('meta');
         return meta, result;
       }),
@@ -49,6 +49,15 @@ export default Ember.Route.extend({
             max_date: ''
           }
       });
-    }
+    },
+
+    goToVenue(id) {
+      this.transitionTo('venue.event.results',
+        id,
+        { queryParams: {
+          page: 1,
+          }
+        });
+    },
   }
 });

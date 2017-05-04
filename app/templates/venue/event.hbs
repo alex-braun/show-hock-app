@@ -1,13 +1,14 @@
 <div class='region-info-section'>
   <figure class='region-background-wrapper'></figure>
-
   <div class='region-info-wrapper'>
     <figure class="region-thumb-wrapper">
       <img class="headliner venue image" src='{{model.venue.imageUrl}}' alt='{{model.venue.displayName}}'/>
     </figure>
 
     <div class='region-info'>
-      <h1>{{model.venue.displayName}}</h1>
+      <h1><a href='javascript;' {{action 'goToVenue' model.venue.id}}>
+        {{model.venue.displayName}}</a>
+      </h1>
 
       {{#if model.venue.street}}
         <h4>{{model.venue.street}}</h4>

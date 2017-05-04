@@ -14,13 +14,15 @@
 
       <h4 class='artist-list'>
         <strong><a href='javascript:;'
-          {{action 'goToConcert' event.id}}>
+          {{action 'goToConcert' event}}>
           {{event.displayName}}</a></strong>
       </h4>
 
       {{else}}
-        {{artist-list event=event
+        {{!-- {{artist-list event=event
                       value=event.id
+                      goToConcert='goToConcert'}} --}}
+        {{artist-list event=event
                       goToConcert='goToConcert'}}
       {{/if}}
 
@@ -37,16 +39,16 @@
   </li>
 </ul>
 
-{{tracking-buttons-concert model=event
-                           trackEvent='trackEvent'
-                           unTrackEvent='unTrackEvent'
-                           userPicked=userPicked
-                           isAuthenticated=isAuthenticated
-                           goToAuthenticate='goToAuthenticate'}}
-
-    {{button-to-concert value=event.id
+    {{button-to-concert value=event
                         buttonClick='goToConcert'
                         buttonTitle=buttonTitle}}
+
+    {{tracking-buttons-concert model=event
+                               trackEvent='trackEvent'
+                               unTrackEvent='unTrackEvent'
+                               userPicked=userPicked
+                               isAuthenticated=isAuthenticated
+                               goToAuthenticate='goToAuthenticate'}}
 
 {{/if}}
 </div>

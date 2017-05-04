@@ -18,6 +18,7 @@ export default Ember.Route.extend({
   },
 
   model(params) {
+
     return Ember.RSVP.hash({
 
       artist: this.get('store').findRecord('artist-search', params.search_name, {
@@ -50,6 +51,7 @@ export default Ember.Route.extend({
   },
 
   actions: {
+
     artistSearch(param) {
       this.transitionTo('artist.search.results',
         param,

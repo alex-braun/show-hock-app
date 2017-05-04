@@ -6,7 +6,10 @@
     </figure>
 
     <div class='region-info'>
-      <h1>{{model.matchReg.firstObject.metroArea.displayName}}</h1>
+      <h1><a href='javascript;' {{action 'goToRegion'
+                                  model.matchReg.firstObject.metroArea.displayName model.matchReg.firstObject.metroArea.id}}>
+        {{model.matchReg.firstObject.metroArea.displayName}}</a>
+      </h1>
 
       {{#if model.matchReg.firstObject.metroArea.state.displayName}}
 

@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import moment from 'moment';
 
 export default Ember.Route.extend({
 
@@ -53,16 +54,15 @@ export default Ember.Route.extend({
 
     // TRACK THIS SHOW////
     trackEvent(event) {
-      console.log(event);
       let start;
       let end;
       if (event.get('start')) {
-        start = event.get('start').date;
+        start = moment(event.get('start').date).format();
       } else {
         start = null;
       }
       if (event.get('end')) {
-        end = event.get('end').date;
+        end = moment(event.get('end').date).format();
       } else {
         end = start;
       }
@@ -70,6 +70,7 @@ export default Ember.Route.extend({
       let show = this.get('store').createRecord('show', {
         eventId: event.get('id'),
         eventName: event.get('displayName'),
+        eventLink: event.get('uri'),
         regionId: event.get('venue').metroArea.id,
         regionName: event.get('venue').metroArea.displayName,
         venueId: event.get('venue').id,
@@ -83,6 +84,7 @@ export default Ember.Route.extend({
       .then((trackingRes) => {
         let calendar = this.get('store').createRecord('calendar', {
           eventId: event.get('id'),
+          endDate: end,
           show: trackingRes,
         });
         calendar.save()
@@ -109,6 +111,7 @@ export default Ember.Route.extend({
         .then((show) => {
         let calendar = this.get('store').createRecord('calendar', {
           eventId: event.get('id'),
+          endDate: end,
           show: show,
         });
         calendar.save()

@@ -12,7 +12,6 @@ export default AjaxService.extend({
       let headers = {};
       const token = this.get('auth.credentials.token');
       if (token) {
-        console.log(token);
         headers.Authorization = `Token token=${token}`;
       }
 

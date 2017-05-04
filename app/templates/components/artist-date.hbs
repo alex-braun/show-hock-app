@@ -6,11 +6,13 @@
     {{{format-year event.start.date}}}
 
 {{#if event.end.date}}
+  {{#if (neq event.end.date event.start.date)}}
   -
     {{{format-weekday event.end.date}}},
     {{{format-month event.end.date}}}
     {{{format-day event.end.date}}},
     {{{format-year event.end.date}}}
+  {{/if}}
 {{/if}}
     </strong>
 </li>

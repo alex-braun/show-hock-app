@@ -53,10 +53,4 @@ export default Ember.Component.extend({
     this.$('.carousel').off('.carousel');
   },
 
-  // willDestroyElement() {
-  //   this._super(...arguments);
-  //   this.$('.carousel').off('.carousel');
-  // },
-
-
 });

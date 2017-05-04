@@ -9,7 +9,7 @@ store: Ember.inject.service('store'),
   regionName: null,
   regionState: null,
   regionCountry: null,
-
+///Get client ip, unless preferred location is stored in cookies.
   getIp() {
     let self = this;
     if (this.get('clientIp') === null) {
@@ -24,10 +24,11 @@ store: Ember.inject.service('store'),
     } else {
         return new Ember.RSVP.Promise(function(resolve, reject) {
           resolve(self.get('clientIp'));
+          reject(self.get('clientIp'));
         });
     }
   },
-
+////Use the returned client ip to get the region id from songkick
   getRegion(ip) {
     return this.get('store').query('location', { ip: ip } )
     .then(response => {

@@ -25,5 +25,14 @@ export default Ember.Route.extend({
       let meta = result.get('meta');
       return meta, result;
     });
+  },
+
+  actions: {
+    goToFullConcert(concert) {
+      let artist = concert.performance[0].artist.displayName;
+      let artistId =  concert.performance[0].artist.id;
+      let concertId = concert.id;
+      this.transitionTo('artist.event.concert', artist, artistId, concertId);
+    },
   }
 });

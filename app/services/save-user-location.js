@@ -7,7 +7,7 @@ export default Ember.Service.extend({
   regionSelectState: null,
 
   cookies: Ember.inject.service(),
-
+///GET THE USER'S PREFERRED LOCATION
   getRegionSelect() {
     let cookieService = this.get('cookies');
     let cookies = cookieService.read();
@@ -24,7 +24,7 @@ export default Ember.Service.extend({
              this.set('regionSelectState', cookies.region_state);
     }
   },
-
+///SAVE THE USER'S PREFERRED LOCATION
   saveRegionSelect(region, id, country, state) {
       let cookieService = this.get('cookies');
       cookieService.write('loc', region);

@@ -41,7 +41,7 @@
             <div class=artist-list-wrapper>
             {{#if (eq event.type 'Festival') }}
               <h4><strong>{{event.displayName}}</strong></h4>
-              {{purchase-tickets event=event}}
+              {{purchase-tickets event=event.uri}}
             {{else}}
               {{#each event.performance as |performance|}}
                 {{#if (eq event.performance.length 1) }}
@@ -65,7 +65,7 @@
                 <h4>{{event.venue.displayName}}, {{event.location.city}}</h4>
               {{/if}}
             </div>
-            {{purchase-tickets event=event}}
+            {{purchase-tickets event=event.uri}}
           </li>
         </div>
 

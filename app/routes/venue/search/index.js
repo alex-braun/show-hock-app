@@ -25,5 +25,16 @@ export default Ember.Route.extend({
       let meta = result.get('meta');
       return meta, result;
     });
+  },
+
+  actions: {
+    goToFullConcert(event) {
+      ////if `unknown venue, the concert is routed to region concerts instead of venue concerts`////
+      if (!event.venue.id) {
+        this.transitionTo('region.event.concert', event.venue.metroArea.displayName, event.venue.metroArea.id, event.id);
+      } else {
+      this.transitionTo('venue.event.concert', event.venue.id, event.id);
+      }
+    }
   }
 });

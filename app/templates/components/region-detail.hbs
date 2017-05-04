@@ -8,7 +8,7 @@
     <li class='event'>
 
       <div class='region-festival-header'>
-      <a href='javascript:;'{{action 'goToConcert' event.id}}>
+      <a href='javascript:;'{{action 'goToConcert' event}}>
         <h4><strong>{{event.displayName}}</strong></h4>
       </a>
         <div class='type-label'>
@@ -75,7 +75,7 @@
 </div>
 
 {{button-to-concert buttonTitle='Details'
-                    value=event.id
+                    value=event
                     buttonClick='goToConcert'}}
 
 {{tracking-buttons-concert model=event

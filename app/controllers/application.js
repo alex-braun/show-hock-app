@@ -36,7 +36,9 @@ actions: {
   signOut () {
     this.get('auth').signOut()
       .then(() => this.get('store').unloadAll())
-      .then(() => this.transitionToRoute('sign-in'))
+      .then(() => {
+        this.transitionToRoute('sign-in');
+      })
       // .then(() => {
       //   this.get('flashMessages').warning('You have been signed out.');
       // })
@@ -44,6 +46,19 @@ actions: {
         this.get('flashMessages')
         .danger('There was a problem. Are you sure you\'re signed-in?');
       });
+    },
+
+    allSearch(param) {
+      if (!(param === null || param === undefined || param.match(/^ *$/) !== null)) {
+        this.set('keyword', '');
+        this.replaceRoute('searches.search.results',
+        param,
+        { queryParams: {
+            page: 1,
+            per_page: 10
+          }
+        });
+      }
     },
   }
 });

@@ -19,4 +19,10 @@ export default Ember.Component.extend({
     }
     return arr.slice(0, num);
   }),
+
+  actions: {
+    goToFullConcert(event) {
+      this.sendAction('goToFullConcert', event);
+    }
+  }
 });

@@ -2,6 +2,8 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
 
+// accessArtistParams: Ember.inject.service(),
+
   actions: {
     artistSearch(param) {
       if (!(param === null || param === undefined || param.match(/^ *$/) !== null)) {
