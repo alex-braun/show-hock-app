@@ -15,6 +15,11 @@
   margin-left: 20px;
 }
 
+.tracking-button-calendar {
+  float: left;
+  margin-left: 20px;
+}
+
 .date {
   font-size: 20px;
   margin: 0;
@@ -435,8 +440,8 @@ ul.region-event-ul {
 
 .region-info-wrapper.user-list {
   margin: 0 auto;
-  max-width: 758px;
-  max-width: 700px;
+  max-width: 778px;
+  // max-width: 700px;
   overflow: hidden;
 
   .region-info {
@@ -448,6 +453,10 @@ ul.region-event-ul {
   }
   h1 {
     color: black;
+  }
+
+  .event-listings {
+    padding-left: 0;
   }
 }
 
@@ -502,7 +511,7 @@ ul.region-event-ul {
   margin: 0 auto;
   max-width: 1080px;
   overflow-y: hidden;
-  min-height: 700px;
+  // min-height: 700px;
 
   ul {
     padding: 0;
@@ -572,7 +581,7 @@ ul.nearby-regions-list {
   }
 
   ul.region-event-ul {
-    width: 345px;
+    width: 343px;
   }
 
 
@@ -737,6 +746,26 @@ ul.nearby-regions-list {
     }
 
     .btn-success {
+      width: 100%;
+    }
+  }
+
+  .tracking-button-calendar {
+    margin-left: 0;
+    margin-top: 15px;
+    width: 100%;
+
+    button {
+      width: 100%;
+    }
+  }
+
+  .button-track-event-wrapper {
+    margin-left: 0;
+    margin-top: 15px;
+    width: 100%;
+
+    button {
       width: 100%;
     }
   }

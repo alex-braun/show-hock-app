@@ -237,7 +237,7 @@ div.svg-wrapper.map {
 }
 
 .my-shows {
-  margin-top: 8px;
+  margin-top: 7px;
 
   li {
     width: 110px;
@@ -284,6 +284,10 @@ div.svg-wrapper.map {
   margin-top: 8px;
   margin-left: 5px;
   float: left;
+}
+
+.show-has-expired {
+  float: right;
 }
 
 .region-info-section.sign-up {
@@ -938,6 +942,11 @@ form.search-input-page-wrapper {
     li.search-select.item {
       margin-right: 0px;
     }
+
+    .form-control {
+      font-size: 13px;
+      padding-left: 6px;
+    }
   }
   /*END NAVBAR STYLING*/
 
@@ -946,7 +955,7 @@ form.search-input-page-wrapper {
 
   .search-input.form-group {
     .form-control {
-      width: 210px;
+      width: 190px;
     }
   }
 
@@ -1004,6 +1013,11 @@ form.search-input-page-wrapper {
   .landing-info-section.event-info {
     height: 925px;
   }
+
+  .my-shows li {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
 }
 
 @media (max-width: 767px) {
@@ -1057,6 +1071,7 @@ form.search-input-page-wrapper {
       width: 100%;
       // margin: 0 auto;
       height: 50px;
+      font-size: 20px;
     }
 
     .search-button.in-form {
@@ -1220,6 +1235,15 @@ form.search-input-page-wrapper {
         margin-bottom: 5px;
         margin-left: 0;
         margin-top: 5px;
+      }
+    }
+
+    .my-shows {
+      margin-top: 2px;
+
+      li {
+        margin-top: 0;
+        margin-bottom: 0;
       }
     }
   }
