@@ -4,11 +4,14 @@ export default Ember.Route.extend({
 
   getUserCalendars: Ember.inject.service(),
 
-  // beforeModel() {
-  //   this.get('getUserCalendars').getCalendar();
-  // },
   model() {
-    return this.get('store').findAll('calendar');
+    return this.get('store').findAll('calendar')
+    .then((calendars) => {
+      // calendars.reload();
+      return Ember.RSVP.all(calendars.getEach('show')).then((shows) => {
+        return shows, calendars;
+      });
+    });
   },
 
   actions: {
@@ -20,6 +23,15 @@ export default Ember.Route.extend({
           min_date: '',
           max_date: ''
         }
+      });
+    },
+
+    unTrackEvent(id) {
+      this.get('store').findRecord('calendar', id, { backgroundReload: false }).then((calendar) => {
+        calendar.destroyRecord()
+        .then(() => {
+          this.get('getUserCalendars').getCalendar();
+        });
       });
     }
   }

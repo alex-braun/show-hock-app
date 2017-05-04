@@ -7,6 +7,10 @@ export default Ember.Component.extend({
   actions: {
     goToConcert(concertId, regionName, regionId) {
       this.sendAction('goToConcert', concertId, regionName, regionId);
+    },
+
+    unTrackEvent(calendarId) {
+      this.sendAction('unTrackEvent', calendarId);
     }
   }
 });

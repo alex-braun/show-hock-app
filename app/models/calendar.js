@@ -9,4 +9,5 @@ export default DS.Model.extend({
   show: DS.belongsTo('show', {
     inverse: 'calendars'
   }),
+  endDate: DS.attr()
 });
