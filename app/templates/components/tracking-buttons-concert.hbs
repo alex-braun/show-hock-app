@@ -1,5 +1,5 @@
 {{#if isAuthenticated}}
-  {{#if userPicked}}
+  {{#liquid-if userPicked class='tracking-button-switch'}}
 
   {{button-untrack-event value=model
                        buttonTitle='Tracked!!'
@@ -8,7 +8,7 @@
   {{button-track-event value=model
                        buttonTitle='Track Event'
                        buttonClick='trackEvent'}}
-  {{/if}}
+  {{/liquid-if}}
 {{else}}
   {{button-track-event value=model.id
                      buttonTitle='Track Event'

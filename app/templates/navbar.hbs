@@ -36,7 +36,7 @@
         <li class="navbar-text pull-left">
           {{#link-to 'user.calendar' class='user-shows'}}
           {{!-- <a href='javascript:;' class='user-shows'> --}}
-            My Shows <div>{{getUserCalendars.userEventIdArr.length}}</div>
+            My Shows <div class='liquid-bind-calendar-count'>{{liquid-bind getUserCalendars.userEventIdArr.length}}</div>
 
           {{!-- </a> --}}
           {{/link-to}}
