@@ -2,8 +2,25 @@ export default function () {
   this.transition(
     this.fromRoute('artist.search'),
     this.toRoute('artist.event'),
+    // this.fromRoute('region.search'),
+    // this.toRoute('region.event'),
+    // this.fromRoute('venue.search'),
+    // this.toRoute('venue.event'),
     this.use('fade')
   );
+
+  this.transition(
+    this.fromRoute('region.search'),
+    this.toRoute('region.event'),
+    this.use('fade')
+  );
+
+  this.transition(
+    this.fromRoute('venue.search'),
+    this.toRoute('venue.event'),
+    this.use('fade')
+  );
+
   this.transition(
     this.fromRoute('index'),
     this.fromRoute('artist'),

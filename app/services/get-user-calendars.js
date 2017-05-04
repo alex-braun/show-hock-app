@@ -26,7 +26,15 @@ store: Ember.inject.service('store'),
         this.get('userEventIdArr').pushObject(calendarObj[i]._data.eventId);
         this.get('userCalenIdArr').pushObject(calendarObj[i].id);
       }
+      console.log(this.get('userEventIdArr'));
+      console.log(this.get('userCalenIdArr'));
       return this.get('userEventIdArr'), this.get('userCalenIdArr');
     });
   },
+
+  clearCalendar() {
+    this.set('userCalendar', {});
+    this.set('userEventIdArr', []);
+    this.set('userCalenIdArr', []);
+  }
 });

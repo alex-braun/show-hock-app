@@ -102,7 +102,10 @@
 
   {{/if}}
   </div>
-  {{purchase-tickets event=calendar.show.eventLink}}
+
+  {{#unless calendar.show.expired}}
+    {{purchase-tickets event=calendar.show.eventLink}}
+  {{/unless}}
 
   {{tracking-button-calendar value=calendar.id
                              buttonTitle='Click to Untrack'

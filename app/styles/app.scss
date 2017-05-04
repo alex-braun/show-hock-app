@@ -488,6 +488,7 @@ div.svg-wrapper.map {
   margin-top: 20px;
   padding: 10px;
   list-style: none;
+  min-height: 350px;
 }
 
 .event-carousel-outer {
@@ -846,6 +847,7 @@ form.search-input-page-wrapper {
     .upcoming-region-events-list-wrapper {
       margin-top: 0;
       padding-top: 0;
+      min-height: 300px;
     }
 
     h4 {
@@ -973,6 +975,10 @@ form.search-input-page-wrapper {
     h4 {
       font-size: 16px;
     }
+
+    .upcoming-region-events-list-wrapper {
+      min-height: 270px;
+    }
   }
 
   .landing-info-section.event-info {
@@ -1018,6 +1024,8 @@ form.search-input-page-wrapper {
     margin-left: 5px;
     margin-right: 5px;
   }
+
+
 }
 
 @media (max-width: 767px) {
@@ -1148,6 +1156,10 @@ form.search-input-page-wrapper {
   .upcoming-region-events {
     width: 90vw;
     height: 371px;
+
+    .upcoming-region-events-list-wrapper {
+      min-height: 0;
+    }
   }
 
   .events-carousel {

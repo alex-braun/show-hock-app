@@ -35,7 +35,10 @@ export default Ember.Controller.extend({
 actions: {
   signOut () {
     this.get('auth').signOut()
-      .then(() => this.get('store').unloadAll())
+      .then(() => {
+        this.get('getUserCalendars').clearCalendar();
+        this.get('store').unloadAll();
+      })
       .then(() => {
         this.transitionToRoute('sign-in');
       })

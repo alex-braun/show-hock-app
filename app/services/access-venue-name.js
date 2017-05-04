@@ -6,6 +6,5 @@ export default Ember.Service.extend({
 
   add(params) {
     this.set('param', params);
-    console.log(this.get('param'));
   },
 });
