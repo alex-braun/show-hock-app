@@ -4719,8 +4719,6 @@ define('show-hock-app/services/get-user-calendars', ['exports', 'ember'], functi
           _this.get('userEventIdArr').pushObject(calendarObj[i]._data.eventId);
           _this.get('userCalenIdArr').pushObject(calendarObj[i].id);
         }
-        console.log(_this.get('userEventIdArr'));
-        console.log(_this.get('userCalenIdArr'));
         return _this.get('userEventIdArr'), _this.get('userCalenIdArr');
       });
     },
