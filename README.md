@@ -1,52 +1,48 @@
 # show-hock-app
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+A full stack application allowing users to find concerts/shows by artist, region, or venue.
 
-## Prerequisites
+Users can choose shows they would like to track, and store them in their calendar.
 
-You will need the following things properly installed on your computer.
+The deployed application:
+https://alex-braun.github.io/show-hock-app/
 
-* [Git](https://git-scm.com/)
-* [Node.js](https://nodejs.org/) (with NPM)
-* [Bower](https://bower.io/)
-* [Ember CLI](https://ember-cli.com/)
-* [PhantomJS](http://phantomjs.org/)
+## Tech
 
-## Installation
+front-end: Ember.js
+  deployed front-end: https://alex-braun.github.io/show-hock-app/
 
-* `git clone <repository-url>` this repository
-* `cd show-hock-app`
-* `npm install`
-* `bower install`
+back-end: Ruby on Rails
+  back-end repo: https://github.com/alex-braun/show-hock-rails
+  deployed back-end: https://obscure-inlet-58315.herokuapp.com/
 
-## Running / Development
+I utilized the SongKick API for all concert data.
+  https://www.songkick.com/developer
 
-* `ember serve`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
+## Database information and Ember Data issues
 
-### Code Generators
+Users have many shows, through calendars (inner join).
+Shows have many performers.
+Calendars belongTo users, shows.
 
-Make use of the many generators for code, try `ember help generate` for more details
+If a user would like to track a show and the show does not exist yet:
+ POST => shows, validating again an `event_id` attribute.  This attribute is the link between songkick and my API.
+ POST => calendars,
+ POST => performers.
 
-### Running Tests
+If the show already exists (`event_id` from POST matches in the db), a 302 found response is returned, containing the show data, then:
+ GET that same show (Ember Data `belongsTo/hasMany` needs to see a returned InternalModel class, or it WILL NOT allow you to use the error response data to POST to calendars.
+ POST => calendars,
+ GET => Explicitly get the show yet again so that the store has the updated calendars/users.  Otherwise, I found ED makes GET requests to ALL of the calendars associated with the show if I wrote something like  (show.get('calendars').pushObject(calendar)).
 
-* `ember test`
-* `ember test --server`
+## Other stuff
 
-### Building
+The calendar filters past events, and calendar dates are removed 3 days after they occured.
 
-* `ember build` (development)
-* `ember build --environment production` (production)
+User location is determined by client IP info.  I used `https://ipinfo.io/json` in my geo location service.
 
-### Deploying
+If the user would like to specify a different location, they can select `change location` and set a preferred locale to browser cookies.
 
-Specify what it takes to deploy your app.
+Calendar events will take on a past event label post event date, and the calendar event will be removed completed 3 days after the event date.  This is achieved via Rails rake tasks.
 
-## Further Reading / Useful Links
-
-* [ember.js](http://emberjs.com/)
-* [ember-cli](https://ember-cli.com/)
-* Development Browser Extensions
-  * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
-  * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
+Alex Braun 2017.
