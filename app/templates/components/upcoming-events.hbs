@@ -1,23 +1,29 @@
-{{#if upcomingInfo.firstObject.noMatch}}
+{{!-- {{#if upcomingInfo.firstObject.noMatch}}
   <div class='upcoming-events-item-div'>
   <h4>{{upcomingInfo.firstObject.performance.artist.displayName}} is not playing in <strong>{{userLocationSetting.regionName}}</strong></h4>
   </div>
 {{else}}
   <div class='upcoming-events'>
-    {{!--TITLE AND METRO NAME FOR UPCOMING EVENTS IN USER AREA--}}
+
     <div class='upcoming-events-title-wrapper'>
       <div class='upcoming-events-title'>
         <h3><strong>Next concerts near you</strong></h3>
       </div>
       <div class='upcoming-events-location'>
+        {{#if upcomingInfo.firstObject.venue.metroArea.state.displayName}}
         <h4>{{upcomingInfo.firstObject.venue.metroArea.displayName}},
             {{upcomingInfo.firstObject.venue.metroArea.state.displayName}},
             {{upcomingInfo.firstObject.venue.metroArea.country.displayName}}</h4>
+        {{else}}
+        <h4>{{upcomingInfo.firstObject.venue.metroArea.displayName}},
+            {{upcomingInfo.firstObject.venue.metroArea.country.displayName}}</h4>
+        {{/if}}
       </div>
     </div>
-    {{!--LISTING FOR UPCOMING EVENTS IN USER AREA--}}
+
     <ul class='upcoming-events-listing'>
-      {{#each upcomingInfo as |event|}}
+      {{#each upcomingInfo as |event|}} --}}
+
         <li class='upcoming-events-item'>
           <div class='upcoming-events-item-div'>
 
@@ -36,12 +42,10 @@
             {{/if}}
                 </strong>
             </li>
-
           <li class='artist-event'>
-            <div class=artist-list-wrapper>
+              <div class=artist-list-wrapper>
             {{#if (eq event.type 'Festival') }}
               <h4><strong>{{event.displayName}}</strong></h4>
-              {{purchase-tickets event=event.uri}}
             {{else}}
               {{#each event.performance as |performance|}}
                 {{#if (eq event.performance.length 1) }}
@@ -65,12 +69,24 @@
                 <h4>{{event.venue.displayName}}, {{event.location.city}}</h4>
               {{/if}}
             </div>
-            {{purchase-tickets event=event.uri}}
+
           </li>
+          {{!-- {{purchase-tickets event=event.uri}} --}}
+
+          {{button-to-concert buttonTitle='Details'
+                              value=event
+                              buttonClick='goToConcert'}}
+
+          {{tracking-buttons-concert model=event
+                                     trackEvent='trackUpcomingEvent'
+                                     unTrackEvent='unTrackUpcomingEvent'
+                                     userPicked=userPicked
+                                     isAuthenticated=isAuthenticated
+                                     goToAuthenticate='goToAuthenticate'}}
         </div>
 
         </li>
-      {{/each}}
-    </ul>
-  </div>
-{{/if}}
+      {{!-- {{/each}} --}}
+    {{!-- </ul> --}}
+  {{!-- </div>
+{{/if}} --}}

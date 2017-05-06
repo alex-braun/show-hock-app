@@ -47,9 +47,12 @@ export default Ember.Component.extend({
     }
   },
 
-  willClearRender() {
+  willDestroyElement() {
     this._super(...arguments);
     this.$(".carousel").carousel('pause');
+  },
+
+  willClearRender() {
     this.$('.carousel').off('.carousel');
   },
 

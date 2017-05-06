@@ -170,17 +170,17 @@ define('show-hock-app/components/artist-detail', ['exports', 'ember'], function 
     classNames: ['region-detail list-item'],
     buttonTitle: 'Details',
 
-    getUserCalendars: _ember['default'].inject.service(),
+    // getUserCalendars: Ember.inject.service(),
 
-    init: function init() {
-      this._super.apply(this, arguments);
-      var userCalendar = this.get('getUserCalendars').userEventIdArr;
-      if (userCalendar.includes(this.get('event').id)) {
-        return this.set('userPicked', true);
-      } else {
-        return this.set('userPicked', false);
-      }
-    },
+    // init() {
+    //   this._super(...arguments);
+    //   let userCalendarEventIds = this.get('getUserCalendars').userCalendarEventIds;
+    //   if (userCalendarEventIds.includes(this.get('event').id)) {
+    //     return this.set('userPicked', true);
+    //   } else {
+    //     return this.set('userPicked', false);
+    //   }
+    // },
 
     actions: {
       goToConcert: function goToConcert(value) {
@@ -188,18 +188,18 @@ define('show-hock-app/components/artist-detail', ['exports', 'ember'], function 
       },
 
       trackEvent: function trackEvent(event) {
-        this.set('userPicked', true);
         this.sendAction('trackEvent', event);
       },
 
       unTrackEvent: function unTrackEvent(event) {
-        this.set('userPicked', false);
         this.sendAction('unTrackEvent', event);
       },
 
       goToAuthenticate: function goToAuthenticate(event) {
         this.sendAction('goToAuthenticate', event);
-      }
+      },
+
+      trackBtnsUpdated: function trackBtnsUpdated() {}
     }
   });
 });
@@ -595,9 +595,12 @@ define('show-hock-app/components/events-carousel', ['exports', 'ember'], functio
       }
     },
 
-    willClearRender: function willClearRender() {
+    willDestroyElement: function willDestroyElement() {
       this._super.apply(this, arguments);
       this.$(".carousel").carousel('pause');
+    },
+
+    willClearRender: function willClearRender() {
       this.$('.carousel').off('.carousel');
     }
 
@@ -1080,8 +1083,8 @@ define('show-hock-app/components/region-detail', ['exports', 'ember'], function 
 
     init: function init() {
       this._super.apply(this, arguments);
-      var userCalendar = this.get('getUserCalendars').userEventIdArr;
-      if (userCalendar.includes(this.get('event').id)) {
+      var userCalendarEventIds = this.get('getUserCalendars').userCalendarEventIds;
+      if (userCalendarEventIds.includes(this.get('event').id)) {
         return this.set('userPicked', true);
       } else {
         return this.set('userPicked', false);
@@ -1338,19 +1341,15 @@ define('show-hock-app/components/tracking-buttons-concert', ['exports', 'ember']
 
     classNames: ['button-track-event-wrapper'],
 
-    userPicked: false,
-
     getUserCalendars: _ember['default'].inject.service(),
 
     init: function init() {
       this._super.apply(this, arguments);
-      var userCalendar = this.get('getUserCalendars').userEventIdArr;
-      if (userCalendar.length > 0) {
-        if (userCalendar.includes(parseInt(this.get('model').id))) {
-          return this.set('userPicked', true);
-        } else {
-          return this.set('userPicked', false);
-        }
+      var userCalendarEventIds = this.get('getUserCalendars').userCalendarEventIds;
+      if (userCalendarEventIds.includes(parseInt(this.get('model').id))) {
+        return this.set('userPicked', true);
+      } else {
+        return this.set('userPicked', false);
       }
     },
 
@@ -1374,8 +1373,26 @@ define('show-hock-app/components/tracking-buttons-concert', ['exports', 'ember']
 define('show-hock-app/components/upcoming-events', ['exports', 'ember'], function (exports, _ember) {
   exports['default'] = _ember['default'].Component.extend({
     classNames: ['upcoming-events-wrapper'],
-    userLocationSetting: _ember['default'].inject.service()
+    userLocationSetting: _ember['default'].inject.service(),
+    buttonTitle: 'Details',
 
+    actions: {
+      goToConcert: function goToConcert(value) {
+        this.sendAction('goToConcert', value);
+      },
+
+      trackUpcomingEvent: function trackUpcomingEvent(event) {
+        this.sendAction('trackUpcomingEvent', event);
+      },
+
+      unTrackUpcomingEvent: function unTrackUpcomingEvent(event) {
+        this.sendAction('unTrackUpcomingEvent', event);
+      },
+
+      goToAuthenticate: function goToAuthenticate(event) {
+        this.sendAction('goToAuthenticate', event);
+      }
+    }
   });
 });
 define('show-hock-app/components/upcoming-region-events', ['exports', 'ember'], function (exports, _ember) {
@@ -1491,8 +1508,8 @@ define('show-hock-app/components/venue-detail', ['exports', 'ember'], function (
 
     init: function init() {
       this._super.apply(this, arguments);
-      var userCalendar = this.get('getUserCalendars').userEventIdArr;
-      if (userCalendar.includes(this.get('event').id)) {
+      var userCalendarEventIds = this.get('getUserCalendars').userCalendarEventIds;
+      if (userCalendarEventIds.includes(this.get('event').id)) {
         return this.set('userPicked', true);
       } else {
         return this.set('userPicked', false);
@@ -1603,11 +1620,124 @@ define('show-hock-app/controllers/artist/event', ['exports', 'ember'], function 
 
   });
 });
-define('show-hock-app/controllers/artist/event/concert', ['exports', 'ember'], function (exports, _ember) {
+define('show-hock-app/controllers/artist/event/concert', ['exports', 'ember', 'moment'], function (exports, _ember, _moment) {
   exports['default'] = _ember['default'].Controller.extend({
 
     auth: _ember['default'].inject.service(),
-    isAuthenticated: _ember['default'].computed.alias('auth.isAuthenticated')
+    isAuthenticated: _ember['default'].computed.alias('auth.isAuthenticated'),
+    getUserCalendars: _ember['default'].inject.service(),
+
+    actions: {
+      // goToArtist(name, id) {
+      //   this.transitionTo('artist.event.results',
+      //     name,
+      //     id,
+      //     { queryParams: {
+      //         page: 1,
+      //         min_date: '',
+      //         max_date: '',
+      //       }
+      //     });
+      // },
+      //
+      // goToVenue(id) {
+      //   this.transitionTo('venue.event.results',
+      //     id,
+      //     { queryParams: {
+      //       page: 1,
+      //       }
+      //     });
+      // },
+      //
+      // goToAuthenticate(eventId) {
+      //   this.transitionTo('sign-up.new', eventId);
+      // },
+
+      // TRACK THIS SHOW////
+      trackEvent: function trackEvent(event) {
+        var _this = this;
+
+        var start = undefined;
+        var end = undefined;
+        if (event.get('start')) {
+          start = (0, _moment['default'])(event.get('start').date).format();
+        } else {
+          start = null;
+        }
+        if (event.get('end')) {
+          end = (0, _moment['default'])(event.get('end').date).format();
+        } else {
+          end = start;
+        }
+        // CREATE A RECORD OF THE SHOW...///
+        var show = this.get('store').createRecord('show', {
+          eventId: event.get('id'),
+          eventName: event.get('displayName'),
+          eventLink: event.get('uri'),
+          regionId: event.get('venue').metroArea.id,
+          regionName: event.get('venue').metroArea.displayName,
+          venueId: event.get('venue').id,
+          venueName: event.get('venue').displayName,
+          startDate: start,
+          endDate: end,
+          city: event.get('location').city
+        });
+        // ...AND SAVE THE USER'S CALENDAR ALONG WITH ADDING PERFORMER'S ARRAY///
+        show.save().then(function (trackingRes) {
+          var calendar = _this.get('store').createRecord('calendar', {
+            eventId: event.get('id'),
+            endDate: end,
+            show: trackingRes
+          });
+          calendar.save().then(function () {
+            for (var i = 0; i < event.get('performance').length; i++) {
+              var perform = _this.get('store').createRecord('performer', {
+                show: trackingRes,
+                artistId: event.get('performance')[i].artist.id,
+                artistName: event.get('performance')[i].artist.displayName,
+                artistImg: event.get('performance')[i].artist.image_url
+              });
+              perform.save();
+            }
+          }).then(function () {
+            show.reload();
+            _this.get('getUserCalendars').getCalendar();
+          });
+        })
+
+        ////...UNLESS THE SHOW RECORD EXISTS. THEN FIND THE RECORD, AND CREATE THAT USER'S CALENDAR.
+        ['catch'](function (existingShow) {
+          _this.get('store').findRecord('show', existingShow.errors[0].id).then(function (show) {
+            var calendar = _this.get('store').createRecord('calendar', {
+              eventId: event.get('id'),
+              endDate: end,
+              show: show
+            });
+            calendar.save().then(function () {
+              show.reload();
+              _this.get('getUserCalendars').getCalendar();
+            });
+          });
+        });
+      },
+
+      unTrackEvent: function unTrackEvent(event) {
+        var _this2 = this;
+
+        var userCalendar = this.get('getUserCalendars').userCalendar;
+        var id = undefined;
+        userCalendar.forEach(function (each) {
+          if (each.eventId === parseInt(event.id)) {
+            id = each.id;
+          }
+        });
+        this.get('store').findRecord('calendar', id, { backgroundReload: false }).then(function (calendar) {
+          calendar.destroyRecord().then(function () {
+            return _this2.get('getUserCalendars').getCalendar();
+          });
+        });
+      }
+    }
   });
 });
 define('show-hock-app/controllers/artist/event/results', ['exports', 'ember', 'moment'], function (exports, _ember, _moment) {
@@ -1616,6 +1746,7 @@ define('show-hock-app/controllers/artist/event/results', ['exports', 'ember', 'm
     name: _ember['default'].inject.service('access-artist-name'),
     auth: _ember['default'].inject.service(),
     isAuthenticated: _ember['default'].computed.alias('auth.isAuthenticated'),
+    getUserCalendars: _ember['default'].inject.service(),
 
     queryParams: ['page', 'min_date', 'max_date'],
     page: 'page',
@@ -1653,6 +1784,175 @@ define('show-hock-app/controllers/artist/event/results', ['exports', 'ember', 'm
         this.set('min_date', min_date);
         this.set('max_date', max_date);
         this.set('page', 1);
+      },
+
+      // TRACK THIS SHOW////
+      trackEvent: function trackEvent(event) {
+        var _this = this;
+
+        var start = undefined;
+        var end = undefined;
+        if (event.start) {
+          start = (0, _moment['default'])(event.start.date).format();
+        } else {
+          start = null;
+        }
+        if (event.end) {
+          end = (0, _moment['default'])(event.end.date).format();
+        } else {
+          end = start;
+        }
+        // CREATE A RECORD OF THE SHOW...///
+        var show = this.get('store').createRecord('show', {
+          eventId: event.id,
+          eventName: event.displayName,
+          eventLink: event.uri,
+          regionId: event.venue.metroArea.id,
+          regionName: event.venue.metroArea.displayName,
+          venueId: event.venue.id,
+          venueName: event.venue.displayName,
+          startDate: start,
+          endDate: end,
+          city: event.location.city
+        });
+        // ...AND SAVE THE USER'S CALENDAR ALONG WITH ADDING PERFORMER'S ARRAY///
+        show.save().then(function (trackingRes) {
+          var calendar = _this.get('store').createRecord('calendar', {
+            eventId: event.id,
+            endDate: end,
+            show: trackingRes
+          });
+          calendar.save().then(function () {
+            for (var i = 0; i < event.performance.length; i++) {
+              var perform = _this.get('store').createRecord('performer', {
+                show: trackingRes,
+                artistId: event.performance[i].artist.id,
+                artistName: event.performance[i].artist.displayName,
+                artistImg: event.performance[i].artist.imageUrl
+              });
+              perform.save();
+            }
+          }).then(function () {
+            show.reload();
+            _this.get('getUserCalendars').getCalendar();
+          });
+        })
+        ////...UNLESS THE SHOW RECORD EXISTS. THEN FIND THE RECORD, AND CREATE THAT USER'S CALENDAR (`302` FOUND ERRROR).
+        ['catch'](function (existingShow) {
+          _this.get('store').findRecord('show', existingShow.errors[0].id).then(function (show) {
+            var calendar = _this.get('store').createRecord('calendar', {
+              eventId: event.id,
+              endDate: end,
+              show: show
+            });
+            calendar.save().then(function () {
+              show.reload();
+              _this.get('getUserCalendars').getCalendar();
+            });
+          });
+        });
+      },
+
+      // TRACK THE SHOW FROM UPCOMING(CLOSE BY) EVENTS ONLY////
+      trackUpcomingEvent: function trackUpcomingEvent(event) {
+        var _this2 = this;
+
+        var start = undefined;
+        var end = undefined;
+        if (event.get('start')) {
+          start = (0, _moment['default'])(event.get('start').date).format();
+        } else {
+          start = null;
+        }
+        if (event.get('end')) {
+          end = (0, _moment['default'])(event.get('end').date).format();
+        } else {
+          end = start;
+        }
+        // CREATE A RECORD OF THE SHOW...///
+        var show = this.get('store').createRecord('show', {
+          eventId: event.get('id'),
+          eventName: event.get('displayName'),
+          eventLink: event.get('uri'),
+          regionId: event.get('venue').metroArea.id,
+          regionName: event.get('venue').metroArea.displayName,
+          venueId: event.get('venue').id,
+          venueName: event.get('venue').displayName,
+          startDate: start,
+          endDate: end,
+          city: event.get('location').city
+        });
+        // ...AND SAVE THE USER'S CALENDAR ALONG WITH ADDING PERFORMER'S ARRAY///
+        show.save().then(function (trackingRes) {
+          var calendar = _this2.get('store').createRecord('calendar', {
+            eventId: event.get('id'),
+            endDate: end,
+            show: trackingRes
+          });
+          calendar.save().then(function () {
+            for (var i = 0; i < event.get('performance').length; i++) {
+              var perform = _this2.get('store').createRecord('performer', {
+                show: trackingRes,
+                artistId: event.get('performance')[i].artist.id,
+                artistName: event.get('performance')[i].artist.displayName,
+                artistImg: event.get('performance')[i].artist.image_url
+              });
+              perform.save();
+            }
+          }).then(function () {
+            show.reload();
+            _this2.get('getUserCalendars').getCalendar();
+          });
+        })
+
+        ////...UNLESS THE SHOW RECORD EXISTS. THEN FIND THE RECORD, AND CREATE THAT USER'S CALENDAR.
+        ['catch'](function (existingShow) {
+          _this2.get('store').findRecord('show', existingShow.errors[0].id).then(function (show) {
+            var calendar = _this2.get('store').createRecord('calendar', {
+              eventId: event.get('id'),
+              endDate: end,
+              show: show
+            });
+            calendar.save().then(function () {
+              show.reload();
+              _this2.get('getUserCalendars').getCalendar();
+            });
+          });
+        });
+      },
+
+      unTrackEvent: function unTrackEvent(event) {
+        var _this3 = this;
+
+        var userCalendar = this.get('getUserCalendars').userCalendar;
+        var id = undefined;
+        userCalendar.forEach(function (each) {
+          if (each.eventId === event.id) {
+            id = each.id;
+          }
+        });
+        this.get('store').findRecord('calendar', id, { backgroundReload: false }).then(function (calendar) {
+          calendar.destroyRecord().then(function () {
+            _this3.get('getUserCalendars').getCalendar();
+          });
+        });
+      },
+
+      unTrackUpcomingEvent: function unTrackUpcomingEvent(event) {
+        var _this4 = this;
+
+        var userCalendar = this.get('getUserCalendars').userCalendar;
+        var id = undefined;
+        userCalendar.forEach(function (each) {
+          if (each.eventId === parseInt(event.id)) {
+            id = each.id;
+          }
+        });
+        this.get('store').findRecord('calendar', id, { backgroundReload: false }).then(function (calendar) {
+          calendar.destroyRecord().then(function () {
+            return _this4.get('getUserCalendars').getCalendar();
+          });
+        });
       }
     }
   });
@@ -1663,11 +1963,99 @@ define('show-hock-app/controllers/region/event', ['exports', 'ember'], function 
 
   });
 });
-define('show-hock-app/controllers/region/event/concert', ['exports', 'ember'], function (exports, _ember) {
+define('show-hock-app/controllers/region/event/concert', ['exports', 'ember', 'moment'], function (exports, _ember, _moment) {
   exports['default'] = _ember['default'].Controller.extend({
 
     auth: _ember['default'].inject.service(),
-    isAuthenticated: _ember['default'].computed.alias('auth.isAuthenticated')
+    isAuthenticated: _ember['default'].computed.alias('auth.isAuthenticated'),
+    getUserCalendars: _ember['default'].inject.service(),
+
+    actions: {
+      // TRACK THIS SHOW////
+      trackEvent: function trackEvent(event) {
+        var _this = this;
+
+        var start = undefined;
+        var end = undefined;
+        if (event.get('start')) {
+          start = (0, _moment['default'])(event.get('start').date).format();
+        } else {
+          start = null;
+        }
+        if (event.get('end')) {
+          end = (0, _moment['default'])(event.get('end').date).format();
+        } else {
+          end = start;
+        }
+        // CREATE A RECORD OF THE SHOW...///
+        var show = this.get('store').createRecord('show', {
+          eventId: event.get('id'),
+          eventName: event.get('displayName'),
+          eventLink: event.get('uri'),
+          regionId: event.get('venue').metroArea.id,
+          regionName: event.get('venue').metroArea.displayName,
+          venueId: event.get('venue').id,
+          venueName: event.get('venue').displayName,
+          startDate: start,
+          endDate: end,
+          city: event.get('location').city
+        });
+        // ...AND SAVE THE USER'S CALENDAR ALONG WITH ADDING PERFORMER'S ARRAY///
+        show.save().then(function (trackingRes) {
+          var calendar = _this.get('store').createRecord('calendar', {
+            eventId: event.get('id'),
+            endDate: end,
+            show: trackingRes
+          });
+          calendar.save().then(function () {
+            for (var i = 0; i < event.get('performance').length; i++) {
+              var perform = _this.get('store').createRecord('performer', {
+                show: trackingRes,
+                artistId: event.get('performance')[i].artist.id,
+                artistName: event.get('performance')[i].artist.displayName,
+                artistImg: event.get('performance')[i].artist.image_url
+              });
+              perform.save();
+            }
+          }).then(function () {
+            show.reload();
+            _this.get('getUserCalendars').getCalendar();
+          });
+        })
+
+        ////...UNLESS THE SHOW RECORD EXISTS. THEN FIND THE RECORD, AND CREATE THAT USER'S CALENDAR.
+        ['catch'](function (existingShow) {
+          _this.get('store').findRecord('show', existingShow.errors[0].id).then(function (show) {
+            var calendar = _this.get('store').createRecord('calendar', {
+              eventId: event.get('id'),
+              endDate: end,
+              show: show
+            });
+            calendar.save().then(function () {
+              show.reload();
+              _this.get('getUserCalendars').getCalendar();
+            });
+          });
+        });
+      },
+
+      unTrackEvent: function unTrackEvent(event) {
+        var _this2 = this;
+
+        var userCalendar = this.get('getUserCalendars').userCalendar;
+        var id = undefined;
+        userCalendar.forEach(function (each) {
+          if (each.eventId === parseInt(event.id)) {
+            id = each.id;
+          }
+        });
+        this.get('store').findRecord('calendar', id, { backgroundReload: false }).then(function (calendar) {
+          calendar.destroyRecord().then(function () {
+            return _this2.get('getUserCalendars').getCalendar();
+          });
+        });
+      }
+    }
   });
 });
 define('show-hock-app/controllers/region/event/results', ['exports', 'ember', 'moment'], function (exports, _ember, _moment) {
@@ -1688,7 +2076,7 @@ define('show-hock-app/controllers/region/event/results', ['exports', 'ember', 'm
     init: function init() {
       this._super.apply(this, arguments);
       this.set('userEventArr', []);
-      var eventIds = this.get('getUserCalendars').userEventIdArr;
+      var eventIds = this.get('getUserCalendars').userCalendarEventIds;
       this.set('userEventArr', eventIds);
     },
 
@@ -1723,6 +2111,102 @@ define('show-hock-app/controllers/region/event/results', ['exports', 'ember', 'm
         this.set('min_date', min_date);
         this.set('max_date', max_date);
         this.set('page', 1);
+      },
+
+      //  goToConcert(concert) {
+      //    this.transitionTo('region.event.concert', concert.id, {
+      //      queryParams: {
+      //        page: 1
+      //      }
+      //    });
+      //  },
+      //
+      //  goToAuthenticate(event) {
+      //    this.transitionTo('sign-up.new', event);
+      //  },
+
+      // TRACK THIS SHOW////
+      trackEvent: function trackEvent(event) {
+        var _this = this;
+
+        var start = undefined;
+        var end = undefined;
+        if (event.start) {
+          start = (0, _moment['default'])(event.start.date).format();
+        } else {
+          start = null;
+        }
+        if (event.end) {
+          end = (0, _moment['default'])(event.end.date).format();
+        } else {
+          end = start;
+        }
+        // CREATE A RECORD OF THE SHOW...///
+        var show = this.get('store').createRecord('show', {
+          eventId: event.id,
+          eventName: event.displayName,
+          eventLink: event.uri,
+          regionId: event.venue.metroArea.id,
+          regionName: event.venue.metroArea.displayName,
+          venueId: event.venue.id,
+          venueName: event.venue.displayName,
+          startDate: start,
+          endDate: end,
+          city: event.location.city
+        });
+        // ...AND SAVE THE USER'S CALENDAR ALONG WITH ADDING PERFORMER'S ARRAY///
+        show.save().then(function (trackingRes) {
+          var calendar = _this.get('store').createRecord('calendar', {
+            eventId: event.id,
+            endDate: end,
+            show: trackingRes
+          });
+          calendar.save().then(function () {
+            for (var i = 0; i < event.performance.length; i++) {
+              var perform = _this.get('store').createRecord('performer', {
+                show: trackingRes,
+                artistId: event.performance[i].artist.id,
+                artistName: event.performance[i].artist.displayName,
+                artistImg: event.performance[i].artist.imageUrl
+              });
+              perform.save();
+            }
+          }).then(function () {
+            show.reload();
+            _this.get('getUserCalendars').getCalendar();
+          });
+        })
+        ////...UNLESS THE SHOW RECORD EXISTS. THEN FIND THE RECORD, AND CREATE THAT USER'S CALENDAR (`302` FOUND ERRROR).
+        ['catch'](function (existingShow) {
+          _this.get('store').findRecord('show', existingShow.errors[0].id).then(function (show) {
+            var calendar = _this.get('store').createRecord('calendar', {
+              eventId: event.id,
+              endDate: end,
+              show: show
+            });
+            calendar.save().then(function () {
+              show.reload();
+              _this.get('getUserCalendars').getCalendar();
+            });
+          });
+        });
+      },
+
+      unTrackEvent: function unTrackEvent(event) {
+        var _this2 = this;
+
+        var userCalendar = this.get('getUserCalendars').userCalendar;
+        var id = undefined;
+        userCalendar.forEach(function (each) {
+          if (each.eventId === event.id) {
+            id = each.id;
+          }
+        });
+        this.get('store').findRecord('calendar', id, { backgroundReload: false }).then(function (calendar) {
+          calendar.destroyRecord().then(function () {
+            _this2.get('getUserCalendars').getCalendar();
+          });
+        });
       }
     }
   });
@@ -1749,24 +2233,197 @@ define('show-hock-app/controllers/user/change-location', ['exports', 'ember'], f
 
   });
 });
-define('show-hock-app/controllers/venue/event/concert', ['exports', 'ember'], function (exports, _ember) {
+define('show-hock-app/controllers/venue/event/concert', ['exports', 'ember', 'moment'], function (exports, _ember, _moment) {
   exports['default'] = _ember['default'].Controller.extend({
 
     auth: _ember['default'].inject.service(),
-    isAuthenticated: _ember['default'].computed.alias('auth.isAuthenticated')
+    isAuthenticated: _ember['default'].computed.alias('auth.isAuthenticated'),
+    getUserCalendars: _ember['default'].inject.service(),
 
+    actions: {
+      // TRACK THIS SHOW////
+      trackEvent: function trackEvent(event) {
+        var _this = this;
+
+        var start = undefined;
+        var end = undefined;
+        if (event.get('start')) {
+          start = (0, _moment['default'])(event.get('start').date).format();
+        } else {
+          start = null;
+        }
+        if (event.get('end')) {
+          end = (0, _moment['default'])(event.get('end').date).format();
+        } else {
+          end = start;
+        }
+        // CREATE A RECORD OF THE SHOW...///
+        var show = this.get('store').createRecord('show', {
+          eventId: event.get('id'),
+          eventName: event.get('displayName'),
+          eventLink: event.get('uri'),
+          regionId: event.get('venue').metroArea.id,
+          regionName: event.get('venue').metroArea.displayName,
+          venueId: event.get('venue').id,
+          venueName: event.get('venue').displayName,
+          startDate: start,
+          endDate: end,
+          city: event.get('location').city
+        });
+        // ...AND SAVE THE USER'S CALENDAR ALONG WITH ADDING PERFORMER'S ARRAY///
+        show.save().then(function (trackingRes) {
+          var calendar = _this.get('store').createRecord('calendar', {
+            eventId: event.get('id'),
+            endDate: end,
+            show: trackingRes
+          });
+          calendar.save().then(function () {
+            for (var i = 0; i < event.get('performance').length; i++) {
+              var perform = _this.get('store').createRecord('performer', {
+                show: trackingRes,
+                artistId: event.get('performance')[i].artist.id,
+                artistName: event.get('performance')[i].artist.displayName,
+                artistImg: event.get('performance')[i].artist.image_url
+              });
+              perform.save();
+            }
+          }).then(function () {
+            show.reload();
+            _this.get('getUserCalendars').getCalendar();
+          });
+        })
+
+        ////...UNLESS THE SHOW RECORD EXISTS. THEN FIND THE RECORD, AND CREATE THAT USER'S CALENDAR.
+        ['catch'](function (existingShow) {
+          _this.get('store').findRecord('show', existingShow.errors[0].id).then(function (show) {
+            var calendar = _this.get('store').createRecord('calendar', {
+              eventId: event.get('id'),
+              endDate: end,
+              show: show
+            });
+            calendar.save().then(function () {
+              show.reload();
+              _this.get('getUserCalendars').getCalendar();
+            });
+          });
+        });
+      },
+
+      unTrackEvent: function unTrackEvent(event) {
+        var _this2 = this;
+
+        var userCalendar = this.get('getUserCalendars').userCalendar;
+        var id = undefined;
+        userCalendar.forEach(function (each) {
+          if (each.eventId === parseInt(event.id)) {
+            id = each.id;
+          }
+        });
+        this.get('store').findRecord('calendar', id, { backgroundReload: false }).then(function (calendar) {
+          calendar.destroyRecord().then(function () {
+            return _this2.get('getUserCalendars').getCalendar();
+          });
+        });
+      }
+    }
   });
 });
-define('show-hock-app/controllers/venue/event/results', ['exports', 'ember'], function (exports, _ember) {
+define('show-hock-app/controllers/venue/event/results', ['exports', 'ember', 'moment'], function (exports, _ember, _moment) {
   exports['default'] = _ember['default'].Controller.extend({
 
     accessVenueName: _ember['default'].inject.service(),
     auth: _ember['default'].inject.service(),
     isAuthenticated: _ember['default'].computed.alias('auth.isAuthenticated'),
+    getUserCalendars: _ember['default'].inject.service(),
 
     queryParams: ['page'],
-    page: 'page'
+    page: 'page',
 
+    actions: {
+      // TRACK THIS SHOW////
+      trackEvent: function trackEvent(event) {
+        var _this = this;
+
+        var start = undefined;
+        var end = undefined;
+        if (event.start) {
+          start = (0, _moment['default'])(event.start.date).format();
+        } else {
+          start = null;
+        }
+        if (event.end) {
+          end = (0, _moment['default'])(event.end.date).format();
+        } else {
+          end = start;
+        }
+        // CREATE A RECORD OF THE SHOW...///
+        var show = this.get('store').createRecord('show', {
+          eventId: event.id,
+          eventName: event.displayName,
+          eventLink: event.uri,
+          regionId: event.venue.metroArea.id,
+          regionName: event.venue.metroArea.displayName,
+          venueId: event.venue.id,
+          venueName: event.venue.displayName,
+          startDate: start,
+          endDate: end,
+          city: event.location.city
+        });
+        // ...AND SAVE THE USER'S CALENDAR ALONG WITH ADDING PERFORMER'S ARRAY///
+        show.save().then(function (trackingRes) {
+          var calendar = _this.get('store').createRecord('calendar', {
+            eventId: event.id,
+            endDate: end,
+            show: trackingRes
+          });
+          calendar.save().then(function () {
+            for (var i = 0; i < event.performance.length; i++) {
+              var perform = _this.get('store').createRecord('performer', {
+                show: trackingRes,
+                artistId: event.performance[i].artist.id,
+                artistName: event.performance[i].artist.displayName,
+                artistImg: event.performance[i].artist.imageUrl
+              });
+              perform.save();
+            }
+          }).then(function () {
+            show.reload();
+            _this.get('getUserCalendars').getCalendar();
+          });
+        })
+        ////...UNLESS THE SHOW RECORD EXISTS. THEN FIND THE RECORD, AND CREATE THAT USER'S CALENDAR (`302` FOUND ERRROR).
+        ['catch'](function (existingShow) {
+          _this.get('store').findRecord('show', existingShow.errors[0].id).then(function (show) {
+            var calendar = _this.get('store').createRecord('calendar', {
+              eventId: event.id,
+              endDate: end,
+              show: show
+            });
+            calendar.save().then(function () {
+              show.reload();
+              _this.get('getUserCalendars').getCalendar();
+            });
+          });
+        });
+      },
+
+      unTrackEvent: function unTrackEvent(event) {
+        var _this2 = this;
+
+        var userCalendar = this.get('getUserCalendars').userCalendar;
+        var id = undefined;
+        userCalendar.forEach(function (each) {
+          if (each.eventId === event.id) {
+            id = each.id;
+          }
+        });
+        this.get('store').findRecord('calendar', id, { backgroundReload: false }).then(function (calendar) {
+          calendar.destroyRecord().then(function () {
+            _this2.get('getUserCalendars').getCalendar();
+          });
+        });
+      }
+    }
   });
 });
 define('show-hock-app/controllers/venue/search/index', ['exports', 'ember'], function (exports, _ember) {
@@ -2513,6 +3170,15 @@ define("show-hock-app/mirage/scenarios/default", ["exports"], function (exports)
 define('show-hock-app/mirage/serializers/application', ['exports', 'ember-cli-mirage'], function (exports, _emberCliMirage) {
   exports['default'] = _emberCliMirage.JSONAPISerializer.extend({});
 });
+define('show-hock-app/mixins/reset-scroll', ['exports', 'ember'], function (exports, _ember) {
+  exports['default'] = _ember['default'].Mixin.create({
+
+    activate: function activate() {
+      this._super.apply(this, arguments);
+      window.scrollTo(0, 0);
+    }
+  });
+});
 define('show-hock-app/models/artist-search', ['exports', 'ember-data'], function (exports, _emberData) {
   // SEARCH RESULTS BY ARTIST NAME.  MINIMUM ARTIST INFO IS CONTAINED
   exports['default'] = _emberData['default'].Model.extend({
@@ -2625,6 +3291,7 @@ define('show-hock-app/models/similar-artist', ['exports', 'ember-data'], functio
 define('show-hock-app/models/upcoming-event', ['exports', 'ember-data'], function (exports, _emberData) {
   exports['default'] = _emberData['default'].Model.extend({
     type: _emberData['default'].attr(),
+    displayName: _emberData['default'].attr(),
     performance: _emberData['default'].attr(),
     venue: _emberData['default'].attr(),
     uri: _emberData['default'].attr(),
@@ -2730,8 +3397,8 @@ define('show-hock-app/router', ['exports', 'ember', 'show-hock-app/config/enviro
 
   exports['default'] = Router;
 });
-define('show-hock-app/routes/application', ['exports', 'ember'], function (exports, _ember) {
-  exports['default'] = _ember['default'].Route.extend({
+define('show-hock-app/routes/application', ['exports', 'ember', 'show-hock-app/mixins/reset-scroll'], function (exports, _ember, _showHockAppMixinsResetScroll) {
+  exports['default'] = _ember['default'].Route.extend(_showHockAppMixinsResetScroll['default'], {
     auth: _ember['default'].inject.service(),
     flashMessages: _ember['default'].inject.service(),
     getUserCalendars: _ember['default'].inject.service(),
@@ -2862,7 +3529,9 @@ define('show-hock-app/routes/artist/event', ['exports', 'ember'], function (expo
     }
   });
 });
-define('show-hock-app/routes/artist/event/concert', ['exports', 'ember', 'moment'], function (exports, _ember, _moment) {
+define('show-hock-app/routes/artist/event/concert', ['exports', 'ember'], function (exports, _ember) {
+  // import moment from 'moment';
+
   exports['default'] = _ember['default'].Route.extend({
 
     getUserCalendars: _ember['default'].inject.service(),
@@ -2904,97 +3573,97 @@ define('show-hock-app/routes/artist/event/concert', ['exports', 'ember', 'moment
 
       goToAuthenticate: function goToAuthenticate(eventId) {
         this.transitionTo('sign-up.new', eventId);
-      },
-
-      // TRACK THIS SHOW////
-      trackEvent: function trackEvent(event) {
-        var _this2 = this;
-
-        var start = undefined;
-        var end = undefined;
-        if (event.get('start')) {
-          start = (0, _moment['default'])(event.get('start').date).format();
-        } else {
-          start = null;
-        }
-        if (event.get('end')) {
-          end = (0, _moment['default'])(event.get('end').date).format();
-        } else {
-          end = start;
-        }
-        // CREATE A RECORD OF THE SHOW...///
-        var show = this.get('store').createRecord('show', {
-          eventId: event.get('id'),
-          eventName: event.get('displayName'),
-          eventLink: event.get('uri'),
-          regionId: event.get('venue').metroArea.id,
-          regionName: event.get('venue').metroArea.displayName,
-          venueId: event.get('venue').id,
-          venueName: event.get('venue').displayName,
-          startDate: start,
-          endDate: end,
-          city: event.get('location').city
-        });
-        // ...AND SAVE THE USER'S CALENDAR ALONG WITH ADDING PERFORMER'S ARRAY///
-        show.save().then(function (trackingRes) {
-          var calendar = _this2.get('store').createRecord('calendar', {
-            eventId: event.get('id'),
-            endDate: end,
-            show: trackingRes
-          });
-          calendar.save().then(function () {
-            for (var i = 0; i < event.get('performance').length; i++) {
-              var perform = _this2.get('store').createRecord('performer', {
-                show: trackingRes,
-                artistId: event.get('performance')[i].artist.id,
-                artistName: event.get('performance')[i].artist.displayName,
-                artistImg: event.get('performance')[i].artist.image_url
-              });
-              perform.save();
-            }
-          }).then(function () {
-            show.reload();
-            _this2.get('getUserCalendars').getCalendar();
-          });
-        })
-
-        ////...UNLESS THE SHOW RECORD EXISTS. THEN FIND THE RECORD, AND CREATE THAT USER'S CALENDAR.
-        ['catch'](function (existingShow) {
-          _this2.get('store').findRecord('show', existingShow.errors[0].id).then(function (show) {
-            var calendar = _this2.get('store').createRecord('calendar', {
-              eventId: event.get('id'),
-              endDate: end,
-              show: show
-            });
-            calendar.save().then(function () {
-              show.reload();
-              _this2.get('getUserCalendars').getCalendar();
-            });
-          });
-        });
-      },
-
-      unTrackEvent: function unTrackEvent(event) {
-        var _this3 = this;
-
-        var userCalendar = this.get('getUserCalendars').userCalendar;
-        var calendarArr = userCalendar.get('content');
-        var id = undefined;
-        calendarArr.forEach(function (each) {
-          if (each._data.eventId === parseInt(event.id)) {
-            id = each.id;
-          }
-        });
-        this.get('store').findRecord('calendar', id, { backgroundReload: false }).then(function (calendar) {
-          calendar.destroyRecord().then(function () {
-            return _this3.get('getUserCalendars').getCalendar();
-          });
-        });
       }
     }
   });
 });
-define('show-hock-app/routes/artist/event/results', ['exports', 'ember', 'moment'], function (exports, _ember, _moment) {
+//
+//   // TRACK THIS SHOW////
+//   trackEvent(event) {
+//     let start;
+//     let end;
+//     if (event.get('start')) {
+//       start = moment(event.get('start').date).format();
+//     } else {
+//       start = null;
+//     }
+//     if (event.get('end')) {
+//       end = moment(event.get('end').date).format();
+//     } else {
+//       end = start;
+//     }
+//   // CREATE A RECORD OF THE SHOW...///
+//     let show = this.get('store').createRecord('show', {
+//       eventId: event.get('id'),
+//       eventName: event.get('displayName'),
+//       eventLink: event.get('uri'),
+//       regionId: event.get('venue').metroArea.id,
+//       regionName: event.get('venue').metroArea.displayName,
+//       venueId: event.get('venue').id,
+//       venueName: event.get('venue').displayName,
+//       startDate: start,
+//       endDate: end,
+//       city: event.get('location').city
+//     });
+//   // ...AND SAVE THE USER'S CALENDAR ALONG WITH ADDING PERFORMER'S ARRAY///
+//     show.save()
+//     .then((trackingRes) => {
+//       let calendar = this.get('store').createRecord('calendar', {
+//         eventId: event.get('id'),
+//         endDate: end,
+//         show: trackingRes,
+//       });
+//       calendar.save()
+//       .then(() => {
+//       for (let i = 0; i < event.get('performance').length; i++) {
+//         let perform = this.get('store').createRecord('performer', {
+//           show: trackingRes,
+//           artistId: event.get('performance')[i].artist.id,
+//           artistName: event.get('performance')[i].artist.displayName,
+//           artistImg: event.get('performance')[i].artist.image_url,
+//         });
+//         perform.save();
+//       }
+//       })
+//       .then(() => {
+//         show.reload();
+//         this.get('getUserCalendars').getCalendar();
+//       });
+//     })
+//
+//   ////...UNLESS THE SHOW RECORD EXISTS. THEN FIND THE RECORD, AND CREATE THAT USER'S CALENDAR.
+//     .catch((existingShow) => {
+//       this.get('store').findRecord('show', existingShow.errors[0].id)
+//       .then((show) => {
+//       let calendar = this.get('store').createRecord('calendar', {
+//         eventId: event.get('id'),
+//         endDate: end,
+//         show: show,
+//       });
+//       calendar.save()
+//         .then(() => {
+//           show.reload();
+//           this.get('getUserCalendars').getCalendar();
+//         });
+//       });
+//     });
+//   },
+//
+//   unTrackEvent(event) {
+//     let userCalendar = this.get('getUserCalendars').userCalendar;
+//        let calendarArr = userCalendar.get('content');
+//        let id;
+//     calendarArr.forEach(function(each) {
+//       if (each._data.eventId === parseInt(event.id)) {
+//         id = each.id;
+//       }
+//     });
+//     this.get('store').findRecord('calendar', id, { backgroundReload: false }).then((calendar) => {
+//       calendar.destroyRecord()
+//       .then(() => this.get('getUserCalendars').getCalendar());
+//     });
+//   }
+define('show-hock-app/routes/artist/event/results', ['exports', 'ember'], function (exports, _ember) {
   exports['default'] = _ember['default'].Route.extend({
 
     userLocationSetting: _ember['default'].inject.service(),
@@ -3067,95 +3736,97 @@ define('show-hock-app/routes/artist/event/results', ['exports', 'ember', 'moment
 
       goToAuthenticate: function goToAuthenticate(eventId) {
         this.transitionTo('sign-up.new', eventId);
-      },
-
-      // TRACK THIS SHOW////
-      trackEvent: function trackEvent(event) {
-        var _this2 = this;
-
-        var start = undefined;
-        var end = undefined;
-        if (event.start) {
-          start = (0, _moment['default'])(event.start.date).format();
-        } else {
-          start = null;
-        }
-        if (event.end) {
-          end = (0, _moment['default'])(event.end.date).format();
-        } else {
-          end = start;
-        }
-        // CREATE A RECORD OF THE SHOW...///
-        var show = this.get('store').createRecord('show', {
-          eventId: event.id,
-          eventName: event.displayName,
-          eventLink: event.uri,
-          regionId: event.venue.metroArea.id,
-          regionName: event.venue.metroArea.displayName,
-          venueId: event.venue.id,
-          venueName: event.venue.displayName,
-          startDate: start,
-          endDate: end,
-          city: event.location.city
-        });
-        // ...AND SAVE THE USER'S CALENDAR ALONG WITH ADDING PERFORMER'S ARRAY///
-        show.save().then(function (trackingRes) {
-          var calendar = _this2.get('store').createRecord('calendar', {
-            eventId: event.id,
-            endDate: end,
-            show: trackingRes
-          });
-          calendar.save().then(function () {
-            for (var i = 0; i < event.performance.length; i++) {
-              var perform = _this2.get('store').createRecord('performer', {
-                show: trackingRes,
-                artistId: event.performance[i].artist.id,
-                artistName: event.performance[i].artist.displayName,
-                artistImg: event.performance[i].artist.imageUrl
-              });
-              perform.save();
-            }
-          }).then(function () {
-            show.reload();
-            _this2.get('getUserCalendars').getCalendar();
-          });
-        })
-        ////...UNLESS THE SHOW RECORD EXISTS. THEN FIND THE RECORD, AND CREATE THAT USER'S CALENDAR (`302` FOUND ERRROR).
-        ['catch'](function (existingShow) {
-          _this2.get('store').findRecord('show', existingShow.errors[0].id).then(function (show) {
-            var calendar = _this2.get('store').createRecord('calendar', {
-              eventId: event.id,
-              endDate: end,
-              show: show
-            });
-            calendar.save().then(function () {
-              show.reload();
-              _this2.get('getUserCalendars').getCalendar();
-            });
-          });
-        });
-      },
-
-      unTrackEvent: function unTrackEvent(event) {
-        var _this3 = this;
-
-        var userCalendar = this.get('getUserCalendars').userCalendar;
-        var calendarArr = userCalendar.get('content');
-        var id = undefined;
-        calendarArr.forEach(function (each) {
-          if (each._data.eventId === event.id) {
-            id = each.id;
-          }
-        });
-        this.get('store').findRecord('calendar', id, { backgroundReload: false }).then(function (calendar) {
-          calendar.destroyRecord().then(function () {
-            _this3.get('getUserCalendars').getCalendar();
-          });
-        });
       }
+
     }
   });
 });
+// // TRACK THIS SHOW////
+// trackEvent(event) {
+//   console.log(event);
+//   let start;
+//   let end;
+//   if (event.start) {
+//     start = moment(event.start.date).format();
+//   } else {
+//     start = null;
+//   }
+//   if (event.end) {
+//     end = moment(event.end.date).format();
+//   } else {
+//     end = start;
+//   }
+//   // CREATE A RECORD OF THE SHOW...///
+//   let show = this.get('store').createRecord('show', {
+//     eventId: event.id,
+//     eventName: event.displayName,
+//     eventLink: event.uri,
+//     regionId: event.venue.metroArea.id,
+//     regionName: event.venue.metroArea.displayName,
+//     venueId: event.venue.id,
+//     venueName: event.venue.displayName,
+//     startDate: start,
+//     endDate: end,
+//     city: event.location.city
+//   });
+//   // ...AND SAVE THE USER'S CALENDAR ALONG WITH ADDING PERFORMER'S ARRAY///
+//     show.save()
+//     .then((trackingRes) => {
+//       let calendar = this.get('store').createRecord('calendar', {
+//         eventId: event.id,
+//         endDate: end,
+//         show: trackingRes,
+//       });
+//       calendar.save()
+//       .then(() => {
+//       for (let i = 0; i < event.performance.length; i++) {
+//         let perform = this.get('store').createRecord('performer', {
+//           show: trackingRes,
+//           artistId: event.performance[i].artist.id,
+//           artistName: event.performance[i].artist.displayName,
+//           artistImg: event.performance[i].artist.imageUrl,
+//         });
+//         perform.save();
+//       }
+//     }).then(() => {
+//       show.reload();
+//       this.get('getUserCalendars').getCalendar();
+//     });
+//   })
+////...UNLESS THE SHOW RECORD EXISTS. THEN FIND THE RECORD, AND CREATE THAT USER'S CALENDAR (`302` FOUND ERRROR).
+//     .catch((existingShow) => {
+//       this.get('store').findRecord('show', existingShow.errors[0].id)
+//       .then((show) => {
+//       let calendar = this.get('store').createRecord('calendar', {
+//         eventId: event.id,
+//         endDate: end,
+//         show: show,
+//       });
+//       calendar.save()
+//       .then(() => {
+//         show.reload();
+//         this.get('getUserCalendars').getCalendar();
+//       });
+//     });
+//   });
+// },
+
+// unTrackEvent(event) {
+//   let userCalendar = this.get('getUserCalendars').userCalendar;
+//      let calendarArr = userCalendar.get('content');
+//      let id;
+//   calendarArr.forEach(function(each) {
+//     if (each._data.eventId === event.id) {
+//       id = each.id;
+//     }
+//   });
+//   this.get('store').findRecord('calendar', id, { backgroundReload: false }).then((calendar) => {
+//     calendar.destroyRecord()
+//     .then(() => {
+//       this.get('getUserCalendars').getCalendar();
+//     });
+//   });
+// }
 define('show-hock-app/routes/artist/search', ['exports', 'ember'], function (exports, _ember) {
   exports['default'] = _ember['default'].Route.extend({
 
@@ -3409,7 +4080,9 @@ define('show-hock-app/routes/region/event', ['exports', 'ember'], function (expo
     }
   });
 });
-define('show-hock-app/routes/region/event/concert', ['exports', 'ember', 'moment'], function (exports, _ember, _moment) {
+define('show-hock-app/routes/region/event/concert', ['exports', 'ember'], function (exports, _ember) {
+  // import moment from 'moment';
+
   exports['default'] = _ember['default'].Route.extend({
 
     getUserCalendars: _ember['default'].inject.service(),
@@ -3449,97 +4122,99 @@ define('show-hock-app/routes/region/event/concert', ['exports', 'ember', 'moment
 
       goToAuthenticate: function goToAuthenticate(eventId) {
         this.transitionTo('sign-up.new', eventId);
-      },
-
-      // TRACK THIS SHOW////
-      trackEvent: function trackEvent(event) {
-        var _this2 = this;
-
-        var start = undefined;
-        var end = undefined;
-        if (event.get('start')) {
-          start = (0, _moment['default'])(event.get('start').date).format();
-        } else {
-          start = null;
-        }
-        if (event.get('end')) {
-          end = (0, _moment['default'])(event.get('end').date).format();
-        } else {
-          end = start;
-        }
-        // CREATE A RECORD OF THE SHOW...///
-        var show = this.get('store').createRecord('show', {
-          eventId: event.get('id'),
-          eventName: event.get('displayName'),
-          eventLink: event.get('uri'),
-          regionId: event.get('venue').metroArea.id,
-          regionName: event.get('venue').metroArea.displayName,
-          venueId: event.get('venue').id,
-          venueName: event.get('venue').displayName,
-          startDate: start,
-          endDate: end,
-          city: event.get('location').city
-        });
-        // ...AND SAVE THE USER'S CALENDAR ALONG WITH ADDING PERFORMER'S ARRAY///
-        show.save().then(function (trackingRes) {
-          var calendar = _this2.get('store').createRecord('calendar', {
-            eventId: event.get('id'),
-            endDate: end,
-            show: trackingRes
-          });
-          calendar.save().then(function () {
-            for (var i = 0; i < event.get('performance').length; i++) {
-              var perform = _this2.get('store').createRecord('performer', {
-                show: trackingRes,
-                artistId: event.get('performance')[i].artist.id,
-                artistName: event.get('performance')[i].artist.displayName,
-                artistImg: event.get('performance')[i].artist.image_url
-              });
-              perform.save();
-            }
-          }).then(function () {
-            show.reload();
-            _this2.get('getUserCalendars').getCalendar();
-          });
-        })
-
-        ////...UNLESS THE SHOW RECORD EXISTS. THEN FIND THE RECORD, AND CREATE THAT USER'S CALENDAR.
-        ['catch'](function (existingShow) {
-          _this2.get('store').findRecord('show', existingShow.errors[0].id).then(function (show) {
-            var calendar = _this2.get('store').createRecord('calendar', {
-              eventId: event.get('id'),
-              endDate: end,
-              show: show
-            });
-            calendar.save().then(function () {
-              show.reload();
-              _this2.get('getUserCalendars').getCalendar();
-            });
-          });
-        });
-      },
-
-      unTrackEvent: function unTrackEvent(event) {
-        var _this3 = this;
-
-        var userCalendar = this.get('getUserCalendars').userCalendar;
-        var calendarArr = userCalendar.get('content');
-        var id = undefined;
-        calendarArr.forEach(function (each) {
-          if (each._data.eventId === parseInt(event.id)) {
-            id = each.id;
-          }
-        });
-        this.get('store').findRecord('calendar', id, { backgroundReload: false }).then(function (calendar) {
-          calendar.destroyRecord().then(function () {
-            return _this3.get('getUserCalendars').getCalendar();
-          });
-        });
       }
     }
   });
 });
-define('show-hock-app/routes/region/event/results', ['exports', 'ember', 'moment'], function (exports, _ember, _moment) {
+//
+//   // TRACK THIS SHOW////
+//   trackEvent(event) {
+//     let start;
+//     let end;
+//     if (event.get('start')) {
+//       start = moment(event.get('start').date).format();
+//     } else {
+//       start = null;
+//     }
+//     if (event.get('end')) {
+//       end = moment(event.get('end').date).format();
+//     } else {
+//       end = start;
+//     }
+//   // CREATE A RECORD OF THE SHOW...///
+//     let show = this.get('store').createRecord('show', {
+//       eventId: event.get('id'),
+//       eventName: event.get('displayName'),
+//       eventLink: event.get('uri'),
+//       regionId: event.get('venue').metroArea.id,
+//       regionName: event.get('venue').metroArea.displayName,
+//       venueId: event.get('venue').id,
+//       venueName: event.get('venue').displayName,
+//       startDate: start,
+//       endDate: end,
+//       city: event.get('location').city
+//     });
+//   // ...AND SAVE THE USER'S CALENDAR ALONG WITH ADDING PERFORMER'S ARRAY///
+//     show.save()
+//     .then((trackingRes) => {
+//       let calendar = this.get('store').createRecord('calendar', {
+//         eventId: event.get('id'),
+//         endDate: end,
+//         show: trackingRes,
+//       });
+//       calendar.save()
+//       .then(() => {
+//       for (let i = 0; i < event.get('performance').length; i++) {
+//         let perform = this.get('store').createRecord('performer', {
+//           show: trackingRes,
+//           artistId: event.get('performance')[i].artist.id,
+//           artistName: event.get('performance')[i].artist.displayName,
+//           artistImg: event.get('performance')[i].artist.image_url,
+//         });
+//         perform.save();
+//       }
+//       })
+//       .then(() => {
+//         show.reload();
+//         this.get('getUserCalendars').getCalendar();
+//       });
+//     })
+//
+//   ////...UNLESS THE SHOW RECORD EXISTS. THEN FIND THE RECORD, AND CREATE THAT USER'S CALENDAR.
+//     .catch((existingShow) => {
+//       this.get('store').findRecord('show', existingShow.errors[0].id)
+//       .then((show) => {
+//       let calendar = this.get('store').createRecord('calendar', {
+//         eventId: event.get('id'),
+//         endDate: end,
+//         show: show,
+//       });
+//       calendar.save()
+//         .then(() => {
+//           show.reload();
+//           this.get('getUserCalendars').getCalendar();
+//         });
+//       });
+//     });
+//   },
+//
+//   unTrackEvent(event) {
+//     let userCalendar = this.get('getUserCalendars').userCalendar;
+//        let calendarArr = userCalendar.get('content');
+//        let id;
+//     calendarArr.forEach(function(each) {
+//       if (each._data.eventId === parseInt(event.id)) {
+//         id = each.id;
+//       }
+//     });
+//     this.get('store').findRecord('calendar', id, { backgroundReload: false }).then((calendar) => {
+//       calendar.destroyRecord()
+//       .then(() => this.get('getUserCalendars').getCalendar());
+//     });
+//   }
+define('show-hock-app/routes/region/event/results', ['exports', 'ember'], function (exports, _ember) {
+  // import moment from 'moment';
+
   exports['default'] = _ember['default'].Route.extend({
 
     getUserCalendars: _ember['default'].inject.service(),
@@ -3589,95 +4264,97 @@ define('show-hock-app/routes/region/event/results', ['exports', 'ember', 'moment
 
       goToAuthenticate: function goToAuthenticate(event) {
         this.transitionTo('sign-up.new', event);
-      },
-
-      // TRACK THIS SHOW////
-      trackEvent: function trackEvent(event) {
-        var _this = this;
-
-        var start = undefined;
-        var end = undefined;
-        if (event.start) {
-          start = (0, _moment['default'])(event.start.date).format();
-        } else {
-          start = null;
-        }
-        if (event.end) {
-          end = (0, _moment['default'])(event.end.date).format();
-        } else {
-          end = start;
-        }
-        // CREATE A RECORD OF THE SHOW...///
-        var show = this.get('store').createRecord('show', {
-          eventId: event.id,
-          eventName: event.displayName,
-          eventLink: event.uri,
-          regionId: event.venue.metroArea.id,
-          regionName: event.venue.metroArea.displayName,
-          venueId: event.venue.id,
-          venueName: event.venue.displayName,
-          startDate: start,
-          endDate: end,
-          city: event.location.city
-        });
-        // ...AND SAVE THE USER'S CALENDAR ALONG WITH ADDING PERFORMER'S ARRAY///
-        show.save().then(function (trackingRes) {
-          var calendar = _this.get('store').createRecord('calendar', {
-            eventId: event.id,
-            endDate: end,
-            show: trackingRes
-          });
-          calendar.save().then(function () {
-            for (var i = 0; i < event.performance.length; i++) {
-              var perform = _this.get('store').createRecord('performer', {
-                show: trackingRes,
-                artistId: event.performance[i].artist.id,
-                artistName: event.performance[i].artist.displayName,
-                artistImg: event.performance[i].artist.imageUrl
-              });
-              perform.save();
-            }
-          }).then(function () {
-            show.reload();
-            _this.get('getUserCalendars').getCalendar();
-          });
-        })
-        ////...UNLESS THE SHOW RECORD EXISTS. THEN FIND THE RECORD, AND CREATE THAT USER'S CALENDAR (`302` FOUND ERRROR).
-        ['catch'](function (existingShow) {
-          _this.get('store').findRecord('show', existingShow.errors[0].id).then(function (show) {
-            var calendar = _this.get('store').createRecord('calendar', {
-              eventId: event.id,
-              endDate: end,
-              show: show
-            });
-            calendar.save().then(function () {
-              show.reload();
-              _this.get('getUserCalendars').getCalendar();
-            });
-          });
-        });
-      },
-
-      unTrackEvent: function unTrackEvent(event) {
-        var _this2 = this;
-
-        var userCalendar = this.get('getUserCalendars').userCalendar;
-        var calendarArr = userCalendar.get('content');
-        var id = undefined;
-        calendarArr.forEach(function (each) {
-          if (each._data.eventId === event.id) {
-            id = each.id;
-          }
-        });
-        this.get('store').findRecord('calendar', id, { backgroundReload: false }).then(function (calendar) {
-          calendar.destroyRecord().then(function () {
-            _this2.get('getUserCalendars').getCalendar();
-          });
-        });
       }
     }
   });
 });
+//
+//   // TRACK THIS SHOW////
+//   trackEvent(event) {
+//     let start;
+//     let end;
+//     if (event.start) {
+//       start = moment(event.start.date).format();
+//     } else {
+//       start = null;
+//     }
+//     if (event.end) {
+//       end = moment(event.end.date).format();
+//     } else {
+//       end = start;
+//     }
+//     // CREATE A RECORD OF THE SHOW...///
+//     let show = this.get('store').createRecord('show', {
+//       eventId: event.id,
+//       eventName: event.displayName,
+//       eventLink: event.uri,
+//       regionId: event.venue.metroArea.id,
+//       regionName: event.venue.metroArea.displayName,
+//       venueId: event.venue.id,
+//       venueName: event.venue.displayName,
+//       startDate: start,
+//       endDate: end,
+//       city: event.location.city
+//     });
+//     // ...AND SAVE THE USER'S CALENDAR ALONG WITH ADDING PERFORMER'S ARRAY///
+//       show.save()
+//       .then((trackingRes) => {
+//         let calendar = this.get('store').createRecord('calendar', {
+//           eventId: event.id,
+//           endDate: end,
+//           show: trackingRes,
+//         });
+//         calendar.save()
+//         .then(() => {
+//         for (let i = 0; i < event.performance.length; i++) {
+//           let perform = this.get('store').createRecord('performer', {
+//             show: trackingRes,
+//             artistId: event.performance[i].artist.id,
+//             artistName: event.performance[i].artist.displayName,
+//             artistImg: event.performance[i].artist.imageUrl,
+//           });
+//           perform.save();
+//         }
+//       }).then(() => {
+//         show.reload();
+//         this.get('getUserCalendars').getCalendar();
+//       });
+//     })
+//   ////...UNLESS THE SHOW RECORD EXISTS. THEN FIND THE RECORD, AND CREATE THAT USER'S CALENDAR (`302` FOUND ERRROR).
+//       .catch((existingShow) => {
+//         this.get('store').findRecord('show', existingShow.errors[0].id)
+//         .then((show) => {
+//         let calendar = this.get('store').createRecord('calendar', {
+//           eventId: event.id,
+//           endDate: end,
+//           show: show,
+//         });
+//         calendar.save()
+//         .then(() => {
+//           show.reload();
+//           this.get('getUserCalendars').getCalendar();
+//         });
+//       });
+//     });
+//   },
+//
+//
+//   unTrackEvent(event) {
+//     let userCalendar = this.get('getUserCalendars').userCalendar;
+//        let calendarArr = userCalendar.get('content');
+//        let id;
+//     calendarArr.forEach(function(each) {
+//       if (each._data.eventId === event.id) {
+//         id = each.id;
+//       }
+//     });
+//     this.get('store').findRecord('calendar', id, { backgroundReload: false }).then((calendar) => {
+//       calendar.destroyRecord()
+//       .then(() => {
+//         this.get('getUserCalendars').getCalendar();
+//       });
+//     });
+//   }
 define('show-hock-app/routes/region/search', ['exports', 'ember'], function (exports, _ember) {
   exports['default'] = _ember['default'].Route.extend({
     actions: {
@@ -4121,97 +4798,99 @@ define('show-hock-app/routes/venue/event/concert', ['exports', 'ember', 'moment'
 
       goToAuthenticate: function goToAuthenticate(eventId) {
         this.transitionTo('sign-up.new', eventId);
-      },
-
-      // TRACK THIS SHOW////
-      trackEvent: function trackEvent(event) {
-        var _this = this;
-
-        var start = undefined;
-        var end = undefined;
-        if (event.get('start')) {
-          start = (0, _moment['default'])(event.get('start').date).format();
-        } else {
-          start = null;
-        }
-        if (event.get('end')) {
-          end = (0, _moment['default'])(event.get('end').date).format();
-        } else {
-          end = start;
-        }
-        // CREATE A RECORD OF THE SHOW...///
-        var show = this.get('store').createRecord('show', {
-          eventId: event.get('id'),
-          eventName: event.get('displayName'),
-          eventLink: event.get('uri'),
-          regionId: event.get('venue').metroArea.id,
-          regionName: event.get('venue').metroArea.displayName,
-          venueId: event.get('venue').id,
-          venueName: event.get('venue').displayName,
-          startDate: start,
-          endDate: end,
-          city: event.get('location').city
-        });
-        // ...AND SAVE THE USER'S CALENDAR ALONG WITH ADDING PERFORMER'S ARRAY///
-        show.save().then(function (trackingRes) {
-          var calendar = _this.get('store').createRecord('calendar', {
-            eventId: event.get('id'),
-            endDate: end,
-            show: trackingRes
-          });
-          calendar.save().then(function () {
-            for (var i = 0; i < event.get('performance').length; i++) {
-              var perform = _this.get('store').createRecord('performer', {
-                show: trackingRes,
-                artistId: event.get('performance')[i].artist.id,
-                artistName: event.get('performance')[i].artist.displayName,
-                artistImg: event.get('performance')[i].artist.image_url
-              });
-              perform.save();
-            }
-          }).then(function () {
-            show.reload();
-            _this.get('getUserCalendars').getCalendar();
-          });
-        })
-
-        ////...UNLESS THE SHOW RECORD EXISTS. THEN FIND THE RECORD, AND CREATE THAT USER'S CALENDAR.
-        ['catch'](function (existingShow) {
-          _this.get('store').findRecord('show', existingShow.errors[0].id).then(function (show) {
-            var calendar = _this.get('store').createRecord('calendar', {
-              eventId: event.get('id'),
-              endDate: end,
-              show: show
-            });
-            calendar.save().then(function () {
-              show.reload();
-              _this.get('getUserCalendars').getCalendar();
-            });
-          });
-        });
-      },
-
-      unTrackEvent: function unTrackEvent(event) {
-        var _this2 = this;
-
-        var userCalendar = this.get('getUserCalendars').userCalendar;
-        var calendarArr = userCalendar.get('content');
-        var id = undefined;
-        calendarArr.forEach(function (each) {
-          if (each._data.eventId === parseInt(event.id)) {
-            id = each.id;
-          }
-        });
-        this.get('store').findRecord('calendar', id, { backgroundReload: false }).then(function (calendar) {
-          calendar.destroyRecord().then(function () {
-            return _this2.get('getUserCalendars').getCalendar();
-          });
-        });
       }
+
     }
   });
 });
-define('show-hock-app/routes/venue/event/results', ['exports', 'ember', 'moment'], function (exports, _ember, _moment) {
+// // TRACK THIS SHOW////
+// trackEvent(event) {
+//   let start;
+//   let end;
+//   if (event.get('start')) {
+//     start = moment(event.get('start').date).format();
+//   } else {
+//     start = null;
+//   }
+//   if (event.get('end')) {
+//     end = moment(event.get('end').date).format();
+//   } else {
+//     end = start;
+//   }
+// // CREATE A RECORD OF THE SHOW...///
+//   let show = this.get('store').createRecord('show', {
+//     eventId: event.get('id'),
+//     eventName: event.get('displayName'),
+//     eventLink: event.get('uri'),
+//     regionId: event.get('venue').metroArea.id,
+//     regionName: event.get('venue').metroArea.displayName,
+//     venueId: event.get('venue').id,
+//     venueName: event.get('venue').displayName,
+//     startDate: start,
+//     endDate: end,
+//     city: event.get('location').city
+//   });
+// // ...AND SAVE THE USER'S CALENDAR ALONG WITH ADDING PERFORMER'S ARRAY///
+//   show.save()
+//   .then((trackingRes) => {
+//     let calendar = this.get('store').createRecord('calendar', {
+//       eventId: event.get('id'),
+//       endDate: end,
+//       show: trackingRes,
+//     });
+//     calendar.save()
+//     .then(() => {
+//     for (let i = 0; i < event.get('performance').length; i++) {
+//       let perform = this.get('store').createRecord('performer', {
+//         show: trackingRes,
+//         artistId: event.get('performance')[i].artist.id,
+//         artistName: event.get('performance')[i].artist.displayName,
+//         artistImg: event.get('performance')[i].artist.image_url,
+//       });
+//       perform.save();
+//     }
+//     })
+//     .then(() => {
+//       show.reload();
+//       this.get('getUserCalendars').getCalendar();
+//     });
+//   })
+//
+// ////...UNLESS THE SHOW RECORD EXISTS. THEN FIND THE RECORD, AND CREATE THAT USER'S CALENDAR.
+//   .catch((existingShow) => {
+//     this.get('store').findRecord('show', existingShow.errors[0].id)
+//     .then((show) => {
+//     let calendar = this.get('store').createRecord('calendar', {
+//       eventId: event.get('id'),
+//       endDate: end,
+//       show: show,
+//     });
+//     calendar.save()
+//       .then(() => {
+//         show.reload();
+//         this.get('getUserCalendars').getCalendar();
+//       });
+//     });
+//   });
+// },
+//
+// unTrackEvent(event) {
+//   let userCalendar = this.get('getUserCalendars').userCalendar;
+//      let calendarArr = userCalendar.get('content');
+//      let id;
+//   calendarArr.forEach(function(each) {
+//     if (each._data.eventId === parseInt(event.id)) {
+//       id = each.id;
+//     }
+//   });
+//   this.get('store').findRecord('calendar', id, { backgroundReload: false }).then((calendar) => {
+//     calendar.destroyRecord()
+//     .then(() => this.get('getUserCalendars').getCalendar());
+//   });
+// }
+define('show-hock-app/routes/venue/event/results', ['exports', 'ember'], function (exports, _ember) {
+  // import moment from 'moment';
+
   exports['default'] = _ember['default'].Route.extend({
 
     venueId: null,
@@ -4248,95 +4927,97 @@ define('show-hock-app/routes/venue/event/results', ['exports', 'ember', 'moment'
 
       goToAuthenticate: function goToAuthenticate(event) {
         this.transitionTo('sign-up.new', event);
-      },
-
-      // TRACK THIS SHOW////
-      trackEvent: function trackEvent(event) {
-        var _this = this;
-
-        var start = undefined;
-        var end = undefined;
-        if (event.start) {
-          start = (0, _moment['default'])(event.start.date).format();
-        } else {
-          start = null;
-        }
-        if (event.end) {
-          end = (0, _moment['default'])(event.end.date).format();
-        } else {
-          end = start;
-        }
-        // CREATE A RECORD OF THE SHOW...///
-        var show = this.get('store').createRecord('show', {
-          eventId: event.id,
-          eventName: event.displayName,
-          eventLink: event.uri,
-          regionId: event.venue.metroArea.id,
-          regionName: event.venue.metroArea.displayName,
-          venueId: event.venue.id,
-          venueName: event.venue.displayName,
-          startDate: start,
-          endDate: end,
-          city: event.location.city
-        });
-        // ...AND SAVE THE USER'S CALENDAR ALONG WITH ADDING PERFORMER'S ARRAY///
-        show.save().then(function (trackingRes) {
-          var calendar = _this.get('store').createRecord('calendar', {
-            eventId: event.id,
-            endDate: end,
-            show: trackingRes
-          });
-          calendar.save().then(function () {
-            for (var i = 0; i < event.performance.length; i++) {
-              var perform = _this.get('store').createRecord('performer', {
-                show: trackingRes,
-                artistId: event.performance[i].artist.id,
-                artistName: event.performance[i].artist.displayName,
-                artistImg: event.performance[i].artist.imageUrl
-              });
-              perform.save();
-            }
-          }).then(function () {
-            show.reload();
-            _this.get('getUserCalendars').getCalendar();
-          });
-        })
-        ////...UNLESS THE SHOW RECORD EXISTS. THEN FIND THE RECORD, AND CREATE THAT USER'S CALENDAR (`302` FOUND ERRROR).
-        ['catch'](function (existingShow) {
-          _this.get('store').findRecord('show', existingShow.errors[0].id).then(function (show) {
-            var calendar = _this.get('store').createRecord('calendar', {
-              eventId: event.id,
-              endDate: end,
-              show: show
-            });
-            calendar.save().then(function () {
-              show.reload();
-              _this.get('getUserCalendars').getCalendar();
-            });
-          });
-        });
-      },
-
-      unTrackEvent: function unTrackEvent(event) {
-        var _this2 = this;
-
-        var userCalendar = this.get('getUserCalendars').userCalendar;
-        var calendarArr = userCalendar.get('content');
-        var id = undefined;
-        calendarArr.forEach(function (each) {
-          if (each._data.eventId === event.id) {
-            id = each.id;
-          }
-        });
-        this.get('store').findRecord('calendar', id, { backgroundReload: false }).then(function (calendar) {
-          calendar.destroyRecord().then(function () {
-            _this2.get('getUserCalendars').getCalendar();
-          });
-        });
       }
+
     }
   });
 });
+// // TRACK THIS SHOW////
+// trackEvent(event) {
+//   let start;
+//   let end;
+//   if (event.start) {
+//     start = moment(event.start.date).format();
+//   } else {
+//     start = null;
+//   }
+//   if (event.end) {
+//     end = moment(event.end.date).format();
+//   } else {
+//     end = start;
+//   }
+//   // CREATE A RECORD OF THE SHOW...///
+//   let show = this.get('store').createRecord('show', {
+//     eventId: event.id,
+//     eventName: event.displayName,
+//     eventLink: event.uri,
+//     regionId: event.venue.metroArea.id,
+//     regionName: event.venue.metroArea.displayName,
+//     venueId: event.venue.id,
+//     venueName: event.venue.displayName,
+//     startDate: start,
+//     endDate: end,
+//     city: event.location.city
+//   });
+//   // ...AND SAVE THE USER'S CALENDAR ALONG WITH ADDING PERFORMER'S ARRAY///
+//     show.save()
+//     .then((trackingRes) => {
+//       let calendar = this.get('store').createRecord('calendar', {
+//         eventId: event.id,
+//         endDate: end,
+//         show: trackingRes,
+//       });
+//       calendar.save()
+//       .then(() => {
+//       for (let i = 0; i < event.performance.length; i++) {
+//         let perform = this.get('store').createRecord('performer', {
+//           show: trackingRes,
+//           artistId: event.performance[i].artist.id,
+//           artistName: event.performance[i].artist.displayName,
+//           artistImg: event.performance[i].artist.imageUrl,
+//         });
+//         perform.save();
+//       }
+//     }).then(() => {
+//       show.reload();
+//       this.get('getUserCalendars').getCalendar();
+//     });
+//   })
+// ////...UNLESS THE SHOW RECORD EXISTS. THEN FIND THE RECORD, AND CREATE THAT USER'S CALENDAR (`302` FOUND ERRROR).
+//     .catch((existingShow) => {
+//       this.get('store').findRecord('show', existingShow.errors[0].id)
+//       .then((show) => {
+//       let calendar = this.get('store').createRecord('calendar', {
+//         eventId: event.id,
+//         endDate: end,
+//         show: show,
+//       });
+//       calendar.save()
+//       .then(() => {
+//         show.reload();
+//         this.get('getUserCalendars').getCalendar();
+//       });
+//     });
+//   });
+// },
+//
+//
+// unTrackEvent(event) {
+//   let userCalendar = this.get('getUserCalendars').userCalendar;
+//      let calendarArr = userCalendar.get('content');
+//      let id;
+//   calendarArr.forEach(function(each) {
+//     if (each._data.eventId === event.id) {
+//       id = each.id;
+//     }
+//   });
+//   this.get('store').findRecord('calendar', id, { backgroundReload: false }).then((calendar) => {
+//     calendar.destroyRecord()
+//     .then(() => {
+//       this.get('getUserCalendars').getCalendar();
+//     });
+//   });
+// }
 define('show-hock-app/routes/venue/search', ['exports', 'ember'], function (exports, _ember) {
   exports['default'] = _ember['default'].Route.extend({
     actions: {
@@ -4696,37 +5377,31 @@ define('show-hock-app/services/get-user-calendars', ['exports', 'ember'], functi
     ///GET THE USER'S CALENDARS.  EACH CALENDAR IS ONE EVENT
     store: _ember['default'].inject.service('store'),
 
-    userCalendar: {},
-    userEventIdArr: [],
-    userCalenIdArr: [],
-
-    init: function init() {
-      this.set('userCalendar', {});
-      this.set('userEventIdArr', []);
-    },
+    userCalendar: [],
+    userCalendarEventIds: [],
 
     getCalendar: function getCalendar() {
       var _this = this;
 
-      this.set('userCalendar', {});
-      this.set('userEventIdArr', []);
-      this.set('userCalenIdArr', []);
-      this.get('store').findAll('calendar').then(function (response) {
-        _this.set('userCalendar', response);
-        var userCalendar = response;
-        var calendarObj = userCalendar.get('content');
-        for (var i = 0; i < calendarObj.length; i++) {
-          _this.get('userEventIdArr').pushObject(calendarObj[i]._data.eventId);
-          _this.get('userCalenIdArr').pushObject(calendarObj[i].id);
-        }
-        return _this.get('userEventIdArr'), _this.get('userCalenIdArr');
+      this.set('userCalendar', []);
+      this.set('userCalendarEventIds', []);
+      this.get('store').findAll('calendar').then(function (calendars) {
+        var eachCalendar = {};
+        calendars.forEach(function (calendar) {
+          eachCalendar = {
+            id: calendar.get('id'),
+            isDone: calendar.get('isDone'),
+            eventId: calendar.get('eventId'),
+            endDate: calendar.get('endDate')
+          };
+          _this.get('userCalendar').pushObject(eachCalendar);
+          _this.get('userCalendarEventIds').pushObject(eachCalendar.eventId);
+        });
       });
     },
 
     clearCalendar: function clearCalendar() {
-      this.set('userCalendar', {});
-      this.set('userEventIdArr', []);
-      this.set('userCalenIdArr', []);
+      this.set('userCalendar', []);
     }
   });
 });
@@ -4767,7 +5442,6 @@ define('show-hock-app/services/save-user-location', ['exports', 'ember'], functi
       cookieService.write('region_id', id);
       cookieService.write('region_country', country);
       cookieService.write('region_state', state);
-
       var cookies = cookieService.read();
       return this.set('regionSelectName', cookies.loc), this.set('regionSelectId', cookies.region_id), this.set('regionSelectCountry', cookies.region_country), this.set('regionSelectState', cookies.region_state);
     }
@@ -4839,10 +5513,10 @@ define("show-hock-app/templates/artist/event", ["exports"], function (exports) {
   exports["default"] = Ember.HTMLBars.template({ "id": "4bZrRAGd", "block": "{\"statements\":[[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"region-info-section\"],[\"flush-element\"],[\"text\",\"\\n\\n\"],[\"block\",[\"each\"],[[\"get\",[\"model\",\"search\",\"artist\"]]],null,13],[\"text\",\"  \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"region-info-wrapper\"],[\"flush-element\"],[\"text\",\"\\n\\n\"],[\"block\",[\"each\"],[[\"get\",[\"model\",\"search\",\"artist\"]]],null,11],[\"text\",\"\\n    \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"region-info\"],[\"flush-element\"],[\"text\",\"\\n\\n\"],[\"block\",[\"each\"],[[\"get\",[\"model\",\"search\",\"artist\"]]],null,8],[\"text\",\"    \"],[\"close-element\"],[\"text\",\"\\n  \"],[\"close-element\"],[\"text\",\"\\n\"],[\"close-element\"],[\"text\",\"\\n\\n\"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"region-event-section\"],[\"flush-element\"],[\"text\",\"\\n  \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"region-event-wrapper\"],[\"flush-element\"],[\"text\",\"\\n    \"],[\"append\",[\"unknown\",[\"outlet\"]],false],[\"text\",\"\\n\"],[\"block\",[\"if\"],[[\"helper\",[\"neq\"],[[\"get\",[\"model\",\"similar\",\"firstObject\",\"noMatch\"]],true],null]],null,0],[\"text\",\"  \"],[\"close-element\"],[\"text\",\"\\n\"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[],\"named\":[],\"yields\":[],\"blocks\":[{\"statements\":[[\"text\",\"      \"],[\"append\",[\"helper\",[\"similar-artists\"],null,[[\"similar\",\"goToArtist\"],[[\"get\",[\"model\",\"similar\"]],\"goToArtist\"]]],false],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"            \"],[\"open-element\",\"h4\",[]],[\"flush-element\"],[\"text\",\"Upcoming Concerts: None\"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"            \"],[\"open-element\",\"h4\",[]],[\"flush-element\"],[\"text\",\"Upcoming Events: \"],[\"append\",[\"unknown\",[\"count\",\"upcomingCount\"]],false],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"            \"],[\"open-element\",\"h4\",[]],[\"flush-element\"],[\"text\",\"Not on tour\"],[\"close-element\"],[\"text\",\"\\n          \"]],\"locals\":[]},{\"statements\":[[\"text\",\"            \"],[\"open-element\",\"h4\",[]],[\"flush-element\"],[\"text\",\"On Tour: Yes\"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"block\",[\"if\"],[[\"get\",[\"model\",\"artist\",\"meta\",\"total_entries\"]]],null,4,3]],\"locals\":[]},{\"statements\":[[\"text\",\"            \"],[\"open-element\",\"h4\",[]],[\"flush-element\"],[\"text\",\"On Tour Until:\\n              \"],[\"append\",[\"helper\",[\"format-month\"],[[\"get\",[\"basic\",\"onTourUntil\"]]],null],true],[\"text\",\"\\n              \"],[\"append\",[\"helper\",[\"format-day\"],[[\"get\",[\"basic\",\"onTourUntil\"]]],null],true],[\"text\",\",\\n              \"],[\"append\",[\"helper\",[\"format-year\"],[[\"get\",[\"basic\",\"onTourUntil\"]]],null],true],[\"text\",\"\\n            \"],[\"close-element\"],[\"text\",\"\\n\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"          \"],[\"open-element\",\"h1\",[]],[\"flush-element\"],[\"open-element\",\"a\",[]],[\"static-attr\",\"href\",\"javascript;\"],[\"modifier\",[\"action\"],[[\"get\",[null]],\"goToArtist\",[\"get\",[\"basic\",\"displayName\"]],[\"get\",[\"basic\",\"id\"]]]],[\"flush-element\"],[\"append\",[\"unknown\",[\"basic\",\"displayName\"]],false],[\"close-element\"],[\"close-element\"],[\"text\",\"\\n\"],[\"block\",[\"if\"],[[\"get\",[\"basic\",\"onTourUntil\"]]],null,6,5],[\"block\",[\"if\"],[[\"get\",[\"count\",\"upcomingCount\"]]],null,2,1]],\"locals\":[]},{\"statements\":[[\"block\",[\"if\"],[[\"helper\",[\"eq\"],[[\"get\",[\"basic\",\"displayName\"]],[\"get\",[\"model\",\"search\",\"id\"]]],null]],null,7]],\"locals\":[\"basic\"]},{\"statements\":[[\"text\",\"          \"],[\"open-element\",\"figcaption\",[]],[\"static-attr\",\"class\",\"on-tour-caption-text\"],[\"flush-element\"],[\"open-element\",\"span\",[]],[\"static-attr\",\"class\",\"tour-tag\"],[\"flush-element\"],[\"text\",\"ON TOUR\"],[\"close-element\"],[\"text\",\"\\n          \"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"    \"],[\"open-element\",\"figure\",[]],[\"static-attr\",\"class\",\"region-thumb-wrapper\"],[\"flush-element\"],[\"text\",\"\\n      \"],[\"open-element\",\"img\",[]],[\"static-attr\",\"class\",\"headliner artist image\"],[\"dynamic-attr\",\"src\",[\"concat\",[[\"unknown\",[\"basic\",\"imageUrl\"]]]]],[\"dynamic-attr\",\"alt\",[\"concat\",[[\"unknown\",[\"basic\",\"displayName\"]]]]],[\"flush-element\"],[\"close-element\"],[\"text\",\"\\n\"],[\"block\",[\"if\"],[[\"get\",[\"basic\",\"onTourUntil\"]]],null,9],[\"text\",\"      \"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"block\",[\"if\"],[[\"helper\",[\"eq\"],[[\"get\",[\"basic\",\"displayName\"]],[\"get\",[\"model\",\"search\",\"id\"]]],null]],null,10]],\"locals\":[\"basic\"]},{\"statements\":[[\"text\",\"    \"],[\"open-element\",\"figure\",[]],[\"static-attr\",\"class\",\"region-background-wrapper\"],[\"flush-element\"],[\"text\",\"\\n        \"],[\"open-element\",\"img\",[]],[\"static-attr\",\"class\",\"artist-background\"],[\"dynamic-attr\",\"src\",[\"concat\",[[\"unknown\",[\"basic\",\"imageUrl\"]]]]],[\"dynamic-attr\",\"alt\",[\"concat\",[[\"unknown\",[\"basic\",\"displayName\"]]]]],[\"flush-element\"],[\"close-element\"],[\"text\",\"\\n      \"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"block\",[\"if\"],[[\"helper\",[\"eq\"],[[\"get\",[\"basic\",\"displayName\"]],[\"get\",[\"model\",\"search\",\"id\"]]],null]],null,12]],\"locals\":[\"basic\"]}],\"hasPartials\":false}", "meta": { "moduleName": "show-hock-app/templates/artist/event.hbs" } });
 });
 define("show-hock-app/templates/artist/event/concert", ["exports"], function (exports) {
-  exports["default"] = Ember.HTMLBars.template({ "id": "pc5PZFDn", "block": "{\"statements\":[[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"artist-event-listing concert\"],[\"flush-element\"],[\"text\",\"\\n\"],[\"block\",[\"if\"],[[\"helper\",[\"eq\"],[[\"get\",[\"model\",\"type\"]],\"Festival\"],null]],null,2,1],[\"text\",\"\\n\"],[\"text\",\"  \"],[\"append\",[\"helper\",[\"concert-venue-details\"],null,[[\"model\",\"goToVenue\"],[[\"get\",[\"model\"]],\"goToVenue\"]]],false],[\"text\",\"\\n\\n\"],[\"block\",[\"if\"],[[\"helper\",[\"gt\"],[[\"get\",[\"model\",\"calendar\",\"event\",\"length\"]],1],null]],null,0],[\"text\",\"\\n\"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[],\"named\":[],\"yields\":[],\"blocks\":[{\"statements\":[[\"text\",\"    \"],[\"append\",[\"helper\",[\"upcoming-venue-events\"],null,[[\"calendar\",\"concertId\",\"venue\",\"venueId\",\"goToVenue\"],[[\"get\",[\"model\",\"calendar\"]],[\"get\",[\"model\",\"id\"]],[\"get\",[\"model\",\"venue\",\"displayName\"]],[\"get\",[\"model\",\"venue\",\"id\"]],\"goToVenue\"]]],false],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"  \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"artist-concert concert\"],[\"flush-element\"],[\"text\",\"\\n    \"],[\"open-element\",\"h3\",[]],[\"flush-element\"],[\"open-element\",\"strong\",[]],[\"flush-element\"],[\"append\",[\"helper\",[\"no-parens\"],[[\"get\",[\"model\",\"displayName\"]]],null],false],[\"close-element\"],[\"close-element\"],[\"text\",\"\\n\\n    \"],[\"append\",[\"helper\",[\"artist-date\"],null,[[\"event\"],[[\"get\",[\"model\"]]]]],false],[\"text\",\"\\n    \"],[\"append\",[\"helper\",[\"purchase-tickets\"],null,[[\"event\"],[[\"get\",[\"model\",\"uri\"]]]]],false],[\"text\",\"\\n\\n   \"],[\"append\",[\"helper\",[\"tracking-buttons-concert\"],null,[[\"model\",\"trackEvent\",\"unTrackEvent\",\"userPicked\",\"isAuthenticated\",\"goToAuthenticate\"],[[\"get\",[\"model\"]],\"trackEvent\",\"unTrackEvent\",[\"get\",[\"userPicked\"]],[\"get\",[\"isAuthenticated\"]],\"goToAuthenticate\"]]],false],[\"text\",\"\\n\\n      \"],[\"append\",[\"helper\",[\"concert-also-featuring\"],null,[[\"goToArtist\",\"model\"],[\"goToArtist\",[\"get\",[\"model\"]]]]],false],[\"text\",\"\\n    \"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"    \"],[\"open-element\",\"h2\",[]],[\"flush-element\"],[\"open-element\",\"strong\",[]],[\"flush-element\"],[\"append\",[\"helper\",[\"no-parens\"],[[\"get\",[\"model\",\"displayName\"]]],null],false],[\"close-element\"],[\"close-element\"],[\"text\",\"\\n\\n    \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"artist-concert festival\"],[\"flush-element\"],[\"text\",\"\\n      \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"concert-image-wrapper\"],[\"flush-element\"],[\"text\",\"\\n        \"],[\"open-element\",\"img\",[]],[\"dynamic-attr\",\"src\",[\"unknown\",[\"model\",\"imageUrl\"]],null],[\"flush-element\"],[\"close-element\"],[\"text\",\"\\n      \"],[\"close-element\"],[\"text\",\"\\n\\n    \"],[\"append\",[\"helper\",[\"artist-date\"],null,[[\"event\"],[[\"get\",[\"model\"]]]]],false],[\"text\",\"\\n    \"],[\"append\",[\"helper\",[\"purchase-tickets\"],null,[[\"event\"],[[\"get\",[\"model\",\"uri\"]]]]],false],[\"text\",\"\\n    \"],[\"append\",[\"helper\",[\"tracking-buttons-concert\"],null,[[\"model\",\"trackEvent\",\"unTrackEvent\",\"userPicked\",\"isAuthenticated\",\"goToAuthenticate\"],[[\"get\",[\"model\"]],\"trackEvent\",\"unTrackEvent\",[\"get\",[\"userPicked\"]],[\"get\",[\"isAuthenticated\"]],\"goToAuthenticate\"]]],false],[\"text\",\"\\n\\n    \"],[\"append\",[\"helper\",[\"concert-featuring-artist\"],null,[[\"isFullList\",\"getFullList\",\"performances\",\"concertId\"],[[\"get\",[\"isFullList\"]],\"getFullList\",[\"get\",[\"model\",\"performance\"]],[\"get\",[\"model\",\"id\"]]]]],false],[\"text\",\"\\n  \"],[\"close-element\"],[\"text\",\"\\n\\n\"]],\"locals\":[]}],\"hasPartials\":false}", "meta": { "moduleName": "show-hock-app/templates/artist/event/concert.hbs" } });
+  exports["default"] = Ember.HTMLBars.template({ "id": "VhEwRmEq", "block": "{\"statements\":[[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"artist-event-listing concert\"],[\"flush-element\"],[\"text\",\"\\n\"],[\"block\",[\"if\"],[[\"helper\",[\"eq\"],[[\"get\",[\"model\",\"type\"]],\"Festival\"],null]],null,2,1],[\"text\",\"\\n\"],[\"text\",\"  \"],[\"append\",[\"helper\",[\"concert-venue-details\"],null,[[\"model\",\"goToVenue\"],[[\"get\",[\"model\"]],\"goToVenue\"]]],false],[\"text\",\"\\n\\n\"],[\"block\",[\"if\"],[[\"helper\",[\"gt\"],[[\"get\",[\"model\",\"calendar\",\"event\",\"length\"]],1],null]],null,0],[\"text\",\"\\n\"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[],\"named\":[],\"yields\":[],\"blocks\":[{\"statements\":[[\"text\",\"    \"],[\"append\",[\"helper\",[\"upcoming-venue-events\"],null,[[\"calendar\",\"concertId\",\"venue\",\"venueId\",\"goToVenue\"],[[\"get\",[\"model\",\"calendar\"]],[\"get\",[\"model\",\"id\"]],[\"get\",[\"model\",\"venue\",\"displayName\"]],[\"get\",[\"model\",\"venue\",\"id\"]],\"goToVenue\"]]],false],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"  \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"artist-concert concert\"],[\"flush-element\"],[\"text\",\"\\n    \"],[\"open-element\",\"h3\",[]],[\"flush-element\"],[\"open-element\",\"strong\",[]],[\"flush-element\"],[\"append\",[\"helper\",[\"no-parens\"],[[\"get\",[\"model\",\"displayName\"]]],null],false],[\"close-element\"],[\"close-element\"],[\"text\",\"\\n\\n    \"],[\"append\",[\"helper\",[\"artist-date\"],null,[[\"event\"],[[\"get\",[\"model\"]]]]],false],[\"text\",\"\\n    \"],[\"append\",[\"helper\",[\"purchase-tickets\"],null,[[\"event\"],[[\"get\",[\"model\",\"uri\"]]]]],false],[\"text\",\"\\n\\n   \"],[\"append\",[\"helper\",[\"tracking-buttons-concert\"],null,[[\"model\",\"trackEvent\",\"unTrackEvent\",\"isAuthenticated\",\"goToAuthenticate\"],[[\"get\",[\"model\"]],\"trackEvent\",\"unTrackEvent\",[\"get\",[\"isAuthenticated\"]],\"goToAuthenticate\"]]],false],[\"text\",\"\\n\\n      \"],[\"append\",[\"helper\",[\"concert-also-featuring\"],null,[[\"goToArtist\",\"model\"],[\"goToArtist\",[\"get\",[\"model\"]]]]],false],[\"text\",\"\\n    \"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"    \"],[\"open-element\",\"h2\",[]],[\"flush-element\"],[\"open-element\",\"strong\",[]],[\"flush-element\"],[\"append\",[\"helper\",[\"no-parens\"],[[\"get\",[\"model\",\"displayName\"]]],null],false],[\"close-element\"],[\"close-element\"],[\"text\",\"\\n\\n    \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"artist-concert festival\"],[\"flush-element\"],[\"text\",\"\\n      \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"concert-image-wrapper\"],[\"flush-element\"],[\"text\",\"\\n        \"],[\"open-element\",\"img\",[]],[\"dynamic-attr\",\"src\",[\"unknown\",[\"model\",\"imageUrl\"]],null],[\"flush-element\"],[\"close-element\"],[\"text\",\"\\n      \"],[\"close-element\"],[\"text\",\"\\n\\n    \"],[\"append\",[\"helper\",[\"artist-date\"],null,[[\"event\"],[[\"get\",[\"model\"]]]]],false],[\"text\",\"\\n    \"],[\"append\",[\"helper\",[\"purchase-tickets\"],null,[[\"event\"],[[\"get\",[\"model\",\"uri\"]]]]],false],[\"text\",\"\\n    \"],[\"append\",[\"helper\",[\"tracking-buttons-concert\"],null,[[\"model\",\"trackEvent\",\"unTrackEvent\",\"isAuthenticated\",\"goToAuthenticate\"],[[\"get\",[\"model\"]],\"trackEvent\",\"unTrackEvent\",[\"get\",[\"isAuthenticated\"]],\"goToAuthenticate\"]]],false],[\"text\",\"\\n\\n    \"],[\"append\",[\"helper\",[\"concert-featuring-artist\"],null,[[\"isFullList\",\"getFullList\",\"performances\",\"concertId\"],[[\"get\",[\"isFullList\"]],\"getFullList\",[\"get\",[\"model\",\"performance\"]],[\"get\",[\"model\",\"id\"]]]]],false],[\"text\",\"\\n  \"],[\"close-element\"],[\"text\",\"\\n\\n\"]],\"locals\":[]}],\"hasPartials\":false}", "meta": { "moduleName": "show-hock-app/templates/artist/event/concert.hbs" } });
 });
 define("show-hock-app/templates/artist/event/results", ["exports"], function (exports) {
-  exports["default"] = Ember.HTMLBars.template({ "id": "xiXIA+Si", "block": "{\"statements\":[[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"region-event-listing artist\"],[\"flush-element\"],[\"text\",\"\\n\"],[\"append\",[\"helper\",[\"upcoming-events\"],null,[[\"upcomingInfo\"],[[\"get\",[\"model\",\"upcomingInfo\"]]]]],false],[\"text\",\"\\n\"],[\"block\",[\"unless\"],[[\"get\",[\"model\",\"noMatch\"]]],null,3],[\"text\",\"\\n\"],[\"block\",[\"if\"],[[\"get\",[\"model\",\"artist\",\"event\",\"firstObject\",\"noMatch\"]]],null,2,1],[\"text\",\"\\n      \"],[\"append\",[\"helper\",[\"pagination-bar\"],null,[[\"pages\",\"newPage\",\"previousPage\",\"nextPage\"],[[\"get\",[\"model\",\"artist\",\"meta\"]],\"changeArtistPage\",\"previousPage\",\"nextPage\"]]],false],[\"text\",\"\\n    \"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[],\"named\":[],\"yields\":[],\"blocks\":[{\"statements\":[[\"text\",\"\\n              \"],[\"append\",[\"helper\",[\"artist-detail\"],null,[[\"event\",\"userEventArr\",\"goToConcert\",\"trackEvent\",\"unTrackEvent\",\"isAuthenticated\",\"goToAuthenticate\"],[[\"get\",[\"event\"]],[\"get\",[\"userEventArr\"]],\"goToConcert\",\"trackEvent\",\"unTrackEvent\",[\"get\",[\"isAuthenticated\"]],\"goToAuthenticate\"]]],false],[\"text\",\"\\n\\n\"]],\"locals\":[\"event\"]},{\"statements\":[[\"text\",\"        \"],[\"open-element\",\"h3\",[]],[\"flush-element\"],[\"open-element\",\"strong\",[]],[\"flush-element\"],[\"text\",\"Upcoming Concerts (\"],[\"append\",[\"unknown\",[\"model\",\"artist\",\"meta\",\"total_entries\"]],false],[\"text\",\")\"],[\"close-element\"],[\"close-element\"],[\"text\",\"\\n        \"],[\"open-element\",\"ul\",[]],[\"static-attr\",\"class\",\"event-listings row-fluid block-grid-3\"],[\"flush-element\"],[\"text\",\"\\n\"],[\"block\",[\"each\"],[[\"get\",[\"model\",\"artist\",\"event\"]]],null,0],[\"text\",\"        \"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"        \"],[\"open-element\",\"h3\",[]],[\"flush-element\"],[\"text\",\"No upcoming concerts found for  \"],[\"open-element\",\"strong\",[]],[\"flush-element\"],[\"append\",[\"unknown\",[\"name\",\"name\",\"artist_name\"]],false],[\"close-element\"],[\"close-element\"],[\"text\",\"\\n\\n\"]],\"locals\":[]},{\"statements\":[[\"append\",[\"helper\",[\"date-range-picker\"],null,[[\"filterDate\",\"min_date\",\"max_date\"],[\"filterDate\",[\"get\",[\"min_date\"]],[\"get\",[\"max_date\"]]]]],false],[\"text\",\"\\n\"]],\"locals\":[]}],\"hasPartials\":false}", "meta": { "moduleName": "show-hock-app/templates/artist/event/results.hbs" } });
+  exports["default"] = Ember.HTMLBars.template({ "id": "prUJScMZ", "block": "{\"statements\":[[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"region-event-listing artist\"],[\"flush-element\"],[\"text\",\"\\n\\n\"],[\"block\",[\"if\"],[[\"get\",[\"model\",\"upcomingInfo\",\"firstObject\",\"noMatch\"]]],null,8,7],[\"text\",\"\\n\"],[\"block\",[\"unless\"],[[\"get\",[\"model\",\"noMatch\"]]],null,3],[\"text\",\"\\n\"],[\"block\",[\"if\"],[[\"get\",[\"model\",\"artist\",\"event\",\"firstObject\",\"noMatch\"]]],null,2,1],[\"text\",\"      \"],[\"append\",[\"helper\",[\"pagination-bar\"],null,[[\"pages\",\"newPage\",\"previousPage\",\"nextPage\"],[[\"get\",[\"model\",\"artist\",\"meta\"]],\"changeArtistPage\",\"previousPage\",\"nextPage\"]]],false],[\"text\",\"\\n    \"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[],\"named\":[],\"yields\":[],\"blocks\":[{\"statements\":[[\"text\",\"\\n              \"],[\"append\",[\"helper\",[\"artist-detail\"],null,[[\"event\",\"userEventArr\",\"goToConcert\",\"trackEvent\",\"unTrackEvent\",\"isAuthenticated\",\"goToAuthenticate\"],[[\"get\",[\"event\"]],[\"get\",[\"userEventArr\"]],\"goToConcert\",\"trackEvent\",\"unTrackEvent\",[\"get\",[\"isAuthenticated\"]],\"goToAuthenticate\"]]],false],[\"text\",\"\\n\\n\"]],\"locals\":[\"event\"]},{\"statements\":[[\"text\",\"        \"],[\"open-element\",\"h3\",[]],[\"flush-element\"],[\"open-element\",\"strong\",[]],[\"flush-element\"],[\"text\",\"Upcoming Concerts (\"],[\"append\",[\"unknown\",[\"model\",\"artist\",\"meta\",\"total_entries\"]],false],[\"text\",\")\"],[\"close-element\"],[\"close-element\"],[\"text\",\"\\n        \"],[\"open-element\",\"ul\",[]],[\"static-attr\",\"class\",\"event-listings row-fluid block-grid-3\"],[\"flush-element\"],[\"text\",\"\\n\"],[\"block\",[\"each\"],[[\"get\",[\"model\",\"artist\",\"event\"]]],null,0],[\"text\",\"        \"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"        \"],[\"open-element\",\"h3\",[]],[\"flush-element\"],[\"text\",\"No upcoming concerts found for  \"],[\"open-element\",\"strong\",[]],[\"flush-element\"],[\"append\",[\"unknown\",[\"name\",\"name\",\"artist_name\"]],false],[\"close-element\"],[\"close-element\"],[\"text\",\"\\n\\n\"]],\"locals\":[]},{\"statements\":[[\"append\",[\"helper\",[\"date-range-picker\"],null,[[\"filterDate\",\"min_date\",\"max_date\"],[\"filterDate\",[\"get\",[\"min_date\"]],[\"get\",[\"max_date\"]]]]],false],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"\\n      \"],[\"append\",[\"helper\",[\"upcoming-events\"],null,[[\"event\",\"userEventArr\",\"goToConcert\",\"trackUpcomingEvent\",\"unTrackUpcomingEvent\",\"isAuthenticated\",\"goToAuthenticate\"],[[\"get\",[\"event\"]],[\"get\",[\"userEventArr\"]],\"goToConcert\",\"trackUpcomingEvent\",\"unTrackUpcomingEvent\",[\"get\",[\"isAuthenticated\"]],\"goToAuthenticate\"]]],false],[\"text\",\"\\n\"]],\"locals\":[\"event\"]},{\"statements\":[[\"text\",\"          \"],[\"open-element\",\"h4\",[]],[\"flush-element\"],[\"append\",[\"unknown\",[\"model\",\"upcomingInfo\",\"firstObject\",\"venue\",\"metroArea\",\"displayName\"]],false],[\"text\",\",\\n              \"],[\"append\",[\"unknown\",[\"model\",\"upcomingInfo\",\"firstObject\",\"venue\",\"metroArea\",\"country\",\"displayName\"]],false],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"          \"],[\"open-element\",\"h4\",[]],[\"flush-element\"],[\"append\",[\"unknown\",[\"model\",\"upcomingInfo\",\"firstObject\",\"venue\",\"metroArea\",\"displayName\"]],false],[\"text\",\",\\n              \"],[\"append\",[\"unknown\",[\"model\",\"upcomingInfo\",\"firstObject\",\"venue\",\"metroArea\",\"state\",\"displayName\"]],false],[\"text\",\",\\n              \"],[\"append\",[\"unknown\",[\"model\",\"upcomingInfo\",\"firstObject\",\"venue\",\"metroArea\",\"country\",\"displayName\"]],false],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"\\n    \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"upcoming-events\"],[\"flush-element\"],[\"text\",\"\\n\"],[\"text\",\"      \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"upcoming-events-title-wrapper\"],[\"flush-element\"],[\"text\",\"\\n        \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"upcoming-events-title\"],[\"flush-element\"],[\"text\",\"\\n          \"],[\"open-element\",\"h3\",[]],[\"flush-element\"],[\"open-element\",\"strong\",[]],[\"flush-element\"],[\"text\",\"Next concerts near you\"],[\"close-element\"],[\"close-element\"],[\"text\",\"\\n        \"],[\"close-element\"],[\"text\",\"\\n        \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"upcoming-events-location\"],[\"flush-element\"],[\"text\",\"\\n\"],[\"block\",[\"if\"],[[\"get\",[\"model\",\"upcomingInfo\",\"firstObject\",\"venue\",\"metroArea\",\"state\",\"displayName\"]]],null,6,5],[\"text\",\"        \"],[\"close-element\"],[\"text\",\"\\n      \"],[\"close-element\"],[\"text\",\"\\n\"],[\"text\",\"      \"],[\"open-element\",\"ul\",[]],[\"static-attr\",\"class\",\"upcoming-events-listing\"],[\"flush-element\"],[\"text\",\"\\n\"],[\"block\",[\"each\"],[[\"get\",[\"model\",\"upcomingInfo\"]]],null,4],[\"text\",\"      \"],[\"close-element\"],[\"text\",\"\\n    \"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"    \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"upcoming-events-item-div\"],[\"flush-element\"],[\"text\",\"\\n    \"],[\"open-element\",\"h4\",[]],[\"flush-element\"],[\"append\",[\"unknown\",[\"model\",\"upcomingInfo\",\"firstObject\",\"performance\",\"artist\",\"displayName\"]],false],[\"text\",\" is not playing in \"],[\"open-element\",\"strong\",[]],[\"flush-element\"],[\"append\",[\"unknown\",[\"userLocationSetting\",\"regionName\"]],false],[\"close-element\"],[\"close-element\"],[\"text\",\"\\n    \"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]}],\"hasPartials\":false}", "meta": { "moduleName": "show-hock-app/templates/artist/event/results.hbs" } });
 });
 define("show-hock-app/templates/artist/search", ["exports"], function (exports) {
   exports["default"] = Ember.HTMLBars.template({ "id": "k5UCbM+E", "block": "{\"statements\":[[\"block\",[\"if\"],[[\"get\",[\"media\",\"isMobile\"]]],null,1],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"region-info-section\"],[\"flush-element\"],[\"text\",\"\\n  \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"region-info-wrapper search\"],[\"flush-element\"],[\"text\",\"\\n\\n    \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"region-info search\"],[\"flush-element\"],[\"text\",\"\\n\\n      \"],[\"open-element\",\"h1\",[]],[\"flush-element\"],[\"text\",\"Search by Artist\"],[\"close-element\"],[\"text\",\"\\n      \"],[\"append\",[\"helper\",[\"search-input-page-wrapper\"],null,[[\"search\",\"formDesc\"],[\"artistSearch\",\"Search for Artists\"]]],false],[\"text\",\"\\n    \"],[\"close-element\"],[\"text\",\"\\n  \"],[\"close-element\"],[\"text\",\"\\n\"],[\"close-element\"],[\"text\",\"\\n\\n\"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"region-search-main-wrapper\"],[\"flush-element\"],[\"text\",\"\\n  \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"region-search-main ea-route\"],[\"flush-element\"],[\"text\",\"\\n\"],[\"block\",[\"unless\"],[[\"get\",[\"media\",\"isMobile\"]]],null,0],[\"text\",\"    \"],[\"append\",[\"unknown\",[\"outlet\"]],false],[\"text\",\"\\n  \"],[\"close-element\"],[\"text\",\"\\n\"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[],\"named\":[],\"yields\":[],\"blocks\":[{\"statements\":[[\"text\",\"    \"],[\"append\",[\"unknown\",[\"search-options-menu\"]],false],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"  \"],[\"append\",[\"unknown\",[\"search-options-menu-mobile\"]],false],[\"text\",\"\\n\"]],\"locals\":[]}],\"hasPartials\":false}", "meta": { "moduleName": "show-hock-app/templates/artist/search.hbs" } });
@@ -4866,7 +5540,7 @@ define("show-hock-app/templates/components/artist-date", ["exports"], function (
   exports["default"] = Ember.HTMLBars.template({ "id": "owLlFcxP", "block": "{\"statements\":[[\"open-element\",\"li\",[]],[\"static-attr\",\"class\",\"artist-event-date\"],[\"flush-element\"],[\"text\",\"\\n  \"],[\"open-element\",\"strong\",[]],[\"flush-element\"],[\"text\",\"\\n    \"],[\"append\",[\"helper\",[\"format-weekday\"],[[\"get\",[\"event\",\"start\",\"date\"]]],null],true],[\"text\",\",\\n    \"],[\"append\",[\"helper\",[\"format-month\"],[[\"get\",[\"event\",\"start\",\"date\"]]],null],true],[\"text\",\"\\n    \"],[\"append\",[\"helper\",[\"format-day\"],[[\"get\",[\"event\",\"start\",\"date\"]]],null],true],[\"text\",\",\\n    \"],[\"append\",[\"helper\",[\"format-year\"],[[\"get\",[\"event\",\"start\",\"date\"]]],null],true],[\"text\",\"\\n\\n\"],[\"block\",[\"if\"],[[\"get\",[\"event\",\"end\",\"date\"]]],null,1],[\"text\",\"    \"],[\"close-element\"],[\"text\",\"\\n\"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[],\"named\":[],\"yields\":[],\"blocks\":[{\"statements\":[[\"text\",\"  -\\n    \"],[\"append\",[\"helper\",[\"format-weekday\"],[[\"get\",[\"event\",\"end\",\"date\"]]],null],true],[\"text\",\",\\n    \"],[\"append\",[\"helper\",[\"format-month\"],[[\"get\",[\"event\",\"end\",\"date\"]]],null],true],[\"text\",\"\\n    \"],[\"append\",[\"helper\",[\"format-day\"],[[\"get\",[\"event\",\"end\",\"date\"]]],null],true],[\"text\",\",\\n    \"],[\"append\",[\"helper\",[\"format-year\"],[[\"get\",[\"event\",\"end\",\"date\"]]],null],true],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"block\",[\"if\"],[[\"helper\",[\"neq\"],[[\"get\",[\"event\",\"end\",\"date\"]],[\"get\",[\"event\",\"start\",\"date\"]]],null]],null,0]],\"locals\":[]}],\"hasPartials\":false}", "meta": { "moduleName": "show-hock-app/templates/components/artist-date.hbs" } });
 });
 define("show-hock-app/templates/components/artist-detail", ["exports"], function (exports) {
-  exports["default"] = Ember.HTMLBars.template({ "id": "IaiAevt2", "block": "{\"statements\":[[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"region-results-wrapper\"],[\"flush-element\"],[\"text\",\"\\n\\n\"],[\"block\",[\"if\"],[[\"get\",[\"event\",\"noMatch\"]]],null,6,5],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[],\"named\":[],\"yields\":[],\"blocks\":[{\"statements\":[[\"text\",\"      \"],[\"open-element\",\"h6\",[]],[\"flush-element\"],[\"append\",[\"helper\",[\"format-time\"],[[\"get\",[\"event\",\"start\",\"time\"]]],null],false],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"        \"],[\"open-element\",\"h4\",[]],[\"flush-element\"],[\"append\",[\"unknown\",[\"event\",\"venue\",\"displayName\"]],false],[\"text\",\", \"],[\"append\",[\"unknown\",[\"event\",\"location\",\"city\"]],false],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"        \"],[\"open-element\",\"h4\",[]],[\"flush-element\"],[\"append\",[\"unknown\",[\"event\",\"location\",\"city\"]],false],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"        \"],[\"append\",[\"helper\",[\"artist-list\"],null,[[\"event\",\"goToConcert\"],[[\"get\",[\"event\"]],\"goToConcert\"]]],false],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"\\n      \"],[\"open-element\",\"h4\",[]],[\"static-attr\",\"class\",\"artist-list\"],[\"flush-element\"],[\"text\",\"\\n        \"],[\"open-element\",\"strong\",[]],[\"flush-element\"],[\"open-element\",\"a\",[]],[\"static-attr\",\"href\",\"javascript:;\"],[\"modifier\",[\"action\"],[[\"get\",[null]],\"goToConcert\",[\"get\",[\"event\"]]]],[\"flush-element\"],[\"text\",\"\\n          \"],[\"append\",[\"unknown\",[\"event\",\"displayName\"]],false],[\"close-element\"],[\"close-element\"],[\"text\",\"\\n      \"],[\"close-element\"],[\"text\",\"\\n\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"\\n\"],[\"append\",[\"helper\",[\"artist-date\"],null,[[\"event\"],[[\"get\",[\"event\"]]]]],false],[\"text\",\"\\n\\n\"],[\"open-element\",\"ul\",[]],[\"static-attr\",\"class\",\"region-event-ul\"],[\"flush-element\"],[\"text\",\"\\n  \"],[\"open-element\",\"li\",[]],[\"static-attr\",\"class\",\"event\"],[\"flush-element\"],[\"text\",\"\\n\\n\"],[\"block\",[\"if\"],[[\"helper\",[\"eq\"],[[\"get\",[\"event\",\"type\"]],\"Festival\"],null]],null,4,3],[\"text\",\"\\n\"],[\"block\",[\"if\"],[[\"helper\",[\"eq\"],[[\"get\",[\"event\",\"venue\",\"displayName\"]],\"Unknown venue\"],null]],null,2,1],[\"text\",\"\\n\"],[\"block\",[\"if\"],[[\"get\",[\"event\",\"start\",\"time\"]]],null,0],[\"text\",\"\\n  \"],[\"close-element\"],[\"text\",\"\\n\"],[\"close-element\"],[\"text\",\"\\n\\n    \"],[\"append\",[\"helper\",[\"button-to-concert\"],null,[[\"value\",\"buttonClick\",\"buttonTitle\"],[[\"get\",[\"event\"]],\"goToConcert\",[\"get\",[\"buttonTitle\"]]]]],false],[\"text\",\"\\n\\n    \"],[\"append\",[\"helper\",[\"tracking-buttons-concert\"],null,[[\"model\",\"trackEvent\",\"unTrackEvent\",\"userPicked\",\"isAuthenticated\",\"goToAuthenticate\"],[[\"get\",[\"event\"]],\"trackEvent\",\"unTrackEvent\",[\"get\",[\"userPicked\"]],[\"get\",[\"isAuthenticated\"]],\"goToAuthenticate\"]]],false],[\"text\",\"\\n\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"  \"],[\"open-element\",\"h4\",[]],[\"static-attr\",\"class\",\"artist-list\"],[\"flush-element\"],[\"text\",\"No upcoming events found for  \"],[\"open-element\",\"strong\",[]],[\"flush-element\"],[\"append\",[\"unknown\",[\"event\",\"performance\",\"displayName\"]],false],[\"close-element\"],[\"close-element\"],[\"text\",\"\\n\\n\"]],\"locals\":[]}],\"hasPartials\":false}", "meta": { "moduleName": "show-hock-app/templates/components/artist-detail.hbs" } });
+  exports["default"] = Ember.HTMLBars.template({ "id": "mmRPyuX/", "block": "{\"statements\":[[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"region-results-wrapper\"],[\"flush-element\"],[\"text\",\"\\n\\n\"],[\"block\",[\"if\"],[[\"get\",[\"event\",\"noMatch\"]]],null,6,5],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[],\"named\":[],\"yields\":[],\"blocks\":[{\"statements\":[[\"text\",\"      \"],[\"open-element\",\"h6\",[]],[\"flush-element\"],[\"append\",[\"helper\",[\"format-time\"],[[\"get\",[\"event\",\"start\",\"time\"]]],null],false],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"        \"],[\"open-element\",\"h4\",[]],[\"flush-element\"],[\"append\",[\"unknown\",[\"event\",\"venue\",\"displayName\"]],false],[\"text\",\", \"],[\"append\",[\"unknown\",[\"event\",\"location\",\"city\"]],false],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"        \"],[\"open-element\",\"h4\",[]],[\"flush-element\"],[\"append\",[\"unknown\",[\"event\",\"location\",\"city\"]],false],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"        \"],[\"append\",[\"helper\",[\"artist-list\"],null,[[\"event\",\"goToConcert\"],[[\"get\",[\"event\"]],\"goToConcert\"]]],false],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"\\n      \"],[\"open-element\",\"h4\",[]],[\"static-attr\",\"class\",\"artist-list\"],[\"flush-element\"],[\"text\",\"\\n        \"],[\"open-element\",\"strong\",[]],[\"flush-element\"],[\"open-element\",\"a\",[]],[\"static-attr\",\"href\",\"javascript:;\"],[\"modifier\",[\"action\"],[[\"get\",[null]],\"goToConcert\",[\"get\",[\"event\"]]]],[\"flush-element\"],[\"text\",\"\\n          \"],[\"append\",[\"unknown\",[\"event\",\"displayName\"]],false],[\"close-element\"],[\"close-element\"],[\"text\",\"\\n      \"],[\"close-element\"],[\"text\",\"\\n\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"\\n\"],[\"append\",[\"helper\",[\"artist-date\"],null,[[\"event\"],[[\"get\",[\"event\"]]]]],false],[\"text\",\"\\n\\n\"],[\"open-element\",\"ul\",[]],[\"static-attr\",\"class\",\"region-event-ul\"],[\"flush-element\"],[\"text\",\"\\n  \"],[\"open-element\",\"li\",[]],[\"static-attr\",\"class\",\"event\"],[\"flush-element\"],[\"text\",\"\\n\\n\"],[\"block\",[\"if\"],[[\"helper\",[\"eq\"],[[\"get\",[\"event\",\"type\"]],\"Festival\"],null]],null,4,3],[\"text\",\"\\n\"],[\"block\",[\"if\"],[[\"helper\",[\"eq\"],[[\"get\",[\"event\",\"venue\",\"displayName\"]],\"Unknown venue\"],null]],null,2,1],[\"text\",\"\\n\"],[\"block\",[\"if\"],[[\"get\",[\"event\",\"start\",\"time\"]]],null,0],[\"text\",\"\\n  \"],[\"close-element\"],[\"text\",\"\\n\"],[\"close-element\"],[\"text\",\"\\n\\n    \"],[\"append\",[\"helper\",[\"button-to-concert\"],null,[[\"value\",\"buttonClick\",\"buttonTitle\"],[[\"get\",[\"event\"]],\"goToConcert\",[\"get\",[\"buttonTitle\"]]]]],false],[\"text\",\"\\n\\n    \"],[\"append\",[\"helper\",[\"tracking-buttons-concert\"],null,[[\"model\",\"trackEvent\",\"unTrackEvent\",\"switchTrackedButtons\",\"trackBtnsUpdated\",\"isAuthenticated\",\"goToAuthenticate\"],[[\"get\",[\"event\"]],\"trackEvent\",\"unTrackEvent\",[\"get\",[\"switchTrackedButtons\"]],\"trackBtnsUpdated\",[\"get\",[\"isAuthenticated\"]],\"goToAuthenticate\"]]],false],[\"text\",\"\\n\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"  \"],[\"open-element\",\"h4\",[]],[\"static-attr\",\"class\",\"artist-list\"],[\"flush-element\"],[\"text\",\"No upcoming events found for  \"],[\"open-element\",\"strong\",[]],[\"flush-element\"],[\"append\",[\"unknown\",[\"event\",\"performance\",\"displayName\"]],false],[\"close-element\"],[\"close-element\"],[\"text\",\"\\n\\n\"]],\"locals\":[]}],\"hasPartials\":false}", "meta": { "moduleName": "show-hock-app/templates/components/artist-detail.hbs" } });
 });
 define("show-hock-app/templates/components/artist-info", ["exports"], function (exports) {
   exports["default"] = Ember.HTMLBars.template({ "id": "sBjFqn6t", "block": "{\"statements\":[[\"yield\",\"default\"],[\"text\",\"\\n\"]],\"locals\":[],\"named\":[],\"yields\":[\"default\"],\"blocks\":[],\"hasPartials\":false}", "meta": { "moduleName": "show-hock-app/templates/components/artist-info.hbs" } });
@@ -4899,7 +5573,7 @@ define("show-hock-app/templates/components/concert-also-featuring", ["exports"],
   exports["default"] = Ember.HTMLBars.template({ "id": "v78QeJor", "block": "{\"statements\":[[\"block\",[\"if\"],[[\"get\",[\"filteredResults\"]]],null,9]],\"locals\":[],\"named\":[],\"yields\":[],\"blocks\":[{\"statements\":[[\"text\",\"\\n      \"],[\"open-element\",\"h4\",[]],[\"static-attr\",\"class\",\"artist-list\"],[\"flush-element\"],[\"text\",\"\\n        \"],[\"open-element\",\"strong\",[]],[\"flush-element\"],[\"open-element\",\"a\",[]],[\"static-attr\",\"href\",\"javascript:;\"],[\"modifier\",[\"action\"],[[\"get\",[null]],\"goToArtist\",[\"get\",[\"performance\",\"artist\",\"displayName\"]],[\"get\",[\"performance\",\"artist\",\"id\"]]]],[\"flush-element\"],[\"text\",\"\\n          \"],[\"append\",[\"unknown\",[\"performance\",\"artist\",\"displayName\"]],false],[\"close-element\"],[\"close-element\"],[\"text\",\"\\n      \"],[\"close-element\"],[\"text\",\"\\n\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"\\n          \"],[\"open-element\",\"h4\",[]],[\"static-attr\",\"class\",\"artist-list\"],[\"flush-element\"],[\"text\",\"\\n            \"],[\"open-element\",\"strong\",[]],[\"flush-element\"],[\"open-element\",\"a\",[]],[\"static-attr\",\"href\",\"javascript:;\"],[\"modifier\",[\"action\"],[[\"get\",[null]],\"goToArtist\",[\"get\",[\"performance\",\"artist\",\"displayName\"]],[\"get\",[\"performance\",\"artist\",\"id\"]]]],[\"flush-element\"],[\"text\",\"\\n              \"],[\"append\",[\"unknown\",[\"performance\",\"artist\",\"displayName\"]],false],[\"text\",\", \"],[\"close-element\"],[\"close-element\"],[\"text\",\"\\n          \"],[\"close-element\"],[\"text\",\"\\n\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"\\n          \"],[\"open-element\",\"h4\",[]],[\"static-attr\",\"class\",\"artist-list\"],[\"flush-element\"],[\"text\",\"\\n            \"],[\"open-element\",\"strong\",[]],[\"flush-element\"],[\"open-element\",\"a\",[]],[\"static-attr\",\"href\",\"javascript:;\"],[\"modifier\",[\"action\"],[[\"get\",[null]],\"goToArtist\",[\"get\",[\"performance\",\"artist\",\"displayName\"]],[\"get\",[\"performance\",\"artist\",\"id\"]]]],[\"flush-element\"],[\"text\",\"\\n              \"],[\"append\",[\"unknown\",[\"performance\",\"artist\",\"displayName\"]],false],[\"close-element\"],[\"close-element\"],[\"text\",\"\\n          \"],[\"close-element\"],[\"text\",\"\\n\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"\\n\"],[\"block\",[\"if\"],[[\"helper\",[\"arr-last\"],[[\"get\",[\"filteredResults\",\"length\"]],[\"get\",[\"index\"]]],null]],null,2,1],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"\\n          \"],[\"open-element\",\"h4\",[]],[\"static-attr\",\"class\",\"artist-list\"],[\"flush-element\"],[\"text\",\"\\n            \"],[\"open-element\",\"strong\",[]],[\"flush-element\"],[\"open-element\",\"a\",[]],[\"static-attr\",\"href\",\"javascript:;\"],[\"modifier\",[\"action\"],[[\"get\",[null]],\"goToArtist\",[\"get\",[\"performance\",\"artist\",\"displayName\"]],[\"get\",[\"performance\",\"artist\",\"id\"]]]],[\"flush-element\"],[\"text\",\"\\n              \"],[\"append\",[\"unknown\",[\"performance\",\"artist\",\"displayName\"]],false],[\"close-element\"],[\"close-element\"],[\"text\",\"\\n          \"],[\"close-element\"],[\"text\",\"\\n\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"\\n          \"],[\"open-element\",\"h4\",[]],[\"static-attr\",\"class\",\"artist-list\"],[\"flush-element\"],[\"text\",\"\\n            \"],[\"open-element\",\"strong\",[]],[\"flush-element\"],[\"open-element\",\"a\",[]],[\"static-attr\",\"href\",\"javascript:;\"],[\"modifier\",[\"action\"],[[\"get\",[null]],\"goToArtist\",[\"get\",[\"performance\",\"artist\",\"displayName\"]],[\"get\",[\"performance\",\"artist\",\"id\"]]]],[\"flush-element\"],[\"text\",\"\\n              \"],[\"append\",[\"unknown\",[\"performance\",\"artist\",\"displayName\"]],false],[\"text\",\", \"],[\"close-element\"],[\"close-element\"],[\"text\",\"\\n          \"],[\"close-element\"],[\"text\",\"\\n\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"\\n\"],[\"block\",[\"if\"],[[\"helper\",[\"eq\"],[[\"get\",[\"index\"]],0],null]],null,5,4],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"\\n\"],[\"block\",[\"if\"],[[\"helper\",[\"eq\"],[[\"get\",[\"filteredResults\",\"length\"]],2],null]],null,6,3],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"\\n\"],[\"block\",[\"if\"],[[\"helper\",[\"gt\"],[[\"get\",[\"filteredResults\",\"length\"]],1],null]],null,7,0],[\"text\",\"\\n\"]],\"locals\":[\"performance\",\"index\"]},{\"statements\":[[\"text\",\"\\n    \"],[\"open-element\",\"h4\",[]],[\"flush-element\"],[\"text\",\"Also featuring: \"],[\"close-element\"],[\"text\",\"\\n\"],[\"block\",[\"each\"],[[\"get\",[\"filteredResults\"]]],null,8],[\"text\",\"\\n\"]],\"locals\":[]}],\"hasPartials\":false}", "meta": { "moduleName": "show-hock-app/templates/components/concert-also-featuring.hbs" } });
 });
 define("show-hock-app/templates/components/concert-featuring-artist", ["exports"], function (exports) {
-  exports["default"] = Ember.HTMLBars.template({ "id": "G0Q4qMUt", "block": "{\"statements\":[[\"text\",\"  \"],[\"open-element\",\"h4\",[]],[\"flush-element\"],[\"text\",\"Featuring:  \"],[\"block\",[\"if\"],[[\"get\",[\"isFullList\"]]],null,10],[\"close-element\"],[\"text\",\"\\n\\n\"],[\"block\",[\"liquid-if\"],[[\"get\",[\"isFullList\"]]],[[\"class\"],[\"toLeft-list\"]],9,7]],\"locals\":[],\"named\":[],\"yields\":[],\"blocks\":[{\"statements\":[[\"text\",\"        \"],[\"open-element\",\"h4\",[]],[\"static-attr\",\"class\",\"artist-list\"],[\"flush-element\"],[\"open-element\",\"a\",[]],[\"static-attr\",\"href\",\"javascript:;\"],[\"modifier\",[\"action\"],[[\"get\",[null]],\"goToArtist\",[\"get\",[\"performance\",\"artist\",\"displayName\"]],[\"get\",[\"performance\",\"artist\",\"id\"]]]],[\"flush-element\"],[\"append\",[\"unknown\",[\"performance\",\"artist\",\"displayName\"]],false],[\"text\",\", \"],[\"close-element\"],[\"open-element\",\"a\",[]],[\"static-attr\",\"class\",\"get-more\"],[\"modifier\",[\"action\"],[[\"get\",[null]],\"getFullList\",[\"get\",[\"concertId\"]]]],[\"flush-element\"],[\"text\",\"(see all)...\"],[\"close-element\"],[\"close-element\"],[\"text\",\"\\n      \"]],\"locals\":[]},{\"statements\":[[\"block\",[\"if\"],[[\"helper\",[\"eq\"],[[\"get\",[\"index\"]],9],null]],null,0]],\"locals\":[]},{\"statements\":[[\"text\",\"        \"],[\"open-element\",\"h4\",[]],[\"static-attr\",\"class\",\"artist-list\"],[\"flush-element\"],[\"open-element\",\"a\",[]],[\"static-attr\",\"href\",\"javascript:;\"],[\"modifier\",[\"action\"],[[\"get\",[null]],\"goToArtist\",[\"get\",[\"performance\",\"artist\",\"displayName\"]],[\"get\",[\"performance\",\"artist\",\"id\"]]]],[\"flush-element\"],[\"append\",[\"unknown\",[\"performance\",\"artist\",\"displayName\"]],false],[\"text\",\", \"],[\"close-element\"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"block\",[\"if\"],[[\"helper\",[\"lt\"],[[\"get\",[\"index\"]],9],null]],null,2,1]],\"locals\":[]},{\"statements\":[[\"text\",\"        \"],[\"open-element\",\"h4\",[]],[\"static-attr\",\"class\",\"artist-list\"],[\"flush-element\"],[\"open-element\",\"a\",[]],[\"static-attr\",\"href\",\"javascript:;\"],[\"modifier\",[\"action\"],[[\"get\",[null]],\"goToArtist\",[\"get\",[\"performance\",\"artist\",\"displayName\"]],[\"get\",[\"performance\",\"artist\",\"id\"]]]],[\"flush-element\"],[\"append\",[\"unknown\",[\"performance\",\"artist\",\"displayName\"]],false],[\"close-element\"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"block\",[\"if\"],[[\"helper\",[\"lt\"],[[\"get\",[\"performances\",\"length\"]],10],null]],null,4]],\"locals\":[]},{\"statements\":[[\"block\",[\"if\"],[[\"helper\",[\"arr-last\"],[[\"get\",[\"performances\",\"length\"]],[\"get\",[\"index\"]]],null]],null,5,3],[\"text\",\"\\n\"]],\"locals\":[\"performance\",\"index\"]},{\"statements\":[[\"text\",\"\\n\"],[\"block\",[\"each\"],[[\"get\",[\"performances\"]]],null,6],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"      \"],[\"open-element\",\"li\",[]],[\"flush-element\"],[\"append\",[\"unknown\",[\"performance\",\"artist\",\"displayName\"]],false],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[\"performance\"]},{\"statements\":[[\"text\",\"\\n  \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"artist-grid-wrapper\"],[\"flush-element\"],[\"text\",\"\\n    \"],[\"open-element\",\"ui\",[]],[\"static-attr\",\"class\",\"row-fluid artist-grid block-grid-3\"],[\"flush-element\"],[\"text\",\"\\n\"],[\"block\",[\"each\"],[[\"get\",[\"performances\"]]],null,8],[\"text\",\"    \"],[\"close-element\"],[\"text\",\"\\n  \"],[\"close-element\"],[\"text\",\"\\n\\n\"]],\"locals\":[]},{\"statements\":[[\"open-element\",\"a\",[]],[\"static-attr\",\"class\",\"get-more\"],[\"modifier\",[\"action\"],[[\"get\",[null]],\"getFullList\",[\"get\",[\"concertId\"]]]],[\"flush-element\"],[\"text\",\"See Less\"],[\"close-element\"]],\"locals\":[]}],\"hasPartials\":false}", "meta": { "moduleName": "show-hock-app/templates/components/concert-featuring-artist.hbs" } });
+  exports["default"] = Ember.HTMLBars.template({ "id": "niNU55d1", "block": "{\"statements\":[[\"text\",\"  \"],[\"open-element\",\"h4\",[]],[\"flush-element\"],[\"text\",\"Featuring:  \"],[\"block\",[\"if\"],[[\"get\",[\"isFullList\"]]],null,12],[\"close-element\"],[\"text\",\"\\n\\n\"],[\"block\",[\"liquid-if\"],[[\"get\",[\"isFullList\"]]],[[\"class\"],[\"toLeft-list\"]],11,9]],\"locals\":[],\"named\":[],\"yields\":[],\"blocks\":[{\"statements\":[[\"text\",\"          \"],[\"open-element\",\"h4\",[]],[\"static-attr\",\"class\",\"artist-list\"],[\"flush-element\"],[\"open-element\",\"a\",[]],[\"static-attr\",\"href\",\"javascript:;\"],[\"modifier\",[\"action\"],[[\"get\",[null]],\"goToArtist\",[\"get\",[\"performance\",\"artist\",\"displayName\"]],[\"get\",[\"performance\",\"artist\",\"id\"]]]],[\"flush-element\"],[\"append\",[\"unknown\",[\"performance\",\"artist\",\"displayName\"]],false],[\"text\",\", \"],[\"close-element\"],[\"open-element\",\"a\",[]],[\"static-attr\",\"class\",\"get-more\"],[\"modifier\",[\"action\"],[[\"get\",[null]],\"getFullList\",[\"get\",[\"concertId\"]]]],[\"flush-element\"],[\"text\",\"(see all)...\"],[\"close-element\"],[\"close-element\"],[\"text\",\"\\n\\n        \"]],\"locals\":[]},{\"statements\":[[\"block\",[\"if\"],[[\"helper\",[\"eq\"],[[\"get\",[\"index\"]],9],null]],null,0]],\"locals\":[]},{\"statements\":[[\"text\",\"          \"],[\"open-element\",\"h4\",[]],[\"static-attr\",\"class\",\"artist-list\"],[\"flush-element\"],[\"open-element\",\"a\",[]],[\"static-attr\",\"href\",\"javascript:;\"],[\"modifier\",[\"action\"],[[\"get\",[null]],\"goToArtist\",[\"get\",[\"performance\",\"artist\",\"displayName\"]],[\"get\",[\"performance\",\"artist\",\"id\"]]]],[\"flush-element\"],[\"append\",[\"unknown\",[\"performance\",\"artist\",\"displayName\"]],false],[\"text\",\", \"],[\"close-element\"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"block\",[\"if\"],[[\"helper\",[\"lt\"],[[\"get\",[\"index\"]],9],null]],null,2,1]],\"locals\":[]},{\"statements\":[[\"text\",\"          \"],[\"open-element\",\"h4\",[]],[\"static-attr\",\"class\",\"artist-list\"],[\"flush-element\"],[\"open-element\",\"a\",[]],[\"static-attr\",\"href\",\"javascript:;\"],[\"modifier\",[\"action\"],[[\"get\",[null]],\"goToArtist\",[\"get\",[\"performance\",\"artist\",\"displayName\"]],[\"get\",[\"performance\",\"artist\",\"id\"]]]],[\"flush-element\"],[\"append\",[\"unknown\",[\"performance\",\"artist\",\"displayName\"]],false],[\"close-element\"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"block\",[\"if\"],[[\"helper\",[\"lt\"],[[\"get\",[\"performances\",\"length\"]],10],null]],null,4]],\"locals\":[]},{\"statements\":[[\"block\",[\"if\"],[[\"helper\",[\"arr-last\"],[[\"get\",[\"performances\",\"length\"]],[\"get\",[\"index\"]]],null]],null,5,3],[\"text\",\"\\n\"]],\"locals\":[\"performance\",\"index\"]},{\"statements\":[[\"text\",\"\\n\"],[\"block\",[\"each\"],[[\"get\",[\"performances\"]]],null,6]],\"locals\":[]},{\"statements\":[[\"text\",\"  \"],[\"open-element\",\"h4\",[]],[\"static-attr\",\"class\",\"artist-list\"],[\"flush-element\"],[\"text\",\"Not known at this time\"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"\\n\"],[\"block\",[\"if\"],[[\"helper\",[\"eq\"],[[\"get\",[\"performances\",\"length\"]],0],null]],null,8,7]],\"locals\":[]},{\"statements\":[[\"text\",\"      \"],[\"open-element\",\"li\",[]],[\"flush-element\"],[\"append\",[\"unknown\",[\"performance\",\"artist\",\"displayName\"]],false],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[\"performance\"]},{\"statements\":[[\"text\",\"\\n  \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"artist-grid-wrapper\"],[\"flush-element\"],[\"text\",\"\\n    \"],[\"open-element\",\"ui\",[]],[\"static-attr\",\"class\",\"row-fluid artist-grid block-grid-3\"],[\"flush-element\"],[\"text\",\"\\n\"],[\"block\",[\"each\"],[[\"get\",[\"performances\"]]],null,10],[\"text\",\"    \"],[\"close-element\"],[\"text\",\"\\n  \"],[\"close-element\"],[\"text\",\"\\n\\n\"]],\"locals\":[]},{\"statements\":[[\"open-element\",\"a\",[]],[\"static-attr\",\"class\",\"get-more\"],[\"modifier\",[\"action\"],[[\"get\",[null]],\"getFullList\",[\"get\",[\"concertId\"]]]],[\"flush-element\"],[\"text\",\"See Less\"],[\"close-element\"]],\"locals\":[]}],\"hasPartials\":false}", "meta": { "moduleName": "show-hock-app/templates/components/concert-featuring-artist.hbs" } });
 });
 define("show-hock-app/templates/components/concert-location-map", ["exports"], function (exports) {
   exports["default"] = Ember.HTMLBars.template({ "id": "jOTb8rj2", "block": "{\"statements\":[[\"append\",[\"helper\",[\"g-maps\"],null,[[\"class\",\"name\",\"lat\",\"lng\",\"zoom\",\"markers\"],[\"concert-location-map\",\"my-map\",[\"get\",[\"lat\"]],[\"get\",[\"lng\"]],[\"get\",[\"zoom\"]],[\"get\",[\"markers\"]]]]],false],[\"text\",\"\\n\"]],\"locals\":[],\"named\":[],\"yields\":[],\"blocks\":[],\"hasPartials\":false}", "meta": { "moduleName": "show-hock-app/templates/components/concert-location-map.hbs" } });
@@ -5016,7 +5690,7 @@ define("show-hock-app/templates/components/tracking-buttons-concert", ["exports"
   exports["default"] = Ember.HTMLBars.template({ "id": "SylHwXMI", "block": "{\"statements\":[[\"block\",[\"if\"],[[\"get\",[\"isAuthenticated\"]]],null,3,0]],\"locals\":[],\"named\":[],\"yields\":[],\"blocks\":[{\"statements\":[[\"text\",\"  \"],[\"append\",[\"helper\",[\"button-track-event\"],null,[[\"value\",\"buttonTitle\",\"buttonClick\"],[[\"get\",[\"model\",\"id\"]],\"Track Event\",\"goToAuthenticate\"]]],false],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"  \"],[\"append\",[\"helper\",[\"button-track-event\"],null,[[\"value\",\"buttonTitle\",\"buttonClick\"],[[\"get\",[\"model\"]],\"Track Event\",\"trackEvent\"]]],false],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"\\n  \"],[\"append\",[\"helper\",[\"button-untrack-event\"],null,[[\"value\",\"buttonTitle\",\"buttonClick\"],[[\"get\",[\"model\"]],\"Tracked!!\",\"unTrackEvent\"]]],false],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"block\",[\"liquid-if\"],[[\"get\",[\"userPicked\"]]],[[\"class\"],[\"tracking-button-switch\"]],2,1]],\"locals\":[]}],\"hasPartials\":false}", "meta": { "moduleName": "show-hock-app/templates/components/tracking-buttons-concert.hbs" } });
 });
 define("show-hock-app/templates/components/upcoming-events", ["exports"], function (exports) {
-  exports["default"] = Ember.HTMLBars.template({ "id": "r5FOP2/V", "block": "{\"statements\":[[\"block\",[\"if\"],[[\"get\",[\"upcomingInfo\",\"firstObject\",\"noMatch\"]]],null,13,12]],\"locals\":[],\"named\":[],\"yields\":[],\"blocks\":[{\"statements\":[[\"text\",\"                \"],[\"open-element\",\"h4\",[]],[\"flush-element\"],[\"append\",[\"unknown\",[\"event\",\"venue\",\"displayName\"]],false],[\"text\",\", \"],[\"append\",[\"unknown\",[\"event\",\"location\",\"city\"]],false],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"                \"],[\"open-element\",\"h4\",[]],[\"flush-element\"],[\"append\",[\"unknown\",[\"event\",\"location\",\"city\"]],false],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"                  \"],[\"open-element\",\"h4\",[]],[\"static-attr\",\"class\",\"artist-list\"],[\"flush-element\"],[\"open-element\",\"strong\",[]],[\"flush-element\"],[\"append\",[\"unknown\",[\"performance\",\"artist\",\"displayName\"]],false],[\"text\",\", \"],[\"close-element\"],[\"close-element\"],[\"text\",\"\\n                \"]],\"locals\":[]},{\"statements\":[[\"text\",\"                    \"],[\"open-element\",\"h4\",[]],[\"static-attr\",\"class\",\"artist-list\"],[\"flush-element\"],[\"open-element\",\"strong\",[]],[\"flush-element\"],[\"text\",\" \"],[\"append\",[\"unknown\",[\"performance\",\"artist\",\"displayName\"]],false],[\"close-element\"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"block\",[\"if\"],[[\"helper\",[\"gt\"],[[\"get\",[\"event\",\"performance\",\"length\"]],1],null]],null,3]],\"locals\":[]},{\"statements\":[[\"block\",[\"if\"],[[\"helper\",[\"eq\"],[[\"get\",[\"performance\",\"billingIndex\"]],[\"get\",[\"event\",\"performance\",\"length\"]]],null]],null,4,2]],\"locals\":[]},{\"statements\":[[\"text\",\"                  \"],[\"open-element\",\"h4\",[]],[\"static-attr\",\"class\",\"artist-list\"],[\"flush-element\"],[\"open-element\",\"strong\",[]],[\"flush-element\"],[\"append\",[\"unknown\",[\"performance\",\"artist\",\"displayName\"]],false],[\"close-element\"],[\"close-element\"],[\"text\",\"\\n\\n\"]],\"locals\":[]},{\"statements\":[[\"block\",[\"if\"],[[\"helper\",[\"eq\"],[[\"get\",[\"event\",\"performance\",\"length\"]],1],null]],null,6,5]],\"locals\":[\"performance\"]},{\"statements\":[[\"block\",[\"each\"],[[\"get\",[\"event\",\"performance\"]]],null,7]],\"locals\":[]},{\"statements\":[[\"text\",\"              \"],[\"open-element\",\"h4\",[]],[\"flush-element\"],[\"open-element\",\"strong\",[]],[\"flush-element\"],[\"append\",[\"unknown\",[\"event\",\"displayName\"]],false],[\"close-element\"],[\"close-element\"],[\"text\",\"\\n              \"],[\"append\",[\"helper\",[\"purchase-tickets\"],null,[[\"event\"],[[\"get\",[\"event\",\"uri\"]]]]],false],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"              -\\n                \"],[\"append\",[\"helper\",[\"format-weekday\"],[[\"get\",[\"event\",\"end\",\"date\"]]],null],true],[\"text\",\",\\n                \"],[\"append\",[\"helper\",[\"format-month\"],[[\"get\",[\"event\",\"end\",\"date\"]]],null],true],[\"text\",\"\\n                \"],[\"append\",[\"helper\",[\"format-day\"],[[\"get\",[\"event\",\"end\",\"date\"]]],null],true],[\"text\",\",\\n                \"],[\"append\",[\"helper\",[\"format-year\"],[[\"get\",[\"event\",\"end\",\"date\"]]],null],true],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"        \"],[\"open-element\",\"li\",[]],[\"static-attr\",\"class\",\"upcoming-events-item\"],[\"flush-element\"],[\"text\",\"\\n          \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"upcoming-events-item-div\"],[\"flush-element\"],[\"text\",\"\\n\\n            \"],[\"open-element\",\"li\",[]],[\"static-attr\",\"class\",\"upcoming-events-date\"],[\"flush-element\"],[\"text\",\"\\n              \"],[\"open-element\",\"strong\",[]],[\"flush-element\"],[\"text\",\"\\n                \"],[\"append\",[\"helper\",[\"format-weekday\"],[[\"get\",[\"event\",\"start\",\"date\"]]],null],true],[\"text\",\",\\n                \"],[\"append\",[\"helper\",[\"format-month\"],[[\"get\",[\"event\",\"start\",\"date\"]]],null],true],[\"text\",\"\\n                \"],[\"append\",[\"helper\",[\"format-day\"],[[\"get\",[\"event\",\"start\",\"date\"]]],null],true],[\"text\",\",\\n                \"],[\"append\",[\"helper\",[\"format-year\"],[[\"get\",[\"event\",\"start\",\"date\"]]],null],true],[\"text\",\"\\n\"],[\"block\",[\"if\"],[[\"get\",[\"event\",\"end\",\"date\"]]],null,10],[\"text\",\"                \"],[\"close-element\"],[\"text\",\"\\n            \"],[\"close-element\"],[\"text\",\"\\n\\n          \"],[\"open-element\",\"li\",[]],[\"static-attr\",\"class\",\"artist-event\"],[\"flush-element\"],[\"text\",\"\\n            \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"artist-list-wrapper\"],[\"flush-element\"],[\"text\",\"\\n\"],[\"block\",[\"if\"],[[\"helper\",[\"eq\"],[[\"get\",[\"event\",\"type\"]],\"Festival\"],null]],null,9,8],[\"text\",\"          \"],[\"close-element\"],[\"text\",\"\\n\"],[\"text\",\"            \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"artist-event-location\"],[\"flush-element\"],[\"text\",\"\\n\"],[\"block\",[\"if\"],[[\"helper\",[\"eq\"],[[\"get\",[\"event\",\"venue\",\"displayName\"]],\"Unknown venue\"],null]],null,1,0],[\"text\",\"            \"],[\"close-element\"],[\"text\",\"\\n            \"],[\"append\",[\"helper\",[\"purchase-tickets\"],null,[[\"event\"],[[\"get\",[\"event\",\"uri\"]]]]],false],[\"text\",\"\\n          \"],[\"close-element\"],[\"text\",\"\\n        \"],[\"close-element\"],[\"text\",\"\\n\\n        \"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[\"event\"]},{\"statements\":[[\"text\",\"  \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"upcoming-events\"],[\"flush-element\"],[\"text\",\"\\n\"],[\"text\",\"    \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"upcoming-events-title-wrapper\"],[\"flush-element\"],[\"text\",\"\\n      \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"upcoming-events-title\"],[\"flush-element\"],[\"text\",\"\\n        \"],[\"open-element\",\"h3\",[]],[\"flush-element\"],[\"open-element\",\"strong\",[]],[\"flush-element\"],[\"text\",\"Next concerts near you\"],[\"close-element\"],[\"close-element\"],[\"text\",\"\\n      \"],[\"close-element\"],[\"text\",\"\\n      \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"upcoming-events-location\"],[\"flush-element\"],[\"text\",\"\\n        \"],[\"open-element\",\"h4\",[]],[\"flush-element\"],[\"append\",[\"unknown\",[\"upcomingInfo\",\"firstObject\",\"venue\",\"metroArea\",\"displayName\"]],false],[\"text\",\",\\n            \"],[\"append\",[\"unknown\",[\"upcomingInfo\",\"firstObject\",\"venue\",\"metroArea\",\"state\",\"displayName\"]],false],[\"text\",\",\\n            \"],[\"append\",[\"unknown\",[\"upcomingInfo\",\"firstObject\",\"venue\",\"metroArea\",\"country\",\"displayName\"]],false],[\"close-element\"],[\"text\",\"\\n      \"],[\"close-element\"],[\"text\",\"\\n    \"],[\"close-element\"],[\"text\",\"\\n\"],[\"text\",\"    \"],[\"open-element\",\"ul\",[]],[\"static-attr\",\"class\",\"upcoming-events-listing\"],[\"flush-element\"],[\"text\",\"\\n\"],[\"block\",[\"each\"],[[\"get\",[\"upcomingInfo\"]]],null,11],[\"text\",\"    \"],[\"close-element\"],[\"text\",\"\\n  \"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"  \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"upcoming-events-item-div\"],[\"flush-element\"],[\"text\",\"\\n  \"],[\"open-element\",\"h4\",[]],[\"flush-element\"],[\"append\",[\"unknown\",[\"upcomingInfo\",\"firstObject\",\"performance\",\"artist\",\"displayName\"]],false],[\"text\",\" is not playing in \"],[\"open-element\",\"strong\",[]],[\"flush-element\"],[\"append\",[\"unknown\",[\"userLocationSetting\",\"regionName\"]],false],[\"close-element\"],[\"close-element\"],[\"text\",\"\\n  \"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]}],\"hasPartials\":false}", "meta": { "moduleName": "show-hock-app/templates/components/upcoming-events.hbs" } });
+  exports["default"] = Ember.HTMLBars.template({ "id": "RzHdsDK8", "block": "{\"statements\":[[\"text\",\"\\n        \"],[\"open-element\",\"li\",[]],[\"static-attr\",\"class\",\"upcoming-events-item\"],[\"flush-element\"],[\"text\",\"\\n          \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"upcoming-events-item-div\"],[\"flush-element\"],[\"text\",\"\\n\\n            \"],[\"open-element\",\"li\",[]],[\"static-attr\",\"class\",\"upcoming-events-date\"],[\"flush-element\"],[\"text\",\"\\n              \"],[\"open-element\",\"strong\",[]],[\"flush-element\"],[\"text\",\"\\n                \"],[\"append\",[\"helper\",[\"format-weekday\"],[[\"get\",[\"event\",\"start\",\"date\"]]],null],true],[\"text\",\",\\n                \"],[\"append\",[\"helper\",[\"format-month\"],[[\"get\",[\"event\",\"start\",\"date\"]]],null],true],[\"text\",\"\\n                \"],[\"append\",[\"helper\",[\"format-day\"],[[\"get\",[\"event\",\"start\",\"date\"]]],null],true],[\"text\",\",\\n                \"],[\"append\",[\"helper\",[\"format-year\"],[[\"get\",[\"event\",\"start\",\"date\"]]],null],true],[\"text\",\"\\n\"],[\"block\",[\"if\"],[[\"get\",[\"event\",\"end\",\"date\"]]],null,10],[\"text\",\"                \"],[\"close-element\"],[\"text\",\"\\n            \"],[\"close-element\"],[\"text\",\"\\n          \"],[\"open-element\",\"li\",[]],[\"static-attr\",\"class\",\"artist-event\"],[\"flush-element\"],[\"text\",\"\\n              \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"artist-list-wrapper\"],[\"flush-element\"],[\"text\",\"\\n\"],[\"block\",[\"if\"],[[\"helper\",[\"eq\"],[[\"get\",[\"event\",\"type\"]],\"Festival\"],null]],null,9,8],[\"text\",\"          \"],[\"close-element\"],[\"text\",\"\\n\"],[\"text\",\"            \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"artist-event-location\"],[\"flush-element\"],[\"text\",\"\\n\"],[\"block\",[\"if\"],[[\"helper\",[\"eq\"],[[\"get\",[\"event\",\"venue\",\"displayName\"]],\"Unknown venue\"],null]],null,1,0],[\"text\",\"            \"],[\"close-element\"],[\"text\",\"\\n\\n          \"],[\"close-element\"],[\"text\",\"\\n\"],[\"text\",\"\\n          \"],[\"append\",[\"helper\",[\"button-to-concert\"],null,[[\"buttonTitle\",\"value\",\"buttonClick\"],[\"Details\",[\"get\",[\"event\"]],\"goToConcert\"]]],false],[\"text\",\"\\n\\n          \"],[\"append\",[\"helper\",[\"tracking-buttons-concert\"],null,[[\"model\",\"trackEvent\",\"unTrackEvent\",\"userPicked\",\"isAuthenticated\",\"goToAuthenticate\"],[[\"get\",[\"event\"]],\"trackUpcomingEvent\",\"unTrackUpcomingEvent\",[\"get\",[\"userPicked\"]],[\"get\",[\"isAuthenticated\"]],\"goToAuthenticate\"]]],false],[\"text\",\"\\n        \"],[\"close-element\"],[\"text\",\"\\n\\n        \"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[],\"named\":[],\"yields\":[],\"blocks\":[{\"statements\":[[\"text\",\"                \"],[\"open-element\",\"h4\",[]],[\"flush-element\"],[\"append\",[\"unknown\",[\"event\",\"venue\",\"displayName\"]],false],[\"text\",\", \"],[\"append\",[\"unknown\",[\"event\",\"location\",\"city\"]],false],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"                \"],[\"open-element\",\"h4\",[]],[\"flush-element\"],[\"append\",[\"unknown\",[\"event\",\"location\",\"city\"]],false],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"                  \"],[\"open-element\",\"h4\",[]],[\"static-attr\",\"class\",\"artist-list\"],[\"flush-element\"],[\"open-element\",\"strong\",[]],[\"flush-element\"],[\"append\",[\"unknown\",[\"performance\",\"artist\",\"displayName\"]],false],[\"text\",\", \"],[\"close-element\"],[\"close-element\"],[\"text\",\"\\n                \"]],\"locals\":[]},{\"statements\":[[\"text\",\"                    \"],[\"open-element\",\"h4\",[]],[\"static-attr\",\"class\",\"artist-list\"],[\"flush-element\"],[\"open-element\",\"strong\",[]],[\"flush-element\"],[\"text\",\" \"],[\"append\",[\"unknown\",[\"performance\",\"artist\",\"displayName\"]],false],[\"close-element\"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"block\",[\"if\"],[[\"helper\",[\"gt\"],[[\"get\",[\"event\",\"performance\",\"length\"]],1],null]],null,3]],\"locals\":[]},{\"statements\":[[\"block\",[\"if\"],[[\"helper\",[\"eq\"],[[\"get\",[\"performance\",\"billingIndex\"]],[\"get\",[\"event\",\"performance\",\"length\"]]],null]],null,4,2]],\"locals\":[]},{\"statements\":[[\"text\",\"                  \"],[\"open-element\",\"h4\",[]],[\"static-attr\",\"class\",\"artist-list\"],[\"flush-element\"],[\"open-element\",\"strong\",[]],[\"flush-element\"],[\"append\",[\"unknown\",[\"performance\",\"artist\",\"displayName\"]],false],[\"close-element\"],[\"close-element\"],[\"text\",\"\\n\\n\"]],\"locals\":[]},{\"statements\":[[\"block\",[\"if\"],[[\"helper\",[\"eq\"],[[\"get\",[\"event\",\"performance\",\"length\"]],1],null]],null,6,5]],\"locals\":[\"performance\"]},{\"statements\":[[\"block\",[\"each\"],[[\"get\",[\"event\",\"performance\"]]],null,7]],\"locals\":[]},{\"statements\":[[\"text\",\"              \"],[\"open-element\",\"h4\",[]],[\"flush-element\"],[\"open-element\",\"strong\",[]],[\"flush-element\"],[\"append\",[\"unknown\",[\"event\",\"displayName\"]],false],[\"close-element\"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"              -\\n                \"],[\"append\",[\"helper\",[\"format-weekday\"],[[\"get\",[\"event\",\"end\",\"date\"]]],null],true],[\"text\",\",\\n                \"],[\"append\",[\"helper\",[\"format-month\"],[[\"get\",[\"event\",\"end\",\"date\"]]],null],true],[\"text\",\"\\n                \"],[\"append\",[\"helper\",[\"format-day\"],[[\"get\",[\"event\",\"end\",\"date\"]]],null],true],[\"text\",\",\\n                \"],[\"append\",[\"helper\",[\"format-year\"],[[\"get\",[\"event\",\"end\",\"date\"]]],null],true],[\"text\",\"\\n\"]],\"locals\":[]}],\"hasPartials\":false}", "meta": { "moduleName": "show-hock-app/templates/components/upcoming-events.hbs" } });
 });
 define("show-hock-app/templates/components/upcoming-region-events", ["exports"], function (exports) {
   exports["default"] = Ember.HTMLBars.template({ "id": "SoLK9zwc", "block": "{\"statements\":[[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"upcoming-region-events-header\"],[\"flush-element\"],[\"text\",\"\\n  \"],[\"open-element\",\"h3\",[]],[\"flush-element\"],[\"append\",[\"helper\",[\"upper-case\"],[[\"get\",[\"model\",\"meta\",\"total_entries\"]]],null],false],[\"text\",\" SHOWS NEAR \"],[\"append\",[\"helper\",[\"upper-case\"],[[\"get\",[\"userLocationSetting\",\"regionName\"]]],null],false],[\"close-element\"],[\"text\",\"\\n  \"],[\"append\",[\"helper\",[\"change-location\"],null,[[\"userChooseRegion\"],[\"userChooseRegion\"]]],false],[\"text\",\"\\n\\n\"],[\"close-element\"],[\"text\",\"\\n\\n\"],[\"open-element\",\"ul\",[]],[\"static-attr\",\"class\",\"upcoming-region-events-list-wrapper\"],[\"flush-element\"],[\"text\",\"\\n\\n\"],[\"block\",[\"each\"],[[\"get\",[\"filteredResults\"]]],null,2],[\"text\",\"\\n\"],[\"close-element\"],[\"text\",\"\\n\\n\"],[\"block\",[\"if\"],[[\"helper\",[\"gt\"],[[\"get\",[\"model\",\"meta\",\"total_entries\"]],5],null]],null,0]],\"locals\":[],\"named\":[],\"yields\":[],\"blocks\":[{\"statements\":[[\"append\",[\"helper\",[\"button-to-region\"],null,[[\"buttonTitle\",\"buttonClick\",\"regionId\",\"regionName\"],[\"See More\",\"goToRegion\",[\"get\",[\"model\",\"id\"]],[\"get\",[\"model\",\"event\",\"firstObject\",\"venue\",\"metroArea\",\"displayName\"]]]]],false],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\" - \"],[\"append\",[\"helper\",[\"format-mon\"],[[\"get\",[\"event\",\"end\",\"date\"]]],null],false],[\"text\",\", \"],[\"append\",[\"helper\",[\"format-day\"],[[\"get\",[\"event\",\"end\",\"date\"]]],null],false],[\"text\",\", \"],[\"append\",[\"helper\",[\"format-year\"],[[\"get\",[\"event\",\"end\",\"date\"]]],null],false]],\"locals\":[]},{\"statements\":[[\"text\",\"    \"],[\"open-element\",\"li\",[]],[\"static-attr\",\"class\",\"upcoming-region-event item\"],[\"flush-element\"],[\"text\",\"\\n      \"],[\"open-element\",\"a\",[]],[\"static-attr\",\"href\",\"javascript;\"],[\"modifier\",[\"action\"],[[\"get\",[null]],\"goToConcert\",[\"get\",[\"event\",\"id\"]],[\"get\",[\"event\",\"venue\",\"metroArea\",\"displayName\"]],[\"get\",[\"event\",\"venue\",\"metroArea\",\"id\"]]]],[\"flush-element\"],[\"text\",\"\\n        \"],[\"open-element\",\"h4\",[]],[\"flush-element\"],[\"open-element\",\"strong\",[]],[\"flush-element\"],[\"append\",[\"helper\",[\"no-parens\"],[[\"get\",[\"event\",\"displayName\"]]],null],false],[\"close-element\"],[\"close-element\"],[\"text\",\"\\n      \"],[\"close-element\"],[\"text\",\"\\n\\n      \"],[\"open-element\",\"p\",[]],[\"flush-element\"],[\"append\",[\"helper\",[\"format-mon\"],[[\"get\",[\"event\",\"start\",\"date\"]]],null],false],[\"text\",\" \"],[\"append\",[\"helper\",[\"format-day\"],[[\"get\",[\"event\",\"start\",\"date\"]]],null],false],[\"text\",\", \"],[\"append\",[\"helper\",[\"format-year\"],[[\"get\",[\"event\",\"start\",\"date\"]]],null],false],[\"text\",\" \"],[\"block\",[\"if\"],[[\"get\",[\"event\",\"end\",\"date\"]]],null,1],[\"close-element\"],[\"text\",\"\\n    \"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[\"event\"]}],\"hasPartials\":false}", "meta": { "moduleName": "show-hock-app/templates/components/upcoming-region-events.hbs" } });
@@ -5040,7 +5714,7 @@ define("show-hock-app/templates/index", ["exports"], function (exports) {
   exports["default"] = Ember.HTMLBars.template({ "id": "NDdQZrRZ", "block": "{\"statements\":[[\"block\",[\"each\"],[[\"get\",[\"flashMessages\",\"queue\"]]],null,0],[\"text\",\"\\n\"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"landing-info-section event-info\"],[\"flush-element\"],[\"text\",\"\\n\\n    \"],[\"append\",[\"helper\",[\"event-carousel-outer\"],null,[[\"events\",\"slideFrom\",\"slideTo\",\"slideClick\"],[[\"get\",[\"model\",\"event\"]],[\"get\",[\"slideFrom\"]],[\"get\",[\"slideTo\"]],[\"get\",[\"slideClick\"]]]]],false],[\"text\",\"\\n\\n  \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"landing-info-wrapper index\"],[\"flush-element\"],[\"text\",\"\\n    \"],[\"append\",[\"helper\",[\"upcoming-region-events\"],null,[[\"model\",\"goToRegion\",\"goToConcert\",\"userChooseRegion\"],[[\"get\",[\"model\"]],\"goToRegion\",\"goToConcert\",\"userChooseRegion\"]]],false],[\"text\",\"\\n\\n    \"],[\"append\",[\"helper\",[\"events-carousel\"],null,[[\"events\",\"slideFrom\",\"slideTo\",\"slideClick\",\"goToConcert\"],[[\"get\",[\"model\",\"event\"]],[\"get\",[\"slideFrom\"]],[\"get\",[\"slideTo\"]],[\"get\",[\"slideClick\"]],\"goToConcert\"]]],false],[\"text\",\"\\n  \"],[\"close-element\"],[\"text\",\"\\n\"],[\"close-element\"],[\"text\",\"\\n\\n\"],[\"append\",[\"helper\",[\"landing-page-search-menu\"],null,[[\"goToRegions\",\"goToArtists\",\"goToVenues\"],[\"goToRegions\",\"goToArtists\",\"goToVenues\"]]],false],[\"text\",\"\\n\\n\"],[\"append\",[\"unknown\",[\"liquid-outlet\"]],false],[\"text\",\"\\n\"]],\"locals\":[],\"named\":[],\"yields\":[],\"blocks\":[{\"statements\":[[\"text\",\"  \"],[\"append\",[\"helper\",[\"flash-message\"],null,[[\"flash\"],[[\"get\",[\"flash\"]]]]],false],[\"text\",\"\\n\"]],\"locals\":[\"flash\"]}],\"hasPartials\":false}", "meta": { "moduleName": "show-hock-app/templates/index.hbs" } });
 });
 define("show-hock-app/templates/navbar", ["exports"], function (exports) {
-  exports["default"] = Ember.HTMLBars.template({ "id": "TkGkh1Sp", "block": "{\"statements\":[[\"open-element\",\"nav\",[]],[\"static-attr\",\"role\",\"navigation\"],[\"static-attr\",\"class\",\"navbar navbar-default navbar-fixed-top\"],[\"flush-element\"],[\"text\",\"\\n  \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"container\"],[\"flush-element\"],[\"text\",\"\\n    \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"navbar-header title navbar-left pull-left\"],[\"flush-element\"],[\"text\",\"\\n\"],[\"block\",[\"if\"],[[\"get\",[\"isAuthenticated\"]]],null,10,9],[\"text\",\"    \"],[\"close-element\"],[\"text\",\"\\n\\n\\n\\n    \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"navbar-header navbar-right pull-right\"],[\"flush-element\"],[\"text\",\"\\n\\n    \"],[\"open-element\",\"button\",[]],[\"static-attr\",\"type\",\"button\"],[\"static-attr\",\"data-toggle\",\"collapse\"],[\"static-attr\",\"data-target\",\".navbar-collapse\"],[\"static-attr\",\"class\",\"navbar-toggle\"],[\"flush-element\"],[\"text\",\"\\n      \"],[\"open-element\",\"span\",[]],[\"static-attr\",\"class\",\"sr-only\"],[\"flush-element\"],[\"text\",\"Toggle navigation\"],[\"close-element\"],[\"text\",\"\\n      \"],[\"open-element\",\"span\",[]],[\"static-attr\",\"class\",\"icon-bar\"],[\"flush-element\"],[\"close-element\"],[\"text\",\"\\n      \"],[\"open-element\",\"span\",[]],[\"static-attr\",\"class\",\"icon-bar\"],[\"flush-element\"],[\"close-element\"],[\"text\",\"\\n      \"],[\"open-element\",\"span\",[]],[\"static-attr\",\"class\",\"icon-bar\"],[\"flush-element\"],[\"close-element\"],[\"text\",\"\\n    \"],[\"close-element\"],[\"text\",\"\\n    \"],[\"close-element\"],[\"text\",\"\\n\\n    \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"navbar-header location navbar-left pull-left\"],[\"flush-element\"],[\"text\",\"\\n      \"],[\"open-element\",\"ul\",[]],[\"static-attr\",\"class\",\"nav geo pull-left\"],[\"flush-element\"],[\"text\",\"\\n        \"],[\"open-element\",\"li\",[]],[\"static-attr\",\"class\",\"navbar-text region pull-left\"],[\"flush-element\"],[\"text\",\"\\n\"],[\"block\",[\"if\"],[[\"get\",[\"media\",\"isTablet\"]]],null,8,7],[\"text\",\"        \"],[\"close-element\"],[\"text\",\"\\n      \"],[\"close-element\"],[\"text\",\"\\n\\n\"],[\"block\",[\"if\"],[[\"get\",[\"isAuthenticated\"]]],null,6],[\"text\",\"    \"],[\"close-element\"],[\"text\",\"\\n\\n    \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"visible-xs-block clearfix\"],[\"flush-element\"],[\"close-element\"],[\"text\",\"\\n\\n    \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"collapse navbar-collapse\"],[\"flush-element\"],[\"text\",\"\\n\\n\\n\"],[\"text\",\"\\n      \"],[\"open-element\",\"ul\",[]],[\"static-attr\",\"class\",\"nav navbar-nav navbar-right account\"],[\"flush-element\"],[\"text\",\"\\n\"],[\"block\",[\"if\"],[[\"get\",[\"isAuthenticated\"]]],null,4,2],[\"text\",\"      \"],[\"close-element\"],[\"text\",\"\\n\\n      \"],[\"open-element\",\"ul\",[]],[\"static-attr\",\"class\",\"nav navbar-nav navbar-right search\"],[\"flush-element\"],[\"text\",\"\\n\\n        \"],[\"open-element\",\"li\",[]],[\"static-attr\",\"class\",\"search-field item\"],[\"flush-element\"],[\"text\",\"\\n          \"],[\"open-element\",\"form\",[]],[\"static-attr\",\"class\",\"navbar-form navbar-right\"],[\"flush-element\"],[\"text\",\"\\n\\n    \"],[\"append\",[\"helper\",[\"search-input\"],null,[[\"keyword\",\"placeholder\"],[[\"get\",[\"enterName\"]],\"Enter artist / region / venue\"]]],false],[\"text\",\"\\n                \"],[\"open-element\",\"button\",[]],[\"static-attr\",\"type\",\"submit\"],[\"static-attr\",\"class\",\"btn search-button in-form\"],[\"modifier\",[\"action\"],[[\"get\",[null]],\"allSearch\",[\"get\",[\"enterName\"]]]],[\"flush-element\"],[\"text\",\"\\n                \"],[\"open-element\",\"span\",[]],[\"static-attr\",\"class\",\"glyphicon glyphicon-search\"],[\"flush-element\"],[\"close-element\"],[\"text\",\"\\n                \"],[\"close-element\"],[\"text\",\"\\n          \"],[\"close-element\"],[\"text\",\"\\n        \"],[\"close-element\"],[\"text\",\"\\n\\n        \"],[\"open-element\",\"li\",[]],[\"static-attr\",\"class\",\"navbar-text change pull-left\"],[\"flush-element\"],[\"text\",\"\\n          \"],[\"append\",[\"helper\",[\"change-location\"],null,[[\"userChooseRegion\"],[\"userChooseRegion\"]]],false],[\"text\",\"\\n        \"],[\"close-element\"],[\"text\",\"\\n      \"],[\"close-element\"],[\"text\",\"\\n    \"],[\"close-element\"],[\"text\",\"\\n  \"],[\"close-element\"],[\"text\",\"\\n\"],[\"close-element\"],[\"text\",\"\\n\\n\"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"under-space\"],[\"flush-element\"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[],\"named\":[],\"yields\":[],\"blocks\":[{\"statements\":[[\"text\",\"Sign In\"]],\"locals\":[]},{\"statements\":[[\"text\",\"Sign Up\"]],\"locals\":[]},{\"statements\":[[\"text\",\"        \"],[\"open-element\",\"li\",[]],[\"flush-element\"],[\"block\",[\"link-to\"],[\"sign-up\"],null,1],[\"close-element\"],[\"text\",\"\\n        \"],[\"open-element\",\"li\",[]],[\"flush-element\"],[\"block\",[\"link-to\"],[\"sign-in\"],null,0],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"Change Password\"]],\"locals\":[]},{\"statements\":[[\"text\",\"        \"],[\"open-element\",\"li\",[]],[\"static-attr\",\"class\",\"dropdown\"],[\"flush-element\"],[\"text\",\"\\n          \"],[\"open-element\",\"a\",[]],[\"static-attr\",\"href\",\"#\"],[\"static-attr\",\"class\",\"dropdown-toggle\"],[\"static-attr\",\"data-toggle\",\"dropdown\"],[\"static-attr\",\"role\",\"button\"],[\"static-attr\",\"aria-haspopup\",\"true\"],[\"static-attr\",\"aria-expanded\",\"false\"],[\"flush-element\"],[\"append\",[\"helper\",[\"truncate\"],[[\"get\",[\"user\"]],15],null],false],[\"text\",\" \"],[\"open-element\",\"span\",[]],[\"static-attr\",\"class\",\"caret\"],[\"flush-element\"],[\"close-element\"],[\"close-element\"],[\"text\",\"\\n          \"],[\"open-element\",\"ul\",[]],[\"static-attr\",\"class\",\"dropdown-menu\"],[\"flush-element\"],[\"text\",\"\\n            \"],[\"open-element\",\"li\",[]],[\"flush-element\"],[\"open-element\",\"a\",[]],[\"static-attr\",\"href\",\"\"],[\"modifier\",[\"action\"],[[\"get\",[null]],\"signOut\"]],[\"flush-element\"],[\"text\",\"Sign Out\"],[\"close-element\"],[\"close-element\"],[\"text\",\"\\n            \"],[\"open-element\",\"li\",[]],[\"flush-element\"],[\"block\",[\"link-to\"],[\"change-password\"],null,3],[\"close-element\"],[\"text\",\"\\n          \"],[\"close-element\"],[\"text\",\"\\n        \"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"            My Shows \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"liquid-bind-calendar-count\"],[\"flush-element\"],[\"append\",[\"helper\",[\"liquid-bind\"],[[\"get\",[\"getUserCalendars\",\"userEventIdArr\",\"length\"]]],null],false],[\"close-element\"],[\"text\",\"\\n\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"      \"],[\"open-element\",\"ul\",[]],[\"static-attr\",\"class\",\"nav my-shows pull-left\"],[\"flush-element\"],[\"text\",\"\\n        \"],[\"open-element\",\"li\",[]],[\"static-attr\",\"class\",\"navbar-text pull-left\"],[\"flush-element\"],[\"text\",\"\\n\"],[\"block\",[\"link-to\"],[\"user.calendar\"],[[\"class\"],[\"user-shows\"]],5],[\"text\",\"        \"],[\"close-element\"],[\"text\",\"\\n      \"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"          \"],[\"open-element\",\"a\",[]],[\"static-attr\",\"href\",\"javascript:;\"],[\"modifier\",[\"action\"],[[\"get\",[null]],\"goToRegion\",[\"get\",[\"location\",\"regionName\"]],[\"get\",[\"location\",\"regionId\"]]]],[\"flush-element\"],[\"append\",[\"helper\",[\"truncate\"],[[\"get\",[\"location\",\"regionName\"]],28],null],false],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"          \"],[\"open-element\",\"a\",[]],[\"static-attr\",\"href\",\"javascript:;\"],[\"modifier\",[\"action\"],[[\"get\",[null]],\"goToRegion\",[\"get\",[\"location\",\"regionName\"]],[\"get\",[\"location\",\"regionId\"]]]],[\"flush-element\"],[\"append\",[\"helper\",[\"truncate\"],[[\"get\",[\"location\",\"regionName\"]],19],null],false],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"      \"],[\"open-element\",\"a\",[]],[\"static-attr\",\"class\",\"navbar-brand show-hock\"],[\"static-attr\",\"href\",\"javascript:;\"],[\"modifier\",[\"action\"],[[\"get\",[null]],\"goToHome\"]],[\"flush-element\"],[\"text\",\"Show Hock\"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"      \"],[\"open-element\",\"a\",[]],[\"static-attr\",\"class\",\"navbar-brand show-hock\"],[\"static-attr\",\"href\",\"javascript:;\"],[\"modifier\",[\"action\"],[[\"get\",[null]],\"goToHome\"]],[\"flush-element\"],[\"text\",\"SH\"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]}],\"hasPartials\":false}", "meta": { "moduleName": "show-hock-app/templates/navbar.hbs" } });
+  exports["default"] = Ember.HTMLBars.template({ "id": "cy3NANJU", "block": "{\"statements\":[[\"open-element\",\"nav\",[]],[\"static-attr\",\"role\",\"navigation\"],[\"static-attr\",\"class\",\"navbar navbar-default navbar-fixed-top\"],[\"flush-element\"],[\"text\",\"\\n  \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"container\"],[\"flush-element\"],[\"text\",\"\\n    \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"navbar-header title navbar-left pull-left\"],[\"flush-element\"],[\"text\",\"\\n\"],[\"block\",[\"if\"],[[\"get\",[\"isAuthenticated\"]]],null,10,9],[\"text\",\"    \"],[\"close-element\"],[\"text\",\"\\n\\n\\n\\n    \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"navbar-header navbar-right pull-right\"],[\"flush-element\"],[\"text\",\"\\n\\n    \"],[\"open-element\",\"button\",[]],[\"static-attr\",\"type\",\"button\"],[\"static-attr\",\"data-toggle\",\"collapse\"],[\"static-attr\",\"data-target\",\".navbar-collapse\"],[\"static-attr\",\"class\",\"navbar-toggle\"],[\"flush-element\"],[\"text\",\"\\n      \"],[\"open-element\",\"span\",[]],[\"static-attr\",\"class\",\"sr-only\"],[\"flush-element\"],[\"text\",\"Toggle navigation\"],[\"close-element\"],[\"text\",\"\\n      \"],[\"open-element\",\"span\",[]],[\"static-attr\",\"class\",\"icon-bar\"],[\"flush-element\"],[\"close-element\"],[\"text\",\"\\n      \"],[\"open-element\",\"span\",[]],[\"static-attr\",\"class\",\"icon-bar\"],[\"flush-element\"],[\"close-element\"],[\"text\",\"\\n      \"],[\"open-element\",\"span\",[]],[\"static-attr\",\"class\",\"icon-bar\"],[\"flush-element\"],[\"close-element\"],[\"text\",\"\\n    \"],[\"close-element\"],[\"text\",\"\\n    \"],[\"close-element\"],[\"text\",\"\\n\\n    \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"navbar-header location navbar-left pull-left\"],[\"flush-element\"],[\"text\",\"\\n      \"],[\"open-element\",\"ul\",[]],[\"static-attr\",\"class\",\"nav geo pull-left\"],[\"flush-element\"],[\"text\",\"\\n        \"],[\"open-element\",\"li\",[]],[\"static-attr\",\"class\",\"navbar-text region pull-left\"],[\"flush-element\"],[\"text\",\"\\n\"],[\"block\",[\"if\"],[[\"get\",[\"media\",\"isTablet\"]]],null,8,7],[\"text\",\"        \"],[\"close-element\"],[\"text\",\"\\n      \"],[\"close-element\"],[\"text\",\"\\n\\n\"],[\"block\",[\"if\"],[[\"get\",[\"isAuthenticated\"]]],null,6],[\"text\",\"    \"],[\"close-element\"],[\"text\",\"\\n\\n    \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"visible-xs-block clearfix\"],[\"flush-element\"],[\"close-element\"],[\"text\",\"\\n\\n    \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"collapse navbar-collapse\"],[\"flush-element\"],[\"text\",\"\\n\\n\\n\"],[\"text\",\"\\n      \"],[\"open-element\",\"ul\",[]],[\"static-attr\",\"class\",\"nav navbar-nav navbar-right account\"],[\"flush-element\"],[\"text\",\"\\n\"],[\"block\",[\"if\"],[[\"get\",[\"isAuthenticated\"]]],null,4,2],[\"text\",\"      \"],[\"close-element\"],[\"text\",\"\\n\\n      \"],[\"open-element\",\"ul\",[]],[\"static-attr\",\"class\",\"nav navbar-nav navbar-right search\"],[\"flush-element\"],[\"text\",\"\\n\\n        \"],[\"open-element\",\"li\",[]],[\"static-attr\",\"class\",\"search-field item\"],[\"flush-element\"],[\"text\",\"\\n          \"],[\"open-element\",\"form\",[]],[\"static-attr\",\"class\",\"navbar-form navbar-right\"],[\"flush-element\"],[\"text\",\"\\n\\n    \"],[\"append\",[\"helper\",[\"search-input\"],null,[[\"keyword\",\"placeholder\"],[[\"get\",[\"enterName\"]],\"Enter artist / region / venue\"]]],false],[\"text\",\"\\n                \"],[\"open-element\",\"button\",[]],[\"static-attr\",\"type\",\"submit\"],[\"static-attr\",\"class\",\"btn search-button in-form\"],[\"modifier\",[\"action\"],[[\"get\",[null]],\"allSearch\",[\"get\",[\"enterName\"]]]],[\"flush-element\"],[\"text\",\"\\n                \"],[\"open-element\",\"span\",[]],[\"static-attr\",\"class\",\"glyphicon glyphicon-search\"],[\"flush-element\"],[\"close-element\"],[\"text\",\"\\n                \"],[\"close-element\"],[\"text\",\"\\n          \"],[\"close-element\"],[\"text\",\"\\n        \"],[\"close-element\"],[\"text\",\"\\n\\n        \"],[\"open-element\",\"li\",[]],[\"static-attr\",\"class\",\"navbar-text change pull-left\"],[\"flush-element\"],[\"text\",\"\\n          \"],[\"append\",[\"helper\",[\"change-location\"],null,[[\"userChooseRegion\"],[\"userChooseRegion\"]]],false],[\"text\",\"\\n        \"],[\"close-element\"],[\"text\",\"\\n      \"],[\"close-element\"],[\"text\",\"\\n    \"],[\"close-element\"],[\"text\",\"\\n  \"],[\"close-element\"],[\"text\",\"\\n\"],[\"close-element\"],[\"text\",\"\\n\\n\"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"under-space\"],[\"flush-element\"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[],\"named\":[],\"yields\":[],\"blocks\":[{\"statements\":[[\"text\",\"Sign In\"]],\"locals\":[]},{\"statements\":[[\"text\",\"Sign Up\"]],\"locals\":[]},{\"statements\":[[\"text\",\"        \"],[\"open-element\",\"li\",[]],[\"flush-element\"],[\"block\",[\"link-to\"],[\"sign-up\"],null,1],[\"close-element\"],[\"text\",\"\\n        \"],[\"open-element\",\"li\",[]],[\"flush-element\"],[\"block\",[\"link-to\"],[\"sign-in\"],null,0],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"Change Password\"]],\"locals\":[]},{\"statements\":[[\"text\",\"        \"],[\"open-element\",\"li\",[]],[\"static-attr\",\"class\",\"dropdown\"],[\"flush-element\"],[\"text\",\"\\n          \"],[\"open-element\",\"a\",[]],[\"static-attr\",\"href\",\"#\"],[\"static-attr\",\"class\",\"dropdown-toggle\"],[\"static-attr\",\"data-toggle\",\"dropdown\"],[\"static-attr\",\"role\",\"button\"],[\"static-attr\",\"aria-haspopup\",\"true\"],[\"static-attr\",\"aria-expanded\",\"false\"],[\"flush-element\"],[\"append\",[\"helper\",[\"truncate\"],[[\"get\",[\"user\"]],15],null],false],[\"text\",\" \"],[\"open-element\",\"span\",[]],[\"static-attr\",\"class\",\"caret\"],[\"flush-element\"],[\"close-element\"],[\"close-element\"],[\"text\",\"\\n          \"],[\"open-element\",\"ul\",[]],[\"static-attr\",\"class\",\"dropdown-menu\"],[\"flush-element\"],[\"text\",\"\\n            \"],[\"open-element\",\"li\",[]],[\"flush-element\"],[\"open-element\",\"a\",[]],[\"static-attr\",\"href\",\"\"],[\"modifier\",[\"action\"],[[\"get\",[null]],\"signOut\"]],[\"flush-element\"],[\"text\",\"Sign Out\"],[\"close-element\"],[\"close-element\"],[\"text\",\"\\n            \"],[\"open-element\",\"li\",[]],[\"flush-element\"],[\"block\",[\"link-to\"],[\"change-password\"],null,3],[\"close-element\"],[\"text\",\"\\n          \"],[\"close-element\"],[\"text\",\"\\n        \"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"            My Shows \"],[\"open-element\",\"div\",[]],[\"static-attr\",\"class\",\"liquid-bind-calendar-count\"],[\"flush-element\"],[\"append\",[\"helper\",[\"liquid-bind\"],[[\"get\",[\"getUserCalendars\",\"userCalendar\",\"length\"]]],null],false],[\"close-element\"],[\"text\",\"\\n\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"      \"],[\"open-element\",\"ul\",[]],[\"static-attr\",\"class\",\"nav my-shows pull-left\"],[\"flush-element\"],[\"text\",\"\\n        \"],[\"open-element\",\"li\",[]],[\"static-attr\",\"class\",\"navbar-text pull-left\"],[\"flush-element\"],[\"text\",\"\\n\"],[\"block\",[\"link-to\"],[\"user.calendar\"],[[\"class\"],[\"user-shows\"]],5],[\"text\",\"        \"],[\"close-element\"],[\"text\",\"\\n      \"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"          \"],[\"open-element\",\"a\",[]],[\"static-attr\",\"href\",\"javascript:;\"],[\"modifier\",[\"action\"],[[\"get\",[null]],\"goToRegion\",[\"get\",[\"location\",\"regionName\"]],[\"get\",[\"location\",\"regionId\"]]]],[\"flush-element\"],[\"append\",[\"helper\",[\"truncate\"],[[\"get\",[\"location\",\"regionName\"]],28],null],false],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"          \"],[\"open-element\",\"a\",[]],[\"static-attr\",\"href\",\"javascript:;\"],[\"modifier\",[\"action\"],[[\"get\",[null]],\"goToRegion\",[\"get\",[\"location\",\"regionName\"]],[\"get\",[\"location\",\"regionId\"]]]],[\"flush-element\"],[\"append\",[\"helper\",[\"truncate\"],[[\"get\",[\"location\",\"regionName\"]],19],null],false],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"      \"],[\"open-element\",\"a\",[]],[\"static-attr\",\"class\",\"navbar-brand show-hock\"],[\"static-attr\",\"href\",\"javascript:;\"],[\"modifier\",[\"action\"],[[\"get\",[null]],\"goToHome\"]],[\"flush-element\"],[\"text\",\"Show Hock\"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]},{\"statements\":[[\"text\",\"      \"],[\"open-element\",\"a\",[]],[\"static-attr\",\"class\",\"navbar-brand show-hock\"],[\"static-attr\",\"href\",\"javascript:;\"],[\"modifier\",[\"action\"],[[\"get\",[null]],\"goToHome\"]],[\"flush-element\"],[\"text\",\"SH\"],[\"close-element\"],[\"text\",\"\\n\"]],\"locals\":[]}],\"hasPartials\":false}", "meta": { "moduleName": "show-hock-app/templates/navbar.hbs" } });
 });
 define("show-hock-app/templates/region", ["exports"], function (exports) {
   exports["default"] = Ember.HTMLBars.template({ "id": "WwfPOLZQ", "block": "{\"statements\":[[\"append\",[\"unknown\",[\"liquid-outlet\"]],false],[\"text\",\"\\n\"]],\"locals\":[],\"named\":[],\"yields\":[],\"blocks\":[],\"hasPartials\":false}", "meta": { "moduleName": "show-hock-app/templates/region.hbs" } });

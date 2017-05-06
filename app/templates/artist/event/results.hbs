@@ -1,5 +1,44 @@
 <div class='region-event-listing artist'>
-{{upcoming-events upcomingInfo=model.upcomingInfo}}
+
+  {{#if model.upcomingInfo.firstObject.noMatch}}
+    <div class='upcoming-events-item-div'>
+    <h4>{{model.upcomingInfo.firstObject.performance.artist.displayName}} is not playing in <strong>{{userLocationSetting.regionName}}</strong></h4>
+    </div>
+  {{else}}
+
+    <div class='upcoming-events'>
+      {{!--TITLE AND METRO NAME FOR UPCOMING EVENTS IN USER AREA--}}
+      <div class='upcoming-events-title-wrapper'>
+        <div class='upcoming-events-title'>
+          <h3><strong>Next concerts near you</strong></h3>
+        </div>
+        <div class='upcoming-events-location'>
+          {{#if model.upcomingInfo.firstObject.venue.metroArea.state.displayName}}
+          <h4>{{model.upcomingInfo.firstObject.venue.metroArea.displayName}},
+              {{model.upcomingInfo.firstObject.venue.metroArea.state.displayName}},
+              {{model.upcomingInfo.firstObject.venue.metroArea.country.displayName}}</h4>
+          {{else}}
+          <h4>{{model.upcomingInfo.firstObject.venue.metroArea.displayName}},
+              {{model.upcomingInfo.firstObject.venue.metroArea.country.displayName}}</h4>
+          {{/if}}
+        </div>
+      </div>
+      {{!--LISTING FOR UPCOMING EVENTS IN USER AREA--}}
+      <ul class='upcoming-events-listing'>
+      {{#each model.upcomingInfo as |event|}}
+
+      {{upcoming-events event=event
+                        userEventArr=userEventArr
+                        goToConcert='goToConcert'
+                        trackUpcomingEvent='trackUpcomingEvent'
+                        unTrackUpcomingEvent='unTrackUpcomingEvent'
+                        isAuthenticated=isAuthenticated
+                        goToAuthenticate='goToAuthenticate'}}
+      {{/each}}
+      </ul>
+    </div>
+  {{/if}}
+
 {{#unless model.noMatch}}
 {{date-range-picker filterDate='filterDate'
                     min_date=min_date
@@ -25,7 +64,6 @@
           {{/each}}
         </ul>
       {{/if}}
-
       {{pagination-bar pages=model.artist.meta
                       newPage='changeArtistPage'
                       previousPage='previousPage'

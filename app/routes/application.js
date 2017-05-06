@@ -1,6 +1,8 @@
 import Ember from 'ember';
+import ResetScrollMixin from '../mixins/reset-scroll';
 
-export default Ember.Route.extend({
+
+export default Ember.Route.extend(ResetScrollMixin, {
   auth: Ember.inject.service(),
   flashMessages: Ember.inject.service(),
   getUserCalendars: Ember.inject.service(),

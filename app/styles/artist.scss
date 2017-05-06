@@ -142,6 +142,7 @@
   margin-bottom: 15px;
   padding-bottom: 15px;
   border-bottom: 1px dashed #2336b2;
+  overflow: hidden;
 }
 
 .upcoming-events-title-wrapper {
@@ -213,8 +214,13 @@
   padding-top: 10px;
   overflow: hidden;
 
-  h4 {
+  & h4 {
+    margin: 0;
     font-size: 16px;
+  }
+
+  .artist-event-location h4 {
+    margin: 5px 0 5px 0;
   }
 }
 
