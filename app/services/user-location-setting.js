@@ -41,11 +41,12 @@ export default Ember.Service.extend({
     }
 ///NEEEDS TO RETURN A PROMISE WITH COOKIE DATA.
     else {
-      return new Ember.RSVP.Promise(function(resolve, reject) {
+      return new Ember.RSVP.Promise((resolve) => {
         resolve(self.set('regionName', self.get('saveUserLocation').regionSelectName),
         self.set('regionId', self.get('saveUserLocation').regionSelectId),
         self.set('regionCountry', self.get('saveUserLocation').regionSelectCountry),
-        self.set('regionState', self.get('saveUserLocation').regionSelectState));
+        self.set('regionState', self.get('saveUserLocation').regionSelectState)
+      );
     });
     }
   }

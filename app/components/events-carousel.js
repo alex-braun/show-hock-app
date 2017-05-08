@@ -8,7 +8,7 @@ export default Ember.Component.extend({
   slideTo: 0,
   slideClick: false,
 
-  uniqueArtists: Ember.computed.uniqBy('events', 'headlineArtist'),
+  uniqueArtists: Ember.computed.uniqBy('model.event', 'headlineArtist'),
   sortedEvents: Ember.computed.sort('uniqueArtists', 'sortAttrs'),
   sortAttrs: ['popularity:desc'],
 
@@ -19,13 +19,9 @@ export default Ember.Component.extend({
       this.$(".carousel").carousel({
         interval: 4000
       });
-
       this.$('.carousel-indicators li').click(function() {
         clicked = true;
       });
-
-      // this.$(".carousel").carousel('pause');
-
       this.$(".carousel").bind('slide.bs.carousel', function (e) {
         if (clicked) {
           self.set('slideClick', true);
@@ -47,9 +43,12 @@ export default Ember.Component.extend({
     }
   },
 
-  willClearRender() {
+  willDestroyElement() {
     this._super(...arguments);
     this.$(".carousel").carousel('pause');
+  },
+
+  willClearRender() {
     this.$('.carousel').off('.carousel');
   },
 

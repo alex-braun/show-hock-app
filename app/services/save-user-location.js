@@ -31,7 +31,6 @@ export default Ember.Service.extend({
       cookieService.write('region_id', id);
       cookieService.write('region_country', country);
       cookieService.write('region_state', state);
-
       let cookies = cookieService.read();
         return this.set('regionSelectName', cookies.loc),
         this.set('regionSelectId', cookies.region_id),

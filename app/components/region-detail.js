@@ -9,8 +9,8 @@ export default Ember.Component.extend({
 
   init() {
     this._super(...arguments);
-    let userCalendar = this.get('getUserCalendars').userEventIdArr;
-    if (userCalendar.includes(this.get('event').id)) {
+    let userCalendarEventIds = this.get('getUserCalendars').userCalendarEventIds;
+    if (userCalendarEventIds.includes(this.get('event').id)) {
       return this.set('userPicked', true);
     } else {
       return this.set('userPicked', false);

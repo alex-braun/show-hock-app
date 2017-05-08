@@ -4,19 +4,15 @@ export default Ember.Component.extend({
 
   classNames: ['button-track-event-wrapper'],
 
-  userPicked: false,
-
   getUserCalendars: Ember.inject.service(),
 
   init() {
     this._super(...arguments);
-    let userCalendar = this.get('getUserCalendars').userEventIdArr;
-    if (userCalendar.length > 0) {
-      if (userCalendar.includes(parseInt(this.get('model').id))) {
-        return this.set('userPicked', true);
-      } else {
-        return this.set('userPicked', false);
-      }
+    let userCalendarEventIds = this.get('getUserCalendars').userCalendarEventIds;
+    if (userCalendarEventIds.includes(parseInt(this.get('model').id))) {
+      return this.set('userPicked', true);
+    } else {
+      return this.set('userPicked', false);
     }
   },
 

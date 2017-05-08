@@ -5818,7 +5818,7 @@ button.close {
 .region-detail-list {
   list-style-type: none; }
 
-.region-results-wrapper div.button-to-concert-wrapper {
+div.button-to-concert-wrapper {
   clear: left;
   float: left; }
 
@@ -6462,7 +6462,8 @@ ul.nearby-regions-list .nearby-regions-item {
 .upcoming-events-item-div {
   margin-bottom: 15px;
   padding-bottom: 15px;
-  border-bottom: 1px dashed #2336b2; }
+  border-bottom: 1px dashed #2336b2;
+  overflow: hidden; }
 
 .upcoming-events-title-wrapper {
   overflow: hidden; }
@@ -6518,7 +6519,10 @@ ul.nearby-regions-list .nearby-regions-item {
   padding-top: 10px;
   overflow: hidden; }
   .artist-event h4 {
+    margin: 0;
     font-size: 16px; }
+  .artist-event .artist-event-location h4 {
+    margin: 5px 0 5px 0; }
 
 .artist-list-wrapper {
   width: calc(100% - 100px);
@@ -6912,6 +6916,9 @@ div.svg-wrapper.map {
 .change-location-wrapper a:hover svg {
   fill: #F80046; }
 
+.upcoming-region-events-header .change-location-wrapper a svg {
+  fill: black; }
+
 .nav > li > a:hover {
   background-color: transparent;
   color: #F80046; }
@@ -7111,6 +7118,9 @@ div.svg-wrapper.map {
   position: relative;
   height: 525px; }
   .events-carousel img.headliner {
+    height: 472px;
+    width: 472px; }
+  .events-carousel img.headliner.empty {
     height: 472px;
     width: 472px; }
   .events-carousel .carousel-inner-title {

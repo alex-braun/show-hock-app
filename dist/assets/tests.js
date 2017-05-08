@@ -3613,6 +3613,15 @@ define('show-hock-app/tests/integration/components/venue-search-detail-test.jshi
     assert.ok(true, 'integration/components/venue-search-detail-test.js should pass jshint.');
   });
 });
+define('show-hock-app/tests/mixins/reset-scroll.jshint.lint-test', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint | mixins/reset-scroll.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'mixins/reset-scroll.js should pass jshint.');
+  });
+});
 define('show-hock-app/tests/models/artist-search.jshint.lint-test', ['exports'], function (exports) {
   'use strict';
 
@@ -4060,7 +4069,7 @@ define('show-hock-app/tests/routes/venue/event/concert.jshint.lint-test', ['expo
   QUnit.module('JSHint | routes/venue/event/concert.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'routes/venue/event/concert.js should pass jshint.');
+    assert.ok(false, 'routes/venue/event/concert.js should pass jshint.\nroutes/venue/event/concert.js: line 2, col 8, \'moment\' is defined but never used.\n\n1 error');
   });
 });
 define('show-hock-app/tests/routes/venue/event/results.jshint.lint-test', ['exports'], function (exports) {
@@ -4276,7 +4285,7 @@ define('show-hock-app/tests/services/user-location-setting.jshint.lint-test', ['
   QUnit.module('JSHint | services/user-location-setting.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(false, 'services/user-location-setting.js should pass jshint.\nservices/user-location-setting.js: line 44, col 55, \'reject\' is defined but never used.\n\n1 error');
+    assert.ok(true, 'services/user-location-setting.js should pass jshint.');
   });
 });
 define('show-hock-app/tests/storages/auth.jshint.lint-test', ['exports'], function (exports) {
@@ -5126,6 +5135,26 @@ define('show-hock-app/tests/unit/initializers/geo-location-test.jshint.lint-test
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
     assert.ok(true, 'unit/initializers/geo-location-test.js should pass jshint.');
+  });
+});
+define('show-hock-app/tests/unit/mixins/reset-scroll-test', ['exports', 'ember', 'show-hock-app/mixins/reset-scroll', 'qunit'], function (exports, _ember, _showHockAppMixinsResetScroll, _qunit) {
+
+  (0, _qunit.module)('Unit | Mixin | reset scroll');
+
+  // Replace this with your real tests.
+  (0, _qunit.test)('it works', function (assert) {
+    var ResetScrollObject = _ember['default'].Object.extend(_showHockAppMixinsResetScroll['default']);
+    var subject = ResetScrollObject.create();
+    assert.ok(subject);
+  });
+});
+define('show-hock-app/tests/unit/mixins/reset-scroll-test.jshint.lint-test', ['exports'], function (exports) {
+  'use strict';
+
+  QUnit.module('JSHint | unit/mixins/reset-scroll-test.js');
+  QUnit.test('should pass jshint', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'unit/mixins/reset-scroll-test.js should pass jshint.');
   });
 });
 define('show-hock-app/tests/unit/models/calendar-test', ['exports', 'ember-qunit'], function (exports, _emberQunit) {

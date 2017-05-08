@@ -206,6 +206,16 @@ div.svg-wrapper.map {
   }
 }
 
+.upcoming-region-events-header {
+  .change-location-wrapper {
+    a {
+      svg {
+        fill: black;
+      }
+    }
+  }
+}
+
   .nav > li > a:hover {
     background-color: transparent;
     color: #F80046;
@@ -504,6 +514,11 @@ div.svg-wrapper.map {
   height: 525px;
 
   img.headliner {
+    height: 472px;
+    width: 472px;
+  }
+
+  img.headliner.empty {
     height: 472px;
     width: 472px;
   }
