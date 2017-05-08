@@ -5323,6 +5323,6 @@ catch(err) {
 });
 
 if (!runningTests) {
-  require("show-hock-app/app")["default"].create({"name":"show-hock-app","version":"0.0.0+27aa76c2"});
+  require("show-hock-app/app")["default"].create({"name":"show-hock-app","version":"0.0.0+6661f4bb"});
 }
 //# sourceMappingURL=show-hock-app.map
