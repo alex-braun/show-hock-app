@@ -4285,7 +4285,7 @@ define('show-hock-app/tests/services/user-location-setting.jshint.lint-test', ['
   QUnit.module('JSHint | services/user-location-setting.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(false, 'services/user-location-setting.js should pass jshint.\nservices/user-location-setting.js: line 44, col 55, \'reject\' is defined but never used.\n\n1 error');
+    assert.ok(true, 'services/user-location-setting.js should pass jshint.');
   });
 });
 define('show-hock-app/tests/storages/auth.jshint.lint-test', ['exports'], function (exports) {

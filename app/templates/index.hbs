@@ -4,7 +4,7 @@
 
 <div class='landing-info-section event-info'>
 
-    {{event-carousel-outer events=model.event
+    {{event-carousel-outer model=model
                         slideFrom=slideFrom
                         slideTo=slideTo
                         slideClick=slideClick}}
@@ -15,7 +15,7 @@
                             goToConcert='goToConcert'
                             userChooseRegion='userChooseRegion'}}
 
-    {{events-carousel events=model.event
+    {{events-carousel model=model
                   slideFrom=slideFrom
                   slideTo=slideTo
                   slideClick=slideClick

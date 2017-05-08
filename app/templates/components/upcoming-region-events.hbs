@@ -5,7 +5,9 @@
 </div>
 
 <ul class='upcoming-region-events-list-wrapper'>
-
+{{#if model.noMatch}}
+  <h4>No Events were found for {{userLocationSetting.regionName}}</h4>
+{{else}}
   {{#each filteredResults as |event|}}
     <li class='upcoming-region-event item'>
       <a href='javascript;' {{action 'goToConcert'
@@ -18,7 +20,7 @@
       <p>{{format-mon event.start.date}} {{format-day event.start.date}}, {{format-year event.start.date}} {{#if event.end.date}} - {{format-mon event.end.date}}, {{format-day event.end.date}}, {{format-year event.end.date}}{{/if}}</p>
     </li>
   {{/each}}
-
+  {{/if}}
 </ul>
 
 {{#if (gt model.meta.total_entries 5 ) }}

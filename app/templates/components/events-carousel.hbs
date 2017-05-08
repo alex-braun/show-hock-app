@@ -1,4 +1,27 @@
 <div id="carousel-inner-generic" class="carousel slide" data-ride="carousel">
+
+{{#if model.noMatch}}
+  <div class='carousel-inner-title'>
+    <h3>POPULAR in {{upper-case userLocationSetting.regionName}}</h3>
+  </div>
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-inner-generic" data-slide-to="0" class="active"></li>
+  </ol>
+  <div class="carousel-inner" role="listbox">
+    <div class="item active">
+      <figure class='artist-thumb-wrapper'>
+        <img src='./assets/images/concert_image_square.jpg' alt='concert-image' class='headliner empty image'>
+      </figure>
+      <div class="carousel-caption inner">
+        {{#link-to 'user.change-location'}}
+          <p class='caption'>There are no upcoming events in {{userLocationSetting.regionName}}</p>
+          <p class='caption'>Click here to change your location</p>
+        {{/link-to}}
+      </div>
+    </div>
+  </div>
+{{else}}
+
   <div class='carousel-inner-title'>
     <h3>POPULAR in {{upper-case userLocationSetting.regionName}}</h3>
   </div>
@@ -112,5 +135,5 @@
     </div>
   {{/if}}
   </div>
-
+{{/if}}
 </div>

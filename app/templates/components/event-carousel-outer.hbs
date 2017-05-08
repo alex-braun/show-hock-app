@@ -3,6 +3,14 @@
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
 
+{{#if model.noMatch}}
+    <div class="item active carousel-outer-inside-shadow">
+      <figure class='carousel-background-wrapper event'>
+        <img class='artist-background' src='./assets/images/concert_image_square.jpg' alt='concert_image_square'>
+      </figure>
+    </div>
+{{else}}
+
     <div class="item active carousel-outer-inside-shadow">
       <figure class='carousel-background-wrapper event'>
         <img class='artist-background' src={{sortedEvents.0.performance.0.artist.imageUrl}} alt={{sortedEvents.0.performance.0.artist.displayName}}>
@@ -32,6 +40,8 @@
         <img class='artist-background' src={{sortedEvents.4.performance.0.artist.imageUrl}} alt={{sortedEvents.4.performance.0.artist.imageUrl}}>
       </figure>
     </div>
-  </div>
 
+  {{/if}}
+
+  </div>
 </div>

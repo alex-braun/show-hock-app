@@ -2,11 +2,12 @@ export default function () {
   this.transition(
     this.fromRoute('artist.search'),
     this.toRoute('artist.event'),
-    // this.fromRoute('region.search'),
-    // this.toRoute('region.event'),
-    // this.fromRoute('venue.search'),
-    // this.toRoute('venue.event'),
-    this.use('fade')
+    this.fromRoute('region.search'),
+    this.toRoute('region.event'),
+    this.fromRoute('venue.search'),
+    this.toRoute('venue.event'),
+    this.use('fade'),
+    this.reverse('fade')
   );
 
   this.transition(
@@ -29,6 +30,13 @@ export default function () {
     this.toRoute('searches'),
     this.use('toDown'),
     this.reverse('toUp')
+  );
+
+  this.transition(
+    this.fromRoute('index'),
+    this.toRoute('region'),
+    this.use('fade'),
+    this.reverse('fade')
   );
 
   this.transition(

@@ -6916,6 +6916,9 @@ div.svg-wrapper.map {
 .change-location-wrapper a:hover svg {
   fill: #F80046; }
 
+.upcoming-region-events-header .change-location-wrapper a svg {
+  fill: black; }
+
 .nav > li > a:hover {
   background-color: transparent;
   color: #F80046; }
@@ -7115,6 +7118,9 @@ div.svg-wrapper.map {
   position: relative;
   height: 525px; }
   .events-carousel img.headliner {
+    height: 472px;
+    width: 472px; }
+  .events-carousel img.headliner.empty {
     height: 472px;
     width: 472px; }
   .events-carousel .carousel-inner-title {

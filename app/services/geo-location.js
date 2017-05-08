@@ -22,9 +22,8 @@ store: Ember.inject.service('store'),
         })
         .catch(() => { return this.set('clientIp', 404); });
     } else {
-        return new Ember.RSVP.Promise(function(resolve, reject) {
+        return new Ember.RSVP.Promise((resolve) => {
           resolve(self.get('clientIp'));
-          reject(self.get('clientIp'));
         });
     }
   },
