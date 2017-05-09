@@ -1,9 +1,10 @@
+{{log model}}
 <div class='region-event-listing artist'>
-
   {{#if model.upcomingInfo.firstObject.noMatch}}
     <div class='upcoming-events-item-div'>
     <h4>{{model.upcomingInfo.firstObject.performance.artist.displayName}} is not playing in <strong>{{userLocationSetting.regionName}}</strong></h4>
     </div>
+
   {{else}}
 
     <div class='upcoming-events'>
@@ -38,8 +39,7 @@
       </ul>
     </div>
   {{/if}}
-
-{{#unless model.noMatch}}
+{{#unless model.artist.noMatch}}
 {{date-range-picker filterDate='filterDate'
                     min_date=min_date
                     max_date=max_date}}

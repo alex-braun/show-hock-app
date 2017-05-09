@@ -8,6 +8,6 @@ export default DS.Model.extend({
   uri: DS.attr(),
   location: DS.attr(),
   start: DS.attr(),
-  noMatch: DS.attr(),
+  noMatch: DS.attr('boolean'),
   popularity: DS.attr()
 });

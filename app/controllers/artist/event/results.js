@@ -7,6 +7,7 @@ export default Ember.Controller.extend({
   auth: Ember.inject.service(),
   isAuthenticated: Ember.computed.alias('auth.isAuthenticated'),
   getUserCalendars: Ember.inject.service(),
+  userLocationSetting: Ember.inject.service(),
 
   queryParams: ['page', 'min_date', 'max_date'],
   page: 'page',

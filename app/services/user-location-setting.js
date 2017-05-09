@@ -15,7 +15,6 @@ export default Ember.Service.extend({
     this.get('saveUserLocation').getRegionSelect();
     let region = this.get('saveUserLocation').regionSelectName;
     if (region === null || region === undefined) {
-
       return this.get('geoLocation').getIp()
       .then(() => {
         if (this.get('geoLocation').clientIp !== 404) {
@@ -41,6 +40,7 @@ export default Ember.Service.extend({
     }
 ///NEEEDS TO RETURN A PROMISE WITH COOKIE DATA.
     else {
+      console.log(self.get('saveUserLocation').regionSelectName);
       return new Ember.RSVP.Promise((resolve) => {
         resolve(self.set('regionName', self.get('saveUserLocation').regionSelectName),
         self.set('regionId', self.get('saveUserLocation').regionSelectId),
