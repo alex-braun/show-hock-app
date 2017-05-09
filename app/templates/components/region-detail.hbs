@@ -74,17 +74,18 @@
 {{/if}}
 </div>
 
-{{button-to-concert buttonTitle='Details'
-                    value=event
-                    buttonClick='goToConcert'}}
+<div class='user-goto-buttons-wrapper'>
+  {{button-to-concert buttonTitle='Details'
+                      value=event
+                      buttonClick='goToConcert'}}
 
-{{tracking-buttons-concert model=event
-                           trackEvent='trackEvent'
-                           unTrackEvent='unTrackEvent'
-                           userPicked=userPicked
-                           isAuthenticated=isAuthenticated
-                           goToAuthenticate='goToAuthenticate'}}
-
+  {{tracking-buttons-concert model=event
+                             trackEvent='trackEvent'
+                             unTrackEvent='unTrackEvent'
+                             userPicked=userPicked
+                             isAuthenticated=isAuthenticated
+                             goToAuthenticate='goToAuthenticate'}}
+</div>
 {{!-- <div class='button-track-event-wrapper'>
   {{#if isAuthenticated}}
     {{#if userPicked}}

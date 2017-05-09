@@ -52,16 +52,18 @@
 {{/if}}
 </div>
 
-{{button-to-concert value=event
-                    buttonClick='goToConcert'
-                    buttonTitle='Details'}}
+<div class='user-goto-buttons-wrapper'>
+  {{button-to-concert value=event
+                      buttonClick='goToConcert'
+                      buttonTitle='Details'}}
 
-{{tracking-buttons-concert model=event
-                           trackEvent='trackEvent'
-                           unTrackEvent='unTrackEvent'
-                           userPicked=userPicked
-                           isAuthenticated=isAuthenticated
-                           goToAuthenticate='goToAuthenticate'}}
+  {{tracking-buttons-concert model=event
+                             trackEvent='trackEvent'
+                             unTrackEvent='unTrackEvent'
+                             userPicked=userPicked
+                             isAuthenticated=isAuthenticated
+                             goToAuthenticate='goToAuthenticate'}}
+</div>
 
 {{#if event.ageRestriction}}
   <h6>{{event.ageRestriction}}</h6>

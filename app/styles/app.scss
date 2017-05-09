@@ -59,6 +59,10 @@ footer {
     width: 33.3333%;
     text-align: right;
   }
+
+  .footer.nav > li {
+    margin: 0;
+  }
  }
 
 
@@ -865,6 +869,10 @@ form.search-input-page-wrapper {
   width: calc(100% - 83px);
 }
 
+.recent-events-calendar {
+  margin-top: 100px;
+}
+
 /*******************MEDIA QUERIES*************************/
 
 @media (min-width: 768px) {
@@ -1221,7 +1229,7 @@ form.search-input-page-wrapper {
 
   .upcoming-region-events {
     width: 90vw;
-    height: 371px;
+    max-height: 401px;
 
     .upcoming-region-events-list-wrapper {
       min-height: 0;
@@ -1275,6 +1283,63 @@ form.search-input-page-wrapper {
         h4 {
           margin-bottom: 0;
         }
+      }
+    }
+  }
+
+  footer {
+    height: 225px;
+    bottom: 0;
+    overflow: hidden;
+    background-color: $dark;
+    color: white;
+
+    .footer-container {
+      max-width: 1080px;
+      margin: 0 auto;
+      overflow: hidden;
+      padding: 15px;
+    }
+
+    .footer-nav-wrapper {
+      width: 100%;
+      float: left;
+      // padding: 15px;
+    }
+
+    .footer-contact {
+      float: left;
+      width: calc(100% - 30px);
+      text-align: left;
+      margin-left: 15px;
+      margin-top: 13px;
+      border-bottom: 1px dotted white;
+
+      h5 {
+        margin: 5px 0 5px 0;
+        font-size: 18px;
+      }
+    }
+
+    .songkick-ref {
+      float: left;
+      width: calc(100% - 30px);
+      text-align: left;
+      margin-left: 15px;
+      // padding-left: 15px;
+      border-bottom: 1px dotted white;
+    }
+
+    .footer.nav {
+
+      li {
+        margin: 15px;
+        font-size: 18px;
+        border-bottom: 1px dotted white;
+      }
+
+      li:last-child {
+        margin-bottom: 10px;
       }
     }
   }

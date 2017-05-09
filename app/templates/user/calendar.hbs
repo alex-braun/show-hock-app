@@ -2,25 +2,43 @@
   <div class='region-info-wrapper user-list'>
     <ul class='event-listings row-fluid block-grid'>
 
-<h4>You're tracking <strong>{{sortedByDate.length}}</strong>
+<h3>You're tracking <strong>{{sortedByDate.length}}</strong>
   {{#if (eq sortedByDate.length 1)}}
     show
   {{else}}
     shows
   {{/if}}
-</h4>
+</h3>
 
 {{#unless sortedByDate}}
   <p>You can add any event to your plans by clicking the “Track event” button.</p>
 {{/unless}}
+      {{!-- {{#each sortedByDate as |calendar|}}
 
-      {{#each sortedByDate as |calendar|}}
+        {{user-calendar-detail calendar=calendar
+                               goToConcert='goToConcert'
+                               unTrackEvent='unTrackEvent'}}
+
+      {{/each}} --}}
+      {{#each sortedUpcoming as |calendar|}}
 
         {{user-calendar-detail calendar=calendar
                                goToConcert='goToConcert'
                                unTrackEvent='unTrackEvent'}}
 
       {{/each}}
+
+    <div class='recent-events-calendar'>
+    <h3>Recent Events</h3>
+
+      {{#each sortedExpired as |calendar|}}
+
+        {{user-calendar-detail calendar=calendar
+                               goToConcert='goToConcert'
+                               unTrackEvent='unTrackEvent'}}
+
+      {{/each}}
+    </div>
     </ul>
   </div>
 </div>

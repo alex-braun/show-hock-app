@@ -39,17 +39,19 @@
   </li>
 </ul>
 
-    {{button-to-concert value=event
-                        buttonClick='goToConcert'
-                        buttonTitle=buttonTitle}}
+<div class='user-goto-buttons-wrapper'>
+  {{button-to-concert value=event
+                      buttonClick='goToConcert'
+                      buttonTitle=buttonTitle}}
 
-    {{tracking-buttons-concert model=event
-                               trackEvent='trackEvent'
-                               unTrackEvent='unTrackEvent'
-                               switchTrackedButtons=switchTrackedButtons
-                               trackBtnsUpdated='trackBtnsUpdated'
-                               isAuthenticated=isAuthenticated
-                               goToAuthenticate='goToAuthenticate'}}
+  {{tracking-buttons-concert model=event
+                             trackEvent='trackEvent'
+                             unTrackEvent='unTrackEvent'
+                             switchTrackedButtons=switchTrackedButtons
+                             trackBtnsUpdated='trackBtnsUpdated'
+                             isAuthenticated=isAuthenticated
+                             goToAuthenticate='goToAuthenticate'}}
+</div>
 
 {{/if}}
 </div>

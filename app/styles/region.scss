@@ -11,18 +11,27 @@
 // }
 
 div.button-to-concert-wrapper {
-  clear: left;
+  // clear: left;
   float: left;
+  margin-right: 20px;
 }
 
 .button-track-event-wrapper {
   float: left;
-  margin-left: 20px;
+  // margin-left: 20px;
 }
 
 .tracking-button-calendar {
   float: left;
-  margin-left: 20px;
+  // margin-left: 20px;
+}
+
+.user-goto-buttons-wrapper {
+  clear: left;
+}
+
+.search-button {
+  width: 100px;
 }
 
 .date {

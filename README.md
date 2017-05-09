@@ -31,7 +31,7 @@ If a user would like to track a show and the show does not exist yet:
 * `POST => performers`.
 
 * If the show already exists (the `event_id` mentioned above from the above POST matches an 'event_id' in the db), a `302 found` response is returned, containing the show data. then:
- * `GET` that same `show`, as Ember Data `belongsTo/hasMany` needs to see a returned member of the InternalModel class, and Ember error responses are not returned in such a manner.
+ * `GET` that same `show`, as Ember Data `belongsTo/hasMany` needs to see a returned object of the InternalModel class, and Ember error responses are not returned in such a manner.
  * `POST => calendars`,
  * `GET` => Get the `show` yet again so that the store has the updated calendars/users.  Otherwise, I found Ember Data makes GET requests to ALL of the calendars associated with the show, ie `show.get('calendars').pushObject(calendar)` does not work how I expected it to.
 
