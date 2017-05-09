@@ -27,6 +27,10 @@ export default Ember.Service.extend({
 ///SAVE THE USER'S PREFERRED LOCATION
   saveRegionSelect(region, id, country, state) {
       let cookieService = this.get('cookies');
+      cookieService.clear('loc');
+      cookieService.clear('region_id');
+      cookieService.clear('region_country');
+      cookieService.clear('region_state');
       cookieService.write('loc', region);
       cookieService.write('region_id', id);
       cookieService.write('region_country', country);

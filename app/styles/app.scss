@@ -13,6 +13,56 @@ $wht: white;
 $navbar_items: black;
 $brown: #534d41;
 
+html {
+  position: relative;
+  height: 100vh;
+  margin: 0;
+}
+
+body > .ember-view {
+  min-height: 100vh;
+}
+
+.container > .liquid-container {
+  min-height: calc(100vh - 251px);
+}
+
+footer {
+  height: 175px;
+  bottom: 0;
+  overflow: hidden;
+  background-color: $dark;
+  color: white;
+
+  .footer-container {
+    max-width: 1080px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 15px;
+  }
+
+  .footer-nav-wrapper {
+    width: 33.3333%;
+    float: left;
+    // padding: 15px;
+  }
+
+  .footer-contact {
+    float: left;
+    width: 33.3333%;
+    text-align: center;
+    // padding: 15px;
+  }
+
+  .songkick-ref {
+    float: right;
+    width: 33.3333%;
+    text-align: right;
+  }
+ }
+
+
+
 .user-stuff {
   clear: both;
 }
@@ -620,6 +670,7 @@ div.svg-wrapper.map {
 
 .landing-page-search-menu {
   max-width: 1080px;
+  min-height: 300px;
   margin: 0 auto;
   overflow: hidden;
   padding: 15px;
