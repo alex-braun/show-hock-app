@@ -28,9 +28,9 @@
 
       {{/each}}
 
+  {{#if sortedExpired}}
     <div class='recent-events-calendar'>
-    <h3>Recent Events</h3>
-
+      <h3>Recent Events</h3>
       {{#each sortedExpired as |calendar|}}
 
         {{user-calendar-detail calendar=calendar
@@ -39,6 +39,8 @@
 
       {{/each}}
     </div>
+  {{/if}}
+
     </ul>
   </div>
 </div>
