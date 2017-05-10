@@ -28,5 +28,6 @@ store: Ember.inject.service('store'),
 
   clearCalendar() {
     this.set('userCalendar', []);
+    this.set('userCalendarEventIds', []);
   }
 });

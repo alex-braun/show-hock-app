@@ -40,7 +40,6 @@ export default Ember.Service.extend({
     }
 ///NEEEDS TO RETURN A PROMISE WITH COOKIE DATA.
     else {
-      console.log(self.get('saveUserLocation').regionSelectName);
       return new Ember.RSVP.Promise((resolve) => {
         resolve(self.set('regionName', self.get('saveUserLocation').regionSelectName),
         self.set('regionId', self.get('saveUserLocation').regionSelectId),
