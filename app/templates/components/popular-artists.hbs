@@ -1,9 +1,0 @@
-<h3>Popular shows playing soon in <strong>{{userLocationSetting.regionName}}</strong></h3>
-
-<ul class="event-listings row-fluid block-grid-3">
-  {{#each mostPop as |event index|}}
-        {{search-popular event=event
-                         index=index
-                         goToFullConcert='goToFullConcert'}}
-  {{/each}}
-</ul>

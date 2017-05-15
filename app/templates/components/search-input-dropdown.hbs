@@ -1,9 +1,0 @@
-<select onchange={{action (mut dropdownIndex) value="target.value"}}>
-  {{#each dropdowns as |dropdownChoice index|}}
-    <option value={{ index }} selected={{eq dropdownIndex index}}>{{dropdownChoice.name}}</option>
-  {{/each}}
-</select>
-
-<p>
-  Selection: {{dropdown.name}}
-</p>
