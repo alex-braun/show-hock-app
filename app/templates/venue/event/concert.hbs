@@ -24,6 +24,10 @@
                                 concertId=model.id}}
   </div>
 
+  {{#if model.ageRestriction}}
+    <h6>Age Restriction: {{model.ageRestriction}}</h6>
+  {{/if}}
+
 {{else}}
   <div class='artist-concert concert'>
     <h3><strong>{{no-parens model.displayName}}</strong></h3>
@@ -46,6 +50,10 @@
                                 performances=model.performance
                                 concertId=model.id}}
     </div>
+
+    {{#if model.ageRestriction}}
+      <h6>Age Restriction: {{model.ageRestriction}}</h6>
+    {{/if}}
 
 {{/if}}
   {{!-- VENUE DETAILS--}}

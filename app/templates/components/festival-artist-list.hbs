@@ -1,4 +1,4 @@
-<a href='javascript:;' {{action 'goToConcert' event.id}}>
+<a href='javascript:;' {{action 'goToConcert' event}}>
   {{#each event.performance as |performance index|}}
       {{#if (arr-last performances.length index)}}
         {{#if (lt performances.length 10)}}

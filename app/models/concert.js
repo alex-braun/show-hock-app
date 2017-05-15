@@ -11,5 +11,6 @@ export default DS.Model.extend({
   venue: DS.attr(),
   location: DS.attr(),
   popularity: DS.attr(),
-  imageUrl: DS.attr()
+  imageUrl: DS.attr(),
+  ageRestriction: DS.attr()
 });
